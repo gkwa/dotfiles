@@ -2,6 +2,8 @@
 ;; the next dired will point you here
 (add-to-list 'load-path "~/.elisp")
 
+(find-file "~/notes.txt" t)
+
 (cd "~/")
 (setq Info-directory-list (cons (expand-file-name "~/.info") Info-default-directory-list))
 
@@ -26,7 +28,7 @@
 
 
 
-(shell)
+
 
 
 
@@ -125,10 +127,16 @@
   "Return true if the system we are running on is my PC at work"
   (string-equal system-name "demos-MacBook-Pro.local"))
 
+(defun system-is-win7-desktop1 ()
+  (interactive)
+  "Return true if the system we are running on is my PC at work"
+  (string-equal system-name "DEMO-PC"))
+
 (if (and
      (not (equal window-system nil))
      (or (system-is-my-personal-laptop)
 	 (system-is-i5-laptop)
+	 (system-is-win7-desktop1)
 	 ))
     (progn
       (setq screen-height (x-display-pixel-height))
@@ -140,6 +148,26 @@
 	(progn
 	  (set-frame-height (selected-frame) 200)
 	  (set-frame-width (selected-frame) 150)))))
+
+
+(defun set-frame-size-according-to-resolution ()
+  (interactive)
+  (if window-system
+  (progn
+    ;; use 120 char wide window for largeish displays
+    ;; and smaller 80 column windows for smaller displays
+    ;; pick whatever numbers make sense for you
+    (if (> (x-display-pixel-width) 1280)
+        (add-to-list 'default-frame-alist (cons 'width 120))
+      (add-to-list 'default-frame-alist (cons 'width 80)))
+    ;; for the height, subtract a couple hundred pixels
+    ;; from the screen height (for panels, menubars and
+    ;; whatnot), then divide by the height of a char to
+    ;; get the height we want
+    (add-to-list 'default-frame-alist 
+                 (cons 'height (/ (- (x-display-pixel-height) 200) (frame-char-height)))))))
+
+(set-frame-size-according-to-resolution)
 
 ;; (if (equal window-system nil)
 ;;     (shell nil))
@@ -1004,3 +1032,5 @@
 ;; Info-default-directory-list because "/opt/local/share/info" has the
 ;; newest stuff
 (setq Info-directory-list (cons (expand-file-name "/opt/local/share/info") Info-default-directory-list))
+
+(shell)
