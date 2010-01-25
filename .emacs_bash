@@ -1,0 +1,6 @@
+# Last modified $Id$
+# $HeadURL$
+# -*- sh-mode -*-
+
+. ~/.alias
+. ~/.bash_profile
