@@ -1,0 +1,19 @@
+#
+# A '#' or ';' character indicates a comment.
+#
+
+; core variables
+[core]
+; Don't trust file modes
+filemode = false
+
+; user identity
+[user]
+; name = "Taylor Monacelli"
+name = boxstream
+email = "taylor.monacelli@streambox.com"
+
+[man]
+; viewer = konqueror
+viewer = woman
+

@@ -1,0 +1,15 @@
+
+
+# http://www.gigascale.org/softdevel/faq/24.html
+# "\e[2~"	: paste-from-clipboard
+set bind-tty-special-characters off
+"\C-v": paste-from-clipboard
+
+# more refs
+
+# this combined with the .bashrc seems to make cygwin bash do C-v
+# properly, borrowed from here: make
+# http://www.saltycrane.com/blog/2008/05/how-to-paste-in-cygwin-bash-using-ctrl
+
+# Ignore case for the command-line-completion functionality
+set completion-ignore-case On

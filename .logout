@@ -1,0 +1,7 @@
+#!/bin/bash
+# Last modified $Id$
+# $HeadURL$
+# -*- sh -*-
+
+# http://mah.everybody.org/docs/ssh#gen-keys
+kill $SSH_AGENT_PID
