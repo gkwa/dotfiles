@@ -4,8 +4,10 @@ REM $HeadURL$
 REM -*- bat -*-
 
 echo %cd%
-unzip -q -n emacs-23.1-bin-i386.zip
-move emacs-23.1 "%programfiles%"
+set emacsdir=emacs-23.1
+unzip -q -n %emacsdir%-bin-i386.zip
+
+move %emacsdir% "%programfiles%"
 
 :: ------------------------------
 :: Fix known bug on windows:
@@ -15,11 +17,13 @@ move emacs-23.1 "%programfiles%"
 REM Warning (initialization): An error occurred while loading `c:/cygwin/home/administrator/.emacs':
 REM error: The directory c:/cygwin/home/administrator/.emacs.d/server is unsafe
 
-pushd "%programfiles%\emacs-23.1\lisp"
+pushd "%programfiles%\%emacsdir%\lisp"
 echo %cd%
 move server.elc server.elc.orig
 move server.el server.el.orig
 popd
 
 echo %cd%
-copy /y "emacs_windows_fix\server.el" "%programfiles%\emacs-23.1\lisp"
+copy /y "emacs_windows_fix\server.el" "%programfiles%\%emacsdir%\lisp"
+
+.\pathman /au "%systemdrive%\cygwin\bin;%path%"
