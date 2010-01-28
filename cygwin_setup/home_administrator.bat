@@ -4,4 +4,9 @@ REM $HeadURL$
 REM -*- bat -*-
 
 
-setx HOME "C:\cygwin\home\administrator"
+set user=administrator
+set homedir=%systemdrive%\cygwin\home\%user%
+setx HOME "%homedir%"
+echo %HOME%
+
+mkdir "%homedir%"

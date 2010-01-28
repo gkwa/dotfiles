@@ -22,4 +22,4 @@ move server.el server.el.orig
 popd
 
 echo %cd%
-copy /y "deploy\Program Files\emacs_windows_fix\server.el" "%programfiles%\emacs-23.1\lisp"
+copy /y "emacs_windows_fix\server.el" "%programfiles%\emacs-23.1\lisp"

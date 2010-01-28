@@ -4,4 +4,10 @@ REM $HeadURL$
 REM -*- bat -*-
 
 
-setx HOME "C:\cygwin\home\boxstream"
+
+set user=boxstream
+set homedir=%systemdrive%\cygwin\home\%user%
+setx HOME "%homedir%"
+echo %HOME%
+
+mkdir "%homedir%"

@@ -21,6 +21,7 @@ xcopy /H/F/I/V/R/Y/E deploy %systemdrive%\
 
 set target=%systemdrive%
 :: somehow, miraculously, this finds the directory "http%3a%2f%2fcygwin.lilengine.com%2f"
+# CLI arguments documented here: http://www.cygwin.com/faq/faq.setup.html#faq.setup.cli
 .\setup --no-desktop --quiet-mode --local-install --local-package-dir "%ProgramFiles%\CygwinInstall" 
 
 setx CYGWIN "binmode ntsec tty" -m 

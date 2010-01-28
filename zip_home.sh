@@ -5,6 +5,8 @@
 
 set -e
 set -x
+
+rm -f home.zip
 tmpdir=$(mktemp -d /tmp/XXXXXXXX)
 targetdir=$tmpdir/home
 mkdir -p $targetdir
