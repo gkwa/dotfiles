@@ -17,3 +17,5 @@ email = "taylor.monacelli@streambox.com"
 ; viewer = konqueror
 viewer = woman
 
+[merge]
+	tool = p4merge
