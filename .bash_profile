@@ -46,21 +46,6 @@ PATH=$PATH:$HOME/bin
 export PATH
 unset USERNAME
 
-
-locatesuffix() { test ! -z "$1" && { locate "$1" | grep -E "$1\$"; } }
-
-hs()
-{ 
-    if test ! -z "$1"; then
-	history | sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,' | \
-	    grep -i "$1" | grep -v "hs $1";
-    else
-	history | sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,' 
-    fi;
-}
-
-
-
 # http://mah.everybody.org/docs/ssh#gen-keys
 SSHAGENT=/usr/bin/ssh-agent
 SSHAGENTARGS="-s"
