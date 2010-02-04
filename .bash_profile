@@ -4,7 +4,7 @@
 # -*- sh-mode -*-
 
 . ~/.alias
-PATH=/opt/local/bin:$PATH
+PATH=/usr/local/bin:/opt/local/bin:$PATH
 
 export EDITOR=emacsclient
 export GIT_PAGER=

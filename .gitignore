@@ -1,3 +1,9 @@
 .bash_history
 .emacs.d/
 .ssh/
+.DS_Store
+.Trash/
+.breadcrumb
+.CFUserTextEncoding
+.subversion/
+.recentf

@@ -124,3 +124,4 @@ hs()
 }
 
 locatesuffix() { test ! -z "$1" && { locate "$1" | grep -E "$1\$"; } }
+
