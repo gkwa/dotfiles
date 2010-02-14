@@ -1,0 +1,23 @@
+2010/02/13 22:51:04 Starting cygwin install, version 2.682
+2010/02/13 22:51:04 io_stream_cygfile: fopen(/etc/setup/net-proxy-host) failed 2 No such file or directory
+2010/02/13 22:51:04 io_stream_cygfile: fopen(/etc/setup/net-proxy-port) failed 2 No such file or directory
+2010/02/13 22:51:04 io_stream_cygfile: fopen(/etc/setup/extrakeys) failed 2 No such file or directory
+2010/02/13 22:51:04 io_stream_cygfile: fopen(/etc/setup/chooser_window_settings) failed 2 No such file or directory
+2010/02/13 22:51:04 Current Directory: C:\Program Files\CygwinInstall
+2010/02/13 22:51:04 User has backup/restore rights
+2010/02/13 22:51:04 Changing gid to Administrators
+2010/02/13 22:51:04 Could not open service McShield for query, start and stop. McAfee may not be installed, or we don't have access.
+2010/02/13 22:51:07 source: download
+2010/02/13 22:51:08 Selected local directory: C:\Program Files\CygwinInstall
+2010/02/13 22:51:51 Selected local directory: C:\cygwin\home\administrator\cygwin_setup\deploy\Program Files\CygwinInstall
+2010/02/13 22:51:53 net: Direct
+2010/02/13 22:51:59 site: http://mirrors.xmission.com/cygwin/
+2010/02/13 22:52:37 Downloaded C:\cygwin\home\administrator\cygwin_setup\deploy\Program Files\CygwinInstall/http%3a%2f%2fmirrors.xmission.com%2fcygwin%2f/release/flip/flip-1.19-1.tar.bz2
+2010/02/13 22:52:42 Downloaded C:\cygwin\home\administrator\cygwin_setup\deploy\Program Files\CygwinInstall/http%3a%2f%2fmirrors.xmission.com%2fcygwin%2f/release/git/git-1.6.6.1-1.tar.bz2
+2010/02/13 22:52:42 Downloaded C:\cygwin\home\administrator\cygwin_setup\deploy\Program Files\CygwinInstall/http%3a%2f%2fmirrors.xmission.com%2fcygwin%2f/release/git/git-completion/git-completion-1.6.6.1-1.tar.bz2
+2010/02/13 22:52:43 Downloaded C:\cygwin\home\administrator\cygwin_setup\deploy\Program Files\CygwinInstall/http%3a%2f%2fmirrors.xmission.com%2fcygwin%2f/release/git/git-gui/git-gui-1.6.6.1-1.tar.bz2
+2010/02/13 22:52:43 Downloaded C:\cygwin\home\administrator\cygwin_setup\deploy\Program Files\CygwinInstall/http%3a%2f%2fmirrors.xmission.com%2fcygwin%2f/release/git/gitk/gitk-1.6.6.1-1.tar.bz2
+2010/02/13 22:52:44 Downloaded C:\cygwin\home\administrator\cygwin_setup\deploy\Program Files\CygwinInstall/http%3a%2f%2fmirrors.xmission.com%2fcygwin%2f/release/libidn/libidn11/libidn11-1.16-1.tar.bz2
+2010/02/13 22:52:45 Downloaded C:\cygwin\home\administrator\cygwin_setup\deploy\Program Files\CygwinInstall/http%3a%2f%2fmirrors.xmission.com%2fcygwin%2f/release/_update-info-dir/_update-info-dir-00864-1.tar.bz2
+2010/02/13 22:52:47 note: Download Complete
+2010/02/13 22:52:47 Ending cygwin install
