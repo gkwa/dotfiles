@@ -32,6 +32,8 @@
 
 (add-to-list 'load-path "~/.elisp")
 (add-to-list 'load-path "~/.elisp/anything-config")
+(add-to-list 'load-path "~/.elisp/yasnippet-read-only")
+;(add-to-list 'load-path "~/.elisp/jdee-2.4.0.1/lisp")
 (add-to-list 'load-path "~/.elisp/browse-kill-ring.el")
 (add-to-list 'load-path "~/.elisp/applescript-mode.el")
 (add-to-list 'load-path "~/.elisp/html-helper-mode")
@@ -155,6 +157,12 @@
       [?\C-a ?\C-k f7 ?\C-c ?\C-a ?l ?\C-y escape ?\\ ?\C-f ?\C-f ?\C-  ?\C-a ?\C-p ?\C-k ?\C-u ?\C-  ?\C-y ?\C-a ?\C-c ?\C-l ?l ?\C-l])
 
 ;; --------------------------------------------------
+
+;; http://yasnippet.googlecode.com/svn/trunk/doc/index.html
+;; http://code.google.com/p/yasnippet/
+(require 'yasnippet) ;; not yasnippet-bundle
+(yas/initialize)
+(yas/load-directory "~/.elisp/yasnippet-read-only/snippets")
 
 ;; http://www.emacswiki.org/cgi-bin/wiki?BackupDirectory
 (require 'backup-dir)
@@ -717,3 +725,9 @@
 (add-hook 'dired-mode-hook
   (lambda () (when recentf-mode
        (recentf-add-file default-directory))))
+
+
+;; (load "jde")
+;; (setq jde-web-browser "firefox")
+;; (setq jde-doc-dir "c:/jdk1.1/docs/")
+;; (jde-db-set-source-paths "c:/jdk1.1/src/;c:/myjava/src/")
