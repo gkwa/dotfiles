@@ -3,3 +3,5 @@
 .ssh/
 .Trash/
 .cpan/
+CygwinInstall/setup.log
+CygwinInstall/setup.log.full
