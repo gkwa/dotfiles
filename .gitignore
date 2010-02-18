@@ -1,3 +1,5 @@
+.recentf
+.breadcrumb
 .bash_history
 .emacs.d/
 .ssh/
@@ -7,3 +9,7 @@
 .CFUserTextEncoding
 .subversion/
 .recentf
+.Trash/
+.cpan/
+CygwinInstall/setup.log
+CygwinInstall/setup.log.full

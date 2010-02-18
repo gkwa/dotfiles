@@ -4,6 +4,7 @@
 # -*- sh-mode -*-
 
 . ~/.alias
+PATH=/opt/local/bin:$PATH
 PATH=/usr/local/bin:/opt/local/bin:$PATH
 
 export EDITOR=emacsclient
@@ -17,6 +18,9 @@ PS1="[\d \t \u@\h:\w ]$ "
 
 case "$(uname)" in 
     "Darwin")
+	JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
+	PATH=/opt/local/bin:$PATH
+	export JAVA_HOME
 	;;
     "Linux")
 	ip=$(ip addr show dev eth0 | grep "inet " | cut -d\/ -f1 | awk '{print $2}')
@@ -25,10 +29,6 @@ case "$(uname)" in
 	fi
 	;;
 esac
-
-
-
-
 
 # http://www.mail-archive.com/bug-bash@gnu.org/msg01691.html
 # stty lnext ^Q stop undef
@@ -43,7 +43,6 @@ fi
 
 PATH=$PATH:$HOME/bin
 
-export PATH
 unset USERNAME
 
 # http://mah.everybody.org/docs/ssh#gen-keys
