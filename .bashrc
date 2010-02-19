@@ -125,3 +125,21 @@ hs()
 
 locatesuffix() { test ! -z "$1" && { locate "$1" | grep -E "$1\$"; } }
 
+case "$(uname)" in 
+    "Darwin")
+	JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
+	export PATH=/Applications/p4merge.app/Contents/MacOS:$PATH
+	export PATH=/opt/local/bin:$PATH
+	export PATH=/usr/local/bin:$PATH
+	export PATH=/opt/local/bin:$PATH
+	export JAVA_HOME
+	;;
+    "Linux")
+	ip=$(ip addr show dev eth0 | grep "inet " | cut -d\/ -f1 | awk '{print $2}')
+	if test ! -z "$ip"; then
+	    PS1="[\d \t \u@${ip}:\w ]$ "
+	fi
+	;;
+esac
+
+export PATH=$HOME/bin:$PATH
