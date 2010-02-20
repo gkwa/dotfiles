@@ -136,9 +136,23 @@ case "$(uname)" in
 
 
 	# installer functions
-	imgmountpoint() { hdid -plist $1 | grep mount-point -A1 | grep string | cut -d\> -f2 | cut -d\< -f1; }
-	myumount2() { diskutil umount "$(`imgmountpoint $1`)"; }
-	myinstall(){ set -x; hdid $1; pushd "$(imgmountpoint $1)"; sudo installer -pkg `ls -1 | grep -i pkg | head -1` -target /; popd; sleep 2; myumount2 "$1"; }
+	imgmountpoint() { 
+	    hdid -plist $1 | grep mount-point -A1 | grep string | \
+		cut -d\> -f2 | cut -d\< -f1; 
+	}
+	myumount2() { 
+
+	    diskutil umount "$(imgmountpoint $1)"; 
+	}
+	myinstall() { 
+	    set -x; 
+	    hdid $1; 
+	    pushd "$(imgmountpoint $1)"; 
+	    sudo installer -pkg `ls -1 | grep -i pkg | head -1` -target /; 
+	    popd; 
+	    sleep 2; 
+	    myumount2 "$1"; 
+	}
         # usage: myinstall LiveEncoder_1.03_intel_NTSC_Internal.dmg
 
 	;;
