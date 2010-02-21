@@ -1,0 +1,139 @@
+-*- sh -*-
+
+http://www.fedoraforum.org/forum/showthread.php?t=102621
+
+server$ yum install nfs-utils nfs-utils-lib portmap system-config-nfs
+server$ cat >> /etc/exports<<EOF
+   /home/admin 192.168.2.30(rw,no_root_squash,sync)
+
+#    The first part is the directory I want to share, the second the IP
+#    address of the client who is allowed to access the directory, and the
+#    part in brackets allows read/write access and root access on the server
+#    (the no_root_squash entry is optional)
+#    Note: if you prefer a gui and you're using Fedora as a server you can
+#    configure the exports file from the Desktop>Administration>Server
+#    Settings>NFS menu.
+
+EOF
+
+cat >>/etc/hosts.allow <<EOF
+
+# Paste in the following but change the IP address to the IP address of
+# the client who will be allowed to access the server, in my case
+# 192.168.2.73 
+
+# If multiple clients can access the server separate IP addresses with
+# commas. 
+
+   portmap: 192.168.2.73
+   lockd: 192.168.2.73
+   mountd: 192.168.2.73
+   rquotad: 192.168.2.73
+   statd: 192.168.2.73
+      
+EOF
+
+cat >>/etc/hosts.deny<<EOF
+
+   # This prevents all hosts not listed in hosts.allow from accessing
+   # the server.
+   portmap: ALL
+   lockd: ALL
+   mountd: ALL
+   rquotad: ALL
+   statd: ALL
+      
+EOF
+   5. Open the Desktop>Administration>Security Level and Firewall menu.
+   Select the Firewall Options tab and open the "Other Ports" dialogue.
+   Use the "add" button to add the following:
+
+
+
+   2049 UDP
+   2049 TCP
+   111 UDP
+   111 TCP
+
+
+
+# update firewal to allow 3443 through
+# This adds "-A INPUT -m state --state NEW -m tcp -p tcp --dport 3443 -j
+# ACCEPT" directly after the loopback acceptance "-A INPUT -i lo -j
+# ACCEPT" 
+perl -i.bak -pe 's{-A INPUT -i lo -j ACCEPT}{-A INPUT -i lo -j ACCEPT\n-A INPUT -m state --state NEW -m tcp -p tcp --dport 3443 -j ACCEPT}' /etc/sysconfig/iptables
+
+
+# http://www.homepage.montana.edu/~unixuser/031705/iptables.fedora.html
+-A INPUT -s 172.16.1.12 -p tcp -m tcp --dport 111 -j ACCEPT
+-A INPUT -s 172.16.1.12 -p udp -m udp --dport 111 -j ACCEPT
+-A INPUT -s 172.16.1.12 -p tcp -m tcp --dport 2049 -j ACCEPT
+-A INPUT -s 172.16.1.12 -p udp -m udp --dport 2049 -j ACCEPT
+
+69.90.235.65-95 
+
+69.90.235.65/255.255.255.224
+
+   Click OK.
+   Note: if you run FC4 there's a blank line called other ports. Just
+   enter 2049:tcp,2049:udp,111:tcp,111:udp and hit OK.
+   6. The next step is exporting the directories you want to share and
+   starting the NFS services. To start the nfs services type the following
+   command into a terminal (as root):
+   Code:
+chkconfig nfs on
+
+   Then export the directories from /etc/exports:
+   Code:
+exportfs -ra
+
+   Reboot and the services will start automatically.
+
+
+
+   Client Settings
+   Setting up the client side of NFS is fairly straightforward. I'm not
+   sure whether it's absolutely necessary to install all the NFS packages
+   for the client but I always do, as I might want the client to act as a
+   server if I'm working on another machine. So the steps I follow are:
+   1. Install NFS packages:
+   Code:
+yum install nfs-utils nfs-utils-lib portmap system-config-nfs
+
+   2. Open the folowing ports in the firewall:
+   2049 UDP
+   2049 TCP
+   111 UDP
+   111 TCP
+   3. Create a mountpoint for the NFS share (as root):
+   Code:
+mkdir /media/admin
+
+   and set permissions so that you can access this mount point as a user:
+   Code:
+chmod 777 /media/admin
+
+   4. Add an entry to fstab:
+   Code:
+gedit /etc/fstab
+
+   Paste an entry at the bottom of the file that looks something like
+   this:
+   Code:
+192.168.2.5:/home/admin         /media/admin    nfs     noauto,rw,user 0 0
+
+   The first part is the IP address of the server and the directory that
+   will be accessed. Dont forget to adapt the entry for your settings.
+   Save and close gedit.
+   5. As root type:
+   Code:
+mount -a
+
+   7. Make sure you can see the running services on the server by typing:
+   Code:
+rpcinfo -p 192.168.2.5 (the IP address of the server).
+
+   If you can, move on to the next step.
+   6. To mount the share type:
+   Code:
+mount /media/admin
