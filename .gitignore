@@ -11,7 +11,7 @@
 .recentf
 .ssh/
 .subversion/
-CygwinInstall/setup.log
-CygwinInstall/setup.log.full
+cygwin_setup/deploy/Program Files/CygwinInstall/setup.log
+cygwin_setup/deploy/Program Files/CygwinInstall/setup.log.full
 tmp/
 trash/
