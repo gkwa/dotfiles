@@ -1,0 +1,3 @@
+[submodule ".elisp/anything-config"]
+	path = .elisp/anything-config
+	url = git://repo.or.cz/anything-config.git
