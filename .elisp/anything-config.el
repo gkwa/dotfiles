@@ -1061,8 +1061,8 @@ This function allows easy sequencing of transformer functions."
 (setq anything-sources
 
 
-      (list anything-c-source-recentf
-	    anything-c-source-buffers
+      (list anything-c-source-buffers
+	    anything-c-source-recentf
             anything-c-source-buffer-not-found
             anything-c-source-file-name-history
             anything-c-source-info-pages
