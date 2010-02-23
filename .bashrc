@@ -141,7 +141,6 @@ case "$(uname)" in
 		cut -d\> -f2 | cut -d\< -f1; 
 	}
 	myumount2() { 
-
 	    diskutil umount "$(imgmountpoint $1)"; 
 	}
 	myinstall() { 
@@ -150,7 +149,8 @@ case "$(uname)" in
 	    pushd "$(imgmountpoint $1)"; 
 	    sudo installer -pkg `ls -1 | grep -i pkg | head -1` -target /; 
 	    popd; 
-	    sleep 2; 
+	    echo sleeping for 4 secs to allow stuff to catchup
+	    sleep 4; 
 	    myumount2 "$1"; 
 	}
         # usage: myinstall LiveEncoder_1.03_intel_NTSC_Internal.dmg
