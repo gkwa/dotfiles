@@ -34,6 +34,7 @@ viewer = woman
  gd = diff --summary
  changes=diff --name-status -r
  cl = config -l
+ lpo = log --pretty=oneline --reverse
  diffstat=diff --stat -r
  gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
 

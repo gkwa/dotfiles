@@ -133,6 +133,28 @@ case "$(uname)" in
 	export PATH=/usr/local/bin:$PATH
 	export PATH=/opt/local/bin:$PATH
 	export JAVA_HOME
+
+
+	# installer functions
+	imgmountpoint() { 
+	    hdid -plist $1 | grep mount-point -A1 | grep string | \
+		cut -d\> -f2 | cut -d\< -f1; 
+	}
+	myumount2() { 
+	    diskutil umount "$(imgmountpoint $1)"; 
+	}
+	myinstall() { 
+	    set -x; 
+	    hdid $1; 
+	    pushd "$(imgmountpoint $1)"; 
+	    sudo installer -pkg `ls -1 | grep -i pkg | head -1` -target /; 
+	    popd; 
+	    echo sleeping for 4 secs to allow stuff to catchup
+	    sleep 4; 
+	    myumount2 "$1"; 
+	}
+        # usage: myinstall LiveEncoder_1.03_intel_NTSC_Internal.dmg
+
 	;;
     "Linux")
 	ip=$(ip addr show dev eth0 | grep "inet " | cut -d\/ -f1 | awk '{print $2}')
@@ -143,3 +165,5 @@ case "$(uname)" in
 esac
 
 export PATH=$HOME/bin:$PATH
+
+
