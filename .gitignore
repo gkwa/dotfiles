@@ -1,19 +1,20 @@
-.semanticdb/
-.abbrev_defs
-.cups/
 .CFUserTextEncoding
 .DS_Store
 .Trash/
+.abbrev_defs
 .bash_history
 .breadcrumb
 .cpan/
+.cups/
 .emacs.d/
+.gitk
 .keepassx/
 .recentf
+.semanticdb/
 .ssh/
 .subversion/
+.tramp_history
 cygwin_setup/deploy/Program Files/CygwinInstall/setup.log
 cygwin_setup/deploy/Program Files/CygwinInstall/setup.log.full
 tmp/
 trash/
-.tramp_history
