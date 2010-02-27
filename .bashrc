@@ -112,6 +112,12 @@
 
 source ~/.alias
 
+# http://www.delorie.com/gnu/docs/emacs/emacs_444.html
+PS1="\u@\h \W$ "
+PS1="[\d \t \u@\h:\w ]$ "
+
+
+
 
 hs()
 { 
@@ -165,5 +171,3 @@ case "$(uname)" in
 esac
 
 export PATH=$HOME/bin:$PATH
-
-

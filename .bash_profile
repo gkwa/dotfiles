@@ -9,10 +9,6 @@ export GIT_PAGER=
 
 # .bash_profile
 
-# http://www.delorie.com/gnu/docs/emacs/emacs_444.html
-PS1="\u@\h \W$ "
-PS1="[\d \t \u@\h:\w ]$ "
-
 # http://www.mail-archive.com/bug-bash@gnu.org/msg01691.html
 # stty lnext ^Q stop undef
 # stty lnext undef
