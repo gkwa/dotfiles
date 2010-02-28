@@ -157,7 +157,7 @@ case "$(uname)" in
 
 	;;
     "Linux")
-	ip=$(ip addr show dev eth0 | grep "inet " | cut -d\/ -f1 | awk '{print $2}')
+	ip=$(/sbin/ip addr show dev eth0 | grep "inet " | cut -d\/ -f1 | awk '{print $2}')
 	if test ! -z "$ip"; then
 	    PS1="[\d \t \u@${ip}:\w ]$ "
 	fi
