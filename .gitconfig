@@ -31,7 +31,7 @@ viewer = woman
  lc = log ORIG_HEAD.. --stat --no-merges
  lrn = log --reverse --name-status
  s = status
- gd = diff --summary
+ ds = diff --stat
  changes=diff --name-status -r
  cl = config -l
  lpo = log --pretty=oneline --reverse
