@@ -138,8 +138,11 @@ case "$(uname)" in
 	export PATH=/opt/local/bin:$PATH
 	export PATH=/usr/local/bin:$PATH
 	export PATH=/opt/local/bin:$PATH
+	export PATH=/opt/local/sbin:$PATH
 	export JAVA_HOME
 
+	export MANPATH=/opt/local/share/man:$MANPATH
+	export DISPLAY=:0.0
 
 	# installer functions
 	imgmountpoint() { 

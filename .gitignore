@@ -1,4 +1,7 @@
-~/.macports/
+.local/share/Trash
+.RData
+.Rhistory
+.macports/
 .CFUserTextEncoding
 .DS_Store
 .Trash/
