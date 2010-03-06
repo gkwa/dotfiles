@@ -38,6 +38,8 @@
 (add-to-list 'load-path "~/.elisp/php-mode-1.5.0")
 (add-to-list 'load-path "~/.elisp/python-mode-1.0")
 (add-to-list 'load-path "~/.elisp/nxml-mode-20040910")
+(add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.1_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp/international")
+(add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.1_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp")
 (add-to-list 'load-path "~/.elisp/ocaml-mode-3.05")
 (add-to-list 'load-path "~/.elisp/psgml-1.2.5")	;; http://www.lysator.liu.se/~lenst/about_psgml/psgml.html
 (autoload 'wikipedia-mode
@@ -46,6 +48,8 @@
 (add-to-list 'load-path "~/.elisp/wikipedia-mode")
 
 
+(add-to-list 'load-path "~/.elisp/org-mode/contrib/lisp")
+(add-to-list 'load-path "~/.elisp/org-mode/lisp")
 
 (setq interpreter-mode-alist (cons '("python" . python-mode) 
 				   interpreter-mode-alist))
@@ -192,12 +196,16 @@
     (shell nil))
 
 (setq initial-frame-alist '((top . 10) (left . 30)))
- 
 
-;; http://docs.freebsd.org/info/texinfo/texinfo.info.Other_Info_Directories.html
-(setq Info-directory-list
-      (cons (expand-file-name "~/.info")
-            Info-default-directory-list))
+;; (setq Info-directory-list
+;;            '(
+;;              "/Users/taylormonacelli/.elisp/org-mode/doc"
+;; 	     "/usr/share/info"
+;; 	     "~/.info"
+;; 	     "~/Documents/git/Documentation"
+;; 	     ))
+
+
 
 ;; Pgup/dn will return exactly to the starting point.
 (setq scroll-preserve-screen-position 1)
@@ -410,9 +418,7 @@
     )
   )
 
-
-
-
+(setq Info-directory-list (cons (expand-file-name "~/.info") Info-default-directory-list))
 
 ;; resize man page to take up whole screen
 (setq Man-notify 'bully)
@@ -422,24 +428,37 @@
 (if (eq system-type 'windows-nt)
     (progn
       (setq explicit-shell-file-name "c:/cygwin/bin/bash.exe")
-
-					; assume that if I'm on windows then I'm running cygwin
-					; pretty good short term assumption anyway
-      (setq Info-directory-list
-	    (cons "c:/cygwin/usr/share/info"
-		  Info-directory-list))
+      (setq Info-directory-list (cons "c:/cygwin/usr/share/info" Info-directory-list))
       ))
 
+(if (eq system-type 'darwin)
+    (progn
+      ;;      (require 'w3m-load) ; available through macports (sudo port install emacs-w3m)
+
+      ;; http://docs.freebsd.org/info/texinfo/texinfo.info.Other_Info_Directories.html
+      ; (setq Info-directory-list (append (list "") Info-directory-list))
+      (setq Info-directory-list (append (list "/Applications/MacPorts/Emacs.app/Contents/Resources/info") Info-directory-list))
+      (setq Info-directory-list (append (list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info") Info-directory-list))
+      (setq Info-directory-list (append (list "/Applications/Aquamacs.app/Contents/Resources/info") Info-directory-list))
+      (setq Info-directory-list (append (list "/Applications/Aquamacs.app/Contents/Resources/site-lisp/edit-modes/info") Info-directory-list))
+      (setq Info-directory-list (append (list "/Applications/Emacs.app/Contents/Resources/extra/info") Info-directory-list))
+      (setq Info-directory-list (append (list "/Applications/Emacs.app/Contents/Resources/info") Info-directory-list))
+      (setq Info-directory-list (append (list "/opt/local/share/info") Info-directory-list))
+      (setq Info-directory-list (append (list "/opt/local/share/gcc43/info") Info-directory-list))
+      (setq Info-directory-list (append (list "/opt/local/share/info") Info-directory-list))
+      (setq Info-directory-list (append (list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info") Info-directory-list))
+      (setq Info-directory-list (append (list "/usr/share/info") Info-directory-list))
+      ))
 
 ;; Change the default eshell prompt
 (setq eshell-prompt-function
       (lambda ()
 
- 	;; This special form is like `let', but it binds each variable
- 	;; right after computing its local value, before computing the
- 	;; local value for the next variable.  Therefore, an expression
- 	;; in BINDINGS can reasonably refer to the preceding symbols
- 	;; bound in this `let*' form.  Compare the following example
+	;; This special form is like `let', but it binds each variable
+	;; right after computing its local value, before computing the
+	;; local value for the next variable.  Therefore, an expression
+	;; in BINDINGS can reasonably refer to the preceding symbols
+	;; bound in this `let*' form.  Compare the following example
  	;; with the example above for `let'.  
 	
  	(let* ((prompt (eshell/pwd))
@@ -471,14 +490,9 @@
 ;;     (setenv "PATH" path))
 ;;    (local-set-key "\C-u" 'eshell-kill-input))
 ;;  )
-          
 
-(append (list "c:/cygwin/usr/local/bin")
-	exec-path)
-
-
-					; (require 'ido)
-					;(ido-mode t)
+;; (require 'ido)
+;; (ido-mode t)
 
 (setenv "PS1" "\\u@\h \\W$ ")
 
@@ -503,7 +517,6 @@
 (global-set-key [(meta down)]           'bc-local-next)	;; M-down-arrow for local next
 (global-set-key [(control c)(j)]        'bc-goto-current) ;; C-c j for jump to current bookmark
 (global-set-key [(control x)(meta j)]   'bc-list) ;; C-x M-j for the bookmark menu list
-(set-variable (quote bc-bookmark-limit) 2000 nil)
 
 ;; Temporary macros begin
 (fset 'tm_create_wiki_link_from_mac_path
@@ -683,19 +696,20 @@
 ;; I believe custom vars should appear last to overwrite factory default values...I think.
 ;; --------------------------------------------------
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(delete-by-moving-to-trash t)
  '(ring-bell-function 'ignore)
  '(display-time-mode t nil (time))
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(ido-case-fold t)
  '(menu-bar-mode nil)
+ '(org-agenda-files (quote ("~/notes.txt")))
  '(scroll-bar-mode nil)
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
- '(bc-bookmark-limit 2000)
+ '(bc-bookmark-limit 100)
  '(truncate-lines t))
 
 
