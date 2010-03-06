@@ -142,7 +142,9 @@ case "$(uname)" in
 	export JAVA_HOME
 
 	export MANPATH=/opt/local/share/man:$MANPATH
-	export DISPLAY=:0.0
+# gitk complains "Application initialization failed: couldn't connect to
+# display ":0.0"" on osx, commented out
+#	export DISPLAY=:0.0
 
 	# installer functions
 	imgmountpoint() { 
