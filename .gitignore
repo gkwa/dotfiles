@@ -1,3 +1,5 @@
+*.mov
+*.actl3
 .CFUserTextEncoding
 .DS_Store
 .RData
