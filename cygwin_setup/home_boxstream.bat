@@ -14,3 +14,5 @@ mkdir "%homedir%"
 
 :: using cmd /c, I believe we can get the new path variable present for
 :: subsequent cmd.exe invocations
+
+
