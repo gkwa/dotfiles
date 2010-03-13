@@ -31,10 +31,11 @@ viewer = woman
  lc = log ORIG_HEAD.. --stat --no-merges
  lrn = log --reverse --name-status
  s = status
+ dc = diff --cached
  ds = diff --stat
  changes=diff --name-status -r
  cl = config -l
- lpo = log --pretty=oneline --reverse
+ lpo = log --pretty=format:'%h %ar %s' --reverse
  diffstat=diff --stat -r
  gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
 
