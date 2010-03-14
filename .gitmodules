@@ -1,6 +1,6 @@
 [submodule ".elisp/org-mode"]
-	path = ~/.elisp/org-mode
+	path = .elisp/org-mode
 	url = git://repo.or.cz/org-mode.git
-[submodule "/Users/taylormonacelli/.elisp/anything-config"]
-	path = ~/.elisp/anything-config
+[submodule ".elisp/anything-config"]
+	path = .elisp/anything-config
 	url = git://repo.or.cz/anything-config.git

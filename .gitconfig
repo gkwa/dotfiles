@@ -30,6 +30,7 @@ viewer = woman
  ci = commit
  lc = log ORIG_HEAD.. --stat --no-merges
  lrn = log --reverse --name-status
+ subup = submodule update
  s = status
  dc = diff --cached
  ds = diff --stat
