@@ -112,13 +112,6 @@
 
 source ~/.alias
 
-# http://www.delorie.com/gnu/docs/emacs/emacs_444.html
-PS1="\u@\h \W$ "
-PS1="[\d \t \u@\h:\w ]$ "
-
-
-
-
 hs()
 { 
     if test ! -z "$1"; then
@@ -176,3 +169,16 @@ case "$(uname)" in
 esac
 
 export PATH=$HOME/bin:$PATH
+
+function parse_git_branch
+{
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo "("${ref#refs/heads/}")"
+}
+
+# http://www.delorie.com/gnu/docs/emacs/emacs_444.html
+PS1="\u@\h \W$ "
+PS1="[\d \t \u@\h:\w ]$ "
+PS1="[\u@\h:\w\$(parse_git_branch)]$ "
+
+
