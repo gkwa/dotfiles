@@ -503,7 +503,25 @@
 
 ;; add to end of .emacs
 ;; C-x , set to anything
-(global-set-key "," (quote anything))
+(defun my-anything ()
+  (interactive)
+  (anything-other-buffer
+   '(
+     anything-c-source-buffers
+     anything-c-source-file-name-history
+     anything-c-source-recentf
+     anything-c-source-mark-ring
+     anything-c-source-global-mark-ring
+     anything-c-source-files-in-current-dir
+     anything-c-source-ctags
+					;anything-c-source-info-pages
+					;anything-c-source-info-elisp
+     anything-c-source-man-pages
+     anything-c-source-locate
+     anything-c-source-emacs-commands
+     )
+   " *my-anything*"))
+(global-set-key "," (quote my-anything))
 (require 'anything-config)		; loads anything.el too
 
 
