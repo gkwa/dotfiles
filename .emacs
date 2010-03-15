@@ -509,8 +509,9 @@
    '(
      anything-c-source-buffers
      anything-c-source-file-name-history
+     anything-c-source-files-in-all-dired
      anything-c-source-recentf
-     anything-c-source-mark-ring
+;     anything-c-source-mark-ring
      anything-c-source-global-mark-ring
      anything-c-source-files-in-current-dir
      anything-c-source-ctags
