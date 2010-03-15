@@ -509,6 +509,7 @@
    '(
      anything-c-source-buffers
      anything-c-source-file-name-history
+     anything-c-source-files-in-all-dired
      anything-c-source-recentf
      anything-c-source-mark-ring
      anything-c-source-global-mark-ring
@@ -549,12 +550,11 @@
 	(cdcmd (concat "cd \'" (expand-file-name (file-name-as-directory default-directory)) "\'")))
     (progn
       (shell)
-      (point-max)
+      (goto-char (point-max))
       (move-beginning-of-line 1)
       (insert "# ") (comint-send-input)
+      (goto-char (point-max))
       (insert cdcmd) (comint-send-input)
-;      (insert "ls -1") (comint-send-input)
-;      (message cdcmd)
       (switch-to-buffer-other-window cbuff)
       (other-window 1)
       (kill-new cbuff)
