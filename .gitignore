@@ -27,3 +27,5 @@ cygwin_setup/deploy/Program Files/CygwinInstall/setup.log
 cygwin_setup/deploy/Program Files/CygwinInstall/setup.log.full
 tmp/
 trash/
+.org.eclipse.epp.usagedata.recording.userId
+.mozilla/
