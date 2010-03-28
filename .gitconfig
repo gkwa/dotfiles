@@ -41,7 +41,8 @@ viewer = woman
  ds = diff --stat
  changes=diff --name-status -r
  cl = config -l
- lpo = log --pretty=format:'%h %ar %s' --reverse
+ lpo = log --pretty=tformat:'%h %ar %s' --reverse
+ lpon = log --pretty=tformat:'%h %ar %s' --reverse --name-status
  diffstat=diff --stat -r
  gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
