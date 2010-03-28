@@ -759,5 +759,7 @@
 ; anything-sources, then anything-c-source-recentf will bring up past
 ; directories.
 (add-hook 'dired-mode-hook
-  (lambda () (when recentf-mode
-       (recentf-add-file default-directory))))
+  (lambda () 
+    (local-set-key "f" (quote find-dired))
+    (when recentf-mode
+      (recentf-add-file default-directory))))
