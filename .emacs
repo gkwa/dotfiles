@@ -763,3 +763,7 @@
     (local-set-key "f" (quote find-dired))
     (when recentf-mode
       (recentf-add-file default-directory))))
+
+(add-hook 'org-mode-hook
+  (lambda () 
+    (local-set-key "a" (quote org-agenda)))) ; C-c a calls org-agenda in org-mode
