@@ -37,7 +37,6 @@
 (add-to-list 'load-path "~/.elisp/html-helper-mode")
 (add-to-list 'load-path "~/.elisp/php-mode-1.5.0")
 (add-to-list 'load-path "~/.elisp/python-mode-1.0")
-(add-to-list 'load-path "~/.elisp/nxml-mode-20040910")
 (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.1_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp/international")
 (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.1_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp")
 (add-to-list 'load-path "~/.elisp/ocaml-mode-3.05")
@@ -73,15 +72,12 @@
 					; (autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t) 
 					; (autoload 'xml-mode "psgml" "Major mode to edit XML files." t)
 
-
-
-
-
 (setq auto-mode-alist
       (append '(("\\.lsp$" . lisp-mode)
 		("\\.wiki$" . wikipedia-mode)
 		("\\.scm$" . scheme-mode)
-					;		("\\.xml$" . xml-mode) ; I'm not really using this mode and it slows things down when openning a xml file.
+		("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode)
+		;; ("\\.xml$" . xml-mode) ; I'm not really using this mode and it slows things down when openning a xml file.
 		("\\.m$" . matlab-mode)
 		("\\.pl$" . perl-mode)
 		("\\.\\(scpt\\|applescript\\)$" . applescript-mode)
@@ -101,6 +97,14 @@
 		("\\.tgz\\'" . tar-mode) 
 		) auto-mode-alist))
 
+
+;; from nxml-mode/README
+;; If you edit XML using iso-8859-N encodings other than iso-8859-1 and
+;; you are running Emacs 21.3 or later, then I recommend enabling
+;; unify-8859-on-decoding-mode, by adding
+;;   (unify-8859-on-decoding-mode)
+;; to you .emacs.
+(unify-8859-on-decoding-mode); nxml-mode suggested adding this
 
 (setq-default
 					; auto-fill-mode t
