@@ -1,0 +1,10 @@
+# -*- Mode: org -*- 
+
+%%(diary-cyclic 365 4 14 2010) Taxes due
+%%(diary-cyclic 365 3 29 2010) Streambox NAB
+%%(diary-cyclic 365 1 27 1972) Taylor's Bday
+%%(diary-cyclic 365 11 2 1970) Beth's bday
+%%(diary-cyclic 365 11 3 1970) Greg C.'s bday
+%%(diary-cyclic 365 6 6 1970) Christina's bday
+
+%%(diary-cyclic 31 4 2 2010) test stuff

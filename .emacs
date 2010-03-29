@@ -726,6 +726,7 @@
 ;; I believe custom vars should appear last to overwrite factory default values...I think.
 ;; --------------------------------------------------
 (custom-set-variables
+ '(diary-file (expand-file-name "~/.diary"))
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
