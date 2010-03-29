@@ -126,10 +126,10 @@
 
 
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  )
 
 (set-foreground-color "white")
@@ -731,19 +731,24 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(bc-bookmark-limit 100)
  '(delete-by-moving-to-trash t)
- '(ring-bell-function 'ignore)
  '(display-time-mode t nil (time))
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(ido-case-fold t)
  '(menu-bar-mode nil)
+ '(menu-bar-mode nil)
+ '(major-mode 'org-mode)
+ '(nxml-slash-auto-complete-flag t)
  '(org-agenda-files (quote ("~/notes.txt")))
+ '(org-agenda-include-diary t)
+ '(org-agenda-ndays 31)
+ '(org-deadline-warning-days 100)
+ '(ring-bell-function (quote ignore) t)
  '(scroll-bar-mode nil)
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
- '(bc-bookmark-limit 100)
- '(truncate-lines t))
-
-
+ '(truncate-lines t)
+)
 
 (require 'browse-kill-ring)
 (global-set-key (kbd "C-c k") 'browse-kill-ring)
@@ -767,4 +772,14 @@
 
 (add-hook 'org-mode-hook
   (lambda () 
-    (local-set-key "a" (quote org-agenda)))) ; C-c a calls org-agenda in org-mode
+    (local-set-key "c" (quote calendar))))
+
+(require 'org-babel-init)     
+(require 'org-babel-R)         ;; requires R and ess-mode
+;(require 'org-babel-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
+(require 'org-babel-python)    ;; requires python, and python-mode
+;(require 'org-babel-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
+(org-babel-load-library-of-babel)
+
+(define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-xj" 'rename-uniquely)
