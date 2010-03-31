@@ -6,6 +6,7 @@ REM -*- bat -*-
 set user=administrator
 set homedir=%systemdrive%\cygwin\home\%user%
 cmd /c setx HOME "%homedir%"
+cmd /c setx HOMEPATH "%HOME%"
 cmd /c setx PATH "C:\cygwin\bin;%PATH%"
 cmd /c setx PATH "c:\pgit;%PATH%"
 echo %HOME%

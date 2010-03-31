@@ -532,6 +532,7 @@
      anything-c-source-man-pages
      anything-c-source-locate
      ; anything-c-source-emacs-commands
+     anything-c-source-buffer-not-found
      )
    " *my-anything*"))
 (global-set-key "," (quote my-anything))
