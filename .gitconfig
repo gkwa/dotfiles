@@ -41,9 +41,13 @@ viewer = woman
  ds = diff --stat
  changes=diff --name-status -r
  cl = config -l
- lpo = log --pretty=tformat:'%h %ar %s' --reverse
- lpon = log --pretty=tformat:'%h %ar %s' --reverse --name-status
+ m = ls-files -m
+ lfh = log --pretty=tformat:'%h %d %ar %s' --reverse ..FETCH_HEAD --name-status
+ lpo = log --pretty=tformat:'%h %d %ar %s' --reverse
+ lg = log --graph --name-only 
+ lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status
  diffstat=diff --stat -r
  gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+
