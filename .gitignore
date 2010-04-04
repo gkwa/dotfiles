@@ -18,7 +18,9 @@
 .macports/
 .recentf
 .semanticdb/
-.ssh/
+.ssh/id_dsa
+.ssh/id_dsa.pub
+.ssh/known_hosts
 .subversion/
 .tramp_history
 CygwinInstall/setup.log
