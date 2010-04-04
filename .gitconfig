@@ -37,6 +37,7 @@ viewer = woman
  s = status
  dc = diff --cached
  dmod = diff --name-only --diff-filter=M
+ dd =   diff --name-only --diff-filter=D
  un = ls-files -o --directory .
  ds = diff --stat
  changes=diff --name-status -r
