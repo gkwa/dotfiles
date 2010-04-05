@@ -512,8 +512,9 @@
   (anything-other-buffer
    '(
      anything-c-source-buffers
-     ;; anything-for-files ;obsoleted
+     anything-c-source-kill-ring
      anything-c-source-file-name-history
+     ;; anything-for-files ;obsoleted
      ;anything-c-source-files-in-all-dired
      anything-c-source-recentf
      anything-c-source-minibuffer-history
@@ -525,7 +526,6 @@
      ;; position is not correct.
      ; anything-c-source-global-mark-ring
      anything-c-source-files-in-current-dir
-     anything-c-source-kill-ring
      anything-c-source-ctags
      anything-c-source-info-pages
      ; anything-c-source-info-elisp; this gives error progn: Symbol's function definition is void: Info-find-node
@@ -784,3 +784,7 @@
 
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-xj" 'rename-uniquely)
+
+
+(setq org-agenda-custom-commands
+      '(("f" occur-tree "FIXME")))
