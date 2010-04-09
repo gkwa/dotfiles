@@ -1,5 +1,5 @@
 ;;;; anything.el --- open anything / QuickSilver-like candidate-selection framework
-;; $Id: anything.el,v 1.248 2010/02/20 12:34:38 rubikitch Exp $
+;; $Id: anything.el,v 1.264 2010/03/27 19:02:52 rubikitch Exp $
 
 ;; Copyright (C) 2007              Tamas Patrovics
 ;;               2008, 2009, 2010  rubikitch <rubikitch@ruby-lang.org>
@@ -61,6 +61,8 @@
 ;;    Resurrect previously invoked `anything'.
 ;;  `anything-at-point'
 ;;    Same as `anything' except when C-u is pressed, the initial input is the symbol at point.
+;;  `anything-force-update'
+;;    Recalculate and update candidates.
 ;;  `anything-select-action'
 ;;    Select an action for the currently selected candidate.
 ;;  `anything-previous-line'
@@ -81,6 +83,8 @@
 ;;    Move selection to the next source.
 ;;  `anything-exit-minibuffer'
 ;;    Select the current candidate by exiting the minibuffer.
+;;  `anything-help'
+;;    Help of `anything'.
 ;;  `anything-delete-current-selection'
 ;;    Delete the currently selected item.
 ;;  `anything-delete-minibuffer-content'
@@ -182,6 +186,22 @@
 ;;   defined.
 
 ;;; (@* "Tips")
+
+;;
+;; `anything-interpret-value' is useful function to interpret value
+;; like `candidates' attribute.
+;;
+;; (anything-interpret-value "literal")            ; => "literal"
+;; (anything-interpret-value (lambda () "lambda")) ; => "lambda"
+;; (let ((source '((name . "lambda with source name"))))
+;;   (anything-interpret-value
+;;    (lambda () anything-source-name)
+;;    source))                             ; => "lambda with source name"
+;; (flet ((f () "function symbol"))
+;;   (anything-interpret-value 'f))        ; => "function symbol"
+;; (let ((v "variable symbol"))
+;;   (anything-interpret-value 'v))        ; => "variable symbol"
+;; (anything-interpret-value 'unbounded-1) ; error
 
 ;;
 ;; Now symbols are acceptable as candidates. So you do not have to use
@@ -327,6 +347,63 @@
 
 ;; (@* "HISTORY")
 ;; $Log: anything.el,v $
+;; Revision 1.264  2010/03/27 19:02:52  rubikitch
+;; New attributes: `mode-line' and `header-line'
+;;
+;; Revision 1.263  2010/03/27 02:34:40  rubikitch
+;; doc
+;;
+;; Revision 1.262  2010/03/27 02:31:55  rubikitch
+;; New command: `anything-force-update' C-c C-u
+;;
+;; Revision 1.261  2010/03/27 02:29:39  rubikitch
+;; New function `anything-goto-source'
+;;
+;; Revision 1.260  2010/03/27 02:01:28  rubikitch
+;; reimplement move selection commands
+;;
+;; Revision 1.259  2010/03/26 22:52:15  rubikitch
+;; `anything-quit-and-find-file':
+;;   If current selection is a buffer or a file, `find-file' from its directory.
+;;   Idea from http://i-yt.info/?date=20090826#p01 with some modification. Thanks.
+;;
+;; Revision 1.258  2010/03/26 12:10:55  rubikitch
+;; * modify `anything-mode-line-string'
+;; * New command `anything-help'
+;;
+;; Revision 1.257  2010/03/24 11:08:19  rubikitch
+;; revert to 1.255
+;;
+;; Revision 1.256  2010/03/24 08:29:43  rubikitch
+;; `anything-check-minibuffer-input' set repeat timer.
+;;
+;; Revision 1.255  2010/03/24 02:35:47  rubikitch
+;; `anything-candidate-number-limit':
+;; When (candidate-number-limit) is specified in SOURCE,
+;; cancel the effect of `anything-candidate-number-limit'.
+;;
+;; Revision 1.254  2010/03/23 00:33:18  rubikitch
+;; New API: `anything-interpret-value'
+;;
+;; Revision 1.253  2010/03/22 07:04:03  rubikitch
+;; `anything-get-current-source': return nil when no candidates rather than error
+;;
+;; Revision 1.252  2010/03/21 06:08:44  rubikitch
+;; Mark bug fix. thx hchbaw!
+;; http://d.hatena.ne.jp/hchbaw/20100226/1267200447
+;;
+;; Revision 1.251  2010/03/21 02:39:34  rubikitch
+;; Fix a wrong usage of `delq'. thx hchbaw.
+;; http://d.hatena.ne.jp/hchbaw/20100226/1267200447
+;;
+;; Revision 1.250  2010/03/21 02:32:29  rubikitch
+;; Fix `select deleted buffer' error message when calling `anything-resume'.
+;;
+;; It was occurred when killing `anything-current-buffer' and calling `anything-resume'.
+;;
+;; Revision 1.249  2010/02/23 20:43:35  rubikitch
+;; `anything-update': Ensure to call `anything-next-line'
+;;
 ;; Revision 1.248  2010/02/20 12:34:38  rubikitch
 ;; Mode-line help!! `anything-mode-line-string' is help string.
 ;;
@@ -1132,7 +1209,7 @@
 
 ;; ugly hack to auto-update version
 (defvar anything-version nil)
-(setq anything-version "$Id: anything.el,v 1.248 2010/02/20 12:34:38 rubikitch Exp $")
+(setq anything-version "$Id: anything.el,v 1.264 2010/03/27 19:02:52 rubikitch Exp $")
 (require 'cl)
 
 ;; (@* "User Configuration")
@@ -1524,6 +1601,20 @@ Attributes:
 - multiline (optional)
 
   Enable to selection multiline candidates.
+
+- update (optional)
+
+  Function called with no parameters when \\<anything-map>\\[anything-force-update] is pressed.
+
+- mode-line (optional)
+
+  source local `anything-mode-line-string'. (included in `mode-line-format')
+  It accepts also variable/function name.
+
+- header-line (optional)
+
+  source local `header-line-format'.
+  It accepts also variable/function name.
 ")
 
 
@@ -1655,7 +1746,11 @@ See also `anything-set-source-filter'.")
     (define-key map (kbd "C-c C-y") 'anything-yank-selection)
     (define-key map (kbd "C-c C-k") 'anything-kill-selection-and-quit)
     (define-key map (kbd "C-c C-f") 'anything-follow-mode)
+    (define-key map (kbd "C-c C-u") 'anything-force-update)
 
+    ;; Use `describe-mode' key in `global-map'
+    (dolist (k (where-is-internal 'describe-mode global-map))
+      (define-key map k 'anything-help))
     ;; the defalias is needed because commands are bound by name when
     ;; using iswitchb, so only commands having the prefix anything-
     ;; get rebound
@@ -1858,9 +1953,15 @@ It is `anything-default-display-buffer' by default, which affects `anything-same
 
 (defvar anything-delayed-init-executed nil)
 
-(defvar anything-mode-line-string "(C-c?:help TAB:act C-m/C-e/C-j:nthact C-o:nextsrc C-z:pers-act C-SPC:mark M-[/M-]:movemark C-t:splt C-cC-f:follow)"
+(defvar anything-mode-line-string "(\\<anything-map>\\[anything-help]:help \\[anything-select-action]:act \\[anything-exit-minibuffer]/\\[anything-select-2nd-action-or-end-of-line]/\\[anything-select-3rd-action]:nthact \\[anything-execute-persistent-action]:pers-act)"
   "Help string displayed in mode-line in `anything'.
 If nil, use default `mode-line-format'.")
+(make-variable-buffer-local 'anything-mode-line-string)
+
+(defvar anything-help-message
+  "\\<anything-map>The keys that are defined for `anything' are:
+       \\{anything-map}"
+  "Detailed help message string for `anything'.")
 
 (put 'anything 'timid-completion 'disabled)
 
@@ -2054,22 +2155,25 @@ If FORCE-DISPLAY-PART is non-nil, return the display string."
   ;; The name `anything-get-current-source' should be used in init function etc.
   (if (and (boundp 'anything-source-name) (stringp anything-source-name))
       source
-    (with-current-buffer (anything-buffer-get)
-      ;; This goto-char shouldn't be necessary, but point is moved to
-      ;; point-min somewhere else which shouldn't happen.
-      (goto-char (overlay-start anything-selection-overlay))
-      (let* ((header-pos (anything-get-previous-header-pos))
-             (source-name
-              (save-excursion
-                (or header-pos (error "No candidates"))
-                (goto-char header-pos)
-                (buffer-substring-no-properties
-                 (line-beginning-position) (line-end-position)))))
-        (some (lambda (source)
-                (if (equal (assoc-default 'name source)
-                           source-name)
-                    source))
-              (anything-get-sources))))))
+    (block exit
+      (with-current-buffer (anything-buffer-get)
+        ;; This goto-char shouldn't be necessary, but point is moved to
+        ;; point-min somewhere else which shouldn't happen.
+        (goto-char (overlay-start anything-selection-overlay))
+        (let* ((header-pos (anything-get-previous-header-pos))
+               (source-name
+                (save-excursion
+                  (unless header-pos
+                    (message "No candidates")
+                    (return-from exit nil))
+                  (goto-char header-pos)
+                  (buffer-substring-no-properties
+                   (line-beginning-position) (line-end-position)))))
+          (some (lambda (source)
+                  (if (equal (assoc-default 'name source)
+                             source-name)
+                      source))
+                (anything-get-sources)))))))
 
 (defun anything-buffer-is-modified (buffer)
   "Return non-nil when BUFFER is modified since `anything' was invoked."
@@ -2128,6 +2232,27 @@ This is suitable for anything applications."
 http://www.emacswiki.org/cgi-bin/wiki/download/anything.el
 
 or  M-x install-elisp-from-emacswiki anything.el")))
+
+(defun anything-interpret-value (value &optional source)
+  "interpret VALUE as variable, function or literal.
+If VALUE is a function, call it with no arguments and return the value.
+If SOURCE is `anything' source, `anything-source-name' is source name.
+
+If VALUE is a variable, return the value.
+
+If VALUE is a symbol, but it is not a function or a variable, cause an error.
+
+Otherwise, return VALUE itself."
+  (cond ((and source (functionp value))
+         (anything-funcall-with-source source value))
+        ((functionp value)
+         (funcall value))
+        ((and (symbolp value) (boundp value))
+         (symbol-value value))
+        ((symbolp value)
+         (error "anything-interpret-value: Symbol must be a function or a variable"))
+        (t
+         value)))
 
 ;; (@* "Core: tools")
 (defun anything-current-frame/window-configuration ()
@@ -2392,13 +2517,9 @@ If TEST-MODE is non-nil, clear `anything-candidate-cache'."
   (with-current-buffer (get-buffer-create anything-buffer)
     (buffer-disable-undo)
     (erase-buffer)
-    (set (make-local-variable  'inhibit-read-only) t)
+    (set (make-local-variable 'inhibit-read-only) t)
     (set (make-local-variable 'anything-last-sources-local) anything-sources)
-    (if anything-mode-line-string
-        (setq mode-line-format
-              '(" " mode-line-buffer-identification " "
-                (line-number-mode "%l") " " anything-mode-line-string "-%-"))
-      (kill-local-variable 'mode-line-format))
+    
     (setq cursor-type nil)
     (setq mode-name "Anything"))
   (anything-initialize-overlays anything-buffer)
@@ -2436,10 +2557,9 @@ If TEST-MODE is non-nil, clear `anything-candidate-cache'."
   (let ((hooks '((post-command-hook anything-check-minibuffer-input)
                  (minibuffer-setup-hook anything-print-error-messages)
                  (minibuffer-exit-hook (lambda () (anything-window-configuration 'store))))))
-    (with-current-buffer anything-current-buffer
-      (if (eq setup-or-cleanup 'setup)
-          (dolist (args hooks) (apply 'add-hook args))
-        (dolist (args (reverse hooks)) (apply 'remove-hook args))))))
+    (if (eq setup-or-cleanup 'setup)
+        (dolist (args hooks) (apply 'add-hook args))
+      (dolist (args (reverse hooks)) (apply 'remove-hook args)))))
 
 ;; (@* "Core: clean up")
 (defun anything-cleanup ()
@@ -2519,20 +2639,12 @@ SOURCE."
             (funcall it)
             (add-to-list 'anything-delayed-init-executed name)))))
   (let* ((candidate-source (assoc-default 'candidates source))
-         (candidates
-          (cond ((functionp candidate-source)
-                 (anything-funcall-with-source source candidate-source))
-                ((listp candidate-source)
-                 candidate-source)
-                ((and (symbolp candidate-source) (boundp candidate-source))
-                 (symbol-value candidate-source))
-                (t
-                 (error (concat "Candidates must either be a function, "
+         (candidates (anything-interpret-value candidate-source source)))
+    (cond ((processp candidates) candidates)
+          ((listp candidates) (anything-transform-candidates candidates source))
+          (t (error (concat "Candidates must either be a function, "
                                  " a variable or a list: %s")
                         candidate-source)))))
-    (if (processp candidates)
-        candidates
-      (anything-transform-candidates candidates source))))
          
 
 (defun anything-transform-candidates (candidates source)
@@ -2580,10 +2692,12 @@ Cache the candidates if there is not yet a cached value."
 
 ;; (@* "Core: narrowing candidates")
 (defun anything-candidate-number-limit (source)
-  "`anything-candidate-number-limit' variable may be overridden by SOURCE."
-  (or (assoc-default 'candidate-number-limit source)
-      anything-candidate-number-limit
-      99999999))
+  "`anything-candidate-number-limit' variable may be overridden by SOURCE.
+If (candidate-number-limit) is in SOURCE, show all candidates in SOURCE,
+ie. cancel the effect of `anything-candidate-number-limit'."
+  (anything-aif (assq 'candidate-number-limit source)
+      (or (cdr it) 99999999)
+    (or anything-candidate-number-limit 99999999)))
 
 (defun anything-compute-matches (source)
   "Compute matches from SOURCE according to its settings."
@@ -2724,35 +2838,59 @@ the current pattern."
           (delete-overlay overlay)))
 
     (let (delayed-sources)
-      (dolist (source (anything-get-sources))
-        (when (and (or (not anything-source-filter)
-                       (member (assoc-default 'name source) anything-source-filter))
-                   (>= (length anything-pattern)
-                       (anything-aif (assoc 'requires-pattern source)
-                           (or (cdr it) 1)
-                         0)))
-          (if (or (assoc 'delayed source)
-                  (and anything-quick-update
-                       (< (window-height (get-buffer-window (current-buffer)))
-                          (line-number-at-pos (point-max)))))
-              (push source delayed-sources)
-            (anything-process-source source))))
+      (unwind-protect
+          (dolist (source (anything-get-sources))
+            (when (and (or (not anything-source-filter)
+                           (member (assoc-default 'name source) anything-source-filter))
+                       (>= (length anything-pattern)
+                           (anything-aif (assoc 'requires-pattern source)
+                               (or (cdr it) 1)
+                             0)))
+              (if (or (assoc 'delayed source)
+                      (and anything-quick-update
+                           (< (window-height (get-buffer-window (current-buffer)))
+                              (line-number-at-pos (point-max)))))
+                  (push source delayed-sources)
+                (anything-process-source source))))
 
-      (goto-char (point-min))
-      (save-excursion (run-hooks 'anything-update-hook))
-      (anything-next-line)
-      (setq delayed-sources (nreverse delayed-sources))
-      (if anything-test-mode
-          (dolist (source delayed-sources)
-            (anything-process-source source))
-        (anything-maybe-fit-frame)
-        (when delayed-sources
-          (run-with-idle-timer (if (featurep 'xemacs)
-                                   0.1
-                                 0)
-                               nil
-                               'anything-process-delayed-sources
-                               delayed-sources))))))
+        (goto-char (point-min))
+        (save-excursion (run-hooks 'anything-update-hook))
+        (anything-next-line)
+        (setq delayed-sources (nreverse delayed-sources))
+        (if anything-test-mode
+            (dolist (source delayed-sources)
+              (anything-process-source source))
+          (anything-maybe-fit-frame)
+          (when delayed-sources
+            (run-with-idle-timer (if (featurep 'xemacs)
+                                     0.1
+                                   0)
+                                 nil
+                                 'anything-process-delayed-sources
+                                 delayed-sources)))))))
+
+(defun anything-force-update ()
+  "Recalculate and update candidates.
+If current source has `update' attribute, a function without argument, call it before update."
+  (interactive)
+  (anything-aif (anything-attr 'update)
+      (anything-funcall-with-source (anything-get-current-source) it))
+  ;; Remove from candidate cache to recalculate candidates
+  (setq anything-candidate-cache
+        (delete (assoc (assoc-default 'name (anything-get-current-source)) anything-candidate-cache)
+                anything-candidate-cache))
+  ;; Go to original selection after update
+  (let ((selection (anything-get-selection))
+        (source (anything-get-current-source)))
+    (anything-update)
+    (with-anything-window
+      (anything-goto-source source)
+      (forward-char -1)                 ;back to \n
+      (if (search-forward (concat "\n" selection "\n") nil t)
+          (forward-line -1)
+        (goto-char (point-min))
+        (forward-line 1))
+      (anything-mark-current-line))))
 
 (defun anything-insert-match (match insert-function &optional ignored)
   "Insert MATCH into the anything buffer. If MATCH is a list then
@@ -2940,134 +3078,148 @@ If action buffer is selected, back to the anything buffer."
              (anything-check-minibuffer-input))))))
 
 ;; (@* "Core: selection")
-(defun anything-previous-line ()
-  "Move selection to the previous line."
-  (interactive)
-  (anything-move-selection 'line 'previous))
-
-(defun anything-next-line ()
-  "Move selection to the next line."
-  (interactive)
-  (anything-move-selection 'line 'next))
-
-(defun anything-previous-page ()
-  "Move selection back with a pageful."
-  (interactive)
-  (anything-move-selection 'page 'previous))
-
-(defun anything-next-page ()
-  "Move selection forward with a pageful."
-  (interactive)
-  (anything-move-selection 'page 'next))
-
-(defun anything-beginning-of-buffer ()
-  "Move selection at the top."
-  (interactive)
-  (anything-move-selection 'edge 'previous))
-
-(defun anything-end-of-buffer ()
-  "Move selection at the bottom."
-  (interactive)
-  (anything-move-selection 'edge 'next))
-
-(defun anything-previous-source ()
-  "Move selection to the previous source."
-  (interactive)
-  (anything-move-selection 'source 'previous))
-
-
-(defun anything-next-source ()
-  "Move selection to the next source."
-  (interactive)
-  (anything-move-selection 'source 'next))
-
-
-(defun anything-move-selection (unit direction)
+(defun anything-move-selection-common (move-func unit direction)
   "Move the selection marker to a new position determined by
 UNIT and DIRECTION."
   (unless (or (zerop (buffer-size (get-buffer (anything-buffer-get))))
               (not (anything-window)))
     (with-anything-window
-      (case unit
-        (line (case direction
-                (next (if (not (anything-pos-multiline-p))
-                          (forward-line 1)
-                        (let ((header-pos (anything-get-next-header-pos))
-                              (candidate-pos (anything-get-next-candidate-separator-pos)))
-                          (if (and candidate-pos
-                                   (or (null header-pos)
-                                       (< candidate-pos header-pos)))
-                              (goto-char candidate-pos)
-                            (if header-pos
-                                (goto-char header-pos)))
-                          (if candidate-pos
-                              (forward-line 1)))))
-                
-                (previous (progn
-                            (forward-line -1)
-                            (when (anything-pos-multiline-p)
-                              (if (or (anything-pos-header-line-p)
-                                      (anything-pos-candidate-separator-p))
-                                  (forward-line -1)
-                                (forward-line 1))
-                              (let ((header-pos (anything-get-previous-header-pos))
-                                    (candidate-pos (anything-get-previous-candidate-separator-pos)))
-                                (when header-pos
-                                  (if (or (null candidate-pos) (< candidate-pos header-pos))
-                                      (goto-char header-pos)
-                                    (goto-char candidate-pos))
-                                  (forward-line 1))))))
-                
-                (t (error "Invalid direction."))))
-
-        (page (case direction
-                (next (condition-case nil
-                          (scroll-up)
-                        (end-of-buffer (goto-char (point-max)))))
-                (previous (condition-case nil
-                              (scroll-down)
-                            (beginning-of-buffer (goto-char (point-min)))))
-                (t (error "Invalid direction."))))
-
-        (source (case direction
-                   (next (goto-char (or (anything-get-next-header-pos)
-                                        (point-min))))
-                   (previous (progn
-                               (forward-line -1)
-                               (if (bobp)
-                                   (goto-char (point-max))
-                                 (if (anything-pos-header-line-p)
-                                     (forward-line -1)
-                                   (forward-line 1)))
-                               (goto-char (anything-get-previous-header-pos))
-                               (forward-line 1)))
-                   (t (error "Invalid direction."))))
-                
-        (edge (case direction
-                (next (goto-char (point-max)))
-                (previous (goto-char (point-min)))
-                (t (error "Invalid direction."))))
-
-        (t (error "Invalid unit.")))
-
+      (funcall move-func)
       (while (and (not (bobp))
                   (or (anything-pos-header-line-p)
                       (anything-pos-candidate-separator-p)))
         (forward-line (if (and (eq direction 'previous)
-                               (not (eq (line-beginning-position)
-                                        (point-min))))
+                               (not (eq (line-beginning-position) (point-min))))
                           -1
                         1)))
-      (if (bobp)
-          (forward-line 1))
-      (if (eobp)
-          (forward-line -1))
-
+      (and (bobp) (forward-line 1))     ;skip first header
+      (and (eobp) (forward-line -1))    ;avoid last empty line
       (when (and anything-display-source-at-screen-top (eq unit 'source))
         (set-window-start (selected-window)
                           (save-excursion (forward-line -1) (point))))
       (when (anything-get-previous-header-pos)
-        (anything-mark-current-line)))))
+        (anything-mark-current-line))
+      (anything-display-mode-line (anything-get-current-source)))))
+
+(defvar anything-mode-line-string-real nil)
+(defun anything-display-mode-line (source)
+  (setq anything-mode-line-string
+         (anything-interpret-value (or (assoc-default 'mode-line source)
+                                       anything-mode-line-string)
+                                   source))
+  (if anything-mode-line-string
+      (setq mode-line-format
+            '(" " mode-line-buffer-identification " "
+              (line-number-mode "%l") " " anything-mode-line-string-real "-%-")
+            anything-mode-line-string-real
+            (substitute-command-keys anything-mode-line-string))
+    (kill-local-variable 'mode-line-format))
+  (setq header-line-format
+        (anything-interpret-value (assoc-default 'header-line source) source)))
+
+(defun anything-previous-line ()
+  "Move selection to the previous line."
+  (interactive)
+  (anything-move-selection-common
+   (lambda ()
+     (forward-line -1)
+     (when (anything-pos-multiline-p)
+       (if (or (anything-pos-header-line-p)
+               (anything-pos-candidate-separator-p))
+           (forward-line -1)
+         (forward-line 1))
+       (let ((header-pos (anything-get-previous-header-pos))
+             (candidate-pos (anything-get-previous-candidate-separator-pos)))
+         (when header-pos
+           (if (or (null candidate-pos) (< candidate-pos header-pos))
+               (goto-char header-pos)
+             (goto-char candidate-pos))
+           (forward-line 1)))))
+   'line 'previous))
+
+(defun anything-next-line ()
+  "Move selection to the next line."
+  (interactive)
+  (anything-move-selection-common
+   (lambda ()
+     (if (not (anything-pos-multiline-p))
+         (forward-line 1)
+       (let ((header-pos (anything-get-next-header-pos))
+             (candidate-pos (anything-get-next-candidate-separator-pos)))
+         (if (and candidate-pos
+                  (or (null header-pos)
+                      (< candidate-pos header-pos)))
+             (goto-char candidate-pos)
+           (if header-pos
+               (goto-char header-pos)))
+         (if candidate-pos
+             (forward-line 1)))))
+   'line 'next))
+
+(defun anything-previous-page ()
+  "Move selection back with a pageful."
+  (interactive)
+  (anything-move-selection-common
+   (lambda ()
+     (condition-case nil
+         (scroll-down)
+       (beginning-of-buffer (goto-char (point-min)))))
+   'page 'previous))
+
+(defun anything-next-page ()
+  "Move selection forward with a pageful."
+  (interactive)
+  (anything-move-selection-common
+   (lambda ()
+     (condition-case nil
+         (scroll-up)
+       (end-of-buffer (goto-char (point-max)))))
+   'page 'next))
+
+(defun anything-beginning-of-buffer ()
+  "Move selection at the top."
+  (interactive)
+  (anything-move-selection-common (lambda () (goto-char (point-min)))
+                                  'edge 'previous))
+
+(defun anything-end-of-buffer ()
+  "Move selection at the bottom."
+  (interactive)
+  (anything-move-selection-common (lambda () (goto-char (point-max)))
+                                  'edge 'next))
+
+(defun anything-previous-source ()
+  "Move selection to the previous source."
+  (interactive)
+  (anything-move-selection-common
+   (lambda ()
+     (forward-line -1)
+     (if (bobp)
+         (goto-char (point-max))
+       (if (anything-pos-header-line-p)
+           (forward-line -1)
+         (forward-line 1)))
+     (goto-char (anything-get-previous-header-pos))
+     (forward-line 1))
+   'source 'previous))
+
+(defun anything-next-source ()
+  "Move selection to the next source."
+  (interactive)
+  (anything-move-selection-common
+   (lambda () (goto-char (or (anything-get-next-header-pos) (point-min))))
+   'source 'next))
+
+(defun anything-goto-source (source-or-name)
+  "Move the selection to the source (SOURCE-OR-NAME)."
+  (anything-move-selection-common
+   (lambda ()
+     (goto-char (point-min))
+     (let ((name (if (stringp source-or-name) source-or-name
+                   (assoc-default 'name source-or-name))))
+       (while (not (string= name (buffer-substring (point-at-bol) (point-at-eol))))
+         (goto-char (anything-get-next-header-pos)))))
+   'source 'next))
 
 (defun anything-mark-current-line ()
   "Move selection overlay to current line."
@@ -3153,6 +3305,26 @@ UNIT and DIRECTION."
   "Print error messages in `anything-issued-errors'."
   (message "%s" (mapconcat 'identity (reverse anything-issued-errors) "\n")))
 
+
+;; (@* "Core: help")
+(defun anything-help ()
+  "Help of `anything'."
+  (interactive)
+  (save-window-excursion
+    (select-window (anything-window))
+    (delete-other-windows)
+    (switch-to-buffer (get-buffer-create " *Anything Help*"))
+    (setq mode-line-format "%b (SPC:NextPage b:PrevPage other:Exit)")
+    (setq cursor-type nil)
+    (erase-buffer)
+    (insert (substitute-command-keys anything-help-message))
+    (goto-char 1)
+    (ignore-errors
+      (loop for event = (read-event) do
+            (case event
+              (?  (scroll-up))
+              (?b (scroll-down))
+              (t (return)))))))
 
 ;; (@* "Core: misc")
 (defun anything-kill-buffer-hook ()
@@ -3612,7 +3784,7 @@ Otherwise ignores `special-display-buffer-names' and `special-display-regexps'."
                    (cons source selection)
                    anything-marked-candidates))
             (delete-overlay it)
-            (delq it anything-visible-mark-overlays))
+            (setq anything-visible-mark-overlays (delq it anything-visible-mark-overlays)))
         (let ((o (make-overlay (line-beginning-position) (1+ (line-end-position)))))
           (overlay-put o 'face anything-visible-mark-face)
           (overlay-put o 'source (assoc-default 'name source))
@@ -3641,13 +3813,20 @@ Otherwise ignores `special-display-buffer-names' and `special-display-regexps'."
   (with-current-buffer anything-buffer
     (loop for o in anything-visible-mark-overlays do
           (goto-char (point-min))
-          (when (search-forward (overlay-get o 'string) nil t)
-            (forward-line -1)
-            (when (save-excursion
-                    (goto-char (anything-get-previous-header-pos))
-                    (equal (overlay-get o 'source)
-                           (buffer-substring (line-beginning-position) (line-end-position))))
-              (move-overlay o (line-beginning-position) (1+ (line-end-position))))))))
+          (let (moved)
+            (while (and (not moved)
+                        (search-forward (overlay-get o 'string) nil t))
+              (forward-line -1)
+              (when (and (save-excursion
+                           (goto-char (anything-get-previous-header-pos))
+                           (equal (overlay-get o 'source)
+                                  (buffer-substring (line-beginning-position) (line-end-position))))
+                         (not (find-if (lambda (x)
+                                         (memq x anything-visible-mark-overlays))
+                                       (overlays-at (point)))))
+                (move-overlay o (line-beginning-position) (1+ (line-end-position)))
+                (setq moved t))
+              (forward-line 1))))))
 (add-hook 'anything-update-hook 'anything-revive-visible-mark)
 
 (defun anything-next-visible-mark (&optional prev)
@@ -3675,9 +3854,17 @@ Otherwise ignores `special-display-buffer-names' and `special-display-regexps'."
 ;; (@* "Utility: `find-file' integration")
 (defun anything-quit-and-find-file ()
   "Drop into `find-file' from `anything' like `iswitchb-find-file'.
-This command is a simple example of `anything-run-after-quit'."
+If current selection is a buffer or a file, `find-file' from its directory."
   (interactive)
-  (anything-run-after-quit 'call-interactively 'find-file))
+  (anything-run-after-quit
+   (lambda (f)
+     (if (file-exists-p f)
+         (let ((default-directory (file-name-directory f)))
+           (call-interactively 'find-file))
+       (call-interactively 'find-file)))
+   (anything-aif (get-buffer (anything-get-selection))
+       (buffer-file-name it)
+     (expand-file-name (anything-get-selection)))))
 
 ;; (@* "Utility: Selection Paste")
 (defun anything-yank-selection ()
@@ -4243,6 +4430,22 @@ Given pseudo `anything-sources' and `anything-pattern', returns list like
               anything-buffer-file-name
             ;;(kill-buffer "__a_file__")
             )))
+      (desc "anything-interpret-value")
+      (expect "literal"
+        (anything-interpret-value "literal"))
+      (expect "lambda"
+        (anything-interpret-value (lambda () "lambda")))
+      (expect "lambda with source name"
+        (let ((source '((name . "lambda with source name"))))
+          (anything-interpret-value (lambda () anything-source-name) source)))
+      (expect "function symbol"
+        (flet ((f () "function symbol"))
+          (anything-interpret-value 'f)))
+      (expect "variable symbol"
+        (let ((v "variable symbol"))
+          (anything-interpret-value 'v)))
+      (expect (error error *)
+        (anything-interpret-value 'unbounded-1))
       (desc "anything-compile-sources")
       (expect '(((name . "foo")))
         (anything-compile-sources '(((name . "foo"))) nil)
@@ -4302,6 +4505,17 @@ Given pseudo `anything-sources' and `anything-pattern', returns list like
       (expect '("foo" "bar")
         (anything-get-candidates '((name . "foo")
                                    (candidates . (lambda () '("foo" "bar"))))))
+      (expect '("foo" "bar")
+        (let ((var '("foo" "bar")))
+          (anything-get-candidates '((name . "foo")
+                                     (candidates . var)))))
+      (expect (error error *)
+        (anything-get-candidates '((name . "foo")
+                                   (candidates . "err"))))
+      (expect (error error *)
+        (let ((var "err"))
+          (anything-get-candidates '((name . "foo")
+                                     (candidates . var)))))
       (desc "anything-compute-matches")
       (expect '("foo" "bar")
         (let ((anything-pattern ""))
@@ -5151,6 +5365,11 @@ Given pseudo `anything-sources' and `anything-pattern', returns list like
               (anything-candidate-number-limit 20))
           (anything-compute-matches '((name . "FOO") (candidates "a" "b" "c")
                                       (candidate-number-limit . 2) (volatile)))))
+      (expect '("a" "b" "c" "d")
+        (let ((anything-pattern "[abcd]")
+              (anything-candidate-number-limit 2))
+          (anything-compute-matches '((name . "FOO") (candidates "a" "b" "c" "d")
+                                      (candidate-number-limit) (volatile)))))
       (expect '(("TEST" ("a" "b" "c")))
         (let ((anything-candidate-number-limit 2))
           (anything-test-candidates
@@ -5557,7 +5776,7 @@ Given pseudo `anything-sources' and `anything-pattern', returns list like
           (define-anything-type-attribute 'buffer '((action . switch-to-buffer)))
           (define-anything-type-attribute 'file '((action . find-file)))
           anything-type-attributes))
-      (defun "anything-approximate-candidate-number")
+      (desc "anything-approximate-candidate-number")
       (expect 0
         (with-temp-buffer
           (let ((anything-buffer (current-buffer)))
