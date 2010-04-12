@@ -511,8 +511,9 @@
   (interactive)
   (anything-other-buffer
    '(
-     anything-c-source-recentf
      anything-c-source-buffers
+     anything-c-source-files-in-current-dir
+     anything-c-source-recentf
      anything-c-source-kill-ring
      anything-c-source-file-name-history
      ;; anything-for-files ;obsoleted
@@ -525,7 +526,6 @@
      ;; isn't working because upon returning to the buffer, your
      ;; position is not correct.
      ; anything-c-source-global-mark-ring
-     anything-c-source-files-in-current-dir
      anything-c-source-ctags
      anything-c-source-info-pages
      ; anything-c-source-info-elisp; this gives error progn: Symbol's function definition is void: Info-find-node
