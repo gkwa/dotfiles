@@ -151,7 +151,7 @@ case "$(uname)" in
 	    set -x; 
 	    hdid $1; 
 	    pushd "$(imgmountpoint $1)"; 
-	    sudo installer -pkg `ls -1 | grep -i pkg | head -1` -target /; 
+	    sudo installer -pkg "$(ls -1 | grep -i pkg | head -1)" -target /; 
 	    popd; 
 	    echo sleeping for 4 secs to allow stuff to catchup
 	    sleep 4; 
