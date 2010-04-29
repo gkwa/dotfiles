@@ -512,8 +512,8 @@
   (anything-other-buffer
    '(
      anything-c-source-buffers
-     anything-c-source-files-in-current-dir
      anything-c-source-recentf
+     anything-c-source-files-in-current-dir
      anything-c-source-kill-ring
      anything-c-source-file-name-history
      ;; anything-for-files ;obsoleted
