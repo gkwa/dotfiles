@@ -55,6 +55,7 @@ viewer = woman
  lpo = log --pretty=tformat:'%h %d %ar %s' --reverse
  lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status
  lg = log --graph --name-only 
+ dns = diff --name-status
  diffstat=diff --stat -r
  gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
