@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote  name="dev"
+           fetch="ssh://boxstream@development.streambox.com/var/www/html/proj/"
+            />
+  <default revision="master"
+           remote="dev" />
+
+  <project name="docbook-practice" />
+
+</manifest>
