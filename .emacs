@@ -62,7 +62,7 @@
 (autoload 'javascript-mode "javascript" nil t)
 (autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
 (autoload 'python-mode "python-mode" "Python editing mode." t)
-(autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
+;; (autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
 (autoload 'caml-mode "caml" "Major mode for editing Caml code." t)
 (autoload 'run-caml "inf-caml" "Run an inferior Caml process." t)
 (autoload 'bat-mode "bat-mode" "DOS and WIndows BAT files" t)
@@ -788,3 +788,41 @@
 
 (setq org-agenda-custom-commands
       '(("f" occur-tree "FIXME")))
+
+(require 'org-publish)
+(setq org-publish-project-alist
+      '(
+       ;; ... add all the components here (see below)...
+	("org-notes"
+	 :base-directory "~/Documents/projects/git_proj/read-sb-changelog"
+	 :base-extension "txt"
+	 :publishing-directory "~/Documents/projects/git_proj/read-sb-changelog"
+	 :recursive t
+	 :publishing-function org-publish-org-to-html
+	 :headline-levels 4             ; Just the default for this project.
+	 :auto-preamble t
+	 )
+
+
+	("org" :components ("org-notes" "org-static"))
+
+      ))
+
+
+(require 'org-crypt)
+; Encrypt all entries before saving
+(org-crypt-use-before-save-magic)
+; Which tag is used to mark headings to be encrypted
+(setq org-tags-exclude-from-inheritance (quote ("crypt")))
+; GPG key to use for encryption
+(setq org-crypt-key "F0B66B40")
+
+
+(setq org-use-speed-commands t)
+(setq org-speed-commands-user (quote (("0" . delete-window)
+                                      ("1" . delete-other-windows)
+                                      ("2" . split-window-vertically)
+                                      ("3" . split-window-horizontally)
+                                      ("h" . hide-other)
+                                      ("k" . org-kill-note-or-show-branches)
+                                      ("r" . org-reveal))))
