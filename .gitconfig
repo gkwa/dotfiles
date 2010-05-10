@@ -26,6 +26,7 @@ viewer = woman
  # good examples
  # http://git.wiki.kernel.org/index.php/Aliases
  br = branch
+ bra = branch -a
  co = checkout
  sub = submodule
  ap = add --patch
