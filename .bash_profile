@@ -31,3 +31,10 @@ if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
 fi
 
 
+
+if [ -f /opt/local/etc/bash_completion ]; then
+    . /opt/local/etc/bash_completion
+    # required?
+    # . /opt/local/etc/bash_completion.d/git-completion
+fi
+
