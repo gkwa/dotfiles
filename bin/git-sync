@@ -1,6 +1,8 @@
 #!/bin/sh
 #
 
+# from here: http://doc.norang.ca/org-mode.html#git-sync
+
 # Local bare repository name
 # syncrepo=norang
 # reporoot=~/git
