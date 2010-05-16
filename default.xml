@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <remote name="dev"
+          fetch="ssh://boxstream@development.streambox.com/var/www/html/proj/" />
+  <default revision="master"
+           remote="dev" />
+  <project name="docbook-practice"
+           path="docbook-practice" />
+<!--
+  <project name="bugzilla-setup"
+           path="bugzilla-setup" />
+  <project name="encoder-hd-osx"
+           path="encoder-hd-osx" />
+  <project name="encoder-sd-osx"
+           path="encoder-sd-osx" />
+  <project name="encoder-settings"
+           path="encoder-settings" />
+  <project name="fcp-compressor-presets"
+           path="fcp-compressor-presets" />
+  <project name="ftpserver"
+           path="ftpserver" />
+  <project name="ghost-image-check"
+           path="ghost-image-check" />
+  <project name="ghost-sync"
+           path="ghost-sync" />
+  <project name="git-practice"
+           path="git-practice" />
+  <project name="jlcskip"
+           path="jlcskip" />
+  <project name="libguide"
+           path="libguide" />
+  <project name="linux"
+           path="linux" />
+  <project name="memorycheck"
+           path="memorycheck" />
+  <project name="nfs"
+           path="nfs" />
+  <project name="osx-packagemaker"
+           path="osx-packagemaker" />
+  <project name="poweredge-bios"
+           path="poweredge-bios" />
+  <project name="qt-practice"
+           path="qt-practice" />
+  <project name="qtcodec-osx-hd"
+           path="qtcodec-osx-hd" />
+
+-->
+
+  <!--
+
+[demo@demos-imac:/tmp]$ git clone ssh://boxstream@development.streambox.com/var/www/html/proj/qtcodec-osx-sd.git
+git clone ssh://boxstream@development.streambox.com/var/www/html/proj/qtcodec-osx-sd.git
+Initialized empty Git repository in /private/tmp/qtcodec-osx-sd/.git/
+warning: You appear to have cloned an empty repository.
+[demo@demos-imac:/tmp]$ 
+
+  <project name="qtcodec-osx-sd"
+           path="qtcodec-osx-sd" />
+-->
+
+<!--
+
+  <project name="qtcodec-win-hd"
+           path="qtcodec-win-hd" />
+
+-->
+
+  <!-- <project name="qtcodec-win-sd" path="qtcodec-win-sd" /> -->
+
+<!--
+
+  <project name="raid-activation"
+           path="raid-activation" />
+  <project name="rdp-connect"
+           path="rdp-connect" />
+  <project name="read-sb-changelog"
+           path="read-sb-changelog" />
+  <project name="run-bat-before-login"
+           path="run-bat-before-login" />
+  <project name="sas"
+           path="sas" />
+  <project name="sb-ports"
+           path="sb-ports" />
+  <project name="sbaudiocheck"
+           path="sbaudiocheck" />
+  <project name="sbtunnel"
+           path="sbtunnel" />
+  <project name="sbversioncheck"
+           path="sbversioncheck" />
+  <project name="siwstats"
+           path="siwstats" />
+  <project name="sqlite-practice"
+           path="sqlite-practice" />
+  <project name="ssh-setup"
+           path="personal/ssh-setup" />
+  <project name="sslcerts"
+           path="personal/sslcerts" />
+  <project name="subversion-bkp"
+           path="subversion-bkp" />
+  <project name="tools"
+           path="tools" />
+  <project name="usb-bootable"
+           path="usb-bootable" />
+  <project name="xenserver"
+           path="personal/xenserver" />
+  <project name="xerox_email"
+           path="xerox_email" />
+  <project name="sfs"
+           path="sfs" />
+
+-->
+
+  <!--
+
+  <project name="emacs"
+           path="emacs" />
+-->
+  <!--
+  <project name="prod-ls"
+           path="prod-ls" />
+-->
+  <!--
+  <project name="lstest"
+           path="lstest" />
+-->
+  <!--
+  <project name="nsis-streambox"
+           path="nsis-streambox" />
+-->
+
+
+</manifest>
