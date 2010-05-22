@@ -4,8 +4,12 @@ REM $HeadURL$
 REM -*- bat -*-
 
 
-move "deploy\Program Files\CygwinInstall\setup.exe" "Program Files\CygwinInstall\setup.exe.new"
-cd %systemdrive%
-del /q "Program Files\CygwinInstall\setup.exe.old"
-move "Program Files\CygwinInstall\setup.exe" "Program Files\CygwinInstall\setup.exe.old"
-move "Program Files\CygwinInstall\setup.exe.new" "Program Files\CygwinInstall\setup.exe"
+
+set origsetup=%programfiles%\CygwinInstall\setup.exe.orig
+set setup=%programfiles%\CygwinInstall\setup.exe
+set newsetup=deploy\Program Files\CygwinInstall\setup.exe
+
+if exist "%origsetup%" ( del /y "%origsetup%" )
+copy /y "%setup%" "%setup%.orig"
+copy /y "%newsetup%" "%setup%"
+explorer "%programfiles%\CygwinInstall"
