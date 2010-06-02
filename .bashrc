@@ -176,6 +176,17 @@ function parse_git_branch
   echo "("${ref#refs/heads/}")"
 }
 
+
+genpasswd() 
+{
+    # from here: http://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html
+    local l=$1
+    [ "$l" == "" ] && l=20
+    tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
+}
+
+
+
 # http://www.delorie.com/gnu/docs/emacs/emacs_444.html
 PS1="\u@\h \W$ "
 PS1="[\d \t \u@\h:\w ]$ "
