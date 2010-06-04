@@ -31,6 +31,8 @@
 
 
 (add-to-list 'load-path "~/.elisp")
+(add-to-list 'load-path "~/.elisp/google-define.el")
+(add-to-list 'load-path "~/.elisp/google.el")
 (add-to-list 'load-path "~/.elisp/anything-config")
 (add-to-list 'load-path "~/.elisp/browse-kill-ring.el")
 (add-to-list 'load-path "~/.elisp/applescript-mode.el")
@@ -783,6 +785,8 @@
 (org-babel-load-library-of-babel)
 
 (define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-cd" 'google-define)
+(define-key global-map "\C-cs" 'google-search-selection)
 (define-key global-map "\C-xj" 'rename-uniquely)
 
 
