@@ -139,6 +139,9 @@ case "$(uname)" in
 # display ":0.0"" on osx, commented out
 #	export DISPLAY=:0.0
 
+	# 
+	function rdp() { open ~/Documents/RDC\ Connections/$1.rdp; }
+
 	# installer functions
 	imgmountpoint() { 
 	    hdid -plist $1 | grep mount-point -A1 | grep string | \
