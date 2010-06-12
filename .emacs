@@ -31,6 +31,7 @@
 
 
 (add-to-list 'load-path "~/.elisp")
+(add-to-list 'load-path "~/.elisp/git.el")
 (add-to-list 'load-path "~/.elisp/google-define.el")
 (add-to-list 'load-path "~/.elisp/google.el")
 (add-to-list 'load-path "~/.elisp/anything-config")
@@ -828,3 +829,5 @@
                                       ("h" . hide-other)
                                       ("k" . org-kill-note-or-show-branches)
                                       ("r" . org-reveal))))
+(require 'git)
+
