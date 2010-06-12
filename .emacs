@@ -39,8 +39,6 @@
 (add-to-list 'load-path "~/.elisp/html-helper-mode")
 (add-to-list 'load-path "~/.elisp/php-mode-1.5.0")
 (add-to-list 'load-path "~/.elisp/python-mode-1.0")
-(add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.1_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp/international")
-(add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.1_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp")
 (add-to-list 'load-path "~/.elisp/ocaml-mode-3.05")
 (add-to-list 'load-path "~/.elisp/psgml-1.2.5")	;; http://www.lysator.liu.se/~lenst/about_psgml/psgml.html
 (autoload 'wikipedia-mode
@@ -438,7 +436,6 @@
 (if (eq system-type 'darwin)
     (progn
       ;;      (require 'w3m-load) ; available through macports (sudo port install emacs-w3m)
-
       ;; http://docs.freebsd.org/info/texinfo/texinfo.info.Other_Info_Directories.html
       ; (setq Info-directory-list (append (list "") Info-directory-list))
       (setq Info-directory-list (append (list "/Applications/MacPorts/Emacs.app/Contents/Resources/info") Info-directory-list))
@@ -452,6 +449,9 @@
       (setq Info-directory-list (append (list "/opt/local/share/info") Info-directory-list))
       (setq Info-directory-list (append (list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info") Info-directory-list))
       (setq Info-directory-list (append (list "/usr/share/info") Info-directory-list))
+      (add-to-list 'load-path "/opt/local/var/macports/software/git-core/1.7.1_0+doc+svn/opt/local/share/doc/git-core/contrib/emacs")
+      (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp/international")
+      (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp")
       ))
 
 ;; Change the default eshell prompt
