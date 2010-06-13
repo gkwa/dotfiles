@@ -482,8 +482,6 @@
 	   " # "))))
 
 
-(if (>= (string-to-number emacs-version) 22)
-    (server-start))
 
 
 ;; (add-hook 'eshell-mode-hook
@@ -610,10 +608,11 @@
 ;;http://www.emacswiki.org/emacs-en/emacsd
 ;; only start emacs server when it's not started, I hate warnings.
 ;; http://www.emacswiki.org/emacs/download/EmacsdInitScript
-
-(setq server-socket-file "/tmp/emacs1000/server")
-(unless (file-exists-p server-socket-file)
-  (server-start))
+(if (>= (string-to-number emacs-version) 22)
+    (progn
+      (setq server-socket-file "/tmp/emacs1000/server")
+      (unless (file-exists-p server-socket-file)
+	(server-start))))
 
 ;; So emacs won't try to start the server again.
 
