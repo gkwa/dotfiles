@@ -35,7 +35,6 @@
 (add-to-list 'load-path "~/.elisp/google-define.el")
 (add-to-list 'load-path "~/.elisp/google.el")
 (add-to-list 'load-path "~/.elisp/anything-config")
-(add-to-list 'load-path "~/.elisp/browse-kill-ring.el")
 (add-to-list 'load-path "~/.elisp/applescript-mode.el")
 (add-to-list 'load-path "~/.elisp/html-helper-mode")
 (add-to-list 'load-path "~/.elisp/php-mode-1.5.0")
@@ -751,8 +750,7 @@
  '(truncate-lines t)
 )
 
-(require 'browse-kill-ring)
-(global-set-key (kbd "C-c k") 'browse-kill-ring)
+
 (global-set-key (kbd "C-c C-c") (quote comment-region))
 
 (require 'php-mode)
