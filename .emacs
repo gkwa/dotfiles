@@ -31,16 +31,14 @@
 
 
 (add-to-list 'load-path "~/.elisp")
+(add-to-list 'load-path "~/.elisp/git.el")
 (add-to-list 'load-path "~/.elisp/google-define.el")
 (add-to-list 'load-path "~/.elisp/google.el")
 (add-to-list 'load-path "~/.elisp/anything-config")
-(add-to-list 'load-path "~/.elisp/browse-kill-ring.el")
 (add-to-list 'load-path "~/.elisp/applescript-mode.el")
 (add-to-list 'load-path "~/.elisp/html-helper-mode")
 (add-to-list 'load-path "~/.elisp/php-mode-1.5.0")
 (add-to-list 'load-path "~/.elisp/python-mode-1.0")
-(add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.1_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp/international")
-(add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.1_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp")
 (add-to-list 'load-path "~/.elisp/ocaml-mode-3.05")
 (add-to-list 'load-path "~/.elisp/psgml-1.2.5")	;; http://www.lysator.liu.se/~lenst/about_psgml/psgml.html
 (autoload 'wikipedia-mode
@@ -429,8 +427,6 @@
 ;; resize man page to take up whole screen
 (setq Man-notify 'bully)
 
-(require 'psvn)
-
 (if (eq system-type 'windows-nt)
     (progn
       (setq explicit-shell-file-name "c:/cygwin/bin/bash.exe")
@@ -440,7 +436,6 @@
 (if (eq system-type 'darwin)
     (progn
       ;;      (require 'w3m-load) ; available through macports (sudo port install emacs-w3m)
-
       ;; http://docs.freebsd.org/info/texinfo/texinfo.info.Other_Info_Directories.html
       ; (setq Info-directory-list (append (list "") Info-directory-list))
       (setq Info-directory-list (append (list "/Applications/MacPorts/Emacs.app/Contents/Resources/info") Info-directory-list))
@@ -454,6 +449,9 @@
       (setq Info-directory-list (append (list "/opt/local/share/info") Info-directory-list))
       (setq Info-directory-list (append (list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info") Info-directory-list))
       (setq Info-directory-list (append (list "/usr/share/info") Info-directory-list))
+      (add-to-list 'load-path "/opt/local/var/macports/software/git-core/1.7.1_0+doc+svn/opt/local/share/doc/git-core/contrib/emacs")
+      (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp/international")
+      (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp")
       ))
 
 ;; Change the default eshell prompt
@@ -483,8 +481,6 @@
 	   " # "))))
 
 
-(if (>= (string-to-number emacs-version) 22)
-    (server-start))
 
 
 ;; (add-hook 'eshell-mode-hook
@@ -611,10 +607,11 @@
 ;;http://www.emacswiki.org/emacs-en/emacsd
 ;; only start emacs server when it's not started, I hate warnings.
 ;; http://www.emacswiki.org/emacs/download/EmacsdInitScript
-
-(setq server-socket-file "/tmp/emacs1000/server")
-(unless (file-exists-p server-socket-file)
-  (server-start))
+(if (>= (string-to-number emacs-version) 22)
+    (progn
+      (setq server-socket-file "/tmp/emacs1000/server")
+      (unless (file-exists-p server-socket-file)
+	(server-start))))
 
 ;; So emacs won't try to start the server again.
 
@@ -753,8 +750,7 @@
  '(truncate-lines t)
 )
 
-(require 'browse-kill-ring)
-(global-set-key (kbd "C-c k") 'browse-kill-ring)
+
 (global-set-key (kbd "C-c C-c") (quote comment-region))
 
 (require 'php-mode)
@@ -830,3 +826,5 @@
                                       ("h" . hide-other)
                                       ("k" . org-kill-note-or-show-branches)
                                       ("r" . org-reveal))))
+(require 'git)
+
