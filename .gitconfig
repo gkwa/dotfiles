@@ -56,6 +56,10 @@ viewer = woman
  lpo = log --pretty=tformat:'%h %d %ar %s' --reverse
  lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status
  lg = log --graph --name-only 
+
+ # fetch remote tracking branches
+ frtb = fetch origin refs/heads/*:refs/remotes/origin/*
+
  dns = diff --name-status
  diffstat=diff --stat -r
  gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
