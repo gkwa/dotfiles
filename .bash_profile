@@ -38,3 +38,4 @@ if [ -f /opt/local/etc/bash_completion ]; then
     # . /opt/local/etc/bash_completion.d/git-completion
 fi
 
+export MANPATH=$MANPATH:/opt/local/share/man:/opt/local/man:/usr/share
