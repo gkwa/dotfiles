@@ -4,3 +4,9 @@
 [submodule ".elisp/anything-config"]
 	path = .elisp/anything-config
 	url = git://repo.or.cz/anything-config.git
+[submodule ".elisp/ess"]
+	path = .elisp/ess
+	url = ssh://dev/var/www/html/proj/ess.git
+[submodule ".elisp/magit"]
+	path = .elisp/magit
+	url = git://gitorious.org/magit/mainline.git
