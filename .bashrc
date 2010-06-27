@@ -133,14 +133,12 @@ case "$(uname)" in
 	export PATH=/opt/local/bin:$PATH
 	export PATH=/opt/local/sbin:$PATH
 	export JAVA_HOME
-
-	export MANPATH=/opt/local/share/man:$MANPATH
 # gitk complains "Application initialization failed: couldn't connect to
 # display ":0.0"" on osx, commented out
 #	export DISPLAY=:0.0
 
 	# 
-	function rdp() { open ~/Documents/RDC\ Connections/$1.rdp; }
+	function rdp() { open ~/p/rdp-connect/$1.rdp; }
 
 	# installer functions
 	imgmountpoint() { 
