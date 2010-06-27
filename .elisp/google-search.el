@@ -53,10 +53,5 @@ sending a five megabyte query string to Netscape.")
 
 (provide 'google-search)
 
-
-;;; Code:
-
-
-
 (provide 'google-search)
 ;;; google-search.el ends here
