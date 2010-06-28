@@ -56,15 +56,17 @@ viewer = woman
  lpo = log --pretty=tformat:'%h %d %ar %s' --reverse
  lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status
  lg = log --graph --name-only 
-
- # fetch remote tracking branches
- frtb = fetch origin refs/heads/*:refs/remotes/origin/*
-
+ rso = remote show origin
  dns = diff --name-status
  diffstat=diff --stat -r
  gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+
+ sub = submodule
+
+ # fetch remote tracking branches
+ frtb = fetch origin refs/heads/*:refs/remotes/origin/*
 
 [color]
 	ui = false
