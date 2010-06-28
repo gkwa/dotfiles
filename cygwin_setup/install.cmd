@@ -19,6 +19,7 @@ cd cygwin_setup
 :: deploy\cygwin and deploy\Program Files will get pushed to %systemdrive%\cygwin %systemdrive%\Program Files
 xcopy /H/F/I/V/R/Y/E deploy %systemdrive%\
 
+%systemdrive%
 cd "%programfiles%\CygwinInstall"
 
 set target=%systemdrive%
