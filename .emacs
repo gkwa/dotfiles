@@ -818,6 +818,17 @@
 (setq org-crypt-key "F0B66B40")
 
 
+; ------------------------------
+; magit-mode
+; ------------------------------
+; http://psung.blogspot.com/2008/12/magit.html
+; http://zagadka.vm.bytemark.co.uk/magit/magit.html
+(add-to-list 'load-path (expand-file-name "~/.elisp/magit"))
+(autoload 'magit-status "magit" nil t)
+(global-set-key "\C-ci" 'magit-status)
+
+
+
 (setq org-use-speed-commands t)
 (setq org-speed-commands-user (quote (("0" . delete-window)
                                       ("1" . delete-other-windows)
