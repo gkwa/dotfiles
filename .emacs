@@ -431,6 +431,10 @@
     (progn
       (setq explicit-shell-file-name "c:/cygwin/bin/bash.exe")
       (setq Info-directory-list (cons "c:/cygwin/usr/share/info" Info-directory-list))
+
+      (require 'cygwin-mount)
+      (cygwin-mount-activate)
+
       ))
 
 (if (eq system-type 'darwin)
