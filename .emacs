@@ -528,7 +528,7 @@
 (global-set-key "\e#" 'calc-dispatch)
 ;;; End of Calc autoloads.
 
-(require 'psvn)
+
 
 ;; ;; svn export https://svn.r-project.org/ESS/trunk ~/.elisp/ess
 ;; (if (file-directory-p "~/.elisp/ess")
