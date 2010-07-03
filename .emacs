@@ -28,24 +28,15 @@
 ;; the next dired will point you here
 (cd "~/")
 
-
-
 (add-to-list 'load-path "~/.elisp")
-(add-to-list 'load-path "~/.elisp/git.el")
-(add-to-list 'load-path "~/.elisp/google-define.el")
-(add-to-list 'load-path "~/.elisp/google.el")
-(add-to-list 'load-path "~/.elisp/anything-config")
-(add-to-list 'load-path "~/.elisp/applescript-mode.el")
 (add-to-list 'load-path "~/.elisp/html-helper-mode")
 (add-to-list 'load-path "~/.elisp/php-mode-1.5.0")
 (add-to-list 'load-path "~/.elisp/python-mode-1.0")
-(add-to-list 'load-path "~/.elisp/ocaml-mode-3.05")
 (add-to-list 'load-path "~/.elisp/psgml-1.2.5")	;; http://www.lysator.liu.se/~lenst/about_psgml/psgml.html
 (autoload 'wikipedia-mode
   "wikipedia-mode.el"
   "Major mode for editing documents in Wikipedia markup." t)
 (add-to-list 'load-path "~/.elisp/wikipedia-mode")
-
 
 (add-to-list 'load-path "~/.elisp/org-mode/contrib/lisp")
 (add-to-list 'load-path "~/.elisp/org-mode/lisp")
@@ -119,12 +110,6 @@
 
 
 
-
-(fset 'blogger-update
-      [f7 escape return return ?\C-c ?\C-p ?b ?U ?p ?d ?a ?t ?e ?: ?  ?\C-c ?i ?\C-e return return escape return return])
-
-
-
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -143,26 +128,10 @@
 (put 'narrow-to-region 'disabled nil)
 
 
-;; --------------------------------------------------
-;; Place the cursor inside a <pre></pre> element and run this macro to 
-;; turn "<" into &lt; and ">" into &gt;
-(fset 'blogger-prepare-pre
-      [?\C-  ?\C-r ?< ?p ?r ?e ?> right right right right right ?\C-  ?\C-s ?< ?/ ?p ?r ?e ?> ?\C-b ?\C-b ?\C-b ?\C-b ?\C-b ?\C-b ?\C-x ?n ?n escape ?< escape ?x ?r ?e ?p ?l ?a ?c ?e ?- ?r ?e ?g ?e ?x ?p return ?< return ?& ?l ?t ?\; return escape ?< escape ?x ?r ?e ?p ?l ?a ?c ?e ?- ?r ?e ?g ?e ?x ?p return ?> return ?& ?g ?t ?\; return ?\C-x ?n ?w ?\C-u ?\C-  ?\C-u ?\C-  ?\C-u ?\C-  ?\C-u ?\C-  ?\C-u ?\C-  ?\C-u ?\C-  ?\C-u ?\C- ])
 
-;; Manually paste the clipboard to the spot you want the url placed.  This will create two lines
-;; the first line contains the URL title and the second contains the url.  This macro will create the
-;; <a href="http://path/to/spot">title</a>
-;; Copy URL + :: Mozilla Add-ons :: Add Features to Mozilla Software
-;; https://addons.mozilla.org/firefox/129/
-(fset 'blogger-create-link-from-copy-url
-      [?\C-a ?\C-k ?< ?a ?  ?h ?r ?e ?f ?= ?" ?\C-y ?" ?> ?\C-  ?\C-p ?\C-a ?\C-k ?\C-u ?\C-  ?\C-y ?< ?/ ?a ?> ?\C-a])
-;; Assume you've just used Firefox Extension Copy URL to put an url with its tiltle into current buffer
-;; This will wrap the two lines into an anchor.  Place cursor on the URL line (as opposed to the title of the anchor line)
-;; This macro relies on the F7 key being bound to turning the current mode into html-helper-mode
-(fset 'blogger-wrap-lines-into-anchor
-      [?\C-a ?\C-k f7 ?\C-c ?\C-a ?l ?\C-y escape ?\\ ?\C-f ?\C-f ?\C-  ?\C-a ?\C-p ?\C-k ?\C-u ?\C-  ?\C-y ?\C-a ?\C-c ?\C-l ?l ?\C-l])
-
-;; --------------------------------------------------
+; ------------------------------
+; backup-dir
+; ------------------------------
 
 ;; http://www.emacswiki.org/cgi-bin/wiki?BackupDirectory
 (require 'backup-dir)
@@ -216,11 +185,6 @@
 
 ;; format the title-bar to always include the buffer name
 (setq frame-title-format "emacs - %b")
-
-;; turn off the toolbar
-(if (>= emacs-major-version 21)
-    (tool-bar-mode -1))
-
 
 ;; This is failing on W32 cause emacs can't find eshell-auto, but M-x eshell works fine.  What is eshell-auto?
 ;; ;; use eshell
@@ -346,23 +310,33 @@
 
 
 
-
-;; phasing out
-;; (global-set-key (kbd "C-x y") 'tidy-buffer-xml)
-;; (global-set-key (kbd "C-x t") 'tidy-buffer-xhtml)
-
-
-
-;; Insertion of Dates.
-(defun insert-date-string ()
-  "Insert a nicely formated date string."
-  (interactive)
-  (insert (format-time-string "%a %b %e %Y")))
-
 ;; 
 ;; ===========================
 ;; Custom Functions
 ;; ===========================
+
+(defun tm-dir-shell-here()
+  (interactive)
+  (let ((cbuff (buffer-name))
+	(cdcmd (concat "cd \'" (expand-file-name (file-name-as-directory default-directory)) "\'")))
+    (progn
+      (shell)
+      (goto-char (point-max))
+      (move-beginning-of-line 1)
+      (insert "# ") (comint-send-input)
+      (goto-char (point-max))
+      (insert cdcmd) (comint-send-input)
+      (switch-to-buffer-other-window cbuff)
+      (other-window 1)
+      (kill-new cbuff)
+      )))
+(global-set-key "e" (quote tm-dir-shell-here))
+
+;; Insert dates
+(defun insert-date-string ()
+  "Insert a nicely formated date string."
+  (interactive)
+  (insert (format-time-string "%a %b %e %Y")))
 
 ;; print an ascii table
 (defun ascii-table ()
@@ -377,9 +351,7 @@
       (insert (format "%4d %c\n" i i))))
   (beginning-of-buffer))
 
-
-;; Function to run Tidy HTML parser on buffer
-;; NOTE: this requires external Tidy program
+;; Function to run Tidy HTML parser on buffer, this requires external app Tidy 
 (defun tidy-buffer-xhtml ()
   "Run Tidy HTML parser on current buffer."
   (interactive)
@@ -402,6 +374,7 @@
     )
   )
 
+;; Function to run Tidy xml parser on buffer, this requires external app Tidy 
 (defun tidy-buffer-xml ()
   "Run Tidy XML parser on current buffer."
   (interactive)
@@ -486,20 +459,6 @@
 
 
 
-
-;; (add-hook 'eshell-mode-hook
-;;    '(lambda nil
-;;    (eshell/export "EPOCROOT=\\Paragon\\")
-;;    (let ((path))
-;;       (setq path "c:\\cygwin\\usr\\local\\bin")
-;;       (setq path (concat path ";c:\\cygwin\\usr\\local\\bin"))
-;;     (setenv "PATH" path))
-;;    (local-set-key "\C-u" 'eshell-kill-input))
-;;  )
-
-;; (require 'ido)
-;; (ido-mode t)
-
 (setenv "PS1" "\\u@\h \\W$ ")
 
 ;;http://www.emacswiki.org/cgi-bin/wiki/McMahanDotEmacs
@@ -509,6 +468,7 @@
 
 ;; add to end of .emacs
 ;; C-x , set to anything
+(add-to-list 'load-path "~/.elisp/anything-config")
 (defun my-anything ()
   (interactive)
   (anything-other-buffer
@@ -552,31 +512,6 @@
 (global-set-key [(control c)(j)]        'bc-goto-current) ;; C-c j for jump to current bookmark
 (global-set-key [(control x)(meta j)]   'bc-list) ;; C-x M-j for the bookmark menu list
 
-;; Temporary macros begin
-(fset 'tm_create_wiki_link_from_mac_path
-      [?\C-e ?\C-a ?\C-k ?\C-x ?b ?* ?1 ?2 ?3 ?4 ?5 ?1 ?2 ?3 ?4 ?5 ?1 ?2 ?3 ?4 ?5 ?* return ?\C-y ?\C-a ?\C-d ?f ?i ?l ?e ?: ?/ ?/ ?/ ?/ ?/ escape ?d ?1 ?0 ?. ?0 ?. ?1 ?. ?1 ?0 backspace backspace backspace backspace ?2 ?. ?1 ?0 ?\C-e return ?\C-y escape ?y ?\C-a escape ?d ?\\ ?\\ ?1 ?0 ?. ?0 ?. ?2 ?. ?1 ?0 escape ?x ?r ?e ?p ?l ?a ?c ?e ?- ?s ?t ?r ?i ?n ?g return ?/ return ?\\ return ?\C-a ?\C-k ?\C-p ?\C-e ?  ?\C-y ?\C-a ?[ ?\C-e ?] ?\C-a ?\C-k ?\C-y ?\C-a ?\C-k ?\C-x ?k return ?\C-y])
-(fset 'tm_create_mac_link_from_unc_path
-      [?\C-a ?\C-k ?\C-x ?b ?* ?1 ?2 ?3 ?4 ?5 ?6 ?7 ?8 ?9 ?0 ?1 ?2 ?3 ?4 ?5 ?6 ?7 ?8 ?9 ?0 ?* return ?\C-y ?\C-a escape ?x ?r ?e ?p ?l ?a ?c ?e ?- ?s ?t ?r ?i ?n ?g return ?  return ?% ?2 ?0 return ?\C-  ?\C-f ?\C-f ?\C-f ?\C-f ?\C-f ?\C-f ?\C-f ?\C-f ?\C-f ?\C-f ?\C-f ?\C-w ?/ ?V ?o ?l ?u ?m ?e ?s escape ?x escape ?p return ?\\ return ?/ return ?\C-a ?\C-k ?\C-x ?k return ?\C-y])
-;; Temporary macros end
-
-(defun tm-dir-shell-here()
-  (interactive)
-  (let ((cbuff (buffer-name))
-	(cdcmd (concat "cd \'" (expand-file-name (file-name-as-directory default-directory)) "\'")))
-    (progn
-      (shell)
-      (goto-char (point-max))
-      (move-beginning-of-line 1)
-      (insert "# ") (comint-send-input)
-      (goto-char (point-max))
-      (insert cdcmd) (comint-send-input)
-      (switch-to-buffer-other-window cbuff)
-      (other-window 1)
-      (kill-new cbuff)
-      )))
-
-(global-set-key "e" (quote tm-dir-shell-here))
-
 ;;; Commands added by calc-private-autoloads on Sat Mar 14 15:01:33 2009.
 (autoload 'calc-dispatch	   "calc" "Calculator Options" t)
 (autoload 'full-calc		   "calc" "Full-screen Calculator" t)
@@ -595,13 +530,13 @@
 
 (require 'psvn)
 
-;; svn export https://svn.r-project.org/ESS/trunk ~/.elisp/ess
-(if (file-directory-p "~/.elisp/ess")
-    (progn
-      (add-to-list 'load-path "~/.elisp/ess")
-      (require 'ess-site)))
+;; ;; svn export https://svn.r-project.org/ESS/trunk ~/.elisp/ess
+;; (if (file-directory-p "~/.elisp/ess")
+;;     (progn
+;;       (add-to-list 'load-path "~/.elisp/ess")
+;;       (require 'ess-site)))
 
-(shell)
+
 
 
 
@@ -741,7 +676,6 @@
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(ido-case-fold t)
  '(menu-bar-mode nil)
- '(menu-bar-mode nil)
  '(major-mode 'org-mode)
  '(nxml-slash-auto-complete-flag t)
  '(org-agenda-files (quote ("~/notes.txt")))
@@ -753,7 +687,7 @@
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
  '(truncate-lines t)
 )
-
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
 (global-set-key (kbd "C-c C-c") (quote comment-region))
 
@@ -785,8 +719,6 @@
 (org-babel-load-library-of-babel)
 
 (define-key global-map "\C-ca" 'org-agenda)
-(define-key global-map "\C-cd" 'google-define)
-(define-key global-map "\C-cs" 'google-search-selection)
 (define-key global-map "\C-xj" 'rename-uniquely)
 
 
@@ -842,4 +774,21 @@
                                       ("k" . org-kill-note-or-show-branches)
                                       ("r" . org-reveal))))
 (require 'git)
+
+
+(define-key global-map "\C-cd" 'google-define)
+(define-key global-map "\C-cs" 'google-search-selection)
+(require 'google-search)
+
+
+; ------------------------------
+; applescript-mode
+; ------------------------------
+(add-to-list 'load-path "~/.elisp/applescript-mode.el")
+(autoload 'applescript-mode "applescript-mode" "major mode for editing AppleScript source." t)
+(setq auto-mode-alist (cons '("\\.applescript$" . applescript-mode) auto-mode-alist))
+
+(shell)
+
+
 
