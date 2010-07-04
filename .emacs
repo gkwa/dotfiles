@@ -778,10 +778,10 @@
 ; ------------------------------
 ; google fun stuff
 ; ------------------------------
-
 (define-key global-map "\C-cd" 'google-define)
 (define-key global-map "\C-cs" 'google-search-selection)
 (require 'google-search)
+(require 'google-define)
 
 ; ------------------------------
 ; magit-mode
