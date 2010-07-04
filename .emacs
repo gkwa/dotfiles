@@ -33,13 +33,7 @@
 (add-to-list 'load-path "~/.elisp/php-mode-1.5.0")
 (add-to-list 'load-path "~/.elisp/python-mode-1.0")
 (add-to-list 'load-path "~/.elisp/psgml-1.2.5")	;; http://www.lysator.liu.se/~lenst/about_psgml/psgml.html
-(autoload 'wikipedia-mode
-  "wikipedia-mode.el"
-  "Major mode for editing documents in Wikipedia markup." t)
-(add-to-list 'load-path "~/.elisp/wikipedia-mode")
 
-(add-to-list 'load-path "~/.elisp/org-mode/contrib/lisp")
-(add-to-list 'load-path "~/.elisp/org-mode/lisp")
 
 (setq interpreter-mode-alist (cons '("python" . python-mode) 
 				   interpreter-mode-alist))
@@ -48,7 +42,6 @@
 ;; Tell Emacs to find the definition for the function caml-mode by
 ;; loading a Lisp library named caml (i.e. a file caml.elc or
 ;; caml.el):
-(autoload 'wikipedia-mode "wikipedia-mode.el" "Major mode for editing documents in Wikipedia markup." t)
 (autoload 'css-mode "css-mode")
 (autoload 'javascript-mode "javascript" nil t)
 (autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
@@ -169,16 +162,6 @@
     (shell nil))
 
 (setq initial-frame-alist '((top . 10) (left . 30)))
-
-;; (setq Info-directory-list
-;;            '(
-;;              "/Users/taylormonacelli/.elisp/org-mode/doc"
-;; 	     "/usr/share/info"
-;; 	     "~/.info"
-;; 	     "~/Documents/git/Documentation"
-;; 	     ))
-
-
 
 ;; Pgup/dn will return exactly to the starting point.
 (setq scroll-preserve-screen-position 1)
@@ -404,10 +387,8 @@
     (progn
       (setq explicit-shell-file-name "c:/cygwin/bin/bash.exe")
       (setq Info-directory-list (cons "c:/cygwin/usr/share/info" Info-directory-list))
-
       (require 'cygwin-mount)
       (cygwin-mount-activate)
-
       ))
 
 (if (eq system-type 'darwin)
@@ -676,7 +657,6 @@
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(ido-case-fold t)
  '(menu-bar-mode nil)
- '(major-mode 'org-mode)
  '(nxml-slash-auto-complete-flag t)
  '(org-agenda-files (quote ("~/notes.txt")))
  '(org-agenda-include-diary t)
@@ -707,16 +687,12 @@
     (when recentf-mode
       (recentf-add-file default-directory))))
 
-(add-hook 'org-mode-hook
-  (lambda () 
-    (local-set-key "c" (quote calendar))))
-
-(require 'org-babel-init)     
-(require 'org-babel-R)         ;; requires R and ess-mode
-;(require 'org-babel-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
-(require 'org-babel-python)    ;; requires python, and python-mode
-;(require 'org-babel-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
-(org-babel-load-library-of-babel)
+; (require 'org-babel-init)     
+; (require 'org-babel-R)         ;; requires R and ess-mode
+; (require 'org-babel-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
+; (require 'org-babel-python)    ;; requires python, and python-mode
+; (require 'org-babel-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
+; (org-babel-load-library-of-babel)
 
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-xj" 'rename-uniquely)
@@ -754,16 +730,6 @@
 (setq org-crypt-key "F0B66B40")
 
 
-; ------------------------------
-; magit-mode
-; ------------------------------
-; http://psung.blogspot.com/2008/12/magit.html
-; http://zagadka.vm.bytemark.co.uk/magit/magit.html
-(add-to-list 'load-path (expand-file-name "~/.elisp/magit"))
-(autoload 'magit-status "magit" nil t)
-(global-set-key "\C-ci" 'magit-status)
-
-
 
 (setq org-use-speed-commands t)
 (setq org-speed-commands-user (quote (("0" . delete-window)
@@ -776,10 +742,55 @@
 (require 'git)
 
 
+
+
+; ------------------------------
+; org-mode
+; ------------------------------
+(add-to-list 'load-path "~/.elisp/org-mode/lisp")
+(add-to-list 'load-path "~/.elisp/org-mode/lisp/babel")
+(add-to-list 'load-path "~/.elisp/org-mode/lisp/babel/langs")
+(add-to-list 'load-path "~/.elisp/org-mode/contrib/lisp")
+
+;; (setq Info-directory-list
+;;            '(
+;;              "/Users/taylormonacelli/.elisp/org-mode/doc"
+;; 	     "/usr/share/info"
+;; 	     "~/.info"
+;; 	     "~/Documents/git/Documentation"
+;; 	     ))
+
+(add-hook 'org-mode-hook
+  (lambda () 
+    (local-set-key "c" (quote calendar))))
+
+
+(custom-set-variables '(major-mode 'org-mode))
+
+; ------------------------------
+; wikipedia-mode
+; ------------------------------
+(autoload 'wikipedia-mode
+  "wikipedia-mode.el"
+  "Major mode for editing documents in Wikipedia markup." t)
+(autoload 'wikipedia-mode "wikipedia-mode.el" "Major mode for editing documents in Wikipedia markup." t)
+
+; ------------------------------
+; google fun stuff
+; ------------------------------
+
 (define-key global-map "\C-cd" 'google-define)
 (define-key global-map "\C-cs" 'google-search-selection)
 (require 'google-search)
 
+; ------------------------------
+; magit-mode
+; ------------------------------
+; http://psung.blogspot.com/2008/12/magit.html
+; http://zagadka.vm.bytemark.co.uk/magit/magit.html
+(add-to-list 'load-path (expand-file-name "~/.elisp/magit"))
+(autoload 'magit-status "magit" nil t)
+(global-set-key "\C-ci" 'magit-status)
 
 ; ------------------------------
 ; applescript-mode
