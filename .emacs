@@ -788,6 +788,18 @@
 (autoload 'applescript-mode "applescript-mode" "major mode for editing AppleScript source." t)
 (setq auto-mode-alist (cons '("\\.applescript$" . applescript-mode) auto-mode-alist))
 
+; ------------------------------
+; malabar mode for java
+; ------------------------------
+(add-to-list 'load-path "~/.elisp/malabar-mode/src/main/lisp")
+(if (file-directory-p "~/.elisp/malabar-mode/src/main/lisp")
+    (progn
+      (add-to-list 'load-path "~/.elisp/malabar-mode/src/main/lisp")
+      (require 'malabar-mode)))
+
+
+
+
 (shell)
 
 
