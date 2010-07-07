@@ -663,10 +663,6 @@
  '(ido-case-fold t)
  '(menu-bar-mode nil)
  '(nxml-slash-auto-complete-flag t)
- '(org-agenda-files (quote ("~/notes.txt")))
- '(org-agenda-include-diary t)
- '(org-agenda-ndays 31)
- '(org-deadline-warning-days 100)
  '(ring-bell-function (quote ignore) t)
  '(scroll-bar-mode nil)
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
@@ -691,15 +687,24 @@
     (when recentf-mode
       (recentf-add-file default-directory))))
 
-; (require 'org-babel-init)     
-; (require 'org-babel-R)         ;; requires R and ess-mode
-; (require 'org-babel-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
-; (require 'org-babel-python)    ;; requires python, and python-mode
-; (require 'org-babel-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
-; (org-babel-load-library-of-babel)
 
-(define-key global-map "\C-ca" 'org-agenda)
+
 (define-key global-map "\C-xj" 'rename-uniquely)
+
+
+(require 'git)
+
+
+
+
+; ------------------------------
+; org-mode
+; ------------------------------
+(add-to-list 'load-path "~/.elisp/org-mode/lisp")
+(add-to-list 'load-path "~/.elisp/org-mode/lisp/babel")
+(add-to-list 'load-path "~/.elisp/org-mode/lisp/babel/langs")
+(add-to-list 'load-path "~/.elisp/org-mode/contrib/lisp")
+(require 'org-crypt)
 
 
 (require 'org-publish)
@@ -722,9 +727,6 @@
       ))
 
 
-
-
-
 (setq org-use-speed-commands t)
 (setq org-speed-commands-user (quote (("0" . delete-window)
                                       ("1" . delete-other-windows)
@@ -733,19 +735,13 @@
                                       ("h" . hide-other)
                                       ("k" . org-kill-note-or-show-branches)
                                       ("r" . org-reveal))))
-(require 'git)
 
-
-
-
-; ------------------------------
-; org-mode
-; ------------------------------
-(add-to-list 'load-path "~/.elisp/org-mode/lisp")
-(add-to-list 'load-path "~/.elisp/org-mode/lisp/babel")
-(add-to-list 'load-path "~/.elisp/org-mode/lisp/babel/langs")
-(add-to-list 'load-path "~/.elisp/org-mode/contrib/lisp")
-(require 'org-crypt)
+; (require 'org-babel-init)     
+; (require 'org-babel-R)         ;; requires R and ess-mode
+; (require 'org-babel-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
+; (require 'org-babel-python)    ;; requires python, and python-mode
+; (require 'org-babel-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
+; (org-babel-load-library-of-babel)
 
 ;; (setq Info-directory-list
 ;;            '(
@@ -756,14 +752,16 @@
 ;; 	     ))
 
 (custom-set-variables '(major-mode 'org-mode))
+(custom-set-variables '(org-agenda-files (quote ("~/notes.txt"))))
+(custom-set-variables '(org-agenda-include-diary t))
+(custom-set-variables '(org-agenda-ndays 31))
+(custom-set-variables '(org-deadline-warning-days 100))
+
 (setq org-agenda-custom-commands '(("f" occur-tree "FIXME")))
 
 (add-hook 'org-mode-hook
   (lambda () 
     (local-set-key "c" (quote calendar))))
-
-
-
 
 ; Encrypt all entries before saving
 (org-crypt-use-before-save-magic)
@@ -772,7 +770,7 @@
 ; GPG key to use for encryption
 (setq org-crypt-key "F0B66B40")
 
-
+(define-key global-map "\C-ca" 'org-agenda)
 ; ------------------------------
 ; wikipedia-mode
 ; ------------------------------
@@ -806,7 +804,7 @@
 (setq auto-mode-alist (cons '("\\.applescript$" . applescript-mode) auto-mode-alist))
 
 ; ------------------------------
-; malabar mode for java
+; malabar mode for java/maven
 ; ------------------------------
 (add-to-list 'load-path "~/.elisp/malabar-mode/src/main/lisp")
 (if (file-directory-p "~/.elisp/malabar-mode/src/main/lisp")
