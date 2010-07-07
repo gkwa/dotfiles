@@ -2,6 +2,7 @@
 ;; (add-to-list 'load-path "c:/Documents and Settings/tmonacel/.elisp/")
 
 
+
 ;;
 ;; Make all "yes or no" prompts show "y or n" instead
 ;;
@@ -721,13 +722,6 @@
       ))
 
 
-(require 'org-crypt)
-; Encrypt all entries before saving
-(org-crypt-use-before-save-magic)
-; Which tag is used to mark headings to be encrypted
-(setq org-tags-exclude-from-inheritance (quote ("crypt")))
-; GPG key to use for encryption
-(setq org-crypt-key "F0B66B40")
 
 
 
@@ -751,6 +745,7 @@
 (add-to-list 'load-path "~/.elisp/org-mode/lisp/babel")
 (add-to-list 'load-path "~/.elisp/org-mode/lisp/babel/langs")
 (add-to-list 'load-path "~/.elisp/org-mode/contrib/lisp")
+(require 'org-crypt)
 
 ;; (setq Info-directory-list
 ;;            '(
@@ -767,6 +762,14 @@
 
 (custom-set-variables '(major-mode 'org-mode))
 
+; Encrypt all entries before saving
+(org-crypt-use-before-save-magic)
+; Which tag is used to mark headings to be encrypted
+(setq org-tags-exclude-from-inheritance (quote ("crypt")))
+; GPG key to use for encryption
+(setq org-crypt-key "F0B66B40")
+
+
 ; ------------------------------
 ; wikipedia-mode
 ; ------------------------------
@@ -778,10 +781,10 @@
 ; ------------------------------
 ; google fun stuff
 ; ------------------------------
-(define-key global-map "\C-cd" 'google-define)
-(define-key global-map "\C-cs" 'google-search-selection)
 (require 'google-search)
 (require 'google-define)
+(define-key global-map "\C-cd" 'google-define)
+(define-key global-map "\C-cs" 'google-search-selection)
 
 ; ------------------------------
 ; magit-mode
