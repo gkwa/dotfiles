@@ -1,4 +1,4 @@
-;; run this if you're running as another user other than the usual me:
+; run this if you're running as another user other than the usual me:
 ;; (add-to-list 'load-path "c:/Documents and Settings/tmonacel/.elisp/")
 
 
@@ -393,6 +393,10 @@
 
 (if (eq system-type 'darwin)
     (progn
+
+      (custom-set-variables
+       '(ispell-program-name "/opt/local/bin/aspell")) ; macport aspell
+
       ;;      (require 'w3m-load) ; available through macports (sudo port install emacs-w3m)
       ;; http://docs.freebsd.org/info/texinfo/texinfo.info.Other_Info_Directories.html
       ; (setq Info-directory-list (append (list "") Info-directory-list))
@@ -646,13 +650,13 @@
 ;; I believe custom vars should appear last to overwrite factory default values...I think.
 ;; --------------------------------------------------
 (custom-set-variables
- '(diary-file (expand-file-name "~/.diary"))
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(bc-bookmark-limit 100)
  '(delete-by-moving-to-trash t)
+ '(diary-file (expand-file-name "~/.diary"))
  '(display-time-mode t nil (time))
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(ido-case-fold t)
@@ -665,8 +669,7 @@
  '(ring-bell-function (quote ignore) t)
  '(scroll-bar-mode nil)
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
- '(truncate-lines t)
-)
+ '(truncate-lines t))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
 (global-set-key (kbd "C-c C-c") (quote comment-region))
@@ -697,9 +700,6 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-xj" 'rename-uniquely)
 
-
-(setq org-agenda-custom-commands
-      '(("f" occur-tree "FIXME")))
 
 (require 'org-publish)
 (setq org-publish-project-alist
@@ -760,12 +760,15 @@
 ;; 	     "~/Documents/git/Documentation"
 ;; 	     ))
 
+(custom-set-variables '(major-mode 'org-mode))
+(setq org-agenda-custom-commands '(("f" occur-tree "FIXME")))
+
 (add-hook 'org-mode-hook
   (lambda () 
     (local-set-key "c" (quote calendar))))
 
 
-(custom-set-variables '(major-mode 'org-mode))
+
 
 ; ------------------------------
 ; wikipedia-mode
