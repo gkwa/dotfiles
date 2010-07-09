@@ -310,9 +310,10 @@
       (insert "# ") (comint-send-input)
       (goto-char (point-max))
       (insert cdcmd) (comint-send-input)
-      (switch-to-buffer-other-window cbuff)
-      (other-window 1)
-      (kill-new cbuff)
+      ;; it seems better not to split window and switch
+      ;; (switch-to-buffer-other-window cbuff)
+      ;; (other-window 1)
+      ;; (kill-new cbuff)
       )))
 (global-set-key "e" (quote tm-dir-shell-here))
 
