@@ -313,7 +313,7 @@
       ;; it seems better not to split window and switch
       ;; (switch-to-buffer-other-window cbuff)
       ;; (other-window 1)
-      ;; (kill-new cbuff)
+      (kill-new cbuff)
       )))
 (global-set-key "e" (quote tm-dir-shell-here))
 
