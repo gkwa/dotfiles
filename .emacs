@@ -662,9 +662,15 @@
  '(display-time-mode t nil (time))
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(ido-case-fold t)
+ '(major-mode (quote org-mode))
  '(menu-bar-mode nil)
  '(nxml-slash-auto-complete-flag t)
+ '(org-agenda-files (quote ("~/notes.txt")))
+ '(org-agenda-include-diary t)
+ '(org-agenda-ndays 31)
+ '(org-deadline-warning-days 100)
  '(ring-bell-function (quote ignore) t)
+ '(safe-local-variable-values (quote ((eval add-hook (quote write-file-hooks) (quote time-stamp)))))
  '(scroll-bar-mode nil)
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
  '(truncate-lines t))
@@ -745,11 +751,11 @@
 ;; 	     "~/Documents/git/Documentation"
 ;; 	     ))
 
-(custom-set-variables '(major-mode 'org-mode))
-(custom-set-variables '(org-agenda-files (quote ("~/notes.txt"))))
-(custom-set-variables '(org-agenda-include-diary t))
-(custom-set-variables '(org-agenda-ndays 31))
-(custom-set-variables '(org-deadline-warning-days 100))
+
+
+
+
+
 
 (setq org-agenda-custom-commands '(("f" occur-tree "FIXME")))
 
@@ -819,7 +825,5 @@
 
 
 
+
 (shell)
-
-
-
