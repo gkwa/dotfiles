@@ -737,13 +737,6 @@
                                       ("k" . org-kill-note-or-show-branches)
                                       ("r" . org-reveal))))
 
-; (require 'org-babel-init)     
-; (require 'org-babel-R)         ;; requires R and ess-mode
-; (require 'org-babel-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
-; (require 'org-babel-python)    ;; requires python, and python-mode
-; (require 'org-babel-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
-; (org-babel-load-library-of-babel)
-
 ;; (setq Info-directory-list
 ;;            '(
 ;;              "/Users/taylormonacelli/.elisp/org-mode/doc"
@@ -813,6 +806,16 @@
       (add-to-list 'load-path "~/.elisp/malabar-mode/src/main/lisp")
       (require 'malabar-mode)))
 
+; ------------------------------
+; org babel: ob
+; ------------------------------
+(add-to-list 'load-path "~/.elisp/org-mode/lisp")
+(require 'ob)
+(require 'ob-R)         ;; requires R and ess-mode
+(require 'ob-perl)      ;; 
+(require 'ob-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
+(require 'ob-python)    ;; requires python, and python-mode
+(require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
 
 
 
