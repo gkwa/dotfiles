@@ -687,6 +687,7 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
 (global-set-key (kbd "C-c C-c") (quote comment-region))
+(global-set-key (kbd "C-c m") (quote manual-entry))
 
 (require 'php-mode)
 
