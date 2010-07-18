@@ -138,7 +138,7 @@ case "$(uname)" in
 #	export DISPLAY=:0.0
 
 	# 
-	function rdp() { open ~/p/rdp-connect/$1.rdp; }
+	function rdp() { open ~/pdev/rdp-connect/$1.rdp; }
 
 	# installer functions
 	imgmountpoint() { 
