@@ -170,6 +170,16 @@
 ;; format the title-bar to always include the buffer name
 (setq frame-title-format "emacs - %b")
 
+;; turn off the toolbar
+;;disable menu, toolbar and scrollbar
+;;for X, use ~/.Xdefaults
+;;for console emacs
+(if (>= emacs-major-version 21)
+    (progn
+      (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+      (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+      (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))))
+
 ;; This is failing on W32 cause emacs can't find eshell-auto, but M-x eshell works fine.  What is eshell-auto?
 ;; ;; use eshell
 ;; (load "eshell-auto")
@@ -677,6 +687,7 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
 (global-set-key (kbd "C-c C-c") (quote comment-region))
+(global-set-key (kbd "C-c m") (quote manual-entry))
 
 (require 'php-mode)
 
@@ -822,8 +833,5 @@
 (require 'ob-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
 (require 'ob-python)    ;; requires python, and python-mode
 (require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
-
-
-
 
 (shell)

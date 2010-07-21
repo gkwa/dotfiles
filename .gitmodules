@@ -11,5 +11,5 @@
 	path = .elisp/magit
 	url = git://gitorious.org/magit/mainline.git
 [submodule ".elisp/malabar-mode"]
-	path = /Users/tay/.elisp/malabar-mode
+	path = .elisp/malabar-mode
 	url = http://github.com/espenhw/malabar-mode.git

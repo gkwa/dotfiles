@@ -33,7 +33,7 @@ viewer = woman
  dno = diff --name-only
  ci = commit
  lc = log ORIG_HEAD.. --stat --no-merges
- lrn = log --reverse --name-status
+ lrn = log --reverse --name-status -m
  subup = submodule update
  s = status
  dc = diff --cached
@@ -44,18 +44,18 @@ viewer = woman
  changes=diff --name-status -r
  cl = config -l
  m = ls-files -m
- lfh = log --pretty=tformat:'%h %d %ar %s' --reverse ..FETCH_HEAD --name-status
- ln = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status
+ lfh = log --pretty=tformat:'%h %d %ar %s' --reverse ..FETCH_HEAD --name-status -m
+ ln = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
  l2 = log --pretty=tformat:'%h %d %ar %s' --reverse -20
- l2n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -20
+ l2n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -20 -m
  l3 = log --pretty=tformat:'%h %d %ar %s' --reverse -30
- l3n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -30
+ l3n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -30 -m
  l4 = log --pretty=tformat:'%h %d %ar %s' --reverse -40
- l4n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -40
+ l4n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -40 -m
  l = log --pretty=tformat:'%h %d %ar %s' --reverse
  lpo = log --pretty=tformat:'%h %d %ar %s' --reverse
- lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status
- lg = log --graph --name-only 
+ lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
+ lg = log --graph --name-only
  rso = remote show origin
  dns = diff --name-status
  diffstat=diff --stat -r

@@ -39,3 +39,12 @@ if [ -f /opt/local/etc/bash_completion ]; then
 fi
 
 export MANPATH=$MANPATH:/opt/local/share/man:/opt/local/man:/usr/share
+
+##
+# Your previous /Users/admin/.bash_profile file was backed up as /Users/admin/.bash_profile.macports-saved_2010-06-30_at_21:53:54
+##
+
+# MacPorts Installer addition on 2010-06-30_at_21:53:54: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
