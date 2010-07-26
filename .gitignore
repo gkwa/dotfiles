@@ -47,3 +47,4 @@
 /trash/
 /.rnd
 /.aspell.en.pws
+/.elisp/*.elc

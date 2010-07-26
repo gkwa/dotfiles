@@ -115,8 +115,16 @@ source ~/.alias
 hs()
 { 
     if test ! -z "$1"; then
-	history | sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,' | \
-	    grep -i "$1" | grep -v "hs $1";
+        # if first arg is number, then tail -number
+	if test $(expr "$1" : "[0-9]*$") -gt 0; then 
+	    history | tail -$1 | \
+		sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,' | \
+		grep -v "hs $1";
+	else
+	    history | \
+		sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,' | \
+		grep -i "$1" | grep -v "hs $1";
+	fi;
     else
 	history | sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,' 
     fi;
