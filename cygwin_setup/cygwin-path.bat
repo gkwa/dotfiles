@@ -4,4 +4,4 @@ REM $HeadURL$
 REM -*- bat -*-
 
 :: setx.exe PATH "%PATH%;c:\cygwin\bin" -m
-.\pathman /au "%systmdrive%\cygwin\bin"
+.\pathman /au "%systemdrive%\cygwin\bin"
