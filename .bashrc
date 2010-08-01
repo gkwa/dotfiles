@@ -150,11 +150,17 @@ case "$(uname)" in
 
 	# installer functions
 	imgmountpoint() { 
-	    hdid -plist $1 | grep mount-point -A1 | grep string | \
-		cut -d\> -f2 | cut -d\< -f1; 
+	    # echo disktuil eject \
+	    # 	$(hdid -plist $1 | grep dev-entry -A1 | \
+	    # 	grep string | cut -d\> -f2 | cut -d\< -f1 | \
+	    # 	sed -e 's,/dev/,,')
+
+	    hdid -plist $1 | grep mount-point -A1 | \
+		grep string | cut -d\> -f2 | cut -d\< -f1;
 	}
 	myumount2() { 
-	    diskutil umount "$(imgmountpoint $1)"; 
+	    diskutil eject "$(imgmountpoint $1)"; 
+	    
 	}
 	myinstall() { 
 	    set -x; 
