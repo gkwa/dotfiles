@@ -834,4 +834,19 @@
 (require 'ob-python)    ;; requires python, and python-mode
 (require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
 
+; ------------------------------
+; yasnippet
+; ------------------------------
+; cd ~; svn export http://yasnippet.googlecode.com/svn/trunk/ .elisp/yasnippet-read-only
+(add-to-list 'load-path "~/.elisp/yasnippet-read-only")
+(add-to-list 'load-path "~/.elisp/yasnippet-read-only/snippets")
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "~/.elisp/yasnippet-read-only/snippets")
+
+
+
+
+
+
 (shell)
