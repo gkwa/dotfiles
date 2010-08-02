@@ -843,7 +843,7 @@
 (require 'yasnippet)
 (yas/initialize)
 (yas/load-directory "~/.elisp/yasnippet-read-only/snippets")
-
+(yas/load-directory "~/.elisp/yasnippet-org-mode")
 
 
 
