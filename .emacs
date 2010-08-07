@@ -463,6 +463,17 @@
 					;(setenv "TERM" "emacs")
 
 
+
+(setq anything-idle-delay 1.0)                        
+(setq anything-quick-update t)                        
+(setq anything-candidate-number-limit 50)          
+(setq anything-c-yas-display-key-on-candidate t)      
+(setq anything-etags-enable-tag-file-dir-cache t)     
+(setq anything-c-use-standard-keys nil)               
+; (setq anything-etags-cache-tag-file-dir "~/.emacs.d/") 
+; (anything-etags-generate-tag-buffer)                  
+(setq anything-c-google-suggest-url                   
+      "http://www.google.cn/complete/search?hl=en&js=true&qu=")
 ;; add to end of .emacs
 ;; C-x , set to anything
 (add-to-list 'load-path "~/.elisp/anything-config")
@@ -470,12 +481,26 @@
   (interactive)
   (anything-other-buffer
    '(
+     anything-for-files-prefered-list
+     anything-c-source-ffap-line
+     anything-c-source-ffap-guesser
+     anything-c-source-mac-spotlight
+     anything-c-source-occur     
+     anything-c-source-bookmarks
+     anything-c-source-bm
+     ;; anything-mini
+     ;; anything-minibuffer-history
      anything-c-source-buffers
      anything-c-source-recentf
      anything-c-source-files-in-current-dir
      anything-c-source-kill-ring
      anything-c-source-file-name-history
-     ;; anything-for-files ;obsoleted
+     anything-c-source-mark-ring 
+     anything-c-source-info-pages
+     anything-c-source-man-pages
+     anything-c-source-buffer-not-found
+     anything-c-google-suggest-url
+     anything-c-source-emacs-commands
      ;anything-c-source-files-in-all-dired
      anything-c-source-minibuffer-history
      ; this one causes save-excursion: Marker does not point anywhere error when mark is not set
@@ -485,13 +510,14 @@
      ;; isn't working because upon returning to the buffer, your
      ;; position is not correct.
      ; anything-c-source-global-mark-ring
+     anything-c-source-minibuffer-history
      anything-c-source-ctags
      anything-c-source-info-pages
      ; anything-c-source-info-elisp; this gives error progn: Symbol's function definition is void: Info-find-node
      anything-c-source-man-pages
      anything-c-source-locate
      ; anything-c-source-emacs-commands
-     anything-c-source-buffer-not-found
+     anything-c-source-complex-command-history
      )
    " *my-anything*"))
 (global-set-key "," (quote my-anything))
@@ -666,6 +692,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(anything-google-suggest-use-curl-p t)
  '(bc-bookmark-limit 100)
  '(delete-by-moving-to-trash t)
  '(diary-file (expand-file-name "~/.diary"))
@@ -805,7 +832,7 @@
 ; http://zagadka.vm.bytemark.co.uk/magit/magit.html
 (add-to-list 'load-path (expand-file-name "~/.elisp/magit"))
 (autoload 'magit-status "magit" nil t)
-(global-set-key "\C-ci" 'magit-status)
+;; (global-set-key "\C-ci" 'magit-status)
 
 ; ------------------------------
 ; applescript-mode
