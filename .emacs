@@ -92,9 +92,7 @@
 (unify-8859-on-decoding-mode); nxml-mode suggested adding this
 
 (setq-default
-					; auto-fill-mode t
  default-fill-column 72
-					; blink-matching-paren nil
  visible-bell t				;; Turns off audible bell
  default-major-mode 'emacs-lisp-mode	;; Silly "Fundamental"
  inhibit-startup-message t ;; - http://www.gnu.org/software/emacs/manual/html_node/Init-Examples.html
@@ -481,6 +479,8 @@
   (interactive)
   (anything-other-buffer
    '(
+     anything-c-source-buffers
+     anything-c-source-recentf
      anything-for-files-prefered-list
      anything-c-source-ffap-line
      anything-c-source-ffap-guesser
@@ -490,8 +490,6 @@
      anything-c-source-bm
      ;; anything-mini
      ;; anything-minibuffer-history
-     anything-c-source-buffers
-     anything-c-source-recentf
      anything-c-source-files-in-current-dir
      anything-c-source-kill-ring
      anything-c-source-file-name-history
