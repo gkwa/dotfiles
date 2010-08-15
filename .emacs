@@ -843,6 +843,7 @@
 ; xquery-mode
 ; ------------------------------
 (autoload 'xquery-mode "xquery-mode" "major mode for editing Xquery source." t)
+(setq auto-mode-alist (cons '("\\.xqlib$" . xquery-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.xq$" . xquery-mode) auto-mode-alist))
 
 ; ------------------------------
