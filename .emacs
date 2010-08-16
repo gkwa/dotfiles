@@ -840,6 +840,13 @@
 (setq auto-mode-alist (cons '("\\.applescript$" . applescript-mode) auto-mode-alist))
 
 ; ------------------------------
+; xquery-mode
+; ------------------------------
+(autoload 'xquery-mode "xquery-mode" "major mode for editing Xquery source." t)
+(setq auto-mode-alist (cons '("\\.xqlib$" . xquery-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.xq$" . xquery-mode) auto-mode-alist))
+
+; ------------------------------
 ; malabar mode for java/maven
 ; ------------------------------
 (add-to-list 'load-path "~/.elisp/malabar-mode/src/main/lisp")
