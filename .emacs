@@ -479,8 +479,8 @@
   (interactive)
   (anything-other-buffer
    '(
-     anything-c-source-buffers
      anything-c-source-recentf
+     anything-c-source-buffers
      anything-for-files-prefered-list
      anything-c-source-ffap-line
      anything-c-source-ffap-guesser
@@ -877,6 +877,17 @@
 (yas/load-directory "~/.elisp/yasnippet-read-only/snippets")
 (yas/load-directory "~/.elisp/yasnippet-org-mode")
 
+; ------------------------------
+; ffap key rebindings
+; ------------------------------
+; find file at point
+(require 'ffap)
+;; rebind C-x C-f and others to the ffap bindings (see variable ffap-bindings)
+(ffap-bindings)
+;; C-u C-x C-f finds the file at point
+(setq ffap-require-prefix t)
+;; browse urls at point via w3m
+;; (setq ffap-url-fetcher 'w3m-browse-url)
 
 
 
