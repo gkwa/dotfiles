@@ -479,8 +479,8 @@
   (interactive)
   (anything-other-buffer
    '(
-     anything-c-source-recentf
      anything-c-source-buffers
+     anything-c-source-recentf
      anything-for-files-prefered-list
      anything-c-source-ffap-line
      anything-c-source-ffap-guesser
