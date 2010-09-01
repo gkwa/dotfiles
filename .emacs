@@ -98,6 +98,7 @@
  inhibit-startup-message t ;; - http://www.gnu.org/software/emacs/manual/html_node/Init-Examples.html
  ispell-program-name "aspell"
  column-number-mode t
+ display-buffer-reuse-frames t #http://www.cs.cmu.edu/cgi-bin/info2www?%28emacs%29Select%20Buffer
  )
 
 
