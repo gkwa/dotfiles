@@ -1,42 +1,9 @@
-					; run this if you're running as another user other than the usual me:
-;; (add-to-list 'load-path "c:/Documents and Settings/tmonacel/.elisp/")
-
-
-
-;;
-;; Make all "yes or no" prompts show "y or n" instead
-;;
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; http://wwwfun.kurims.kyoto-u.ac.jp/soft/lsl/dist/ocaml-mode-3.05.tar.gz
-;; http://www.nongnu.org/baol-hth/visual-basic-mode.el.gz
-
-;; This is failing with permission denied error messages on w32
-;;; Wrapper to make .emacs self-compiling.
-;; (defvar init-top-level t)
-;; (if init-top-level
-;;     (let ((init-top-level nil))
-;;       (if (file-newer-than-file-p "~/.emacs" "~/.emacs.elc")
-;;           (progn
-;;             (load "~/.emacs")
-;;             (byte-compile-file "~/.emacs")
-;;             )
-;;         (load "~/.emacs.elc"))))
-
-
-
 ;; this changes the value of the default-directory variable so that
 ;; the next dired will point you here
 (cd "~/")
 
 (add-to-list 'load-path "~/.elisp")
-(add-to-list 'load-path "~/.elisp/python-mode-1.0")
 (add-to-list 'load-path "~/.elisp/psgml-1.2.5")	;; http://www.lysator.liu.se/~lenst/about_psgml/psgml.html
-
-
-(setq interpreter-mode-alist (cons '("python" . python-mode) 
-				   interpreter-mode-alist))
-
 
 ;; Tell Emacs to find the definition for the function caml-mode by
 ;; loading a Lisp library named caml (i.e. a file caml.elc or
@@ -44,15 +11,14 @@
 (autoload 'css-mode "css-mode")
 (autoload 'javascript-mode "javascript" nil t)
 (autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
-(autoload 'python-mode "python-mode" "Python editing mode." t)
 (autoload 'caml-mode "caml" "Major mode for editing Caml code." t)
 (autoload 'run-caml "inf-caml" "Run an inferior Caml process." t)
 (autoload 'bat-mode "bat-mode" "DOS and WIndows BAT files" t)
 (autoload 'matlab-mode "matlab.elc" "Enter Matlab mode." t)
 (autoload 'matlab-shell "matlab.elc" "Interactive Matlab mode." t)
-					; This mode seems too slow and I've not used it's functionality
-					; (autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t) 
-					; (autoload 'xml-mode "psgml" "Major mode to edit XML files." t)
+;; This mode seems too slow and I've not used it's functionality
+;; (autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t) 
+;; (autoload 'xml-mode "psgml" "Major mode to edit XML files." t)
 
 (setq auto-mode-alist
       (append '(("\\.lsp$" . lisp-mode)
@@ -62,8 +28,6 @@
 		;; ("\\.xml$" . xml-mode) ; I'm not really using this mode and it slows things down when openning a xml file.
 		("\\.m$" . matlab-mode)
 		("\\.pl$" . perl-mode)
-		("\\.\\(scpt\\|applescript\\)$" . applescript-mode)
-		("\\.py$" . python-mode)
 		("\\.js$" . javascript-mode)
 		("\\.ml[iylp]?$" . caml-mode)
 		("\\.au3$" . visual-basic-mode)
@@ -86,18 +50,6 @@
 ;;   (unify-8859-on-decoding-mode)
 ;; to you .emacs.
 (unify-8859-on-decoding-mode); nxml-mode suggested adding this
-
-(setq-default
- default-fill-column 72
- visible-bell t				;; Turns off audible bell
- default-major-mode 'emacs-lisp-mode	;; Silly "Fundamental"
- inhibit-startup-message t ;; - http://www.gnu.org/software/emacs/manual/html_node/Init-Examples.html
- ispell-program-name "aspell"
- column-number-mode t
- display-buffer-reuse-frames t ; http://www.cs.cmu.edu/cgi-bin/info2www?%28emacs%29Select%20Buffer
- )
-
-
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -245,18 +197,14 @@
 (setq auto-insert-alist
       (append '(
 		;; the following need an interpreter
-		((sh-mode . "Script Mode") . (concat "#!/bin/bash\n" comment-start "Last modified $Id$\n" comment-start "$HeadURL$\n" comment-start "-*- sh -*-\n\n\n" ))
-		;; the following modes need comment beginnings
-		((visual-basic-mode . "Visual Basic Mode") . (concat comment-start "Last modified $Id$\n" comment-start "$HeadURL$\n" comment-start "-*- visual-basic -*-\n\n\n" ))
-		((sql-mode . "Sql Mode") . (concat comment-start " Last modified $Id$\n" comment-start " $HeadURL$\n" comment-start " -*- sql -*-\n\n\n" ))
-		((perl-mode . "Perl Mode") . (concat comment-start "Last modified $Id$\n" comment-start "$HeadURL$\n" comment-start "-*- perl -*-\n\n\n" ))
-		((perl-mode . "PHP Mode") . (concat comment-start "Last modified $Id$\n" comment-start "$HeadURL$\n" comment-start "-*- php -*-\n\n\n" ))
-		((python-mode . "Python Mode") . (concat comment-start "Last modified $Id$\n" comment-start "$HeadURL$\n" comment-start "-*- python -*-\n\n\n" ))
-		((bat-mode . "Bat Mode") . (concat "@Echo off\n" comment-start "Last modified $Id$\n" comment-start "$HeadURL$\n" comment-start "-*- bat -*-\n\n\n" ))
-		((javascript-mode . "Javascript Mode") . (concat comment-start " Last modified $Id$\n" comment-start " $HeadURL$\n" comment-start "-*- javascript -*-\n\n\n" ))
-		((caml-mode . "Caml Mode") . (concat comment-start " Last modified $Id$\n" comment-start " $HeadURL$\n" comment-start "-*- caml -*-\n\n\n" ))
-
-		;; the following modes need comment endings too
+		((sh-mode . "Script Mode") . (concat "#!/bin/sh\n" comment-start "-*- sh -*-\n\n\n" ))
+		((visual-basic-mode . "Visual Basic Mode") . (concat comment-start "-*- visual-basic -*-\n\n\n" ))
+		((sql-mode . "Sql Mode") . (concat comment-start " -*- sql -*-\n\n\n" ))
+		((perl-mode . "Perl Mode") . (concat comment-start "-*- perl -*-\n\n\n" ))
+		((perl-mode . "PHP Mode") . (concat comment-start "-*- php -*-\n\n\n" ))
+		((bat-mode . "Bat Mode") . (concat "@Echo off\n" comment-start "-*- bat -*-\n\n\n" ))
+		((javascript-mode . "Javascript Mode") . (concat comment-start "-*- javascript -*-\n\n\n" ))
+		((caml-mode . "Caml Mode") . (concat comment-start "-*- caml -*-\n\n\n" ))
 		((css-mode . "CSS Mode") . (concat comment-start " Last modified $Id$" comment-end "\n" comment-start " $HeadURL$" comment-end "\n\n\n" ))
 		)
 	      auto-insert-alist))
@@ -671,6 +619,19 @@
 ;; --------------------------------------------------
 ;; I believe custom vars should appear last to overwrite factory default values...I think.
 ;; --------------------------------------------------
+(setq-default
+ default-major-mode 'org-mode ;; set default mode
+;; default-major-mode 'emacs-lisp-mode	;; Silly "Fundamental"
+ initial-major-mode 'org-mode ;; set default mode
+ default-fill-column 72
+ visible-bell t				;; Turns off audible bell
+ inhibit-startup-message t ;; - http://www.gnu.org/software/emacs/manual/html_node/Init-Examples.html
+ ispell-program-name "aspell"
+ column-number-mode t
+ display-buffer-reuse-frames t ; http://www.cs.cmu.edu/cgi-bin/info2www?%28emacs%29Select%20Buffer
+ )
+
+(fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -703,13 +664,10 @@
 
 
 
-(autoload 'applescript-mode "applescript-mode" "major mode for editing AppleScript source." t)
-
-
-					; http://www.opensubscriber.com/message/emacs-devel@gnu.org/10963543.html
-					; Add directories to recentf list and then assuming you're using
-					; anything-sources, then anything-c-source-recentf will bring up past
-					; directories.
+;; http://www.opensubscriber.com/message/emacs-devel@gnu.org/10963543.html
+;; Add directories to recentf list and then assuming you're using
+;; anything-sources, then anything-c-source-recentf will bring up past
+;; directories.
 (add-hook 'dired-mode-hook
 	  (lambda () 
 	    (local-set-key "f" (quote find-dired))
@@ -725,10 +683,29 @@
 
 
 
+;; ------------------------------
+;; perl-mode
+;; ------------------------------
+(setq auto-mode-alist (append '(("\\.\\(pl\\|pm\\)$" . perl-mode)) auto-mode-alist))
+(setq auto-insert-alist
+      (append '(
+		((perl-mode . "Perl Mode") . (concat comment-start "-*- perl -*-\n\n\n" ))
+;;		((perl-mode . "PHP Mode") . (concat comment-start "-*- php -*-\n\n\n" ))
+		)
+	      auto-insert-alist))
 
-					; ------------------------------
-					; org-mode
-					; ------------------------------
+;; ------------------------------
+;; python-mode
+;; ------------------------------
+(add-to-list 'load-path "~/.elisp/python-mode-1.0")
+(autoload 'python-mode "python-mode" "Python editing mode." t)
+(setq interpreter-mode-alist (cons '("python" . python-mode) interpreter-mode-alist))
+(setq auto-mode-alist (append '(("\\.py$" . python-mode)) auto-mode-alist))
+(setq auto-insert-alist (append '( ((python-mode . "Python Mode") . (concat comment-start "-*- python -*-\n\n\n" ))) auto-insert-alist))
+
+;; ------------------------------
+;; org-mode
+;; ------------------------------
 (add-to-list 'load-path "~/.elisp/org-mode/lisp")
 (add-to-list 'load-path "~/.elisp/org-mode/lisp/babel")
 (add-to-list 'load-path "~/.elisp/org-mode/lisp/babel/langs")
@@ -823,7 +800,7 @@
 ;; ------------------------------
 (add-to-list 'load-path "~/.elisp/applescript-mode.el")
 (autoload 'applescript-mode "applescript-mode" "major mode for editing AppleScript source." t)
-(setq auto-mode-alist (cons '("\\.applescript$" . applescript-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.\\(scpt\\|applescript\\)$" . applescript-mode) auto-mode-alist))
 
 ;; ------------------------------
 ;; xquery-mode
@@ -888,17 +865,6 @@
 (global-set-key (quote [f7]) (quote html-helper-mode))
 
 ;; ------------------------------
-;; yasnippet
-;; ------------------------------
-;; cd ~; svn export http://yasnippet.googlecode.com/svn/trunk/ .elisp/yasnippet-read-only
-(add-to-list 'load-path "~/.elisp/yasnippet-read-only")
-(add-to-list 'load-path "~/.elisp/yasnippet-read-only/snippets")
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.elisp/yasnippet-read-only/snippets")
-(yas/load-directory "~/.elisp/yasnippet-org-mode")
-
-;; ------------------------------
 ;; ffap key rebindings
 ;; ------------------------------
 ;; find file at point
@@ -910,6 +876,18 @@
 ;; browse urls at point via w3m
 ;; (setq ffap-url-fetcher 'w3m-browse-url)
 
+
+
+;; ------------------------------
+;; yasnippet
+;; ------------------------------
+;; cd ~; svn export http://yasnippet.googlecode.com/svn/trunk/ .elisp/yasnippet-read-only
+(add-to-list 'load-path "~/.elisp/yasnippet-read-only")
+(add-to-list 'load-path "~/.elisp/yasnippet-read-only/snippets")
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "~/.elisp/yasnippet-read-only/snippets")
+(yas/load-directory "~/.elisp/yasnippet-org-mode")
 
 
 
