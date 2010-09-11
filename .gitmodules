@@ -15,4 +15,4 @@
 	url = http://github.com/espenhw/malabar-mode.git
 [submodule ".elisp/yasnippet-org-mode"]
 	path = .elisp/yasnippet-org-mode
-	url = http://github.com/RickMoynihan/yasnippet-org-mode.git
+	url = git://github.com/RickMoynihan/yasnippet-org-mode.git
