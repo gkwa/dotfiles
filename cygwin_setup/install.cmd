@@ -8,6 +8,8 @@ cd cygwin_setup
 :: deploy\cygwin and deploy\Program Files will get pushed to %systemdrive%\cygwin %systemdrive%\Program Files
 xcopy /H/F/I/V/R/Y/E deploy %systemdrive%\
 
+copy /y pathman.exe %systemroot%\system32
+
 %systemdrive%
 cd "%programfiles%\CygwinInstall"
 
