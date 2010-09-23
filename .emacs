@@ -396,16 +396,16 @@
 
 
 
-(setq anything-idle-delay 1.0)                        
-(setq anything-quick-update t)                        
-(setq anything-candidate-number-limit 50)          
-(setq anything-c-yas-display-key-on-candidate t)      
-(setq anything-etags-enable-tag-file-dir-cache t)     
-(setq anything-c-use-standard-keys nil)               
-					; (setq anything-etags-cache-tag-file-dir "~/.emacs.d/") 
-					; (anything-etags-generate-tag-buffer)                  
-(setq anything-c-google-suggest-url                   
-      "http://www.google.cn/complete/search?hl=en&js=true&qu=")
+(setq anything-idle-delay 0.1)
+(setq anything-samewindow t)
+(setq anything-quick-update t)
+(setq anything-candidate-number-limit 30)
+(setq anything-c-yas-display-key-on-candidate t)
+(setq anything-etags-enable-tag-file-dir-cache t)
+(setq anything-c-use-standard-keys nil)
+;; (setq anything-etags-cache-tag-file-dir "~/.emacs.d/")
+;; (anything-etags-generate-tag-buffer)
+(setq anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
 ;; add to end of .emacs
 ;; C-x , set to anything
 (add-to-list 'load-path "~/.elisp/anything-config")
@@ -414,24 +414,24 @@
   (anything-other-buffer
    '(
      anything-c-source-buffers
+     anything-c-source-files-in-current-dir
      anything-c-source-recentf
      anything-for-files-prefered-list
      anything-c-source-ffap-line
      anything-c-source-ffap-guesser
      anything-c-source-mac-spotlight
-     anything-c-source-occur     
-     anything-c-source-bookmarks
-     anything-c-source-bm
+;;     anything-c-source-occur     
+;;     anything-c-source-bookmarks
+;;     anything-c-source-bm
      ;; anything-mini
      ;; anything-minibuffer-history
-     anything-c-source-files-in-current-dir
      anything-c-source-kill-ring
      anything-c-source-file-name-history
      anything-c-source-mark-ring 
-     anything-c-source-info-pages
-     anything-c-source-man-pages
-     anything-c-source-buffer-not-found
-     anything-c-google-suggest-url
+;;     anything-c-source-info-pages
+;;     anything-c-source-man-pages
+;;     anything-c-source-buffer-not-found
+;;     anything-c-google-suggest-url
      anything-c-source-emacs-commands
 					;anything-c-source-files-in-all-dired
      anything-c-source-minibuffer-history
@@ -447,7 +447,7 @@
      anything-c-source-info-pages
 					; anything-c-source-info-elisp; this gives error progn: Symbol's function definition is void: Info-find-node
      anything-c-source-man-pages
-     anything-c-source-locate
+;;     anything-c-source-locate
 					; anything-c-source-emacs-commands
      anything-c-source-complex-command-history
      )
