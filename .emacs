@@ -96,8 +96,13 @@
 ;; http://sigquit.wordpress.com/2008/09/28/single-dot-emacs-file/
 (defun system-is-my-personal-laptop ()
   (interactive)
-  "Return true if the system we are running on is my PC at work"
+  "Return true if the system we are running on is"
   (string-equal system-name "Taylor-Monacellis-MacBook-Pro.local"))
+
+(defun system-is-work-desktop ()
+  (interactive)
+  "Return true if the system we are running on work desktop"
+  (string-equal system-name "demos-imac.streambox.com"))
 
 (defun system-is-i5-laptop ()
   (interactive)
@@ -105,8 +110,7 @@
   (string-equal system-name "i5-laptop"))
 
 (if (or 
-     (system-is-my-personal-laptop) 
-     (system-is-i5-laptop))
+     (system-is-my-personal-laptop) )
     (progn
       (setq screen-height (x-display-pixel-height))
       (setq screen-width (x-display-pixel-width))
