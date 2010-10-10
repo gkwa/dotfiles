@@ -16,3 +16,6 @@
 [submodule ".elisp/yasnippet-org-mode"]
 	path = .elisp/yasnippet-org-mode
 	url = git://github.com/RickMoynihan/yasnippet-org-mode.git
+[submodule ".elisp/emms"]
+	path = .elisp/emms
+	url = ssh://boxstream@development.streambox.com:5979/var/www/html/proj/emms.git

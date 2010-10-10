@@ -52,10 +52,10 @@
 (unify-8859-on-decoding-mode); nxml-mode suggested adding this
 
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  )
 
 (set-foreground-color "white")
@@ -70,9 +70,9 @@
 
 
 
-					; ------------------------------
-					; backup-dir
-					; ------------------------------
+;; ------------------------------
+;; backup-dir
+;; ------------------------------
 
 ;; http://www.emacswiki.org/cgi-bin/wiki?BackupDirectory
 (require 'backup-dir)
@@ -92,9 +92,25 @@
       kept-new-versions 3
       version-control t)
 
-					; At 1024x768 frame-height of 55 and frame-width of 100 is bad.  Fix this.
-					; http://www.gnu.org/software/emacs/windows/faq4.html#windows-frames
-(if (not (equal window-system nil))
+
+;; http://sigquit.wordpress.com/2008/09/28/single-dot-emacs-file/
+(defun system-is-my-personal-laptop ()
+  (interactive)
+  "Return true if the system we are running on is"
+  (string-equal system-name "Taylor-Monacellis-MacBook-Pro.local"))
+
+(defun system-is-work-desktop ()
+  (interactive)
+  "Return true if the system we are running on work desktop"
+  (string-equal system-name "demos-imac.streambox.com"))
+
+(defun system-is-i5-laptop ()
+  (interactive)
+  "Return true if the system we are running on is my PC at work"
+  (string-equal system-name "i5-laptop"))
+
+(if (or 
+     (system-is-my-personal-laptop) )
     (progn
       (setq screen-height (x-display-pixel-height))
       (setq screen-width (x-display-pixel-width))
@@ -103,8 +119,22 @@
 	    (set-frame-height (selected-frame) 40)
 	    (set-frame-width (selected-frame) 100))
 	(progn
-	  (set-frame-height (selected-frame) 50)
-	  (set-frame-width (selected-frame) 100)))))
+	  (set-frame-height (selected-frame) 200)
+	  (set-frame-width (selected-frame) 150)))))
+
+;; At 1024x768 frame-height of 55 and frame-width of 100 is bad.  Fix this.
+;; http://www.gnu.org/software/emacs/windows/faq4.html#windows-frames
+;; (if (not (equal window-system nil))
+;;     (progn
+;;       (setq screen-height (x-display-pixel-height))
+;;       (setq screen-width (x-display-pixel-width))
+;;       (if (<= screen-height 768)
+;; 	  (progn
+;; 	    (set-frame-height (selected-frame) 40)
+;; 	    (set-frame-width (selected-frame) 100))
+;; 	(progn
+;; 	  (set-frame-height (selected-frame) 50)
+;; 	  (set-frame-width (selected-frame) 100)))))
 
 (if (equal window-system nil)
     (shell nil))
@@ -414,41 +444,41 @@
   (anything-other-buffer
    '(
      anything-c-source-buffers
-     anything-c-source-files-in-current-dir
+     ; anything-c-source-files-in-current-dir
      anything-c-source-recentf
      anything-for-files-prefered-list
      anything-c-source-ffap-line
      anything-c-source-ffap-guesser
-     anything-c-source-mac-spotlight
-;;     anything-c-source-occur     
-;;     anything-c-source-bookmarks
-;;     anything-c-source-bm
+     ;; anything-c-source-mac-spotlight  ;; I believe this source is causing slowdown, its the one invoking mdfind
+     ;; anything-c-source-occur     
+     ;; anything-c-source-bookmarks
+     ;; anything-c-source-bm
      ;; anything-mini
      ;; anything-minibuffer-history
      anything-c-source-kill-ring
      anything-c-source-file-name-history
      anything-c-source-mark-ring 
-;;     anything-c-source-info-pages
-;;     anything-c-source-man-pages
-;;     anything-c-source-buffer-not-found
-;;     anything-c-google-suggest-url
-     anything-c-source-emacs-commands
-					;anything-c-source-files-in-all-dired
+     ;; anything-c-source-info-pages
+     ;; anything-c-source-man-pages
+     anything-c-source-buffer-not-found
+     ;; anything-c-google-suggest-url
+     ;; anything-c-source-emacs-commands
+     ;; anything-c-source-files-in-all-dired
      anything-c-source-minibuffer-history
-					; this one causes save-excursion: Marker does not point anywhere error when mark is not set
-					; anything-c-source-mark-ring 
+     ;; this one causes save-excursion: Marker does not point anywhere error when mark is not set
+     ;; anything-c-source-mark-ring 
      ;; anything-c-source-global-mark-ring causes problems when
      ;; switching back to original buffer.  Its as though save-excursion
      ;; isn't working because upon returning to the buffer, your
      ;; position is not correct.
-					; anything-c-source-global-mark-ring
+     ;; anything-c-source-global-mark-ring
      anything-c-source-minibuffer-history
      anything-c-source-ctags
      anything-c-source-info-pages
-					; anything-c-source-info-elisp; this gives error progn: Symbol's function definition is void: Info-find-node
-     anything-c-source-man-pages
-;;     anything-c-source-locate
-					; anything-c-source-emacs-commands
+     ;; anything-c-source-info-elisp; this gives error progn: Symbol's function definition is void: Info-find-node
+     ;; anything-c-source-man-pages
+     ;; anything-c-source-locate
+     ;; anything-c-source-emacs-commands
      anything-c-source-complex-command-history
      )
    " *my-anything*"))
@@ -626,17 +656,17 @@
  default-fill-column 72
  visible-bell t				;; Turns off audible bell
  inhibit-startup-message t ;; - http://www.gnu.org/software/emacs/manual/html_node/Init-Examples.html
- ispell-program-name "aspell"
+ ispell-program-name "/opt/local/bin/aspell"
  column-number-mode t
  display-buffer-reuse-frames t ; http://www.cs.cmu.edu/cgi-bin/info2www?%28emacs%29Select%20Buffer
  )
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(anything-google-suggest-use-curl-p t)
  '(bc-bookmark-limit 100)
  '(delete-by-moving-to-trash t)
@@ -888,6 +918,7 @@
 (yas/initialize)
 (yas/load-directory "~/.elisp/yasnippet-read-only/snippets")
 (yas/load-directory "~/.elisp/yasnippet-org-mode")
+
 
 
 
