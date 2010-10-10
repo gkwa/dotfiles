@@ -107,10 +107,12 @@
 (defun system-is-i5-laptop ()
   (interactive)
   "Return true if the system we are running on is my PC at work"
-  (string-equal system-name "i5-laptop"))
+  (string-equal system-name "demos-MacBook-Pro.local"))
 
 (if (or 
-     (system-is-my-personal-laptop) )
+     (system-is-my-personal-laptop) 
+     (system-is-i5-laptop)
+     )
     (progn
       (setq screen-height (x-display-pixel-height))
       (setq screen-width (x-display-pixel-width))
