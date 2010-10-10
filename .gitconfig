@@ -27,6 +27,10 @@ viewer = woman
  # http://git.wiki.kernel.org/index.php/Aliases
  br = branch
  bra = branch -a
+ prune-all = !git remote | xargs -n 1 git remote prune --dry-run
+ # https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
+ rs = !sh -c 'git remote show $1' -
+ rso = remote show origin
  co = checkout
  sub = submodule
  ap = add --patch

@@ -1,44 +1,9 @@
-; run this if you're running as another user other than the usual me:
-;; (add-to-list 'load-path "c:/Documents and Settings/tmonacel/.elisp/")
-
-
-
-;;
-;; Make all "yes or no" prompts show "y or n" instead
-;;
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; http://wwwfun.kurims.kyoto-u.ac.jp/soft/lsl/dist/ocaml-mode-3.05.tar.gz
-;; http://www.nongnu.org/baol-hth/visual-basic-mode.el.gz
-
-;; This is failing with permission denied error messages on w32
-;;; Wrapper to make .emacs self-compiling.
-;; (defvar init-top-level t)
-;; (if init-top-level
-;;     (let ((init-top-level nil))
-;;       (if (file-newer-than-file-p "~/.emacs" "~/.emacs.elc")
-;;           (progn
-;;             (load "~/.emacs")
-;;             (byte-compile-file "~/.emacs")
-;;             )
-;;         (load "~/.emacs.elc"))))
-
-
-
 ;; this changes the value of the default-directory variable so that
 ;; the next dired will point you here
 (cd "~/")
 
 (add-to-list 'load-path "~/.elisp")
-(add-to-list 'load-path "~/.elisp/html-helper-mode")
-(add-to-list 'load-path "~/.elisp/php-mode-1.5.0")
-(add-to-list 'load-path "~/.elisp/python-mode-1.0")
 (add-to-list 'load-path "~/.elisp/psgml-1.2.5")	;; http://www.lysator.liu.se/~lenst/about_psgml/psgml.html
-
-
-(setq interpreter-mode-alist (cons '("python" . python-mode) 
-				   interpreter-mode-alist))
-
 
 ;; Tell Emacs to find the definition for the function caml-mode by
 ;; loading a Lisp library named caml (i.e. a file caml.elc or
@@ -46,16 +11,14 @@
 (autoload 'css-mode "css-mode")
 (autoload 'javascript-mode "javascript" nil t)
 (autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
-(autoload 'python-mode "python-mode" "Python editing mode." t)
-;; (autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
 (autoload 'caml-mode "caml" "Major mode for editing Caml code." t)
 (autoload 'run-caml "inf-caml" "Run an inferior Caml process." t)
 (autoload 'bat-mode "bat-mode" "DOS and WIndows BAT files" t)
 (autoload 'matlab-mode "matlab.elc" "Enter Matlab mode." t)
 (autoload 'matlab-shell "matlab.elc" "Interactive Matlab mode." t)
-					; This mode seems too slow and I've not used it's functionality
-					; (autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t) 
-					; (autoload 'xml-mode "psgml" "Major mode to edit XML files." t)
+;; This mode seems too slow and I've not used it's functionality
+;; (autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t) 
+;; (autoload 'xml-mode "psgml" "Major mode to edit XML files." t)
 
 (setq auto-mode-alist
       (append '(("\\.lsp$" . lisp-mode)
@@ -65,10 +28,7 @@
 		;; ("\\.xml$" . xml-mode) ; I'm not really using this mode and it slows things down when openning a xml file.
 		("\\.m$" . matlab-mode)
 		("\\.pl$" . perl-mode)
-		("\\.\\(scpt\\|applescript\\)$" . applescript-mode)
-		("\\.py$" . python-mode)
 		("\\.js$" . javascript-mode)
-		("\\.html$" . html-helper-mode)
 		("\\.ml[iylp]?$" . caml-mode)
 		("\\.au3$" . visual-basic-mode)
 		("\\.\\(vbs\\|frm\\|bas\\|cls\\)$" . visual-basic-mode)
@@ -91,22 +51,11 @@
 ;; to you .emacs.
 (unify-8859-on-decoding-mode); nxml-mode suggested adding this
 
-(setq-default
- default-fill-column 72
- visible-bell t				;; Turns off audible bell
- default-major-mode 'emacs-lisp-mode	;; Silly "Fundamental"
- inhibit-startup-message t ;; - http://www.gnu.org/software/emacs/manual/html_node/Init-Examples.html
- ispell-program-name "aspell"
- column-number-mode t
- )
-
-
-
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 (set-foreground-color "white")
@@ -121,9 +70,9 @@
 
 
 
-; ------------------------------
-; backup-dir
-; ------------------------------
+					; ------------------------------
+					; backup-dir
+					; ------------------------------
 
 ;; http://www.emacswiki.org/cgi-bin/wiki?BackupDirectory
 (require 'backup-dir)
@@ -212,7 +161,7 @@
 (recentf-mode 1)
 
 ;; http://www.koders.com/lisp/fidE8CF96D104A21B9A8CECAE4340C8A565446B5EBE.aspx?s=TV+Raman
-(add-hook 'html-helper-mode-hook  '(lambda () (auto-fill-mode 1) (setq fill-column 60)))
+
 (add-hook 'text-mode-hook         '(lambda () (auto-fill-mode 1) (setq fill-column 72)))
 (add-hook 'visual-basic-mode-hook '(lambda () (auto-fill-mode 1) (setq fill-column 72)))
 (add-hook 'bat-mode-hook          '(lambda () (auto-fill-mode 1) (setq fill-column 72)))
@@ -248,19 +197,14 @@
 (setq auto-insert-alist
       (append '(
 		;; the following need an interpreter
-		((sh-mode . "Script Mode") . (concat "#!/bin/bash\n" comment-start "Last modified $Id$\n" comment-start "$HeadURL$\n" comment-start "-*- sh -*-\n\n\n" ))
-		;; the following modes need comment beginnings
-		((visual-basic-mode . "Visual Basic Mode") . (concat comment-start "Last modified $Id$\n" comment-start "$HeadURL$\n" comment-start "-*- visual-basic -*-\n\n\n" ))
-		((sql-mode . "Sql Mode") . (concat comment-start " Last modified $Id$\n" comment-start " $HeadURL$\n" comment-start " -*- sql -*-\n\n\n" ))
-		((perl-mode . "Perl Mode") . (concat comment-start "Last modified $Id$\n" comment-start "$HeadURL$\n" comment-start "-*- perl -*-\n\n\n" ))
-		((perl-mode . "PHP Mode") . (concat comment-start "Last modified $Id$\n" comment-start "$HeadURL$\n" comment-start "-*- php -*-\n\n\n" ))
-		((python-mode . "Python Mode") . (concat comment-start "Last modified $Id$\n" comment-start "$HeadURL$\n" comment-start "-*- python -*-\n\n\n" ))
-		((bat-mode . "Bat Mode") . (concat "@Echo off\n" comment-start "Last modified $Id$\n" comment-start "$HeadURL$\n" comment-start "-*- bat -*-\n\n\n" ))
-		((javascript-mode . "Javascript Mode") . (concat comment-start " Last modified $Id$\n" comment-start " $HeadURL$\n" comment-start "-*- javascript -*-\n\n\n" ))
-		((caml-mode . "Caml Mode") . (concat comment-start " Last modified $Id$\n" comment-start " $HeadURL$\n" comment-start "-*- caml -*-\n\n\n" ))
-
-		;; the following modes need comment endings too
-		((html-helper-mode . "Yay HTML") . (concat comment-start " Last modified $Id$" comment-end "\n" comment-start " $HeadURL$" comment-end "\n\n\n" ))
+		((sh-mode . "Script Mode") . (concat "#!/bin/sh\n" comment-start "-*- sh -*-\n\n\n" ))
+		((visual-basic-mode . "Visual Basic Mode") . (concat comment-start "-*- visual-basic -*-\n\n\n" ))
+		((sql-mode . "Sql Mode") . (concat comment-start " -*- sql -*-\n\n\n" ))
+		((perl-mode . "Perl Mode") . (concat comment-start "-*- perl -*-\n\n\n" ))
+		((perl-mode . "PHP Mode") . (concat comment-start "-*- php -*-\n\n\n" ))
+		((bat-mode . "Bat Mode") . (concat "@Echo off\n" comment-start "-*- bat -*-\n\n\n" ))
+		((javascript-mode . "Javascript Mode") . (concat comment-start "-*- javascript -*-\n\n\n" ))
+		((caml-mode . "Caml Mode") . (concat comment-start "-*- caml -*-\n\n\n" ))
 		((css-mode . "CSS Mode") . (concat comment-start " Last modified $Id$" comment-end "\n" comment-start " $HeadURL$" comment-end "\n\n\n" ))
 		)
 	      auto-insert-alist))
@@ -269,16 +213,6 @@
 
 ;; Mode specific key bindings
 
-;; C-c C-n t for HTML mode
-(add-hook 'html-helper-mode-hook
-	  '(lambda ()
-	     (define-key html-helper-mode-map "\C-c\C-nt"
-	       'tidy-buffer-xhtml
-	       )
-	     ;;  	     (define-key texinfo-mode-map "\C-cn"
-	     ;;  	       'forward-paragraph)
-	     )
-	  )
 
 ;; ;; C-c C-n t for sgml mode
 ;; (add-hook 'sgml-mode-hook
@@ -294,7 +228,7 @@
 
 (global-set-key "j" (quote rename-uniquely))
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
-(global-set-key (quote [f7]) (quote html-helper-mode))
+
 (global-set-key (quote [f8]) (quote tmm-menubar))
 
 ;; C-c i calls insert-date-string
@@ -409,7 +343,7 @@
 
       ;;      (require 'w3m-load) ; available through macports (sudo port install emacs-w3m)
       ;; http://docs.freebsd.org/info/texinfo/texinfo.info.Other_Info_Directories.html
-      ; (setq Info-directory-list (append (list "") Info-directory-list))
+					; (setq Info-directory-list (append (list "") Info-directory-list))
       (setq Info-directory-list (append (list "/Applications/MacPorts/Emacs.app/Contents/Resources/info") Info-directory-list))
       (setq Info-directory-list (append (list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info") Info-directory-list))
       (setq Info-directory-list (append (list "/Applications/Aquamacs.app/Contents/Resources/info") Info-directory-list))
@@ -462,16 +396,16 @@
 
 
 
-(setq anything-idle-delay 1.0)                        
-(setq anything-quick-update t)                        
-(setq anything-candidate-number-limit 50)          
-(setq anything-c-yas-display-key-on-candidate t)      
-(setq anything-etags-enable-tag-file-dir-cache t)     
-(setq anything-c-use-standard-keys nil)               
-; (setq anything-etags-cache-tag-file-dir "~/.emacs.d/") 
-; (anything-etags-generate-tag-buffer)                  
-(setq anything-c-google-suggest-url                   
-      "http://www.google.cn/complete/search?hl=en&js=true&qu=")
+(setq anything-idle-delay 0.1)
+(setq anything-samewindow t)
+(setq anything-quick-update t)
+(setq anything-candidate-number-limit 30)
+(setq anything-c-yas-display-key-on-candidate t)
+(setq anything-etags-enable-tag-file-dir-cache t)
+(setq anything-c-use-standard-keys nil)
+;; (setq anything-etags-cache-tag-file-dir "~/.emacs.d/")
+;; (anything-etags-generate-tag-buffer)
+(setq anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
 ;; add to end of .emacs
 ;; C-x , set to anything
 (add-to-list 'load-path "~/.elisp/anything-config")
@@ -480,41 +414,41 @@
   (anything-other-buffer
    '(
      anything-c-source-buffers
+     anything-c-source-files-in-current-dir
      anything-c-source-recentf
      anything-for-files-prefered-list
      anything-c-source-ffap-line
      anything-c-source-ffap-guesser
      anything-c-source-mac-spotlight
-     anything-c-source-occur     
-     anything-c-source-bookmarks
-     anything-c-source-bm
+;;     anything-c-source-occur     
+;;     anything-c-source-bookmarks
+;;     anything-c-source-bm
      ;; anything-mini
      ;; anything-minibuffer-history
-     anything-c-source-files-in-current-dir
      anything-c-source-kill-ring
      anything-c-source-file-name-history
      anything-c-source-mark-ring 
-     anything-c-source-info-pages
-     anything-c-source-man-pages
-     anything-c-source-buffer-not-found
-     anything-c-google-suggest-url
+;;     anything-c-source-info-pages
+;;     anything-c-source-man-pages
+;;     anything-c-source-buffer-not-found
+;;     anything-c-google-suggest-url
      anything-c-source-emacs-commands
-     ;anything-c-source-files-in-all-dired
+					;anything-c-source-files-in-all-dired
      anything-c-source-minibuffer-history
-     ; this one causes save-excursion: Marker does not point anywhere error when mark is not set
-     ; anything-c-source-mark-ring 
+					; this one causes save-excursion: Marker does not point anywhere error when mark is not set
+					; anything-c-source-mark-ring 
      ;; anything-c-source-global-mark-ring causes problems when
      ;; switching back to original buffer.  Its as though save-excursion
      ;; isn't working because upon returning to the buffer, your
      ;; position is not correct.
-     ; anything-c-source-global-mark-ring
+					; anything-c-source-global-mark-ring
      anything-c-source-minibuffer-history
      anything-c-source-ctags
      anything-c-source-info-pages
-     ; anything-c-source-info-elisp; this gives error progn: Symbol's function definition is void: Info-find-node
+					; anything-c-source-info-elisp; this gives error progn: Symbol's function definition is void: Info-find-node
      anything-c-source-man-pages
-     anything-c-source-locate
-     ; anything-c-source-emacs-commands
+;;     anything-c-source-locate
+					; anything-c-source-emacs-commands
      anything-c-source-complex-command-history
      )
    " *my-anything*"))
@@ -685,11 +619,24 @@
 ;; --------------------------------------------------
 ;; I believe custom vars should appear last to overwrite factory default values...I think.
 ;; --------------------------------------------------
+(setq-default
+ default-major-mode 'org-mode ;; set default mode
+;; default-major-mode 'emacs-lisp-mode	;; Silly "Fundamental"
+ initial-major-mode 'org-mode ;; set default mode
+ default-fill-column 72
+ visible-bell t				;; Turns off audible bell
+ inhibit-startup-message t ;; - http://www.gnu.org/software/emacs/manual/html_node/Init-Examples.html
+ ispell-program-name "aspell"
+ column-number-mode t
+ display-buffer-reuse-frames t ; http://www.cs.cmu.edu/cgi-bin/info2www?%28emacs%29Select%20Buffer
+ )
+
+(fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(anything-google-suggest-use-curl-p t)
  '(bc-bookmark-limit 100)
  '(delete-by-moving-to-trash t)
@@ -714,21 +661,18 @@
 (global-set-key (kbd "C-c C-c") (quote comment-region))
 (global-set-key (kbd "C-c m") (quote manual-entry))
 
-(require 'php-mode)
 
 
-(autoload 'applescript-mode "applescript-mode" "major mode for editing AppleScript source." t)
 
-
-; http://www.opensubscriber.com/message/emacs-devel@gnu.org/10963543.html
-; Add directories to recentf list and then assuming you're using
-; anything-sources, then anything-c-source-recentf will bring up past
-; directories.
+;; http://www.opensubscriber.com/message/emacs-devel@gnu.org/10963543.html
+;; Add directories to recentf list and then assuming you're using
+;; anything-sources, then anything-c-source-recentf will bring up past
+;; directories.
 (add-hook 'dired-mode-hook
-  (lambda () 
-    (local-set-key "f" (quote find-dired))
-    (when recentf-mode
-      (recentf-add-file default-directory))))
+	  (lambda () 
+	    (local-set-key "f" (quote find-dired))
+	    (when recentf-mode
+	      (recentf-add-file default-directory))))
 
 
 
@@ -739,10 +683,29 @@
 
 
 
+;; ------------------------------
+;; perl-mode
+;; ------------------------------
+(setq auto-mode-alist (append '(("\\.\\(pl\\|pm\\)$" . perl-mode)) auto-mode-alist))
+(setq auto-insert-alist
+      (append '(
+		((perl-mode . "Perl Mode") . (concat comment-start "-*- perl -*-\n\n\n" ))
+;;		((perl-mode . "PHP Mode") . (concat comment-start "-*- php -*-\n\n\n" ))
+		)
+	      auto-insert-alist))
 
-; ------------------------------
-; org-mode
-; ------------------------------
+;; ------------------------------
+;; python-mode
+;; ------------------------------
+(add-to-list 'load-path "~/.elisp/python-mode-1.0")
+(autoload 'python-mode "python-mode" "Python editing mode." t)
+(setq interpreter-mode-alist (cons '("python" . python-mode) interpreter-mode-alist))
+(setq auto-mode-alist (append '(("\\.py$" . python-mode)) auto-mode-alist))
+(setq auto-insert-alist (append '( ((python-mode . "Python Mode") . (concat comment-start "-*- python -*-\n\n\n" ))) auto-insert-alist))
+
+;; ------------------------------
+;; org-mode
+;; ------------------------------
 (add-to-list 'load-path "~/.elisp/org-mode/lisp")
 (add-to-list 'load-path "~/.elisp/org-mode/lisp/babel")
 (add-to-list 'load-path "~/.elisp/org-mode/lisp/babel/langs")
@@ -753,7 +716,7 @@
 (require 'org-publish)
 (setq org-publish-project-alist
       '(
-       ;; ... add all the components here (see below)...
+	;; ... add all the components here (see below)...
 	("org-notes"
 	 :base-directory "~/Documents/projects/git_proj/read-sb-changelog"
 	 :base-extension "txt"
@@ -767,7 +730,7 @@
 
 	("org" :components ("org-notes" "org-static"))
 
-      ))
+	))
 
 
 (setq org-use-speed-commands t)
@@ -796,68 +759,74 @@
 (setq org-agenda-custom-commands '(("f" occur-tree "FIXME")))
 
 (add-hook 'org-mode-hook
-  (lambda () 
-    (local-set-key "c" (quote calendar))))
+	  (lambda () 
+	    (local-set-key "c" (quote calendar))))
 
-; Encrypt all entries before saving
+;; Encrypt all entries before saving
 (org-crypt-use-before-save-magic)
-; Which tag is used to mark headings to be encrypted
+;; Which tag is used to mark headings to be encrypted
 (setq org-tags-exclude-from-inheritance (quote ("crypt")))
-; GPG key to use for encryption
+;; GPG key to use for encryption
 (setq org-crypt-key "F0B66B40")
 
 (define-key global-map "\C-ca" 'org-agenda)
-; ------------------------------
-; wikipedia-mode
-; ------------------------------
+;; ------------------------------
+;; wikipedia-mode
+;; ------------------------------
 (autoload 'wikipedia-mode
   "wikipedia-mode.el"
   "Major mode for editing documents in Wikipedia markup." t)
 (autoload 'wikipedia-mode "wikipedia-mode.el" "Major mode for editing documents in Wikipedia markup." t)
 
-; ------------------------------
-; google fun stuff
-; ------------------------------
+;; ------------------------------
+;; google fun stuff
+;; ------------------------------
 (require 'google-search)
 (require 'google-define)
 (define-key global-map "\C-cd" 'google-define)
 (define-key global-map "\C-cs" 'google-search-selection)
 
-; ------------------------------
-; magit-mode
-; ------------------------------
-; http://psung.blogspot.com/2008/12/magit.html
-; http://zagadka.vm.bytemark.co.uk/magit/magit.html
+;; ------------------------------
+;; magit-mode
+;; ------------------------------
+;; http://psung.blogspot.com/2008/12/magit.html
+;; http://zagadka.vm.bytemark.co.uk/magit/magit.html
 (add-to-list 'load-path (expand-file-name "~/.elisp/magit"))
 (autoload 'magit-status "magit" nil t)
 ;; (global-set-key "\C-ci" 'magit-status)
 
-; ------------------------------
-; applescript-mode
-; ------------------------------
+;; ------------------------------
+;; applescript-mode
+;; ------------------------------
 (add-to-list 'load-path "~/.elisp/applescript-mode.el")
 (autoload 'applescript-mode "applescript-mode" "major mode for editing AppleScript source." t)
-(setq auto-mode-alist (cons '("\\.applescript$" . applescript-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.\\(scpt\\|applescript\\)$" . applescript-mode) auto-mode-alist))
 
-; ------------------------------
-; xquery-mode
-; ------------------------------
+;; ------------------------------
+;; xquery-mode
+;; ------------------------------
 (autoload 'xquery-mode "xquery-mode" "major mode for editing Xquery source." t)
 (setq auto-mode-alist (cons '("\\.xqlib$" . xquery-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.xq$" . xquery-mode) auto-mode-alist))
 
-; ------------------------------
-; malabar mode for java/maven
-; ------------------------------
+;; ------------------------------
+;; malabar mode for java/maven
+;; ------------------------------
 (add-to-list 'load-path "~/.elisp/malabar-mode/src/main/lisp")
 (if (file-directory-p "~/.elisp/malabar-mode/src/main/lisp")
     (progn
       (add-to-list 'load-path "~/.elisp/malabar-mode/src/main/lisp")
       (require 'malabar-mode)))
 
-; ------------------------------
-; org babel: ob
-; ------------------------------
+;; ------------------------------
+;; php-mode
+;; ------------------------------
+(add-to-list 'load-path "~/.elisp/php-mode-1.5.0")
+(require 'php-mode)
+
+;; ------------------------------
+;; org babel: ob
+;; ------------------------------
 (add-to-list 'load-path "~/.elisp/org-mode/lisp")
 (require 'ob)
 (require 'ob-R)         ;; requires R and ess-mode
@@ -866,21 +835,39 @@
 (require 'ob-python)    ;; requires python, and python-mode
 (require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
 
-; ------------------------------
-; yasnippet
-; ------------------------------
-; cd ~; svn export http://yasnippet.googlecode.com/svn/trunk/ .elisp/yasnippet-read-only
-(add-to-list 'load-path "~/.elisp/yasnippet-read-only")
-(add-to-list 'load-path "~/.elisp/yasnippet-read-only/snippets")
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.elisp/yasnippet-read-only/snippets")
-(yas/load-directory "~/.elisp/yasnippet-org-mode")
+;; ------------------------------
+;; html-helper-mode
+;; ------------------------------
+(add-to-list 'load-path "~/.elisp/html-helper-mode")
+(setq auto-mode-alist
+      (append '(
+		("\\.html$" . html-helper-mode)
+		) auto-mode-alist))
 
-; ------------------------------
-; ffap key rebindings
-; ------------------------------
-; find file at point
+(setq auto-insert-alist
+      (append '(
+		((html-helper-mode . "Yay HTML") . (concat comment-start " Last modified $Id$" comment-end "\n" comment-start " $HeadURL$" comment-end "\n\n\n" ))
+		)
+	      auto-insert-alist))
+
+(add-hook 'html-helper-mode-hook  '(lambda () (auto-fill-mode 1) (setq fill-column 60)))
+
+;; C-c C-n t for HTML mode
+(add-hook 'html-helper-mode-hook
+	  '(lambda ()
+	     (define-key html-helper-mode-map "\C-c\C-nt"
+	       'tidy-buffer-xhtml
+	       )
+	     ;;  	     (define-key texinfo-mode-map "\C-cn"
+	     ;;  	       'forward-paragraph)
+	     )
+	  )
+(global-set-key (quote [f7]) (quote html-helper-mode))
+
+;; ------------------------------
+;; ffap key rebindings
+;; ------------------------------
+;; find file at point
 (require 'ffap)
 ;; rebind C-x C-f and others to the ffap bindings (see variable ffap-bindings)
 (ffap-bindings)
@@ -889,6 +876,18 @@
 ;; browse urls at point via w3m
 ;; (setq ffap-url-fetcher 'w3m-browse-url)
 
+
+
+;; ------------------------------
+;; yasnippet
+;; ------------------------------
+;; cd ~; svn export http://yasnippet.googlecode.com/svn/trunk/ .elisp/yasnippet-read-only
+(add-to-list 'load-path "~/.elisp/yasnippet-read-only")
+(add-to-list 'load-path "~/.elisp/yasnippet-read-only/snippets")
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "~/.elisp/yasnippet-read-only/snippets")
+(yas/load-directory "~/.elisp/yasnippet-org-mode")
 
 
 
