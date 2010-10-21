@@ -163,7 +163,7 @@ case "$(uname)" in
 	    
 	}
 	myinstall() { 
-	    set -x; 
+#	    set -x; 
 	    hdid $1; 
 	    pushd "$(imgmountpoint $1)"; 
 	    sudo installer -pkg "$(ls -1 | grep -i pkg | head -1)" -target /; 
