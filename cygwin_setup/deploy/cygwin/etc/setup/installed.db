@@ -29,6 +29,7 @@ git git-0.tar.bz2 0
 git-completion git-completion-0.tar.bz2 0
 git-gui git-gui-0.tar.bz2 0
 gitk gitk-0.tar.bz2 0
+gnupg gnupg-0.tar.bz2 0
 grep grep-0.tar.bz2 0
 groff groff-0.tar.bz2 0
 gzip gzip-0.tar.bz2 0
