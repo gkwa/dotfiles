@@ -446,8 +446,8 @@
   (anything-other-buffer
    '(
      anything-c-source-buffers
-     ; anything-c-source-files-in-current-dir
      anything-c-source-recentf
+     anything-c-source-files-in-current-dir
      anything-for-files-prefered-list
      anything-c-source-ffap-line
      anything-c-source-ffap-guesser
@@ -686,6 +686,7 @@
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values (quote ((eval add-hook (quote write-file-hooks) (quote time-stamp)))))
  '(scroll-bar-mode nil)
+ '(mode-line-inverse-video nil nil)
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
  '(truncate-lines t))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
