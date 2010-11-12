@@ -201,6 +201,10 @@ genpasswd()
 }
 
 
+pack(){ find . -iname "*.packproj"; }
+packo() { pack | sed -e 's,^,open ,'; }
+
+
 
 # http://www.delorie.com/gnu/docs/emacs/emacs_444.html
 PS1="\u@\h \W$ "
