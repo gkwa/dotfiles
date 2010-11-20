@@ -203,6 +203,7 @@ genpasswd()
 
 pack(){ find . -iname "*.packproj"; }
 packo() { pack | sed -e 's,^,open ,'; }
+dmg(){ find . -iname "*.dmg"; }
 
 
 
