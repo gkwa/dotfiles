@@ -706,9 +706,9 @@
 ;; ------------------------------
 ;; ledger
 ;; ------------------------------
-(require 'ledger)
 (if (eq system-type 'darwin)
     (progn
+      (require 'ledger)
       (setq ledger-binary-path "/opt/local/bin/ledger")
       ;; ;; http://sachachua.com/blog/2010/11/emacs-recording-ledger-entries-with-org-capture-templates/
       ;; (setq org-capture-templates
