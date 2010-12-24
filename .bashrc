@@ -140,6 +140,7 @@ case "$(uname)" in
 	export PATH=/usr/local/bin:$PATH
 	export PATH=/opt/local/bin:$PATH
 	export PATH=/opt/local/sbin:$PATH
+	export PATH=/opt/local/bin:$PATH
 	export JAVA_HOME
 # gitk complains "Application initialization failed: couldn't connect to
 # display ":0.0"" on osx, commented out

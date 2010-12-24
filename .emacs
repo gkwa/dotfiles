@@ -493,11 +493,16 @@
  ;; default-major-mode 'emacs-lisp-mode	;; Silly "Fundamental"
  initial-major-mode 'org-mode ;; set default mode
  default-fill-column 72
+ enable-recursive-minibuffers t
  visible-bell t				;; Turns off audible bell
  inhibit-startup-message t ;; - http://www.gnu.org/software/emacs/manual/html_node/Init-Examples.html
  column-number-mode t
  display-buffer-reuse-frames t ; http://www.cs.cmu.edu/cgi-bin/info2www?%28emacs%29Select%20Buffer
- )
+ bc-bookmark-limit 100
+ delete-by-moving-to-trash t
+ frame-title-format "emacs - %b"
+ diary-file (expand-file-name "~/.diary")
+)
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
@@ -505,7 +510,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(anything-google-suggest-use-curl-p t)
  '(bc-bookmark-limit 100)
  '(delete-by-moving-to-trash t)
  '(frame-title-format "emacs - %b")
@@ -778,19 +782,26 @@
 ;; ------------------------------
 ;; anything mode
 ;; ------------------------------
-(setq anything-idle-delay 0.1)
-(setq anything-samewindow t)
-(setq anything-quick-update t)
-(setq anything-candidate-number-limit 30)
-(setq anything-c-yas-display-key-on-candidate t)
-(setq anything-etags-enable-tag-file-dir-cache t)
-(setq anything-c-use-standard-keys nil)
-;; (setq anything-etags-cache-tag-file-dir "~/.emacs.d/")
-;; (anything-etags-generate-tag-buffer)
-(setq anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
-;; add to end of .emacs
-;; C-x , set to anything
 (add-to-list 'load-path "~/.elisp/anything-config")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(anything-dired-bindings 1)
+ '(anything-idle-delay 0.1)
+ '(anything-samewindow t)
+ '(anything-dired-bindings 1)
+ '(anything-quick-update t)
+ ;; '(anything-c-find-files-show-icons t)
+ '(anything-candidate-number-limit 30)
+ '(anything-c-yas-display-key-on-candidate t)
+ '(anything-etags-enable-tag-file-dir-cache t)
+ '(anything-c-use-standard-keys nil)
+ ;; '(anything-etags-cache-tag-file-dir "~/.emacs.d/") 
+ '(anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
+ ;; (anything-etags-generate-tag-buffer)
+)
 
 (defun my-anything ()
   (interactive)
