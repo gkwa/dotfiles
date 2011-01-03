@@ -34,6 +34,15 @@
 
 
 
+;; don't ask about killing subprocesses when killing emacs, just kill
+;; off all children without question
+;; http://stackoverflow.com/questions/2706527/make-emacs-stop-asking-active-processes-exist-kill-them-and-exit-anyway
+(add-hook 'comint-exec-hook 
+      (lambda () (process-kill-without-query (get-buffer-process (current-buffer)))))
+
+
+
+
 
 
 
