@@ -5,7 +5,7 @@
 (find-file "~/notes.txt" t)
 
 (cd "~/")
-(setq Info-directory-list (cons (expand-file-name "~/.info") Info-default-directory-list))
+;; (setq Info-directory-list (cons (expand-file-name "~/.info") Info-default-directory-list))
 
 ;; ------------------------------
 ;; backup-dir
@@ -21,7 +21,6 @@
       kept-old-versions 1
       kept-new-versions 3
       version-control t)
-
 
 
 
@@ -253,7 +252,7 @@
 (if (eq system-type 'windows-nt)	
     (progn
       (setq explicit-shell-file-name "c:/cygwin/bin/bash.exe")
-      (add-to-list 'Info-directory-list "c:/cygwin/usr/share/info")
+;;      (add-to-list 'Info-directory-list "c:/cygwin/usr/share/info")
       (require 'cygwin-mount)
       (cygwin-mount-activate)
       ))
@@ -269,18 +268,18 @@
        '(ispell-program-name "/opt/local/bin/aspell")) ; macport aspell
       ;;      (require 'w3m-load) ; available through macports (sudo port install emacs-w3m)
       ;; http://docs.freebsd.org/info/texinfo/texinfo.info.Other_Info_Directories.html
-      (add-to-list 'Info-directory-list "/opt/local/share/info")
-      (add-to-list 'Info-directory-list "/Applications/MacPorts/Emacs.app/Contents/Resources/info")
-      (add-to-list 'Info-directory-list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info")
-      (add-to-list 'Info-directory-list "/Applications/Aquamacs.app/Contents/Resources/info")
-      (add-to-list 'Info-directory-list "/Applications/Aquamacs.app/Contents/Resources/site-lisp/edit-modes/info")
-      (add-to-list 'Info-directory-list "/Applications/Emacs.app/Contents/Resources/extra/info")
-      (add-to-list 'Info-directory-list "/Applications/Emacs.app/Contents/Resources/info")
-      (add-to-list 'Info-directory-list "/opt/local/share/info")
-      (add-to-list 'Info-directory-list "/opt/local/share/gcc43/info")
-      (add-to-list 'Info-directory-list "/opt/local/share/info")
-      (add-to-list 'Info-directory-list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info")
-      (add-to-list 'Info-directory-list "/usr/share/info")
+      ;; (add-to-list 'Info-directory-list "/opt/local/share/info")
+      ;; (add-to-list 'Info-directory-list "/Applications/MacPorts/Emacs.app/Contents/Resources/info")
+      ;; (add-to-list 'Info-directory-list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info")
+      ;; (add-to-list 'Info-directory-list "/Applications/Aquamacs.app/Contents/Resources/info")
+      ;; (add-to-list 'Info-directory-list "/Applications/Aquamacs.app/Contents/Resources/site-lisp/edit-modes/info")
+      ;; (add-to-list 'Info-directory-list "/Applications/Emacs.app/Contents/Resources/extra/info")
+      ;; (add-to-list 'Info-directory-list "/Applications/Emacs.app/Contents/Resources/info")
+      ;; (add-to-list 'Info-directory-list "/opt/local/share/info")
+      ;; (add-to-list 'Info-directory-list "/opt/local/share/gcc43/info")
+      ;; (add-to-list 'Info-directory-list "/opt/local/share/info")
+      ;; (add-to-list 'Info-directory-list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info")
+      ;; (add-to-list 'Info-directory-list "/usr/share/info")
 
       (add-to-list 'load-path "/opt/local/var/macports/software/git-core/1.7.1_0+doc+svn/opt/local/share/doc/git-core/contrib/emacs")
       (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp/international")
@@ -432,38 +431,30 @@
 		    (transpose-regions (+ (point-min) 1) (- cp 1) (+ 1 cp) (- (point-max) 1))
 		    (insert "]")
 		    )))
-	    (if (looking-at "^\\[file://///10.0.2.10/")
+	    (if (looking-at "^ *\\[file://///10.0.2.10/")
 		(progn
 		  (goto-char (- (point-max) 1)) 
 		  (delete-char 1)
 		  (beginning-of-line) (delete-char 1)
 		  (let ((sp (search-forward " ")))
 		    (delete-region (point-min) sp)
-		    (goto-char (point-min))
-		    (replace-string "\\\\10.0.2.10" "/Volumes")
-		    (replace-string "\\" "/")
-		    ) 
-		  )
-	      ;; example: //10.0.2.10/production to \\10.0.2.10\production\
-	      (if (looking-at "^//")
-		  (progn
-		    (beginning-of-line)	; rem, we've already narrowed to line above
-		    (replace-string "/" "\\")
+		    (beginning-of-line) (replace-string "\\\\10.0.2.10" "http://10.0.2.10")
+		    (beginning-of-line) (replace-string "\\" "/")
+		    (beginning-of-line) (replace-string " " "%20")
 		    )
-		(if (looking-at "^ *\\\\10.0.2.10\\")
+		  )
+	      (if (looking-at "^ *http://10.0.2.10")
+		  (progn
+		    (beginning-of-line) (replace-string "http://10.0.2.10" "//10.0.2.10")
+		    (beginning-of-line) (replace-string "%20" " ")
+		    )
+		(if (looking-at "^ *//10.0.2.10")
 		    (progn
 		      (beginning-of-line) ; rem, we've already narrowed to line above
-		      (replace-string "\\\\10.0.2.10\\" "http://10.0.2.10/")
+		      (replace-string "//10.0.2.10" "/Volumes")
 		      )
-		  )
-		)       ; (looking-at "^//")	     
-	      )		; (looking-at "^\\\\")	        		
-	    )		; (looking-at "^/Volumes")   		
-	  )		; let eol		     		
-	)		; save restriction	     		
-      )			; save excursion	     		
-    )			; end defun                  		
-  )					
+		  )))))))))
+
 
 (global-set-key "w" (quote flipunc))
 
@@ -493,6 +484,7 @@
  ;; default-major-mode 'emacs-lisp-mode	;; Silly "Fundamental"
  initial-major-mode 'org-mode ;; set default mode
  default-fill-column 72
+ compilation-scroll-output t ; scroll automatically to follow the output as it comes in.
  enable-recursive-minibuffers t
  visible-bell t				;; Turns off audible bell
  inhibit-startup-message t ;; - http://www.gnu.org/software/emacs/manual/html_node/Init-Examples.html
@@ -609,9 +601,9 @@
 ;; ------------------------------
 ;; malabar mode for java/maven
 ;; ------------------------------
-(if (file-directory-p "~/.elisp/malabar-mode/malabar-1.5-SNAPSHOT/lisp")
+(if (file-directory-p "~/.elisp/malabar-mode/target/malabar-1.5-SNAPSHOT-dist/malabar-1.5-SNAPSHOT/lisp")
     (progn
-      (add-to-list 'load-path "~/.elisp/malabar-mode/malabar-1.5-SNAPSHOT/lisp")
+      (add-to-list 'load-path "~/.elisp/malabar-mode/target/malabar-1.5-SNAPSHOT-dist/malabar-1.5-SNAPSHOT/lisp")
       ;; Or enable more if you wish
       (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
 					global-semanticdb-minor-mode
@@ -619,10 +611,10 @@
 					global-semantic-mru-bookmark-mode))
       (semantic-mode 1)
       ;;  (require 'malabar-mode)
-      (setq malabar-groovy-lib-dir "~/.elisp/malabar-mode/malabar-1.5-SNAPSHOT/lib")
-      (add-to-list 'auto-mode-alist '(
-				      ("\\.[jJ][aA][vV][aA]\\'" . malabar-mode)
-				      ))
+      (setq malabar-groovy-lib-dir "~/.elisp/malabar-mode/target/malabar-1.5-SNAPSHOT-dist/malabar-1.5-SNAPSHOT/lib")
+
+      (add-to-list 'auto-mode-alist '( "\\.[jJ][aA][vV][aA]\\'" . malabar-mode))
+
       (autoload 'malabar-mode
 	"malabar-mode" "java in emacs using malabar mode" t)))
 (add-hook 'malabar-mode-hook
@@ -721,9 +713,9 @@
 ;; bat-mode
 ;; ------------------------------
 (autoload 'bat-mode "bat-mode" "DOS and WIndows BAT files" t)
-(add-to-list 'auto-mode-alist '("\\.scpt\\'" . bat-mode))
-(add-to-list 'auto-mode-alist '("\\.cmd\\'" . bat-mode))
-(add-to-list 'auto-mode-alist '("\\.bat\\'" . bat-mode))
+(add-to-list 'auto-mode-alist '("\\.[sS][cC][pP][tT]\\'" . bat-mode))
+(add-to-list 'auto-mode-alist '("\\.[cC][mM][dD]\\'" . bat-mode))
+(add-to-list 'auto-mode-alist '("\\.[bB][aA][tT]\\'" . bat-mode))
 (add-to-list 'auto-mode-alist '("CONFIG\\." . bat-mode))
 (add-to-list 'auto-mode-alist '("AUTOEXEC\\." . bat-mode))
 
@@ -982,6 +974,8 @@
 
 
 (setq-default
+ org-babel-library-of-babel t
+ org-return-follows-link t
  org-agenda-files '("~/notes.txt")
  org-agenda-include-diary t
  org-agenda-ndays 31
@@ -1042,6 +1036,6 @@
 ;; keep "/opt/local/share/info" as the last element of
 ;; Info-default-directory-list because "/opt/local/share/info" has the
 ;; newest stuff
-(setq Info-directory-list (cons (expand-file-name "/opt/local/share/info") Info-default-directory-list))
+;; (setq Info-directory-list (cons (expand-file-name "/opt/local/share/info") Info-default-directory-list))
 
 (shell)
