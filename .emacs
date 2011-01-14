@@ -34,6 +34,15 @@
 
 
 
+;; don't ask about killing subprocesses when killing emacs, just kill
+;; off all children without question
+;; http://stackoverflow.com/questions/2706527/make-emacs-stop-asking-active-processes-exist-kill-them-and-exit-anyway
+(add-hook 'comint-exec-hook 
+      (lambda () (process-kill-without-query (get-buffer-process (current-buffer)))))
+
+
+
+
 
 
 (require 'autoinsert) ;; leave this before any setting to variable auto-insert-alist
@@ -781,7 +790,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(anything-dired-bindings 1)
- '(anything-idle-delay 0.1)
+ '(anything-idle-delay 0)
  '(anything-samewindow t)
  '(anything-dired-bindings 1)
  '(anything-quick-update t)
@@ -1037,5 +1046,44 @@
 ;; Info-default-directory-list because "/opt/local/share/info" has the
 ;; newest stuff
 ;; (setq Info-directory-list (cons (expand-file-name "/opt/local/share/info") Info-default-directory-list))
+
+;; ------------------------------
+;; compilation mode stuff
+;; ------------------------------
+
+(global-set-key "h" (quote recompile))
+
+(setq-default
+;; compilation-scroll-output 'first-error ; scroll automatically to follow the output as it comes in.
+ compilation-scroll-output t ; scroll automatically to follow the output as it comes in.
+ compilation-skip-threshold 0
+; compilation-skip-threshold 2
+ compilation-auto-jump-to-first-error t
+)
+
+;; gfortran 4.1:
+(add-to-list 'compilation-error-regexp-alist
+	     ;;  In file pfft3d.f90:182
+             ;;
+	     ;;           MPI_double_precision, &
+	     ;;                              1
+	     ;; Error: Symbol 'mpi_double_precision' at (1) has no IMPLICIT type
+	     '(" *In file \\([^ :\n]*\\):\\([0-9]+\\)[ \t]*\n\n.*\n.*\n.*Error:.*\n" 1 2))
+;; NAGWare5 f95:
+(add-to-list 'compilation-error-regexp-alist
+	     ;; Error: mpi.F90, line 116: Implicit type for MPI_COMM_WORLD in MPI_MOD_INIT
+	     ;;        detected at MPI_M@<end-of-statement>
+	     ;; [f95 terminated - errors found by pass 1]
+	     '("^Error: \\([^ ,\n]*\\), line \\([0-9]+\\):" 1 2))
+(add-to-list 'compilation-error-regexp-alist
+	     ;; Fatal Error: global.F90, line 25: Cannot find module MPI_M
+             ;; detected at MPI_M@<end-of-statement>
+	     '("^Fatal Error: \\([^ ,\n]*\\), line \\([0-9]+\\):" 1 2))
+
+;; nsis
+(add-to-list 'compilation-error-regexp-alist
+	     '("^Error in script \"\\([^\"]*\\)\" on line \\([0-9]+\\)" 1 2))
+
+
 
 (shell)
