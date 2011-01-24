@@ -744,30 +744,30 @@
 (add-to-list 'auto-insert-alist '((bat-mode . "Bat Mode") . (concat comment-start "-*- bat -*-\n" "@Echo off\n\n\n")))
 
 
-;; ------------------------------
-;; ledger
-;; ------------------------------
-(if (eq system-type 'darwin)
-    (progn
-      (require 'ledger)
-      (setq ledger-binary-path "/opt/local/bin/ledger")
-      ;; ;; http://sachachua.com/blog/2010/11/emacs-recording-ledger-entries-with-org-capture-templates/
-      ;; (setq org-capture-templates
-      ;;       (append '(("l" "Ledger entries")
-      ;;                 ("lm" "MBNA" plain
-      ;;                  (file "~/ledger")
-      ;;                  "%(org-read-date) %^{Payee}
-      ;;   Liabilities:MBNA
-      ;;   Expenses:%^{Account}  %^{Amount}
-      ;; ")
-      ;;                 ("lc" "Cash" plain
-      ;; 		 (file "~/ledger")
-      ;; 		 "%(org-read-date) * %^{Payee}
-      ;;   Expenses:Cash
-      ;;   Expenses:%^{Account}  %^{Amount}
-      ;; "))
-      ;; 	      org-capture-templates))
-      ))
+;; ;; ------------------------------
+;; ;; ledger
+;; ;; ------------------------------
+;; (if (eq system-type 'darwin)
+;;     (progn
+;;       (require 'ledger)
+;;       (setq ledger-binary-path "/opt/local/bin/ledger")
+;;       ;; ;; http://sachachua.com/blog/2010/11/emacs-recording-ledger-entries-with-org-capture-templates/
+;;       ;; (setq org-capture-templates
+;;       ;;       (append '(("l" "Ledger entries")
+;;       ;;                 ("lm" "MBNA" plain
+;;       ;;                  (file "~/ledger")
+;;       ;;                  "%(org-read-date) %^{Payee}
+;;       ;;   Liabilities:MBNA
+;;       ;;   Expenses:%^{Account}  %^{Amount}
+;;       ;; ")
+;;       ;;                 ("lc" "Cash" plain
+;;       ;; 		 (file "~/ledger")
+;;       ;; 		 "%(org-read-date) * %^{Payee}
+;;       ;;   Expenses:Cash
+;;       ;;   Expenses:%^{Account}  %^{Amount}
+;;       ;; "))
+;;       ;; 	      org-capture-templates))
+;;       ))
 
 ;; ------------------------------
 ;; dired-x 
@@ -979,6 +979,7 @@
 (add-to-list 'load-path "~/.elisp/org-mode/lisp/babel")
 (add-to-list 'load-path "~/.elisp/org-mode/lisp/babel/langs")
 (add-to-list 'load-path "~/.elisp/org-mode/contrib/lisp")
+(require 'org)
 (require 'org-install)
 ;; org babel: ob
 (add-to-list 'load-path "~/.elisp/org-mode/lisp")
