@@ -30,8 +30,7 @@ if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
     trap "kill $SSH_AGENT_PID" 0
 fi
 
-
-
+# To use bash_completion, add the following lines at the end of your .bash_profile:
 if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
     # required?

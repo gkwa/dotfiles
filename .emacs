@@ -736,30 +736,30 @@
 (add-to-list 'auto-insert-alist '((bat-mode . "Bat Mode") . (concat comment-start "-*- bat -*-\n" "@Echo off\n\n\n")))
 
 
-;; ------------------------------
-;; ledger
-;; ------------------------------
-(if (eq system-type 'darwin)
-    (progn
-      (require 'ledger)
-      (setq ledger-binary-path "/opt/local/bin/ledger")
-      ;; ;; http://sachachua.com/blog/2010/11/emacs-recording-ledger-entries-with-org-capture-templates/
-      ;; (setq org-capture-templates
-      ;;       (append '(("l" "Ledger entries")
-      ;;                 ("lm" "MBNA" plain
-      ;;                  (file "~/ledger")
-      ;;                  "%(org-read-date) %^{Payee}
-      ;;   Liabilities:MBNA
-      ;;   Expenses:%^{Account}  %^{Amount}
-      ;; ")
-      ;;                 ("lc" "Cash" plain
-      ;; 		 (file "~/ledger")
-      ;; 		 "%(org-read-date) * %^{Payee}
-      ;;   Expenses:Cash
-      ;;   Expenses:%^{Account}  %^{Amount}
-      ;; "))
-      ;; 	      org-capture-templates))
-      ))
+;; ;; ------------------------------
+;; ;; ledger
+;; ;; ------------------------------
+;; (if (eq system-type 'darwin)
+;;     (progn
+;;       (require 'ledger)
+;;       (setq ledger-binary-path "/opt/local/bin/ledger")
+;;       ;; ;; http://sachachua.com/blog/2010/11/emacs-recording-ledger-entries-with-org-capture-templates/
+;;       ;; (setq org-capture-templates
+;;       ;;       (append '(("l" "Ledger entries")
+;;       ;;                 ("lm" "MBNA" plain
+;;       ;;                  (file "~/ledger")
+;;       ;;                  "%(org-read-date) %^{Payee}
+;;       ;;   Liabilities:MBNA
+;;       ;;   Expenses:%^{Account}  %^{Amount}
+;;       ;; ")
+;;       ;;                 ("lc" "Cash" plain
+;;       ;; 		 (file "~/ledger")
+;;       ;; 		 "%(org-read-date) * %^{Payee}
+;;       ;;   Expenses:Cash
+;;       ;;   Expenses:%^{Account}  %^{Amount}
+;;       ;; "))
+;;       ;; 	      org-capture-templates))
+;;       ))
 
 ;; ------------------------------
 ;; dired-x 
@@ -971,6 +971,7 @@
 (add-to-list 'load-path "~/.elisp/org-mode/lisp/babel")
 (add-to-list 'load-path "~/.elisp/org-mode/lisp/babel/langs")
 (add-to-list 'load-path "~/.elisp/org-mode/contrib/lisp")
+(require 'org)
 (require 'org-install)
 ;; org babel: ob
 (add-to-list 'load-path "~/.elisp/org-mode/lisp")
@@ -1085,5 +1086,38 @@
 	     '("^Error in script \"\\([^\"]*\\)\" on line \\([0-9]+\\)" 1 2))
 
 
+
+;; ------------------------------
+;; my-isearch-word-at-point
+;; ------------------------------
+;;http://stackoverflow.com/questions/589691/how-can-i-emulate-vims-search-in-gnu-emacs
+(defun my-isearch-word-at-point ()
+  (interactive)
+  (call-interactively 'isearch-forward-regexp))
+
+(defun my-isearch-yank-word-hook ()
+  (when (equal this-command 'my-isearch-word-at-point)
+    (let ((string (concat "\\<"
+                          (buffer-substring-no-properties
+                           (progn (skip-syntax-backward "w_") (point))
+                           (progn (skip-syntax-forward "w_") (point)))
+                          "\\>")))
+      (if (and isearch-case-fold-search
+               (eq 'not-yanks search-upper-case))
+          (setq string (downcase string)))
+      (setq isearch-string string
+            isearch-message
+            (concat isearch-message
+                    (mapconcat 'isearch-text-char-description
+                               string ""))
+            isearch-yank-flag t)
+      (isearch-search-and-update))))
+
+(add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
+(global-set-key "p" (quote my-isearch-word-at-point))
+
+;; ------------------------------
+;; shell
+;; ------------------------------
 
 (shell)
