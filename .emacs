@@ -1058,40 +1058,91 @@
 ;; compilation mode stuff
 ;; ------------------------------
 
+(require 'compile)
 (global-set-key "h" (quote recompile))
-
 (setq-default
-;; compilation-scroll-output 'first-error ; scroll automatically to follow the output as it comes in.
- compilation-scroll-output t ; scroll automatically to follow the output as it comes in.
+ compilation-scroll-output t ;; scroll automatically to follow the output as it comes in.
  compilation-skip-threshold 0
-; compilation-skip-threshold 2
  compilation-auto-jump-to-first-error t
+ ;; compilation-search-path "." ;; http://www.mail-archive.com/emacs-pretest-bug@gnu.org/msg11407.html
 )
 
-;; gfortran 4.1:
-(add-to-list 'compilation-error-regexp-alist
-	     ;;  In file pfft3d.f90:182
-             ;;
-	     ;;           MPI_double_precision, &
-	     ;;                              1
-	     ;; Error: Symbol 'mpi_double_precision' at (1) has no IMPLICIT type
-	     '(" *In file \\([^ :\n]*\\):\\([0-9]+\\)[ \t]*\n\n.*\n.*\n.*Error:.*\n" 1 2))
-;; NAGWare5 f95:
-(add-to-list 'compilation-error-regexp-alist
-	     ;; Error: mpi.F90, line 116: Implicit type for MPI_COMM_WORLD in MPI_MOD_INIT
-	     ;;        detected at MPI_M@<end-of-statement>
-	     ;; [f95 terminated - errors found by pass 1]
-	     '("^Error: \\([^ ,\n]*\\), line \\([0-9]+\\):" 1 2))
-(add-to-list 'compilation-error-regexp-alist
-	     ;; Fatal Error: global.F90, line 25: Cannot find module MPI_M
-             ;; detected at MPI_M@<end-of-statement>
-	     '("^Fatal Error: \\([^ ,\n]*\\), line \\([0-9]+\\):" 1 2))
+
+
+;; ;; gfortran 4.1:
+;; (add-to-list 'compilation-error-regexp-alist
+;; 	     ;;  In file pfft3d.f90:182
+;;              ;;
+;; 	     ;;           MPI_double_precision, &
+;; 	     ;;                              1
+;; 	     ;; Error: Symbol 'mpi_double_precision' at (1) has no IMPLICIT type
+;; 	     '(" *In file \\([^ :\n]*\\):\\([0-9]+\\)[ \t]*\n\n.*\n.*\n.*Error:.*\n" 1 2))
+;; ;; NAGWare5 f95:
+;; (add-to-list 'compilation-error-regexp-alist
+;; 	     ;; Error: mpi.F90, line 116: Implicit type for MPI_COMM_WORLD in MPI_MOD_INIT
+;; 	     ;;        detected at MPI_M@<end-of-statement>
+;; 	     ;; [f95 terminated - errors found by pass 1]
+;; 	     '("^Error: \\([^ ,\n]*\\), line \\([0-9]+\\):" 1 2))
+;; (add-to-list 'compilation-error-regexp-alist
+;; 	     ;; Fatal Error: global.F90, line 25: Cannot find module MPI_M
+;;              ;; detected at MPI_M@<end-of-statement>
+;; 	     '("^Fatal Error: \\([^ ,\n]*\\), line \\([0-9]+\\):" 1 2))
+
+;; workaround see notes.txt for "messagebox"
+(setq compilation-error-regexp-alist
+      '(
+	absoft
+	ada
+	aix
+	ant
+	bash
+	borland
+	caml
+	comma
+	edg-1
+	edg-2
+	epc
+	ftnchek
+	iar
+	ibm
+	irix
+	java
+	jikes-file
+	jikes-line
+	;; gnu
+	gcc-include
+	lcc
+	makepp
+	mips-1
+	mips-2
+	msft
+	omake
+	oracle
+	perl
+	php
+	rxp
+	sparc-pascal-file
+	sparc-pascal-line
+	sparc-pascal-example
+	sun
+	sun-ada
+	watcom
+	4bsd
+	gcov-file
+	gcov-header
+	gcov-nomark
+	gcov-called-line
+	gcov-never-called
+	perl--Pod::Checker
+	perl--Test
+	perl--Test2
+	perl--Test::Harness
+	weblint
+	))
 
 ;; nsis
 (add-to-list 'compilation-error-regexp-alist
 	     '("^Error in script \"\\([^\"]*\\)\" on line \\([0-9]+\\)" 1 2))
-
-
 
 ;; ------------------------------
 ;; my-isearch-word-at-point
