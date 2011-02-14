@@ -102,10 +102,10 @@
 (unify-8859-on-decoding-mode); nxml-mode suggested adding this
 
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  )
 
 (set-foreground-color "white")
@@ -460,10 +460,14 @@
 		(if (looking-at "^ *//10.0.2.10")
 		    (progn
 		      (beginning-of-line) ; rem, we've already narrowed to line above
-		      (replace-string "//10.0.2.10" "/Volumes")
+		      (replace-string "//10.0.2.10" "http://dl.dropbox.com/u/9140609") ;; taylor's public dropbox folder
 		      )
-		  )))))))))
-
+		  (if (looking-at "http://dl.dropbox.com/u/9140609")
+		      (progn
+		  	(beginning-of-line)
+			(replace-string "http://dl.dropbox.com/u/9140609" "/Volumes")
+		  	)
+		      ))))))))))
 
 (global-set-key "w" (quote flipunc))
 
