@@ -102,10 +102,10 @@
 (unify-8859-on-decoding-mode); nxml-mode suggested adding this
 
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  )
 
 (set-foreground-color "white")
@@ -460,10 +460,14 @@
 		(if (looking-at "^ *//10.0.2.10")
 		    (progn
 		      (beginning-of-line) ; rem, we've already narrowed to line above
-		      (replace-string "//10.0.2.10" "/Volumes")
+		      (replace-string "//10.0.2.10" "http://dl.dropbox.com/u/9140609") ;; taylor's public dropbox folder
 		      )
-		  )))))))))
-
+		  (if (looking-at "http://dl.dropbox.com/u/9140609")
+		      (progn
+		  	(beginning-of-line)
+			(replace-string "http://dl.dropbox.com/u/9140609" "/Volumes")
+		  	)
+		      ))))))))))
 
 (global-set-key "w" (quote flipunc))
 
@@ -695,17 +699,17 @@
 ;; http://www.emacswiki.org/emacs/WindMove
 (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
 
-;; ------------------------------
-;; org-crypt
-;; ------------------------------
-;; http://doc.norang.ca/org-mode.html#HandlingEncryption
-(require 'org-crypt)
-					; Encrypt all entries before saving
-(org-crypt-use-before-save-magic)
-(setq org-tags-exclude-from-inheritance (quote ("crypt")))
-					; GPG key to use for encryption
-(setq org-crypt-key "F0B66B40")
-
+;; this might work great, I just don't have time to play with this now
+;; ;; ------------------------------
+;; ;; org-crypt
+;; ;; ------------------------------
+;; ;; http://doc.norang.ca/org-mode.html#HandlingEncryption
+;; (require 'org-crypt)
+;; 					; Encrypt all entries before saving
+;; (org-crypt-use-before-save-magic)
+;; (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+;; 					; GPG key to use for encryption
+;; (setq org-crypt-key "F0B66B40")
 
 
 ;; ------------------------------
@@ -821,6 +825,7 @@
      ;; anything-mini
      ;; anything-minibuffer-history
      anything-c-source-kill-ring
+;;     anything-dired-copy-file
      ;;     anything-c-source-file-name-history
      anything-c-source-mark-ring 
      ;; anything-c-source-info-pages
