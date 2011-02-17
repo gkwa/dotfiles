@@ -699,17 +699,18 @@
 ;; http://www.emacswiki.org/emacs/WindMove
 (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
 
-;; ------------------------------
-;; org-crypt
-;; ------------------------------
-;; http://doc.norang.ca/org-mode.html#HandlingEncryption
-(require 'org-crypt)
-					; Encrypt all entries before saving
-(org-crypt-use-before-save-magic)
-(setq org-tags-exclude-from-inheritance (quote ("crypt")))
-					; GPG key to use for encryption
-(setq org-crypt-key "F0B66B40")
 
+;; this might work great, I just don't have time to play with this now
+;; ;; ------------------------------
+;; ;; org-crypt
+;; ;; ------------------------------
+;; ;; http://doc.norang.ca/org-mode.html#HandlingEncryption
+;; (require 'org-crypt)
+;; 					; Encrypt all entries before saving
+;; (org-crypt-use-before-save-magic)
+;; (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+;; 					; GPG key to use for encryption
+;; (setq org-crypt-key "F0B66B40")
 
 
 ;; ------------------------------
