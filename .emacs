@@ -699,7 +699,6 @@
 ;; http://www.emacswiki.org/emacs/WindMove
 (when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
 
-
 ;; this might work great, I just don't have time to play with this now
 ;; ;; ------------------------------
 ;; ;; org-crypt
@@ -826,6 +825,7 @@
      ;; anything-mini
      ;; anything-minibuffer-history
      anything-c-source-kill-ring
+;;     anything-dired-copy-file
      ;;     anything-c-source-file-name-history
      anything-c-source-mark-ring 
      ;; anything-c-source-info-pages
