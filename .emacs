@@ -1053,6 +1053,7 @@
 ;; ------------------------------
 
 (require 'compile)
+(global-set-key "g" (quote compile))
 (global-set-key "h" (quote recompile))
 (setq-default
  compilation-scroll-output t ;; scroll automatically to follow the output as it comes in.
