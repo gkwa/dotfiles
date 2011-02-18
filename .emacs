@@ -594,6 +594,11 @@
 ;; http://zagadka.vm.bytemark.co.uk/magit/magit.html
 (add-to-list 'load-path (expand-file-name "~/.elisp/magit"))
 (autoload 'magit-status "magit" nil t)
+(when (equal system-type 'darwin)
+  (progn
+    (custom-set-variables
+     '(magit-git-executable "/opt/local/bin/git"))))
+(global-set-key "g" (quote magit-status))
 ;; (global-set-key "\C-ci" 'magit-status)
 
 ;; ------------------------------
@@ -1058,7 +1063,8 @@
 ;; ------------------------------
 
 (require 'compile)
-(global-set-key "g" (quote compile))
+;; (global-set-key "g" (quote compile))
+(global-set-key "c" (quote compile))
 (global-set-key "h" (quote recompile))
 (setq-default
  compilation-scroll-output t ;; scroll automatically to follow the output as it comes in.
