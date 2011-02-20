@@ -50,6 +50,7 @@ viewer = woman
  changes=diff --name-status -r
  cl = config -l
  m = ls-files -m
+ la = log --abbrev-commit
  lfh = log --pretty=tformat:'%h %d %ar %s' --reverse ..FETCH_HEAD --name-status -m
  ln = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
  l2 = log --pretty=tformat:'%h %d %ar %s' --reverse -20
