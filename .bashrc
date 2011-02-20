@@ -130,6 +130,14 @@ hs()
     fi;
 }
 
+gitOrderBranchByDate()
+{
+    git status 2>&1 | grep "fatal" && return 1
+    for k in `git branch -a|grep -v "no branch"|sed -e 's,^..,,;s,.* ->.*,,';`; do 
+	echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;
+    done|sort -r
+}
+
 locatesuffix() { test ! -z "$1" && { locate "$1" | grep -E "$1\$"; } }
 
 case "$(uname)" in 
