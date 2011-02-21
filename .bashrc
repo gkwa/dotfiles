@@ -155,9 +155,7 @@ case "$(uname)" in
     "Darwin")
 	JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
 	export PATH=/Applications/p4merge.app/Contents/MacOS:$PATH
-	export PATH=/opt/local/bin:$PATH
 	export PATH=/usr/local/bin:$PATH
-	export PATH=/opt/local/bin:$PATH
 	export PATH=/opt/local/sbin:$PATH
 	export PATH=/opt/local/bin:$PATH
 	export JAVA_HOME
