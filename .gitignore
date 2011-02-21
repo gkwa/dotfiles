@@ -49,3 +49,11 @@
 /.rnd
 /.aspell.en.pws
 /.elisp/*.elc
+/Desktop/.DS_Store
+/Desktop/.localized
+/Public/.com.apple.timemachine.supported
+/Public/.localized
+/Public/Drop Box/.localized
+/bin/repo
+/kee.kdb.lock
+/.cache

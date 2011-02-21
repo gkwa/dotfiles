@@ -140,6 +140,17 @@ gitOrderBranchByDate()
 
 locatesuffix() { test ! -z "$1" && { locate "$1" | grep -E "$1\$"; } }
 
+installerv()
+{
+    if test 0 -eq $(git status --porcelain | grep -cE "^(A|M) "); then
+	echo export installerv=$(git rev-list HEAD -1 --abbrev-commit)
+    else
+	echo export installerv=test-dont-use
+    fi
+}
+
+
+
 case "$(uname)" in 
     "Darwin")
 	JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
