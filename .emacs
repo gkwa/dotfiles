@@ -45,6 +45,8 @@
 
 
 
+
+
 (require 'autoinsert) ;; leave this before any setting to variable auto-insert-alist
 
 ;; Tell Emacs to find the definition for the function caml-mode by
@@ -266,34 +268,34 @@
       (cygwin-mount-activate)
       ))
 
-(if 
-    (eq system-type 'darwin)
-    (progn
-      (add-to-list 'exec-path '(
-				"/usr/local/bin"
-				"/opt/local/bin"
-				))
-      (custom-set-variables
-       '(ispell-program-name "/opt/local/bin/aspell")) ; macport aspell
-      ;;      (require 'w3m-load) ; available through macports (sudo port install emacs-w3m)
-      ;; http://docs.freebsd.org/info/texinfo/texinfo.info.Other_Info_Directories.html
-      ;; (add-to-list 'Info-directory-list "/opt/local/share/info")
-      ;; (add-to-list 'Info-directory-list "/Applications/MacPorts/Emacs.app/Contents/Resources/info")
-      ;; (add-to-list 'Info-directory-list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info")
-      ;; (add-to-list 'Info-directory-list "/Applications/Aquamacs.app/Contents/Resources/info")
-      ;; (add-to-list 'Info-directory-list "/Applications/Aquamacs.app/Contents/Resources/site-lisp/edit-modes/info")
-      ;; (add-to-list 'Info-directory-list "/Applications/Emacs.app/Contents/Resources/extra/info")
-      ;; (add-to-list 'Info-directory-list "/Applications/Emacs.app/Contents/Resources/info")
-      ;; (add-to-list 'Info-directory-list "/opt/local/share/info")
-      ;; (add-to-list 'Info-directory-list "/opt/local/share/gcc43/info")
-      ;; (add-to-list 'Info-directory-list "/opt/local/share/info")
-      ;; (add-to-list 'Info-directory-list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info")
-      ;; (add-to-list 'Info-directory-list "/usr/share/info")
 
-      (add-to-list 'load-path "/opt/local/var/macports/software/git-core/1.7.1_0+doc+svn/opt/local/share/doc/git-core/contrib/emacs")
-      (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp/international")
-      (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp")
-      ))
+;; setup env path for subprocesses
+;; http://us.generation-nt.com/answer/emacs-compilation-path-help-173905301.html
+(when (equal system-type 'darwin)
+  (progn
+    (add-to-list 'exec-path '("/usr/local/bin" "/opt/local/bin"))
+    (setenv "PATH" (concat "/opt/local/bin" ":" (getenv "PATH"))) ; added this next line due to problems in compilation-environment
+    (custom-set-variables
+     '(ispell-program-name "/opt/local/bin/aspell")) ; macport aspell
+    ;;      (require 'w3m-load) ; available through macports (sudo port install emacs-w3m)
+    ;; http://docs.freebsd.org/info/texinfo/texinfo.info.Other_Info_Directories.html
+    ;; (add-to-list 'Info-directory-list "/opt/local/share/info")
+    ;; (add-to-list 'Info-directory-list "/Applications/MacPorts/Emacs.app/Contents/Resources/info")
+    ;; (add-to-list 'Info-directory-list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info")
+    ;; (add-to-list 'Info-directory-list "/Applications/Aquamacs.app/Contents/Resources/info")
+    ;; (add-to-list 'Info-directory-list "/Applications/Aquamacs.app/Contents/Resources/site-lisp/edit-modes/info")
+    ;; (add-to-list 'Info-directory-list "/Applications/Emacs.app/Contents/Resources/extra/info")
+    ;; (add-to-list 'Info-directory-list "/Applications/Emacs.app/Contents/Resources/info")
+    ;; (add-to-list 'Info-directory-list "/opt/local/share/info")
+    ;; (add-to-list 'Info-directory-list "/opt/local/share/gcc43/info")
+    ;; (add-to-list 'Info-directory-list "/opt/local/share/info")
+    ;; (add-to-list 'Info-directory-list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info")
+    ;; (add-to-list 'Info-directory-list "/usr/share/info")
+
+    (add-to-list 'load-path "/opt/local/var/macports/software/git-core/1.7.1_0+doc+svn/opt/local/share/doc/git-core/contrib/emacs")
+    (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp/international")
+    (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp")
+    ))
 
 ;; Change the default eshell prompt
 (setq eshell-prompt-function
@@ -511,29 +513,37 @@
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
+ '(anything-c-use-standard-keys nil)
+ '(anything-c-yas-display-key-on-candidate t)
+ '(anything-candidate-number-limit 30 t)
+ '(anything-dired-bindings 1 t)
+ '(anything-etags-enable-tag-file-dir-cache t)
+ '(anything-idle-delay 0 t)
+ '(anything-quick-update t t)
+ '(anything-samewindow t t)
+ '(auto-mode-case-fold t)
  '(bc-bookmark-limit 100)
  '(delete-by-moving-to-trash t)
- '(frame-title-format "emacs - %b")
  '(diary-file (expand-file-name "~/.diary"))
  '(display-time-mode t nil (time))
- '(eshell-prompt-function (lambda nil
-			    (let* ((prompt (eshell/pwd)) 
-				   (tmp (string-match "/[^:/\\]*$" prompt))) 
-			      (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
- ;; auto-mode-case-fold t means that this: (add-to-list 'auto-mode-alist '("\\.xq\\'" . xquery-mode))
- ;; will match both 1.xQ and 1.xq (case is insensitive)
- '(auto-mode-case-fold t) 
+ '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
+ '(frame-title-format "emacs - %b" t)
+ '(global-font-lock-mode t)
  '(ido-case-fold t)
+ '(ispell-program-name "/opt/local/bin/aspell")
+ '(magit-git-executable "/opt/local/bin/git")
  '(major-mode (quote org-mode))
  '(menu-bar-mode nil)
  '(mode-line-inverse-video nil)
  '(nxml-slash-auto-complete-flag t)
- '(global-font-lock-mode t)
+; '(org-babel-no-eval-on-ctrl-c-ctrl-c t)
  '(ring-bell-function (quote ignore) t)
+ '(safe-local-variable-values (quote ((TeX-master . t))))
  '(scroll-bar-mode nil)
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
  '(truncate-lines t))
@@ -793,25 +803,7 @@
 ;; anything mode
 ;; ------------------------------
 (add-to-list 'load-path "~/.elisp/anything-config")
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(anything-dired-bindings 1)
- '(anything-idle-delay 0)
- '(anything-samewindow t)
- '(anything-dired-bindings 1)
- '(anything-quick-update t)
- ;; '(anything-c-find-files-show-icons t)
- '(anything-candidate-number-limit 30)
- '(anything-c-yas-display-key-on-candidate t)
- '(anything-etags-enable-tag-file-dir-cache t)
- '(anything-c-use-standard-keys nil)
- ;; '(anything-etags-cache-tag-file-dir "~/.emacs.d/") 
- '(anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
- ;; (anything-etags-generate-tag-buffer)
-)
+
 
 (defun my-anything ()
   (interactive)
@@ -985,15 +977,17 @@
 (require 'org-install)
 ;; org babel: ob
 (add-to-list 'load-path "~/.elisp/org-mode/lisp")
-(require 'ob)
-(require 'ob-R)         ;; requires R and ess-mode
-(require 'ob-perl)      ;; 
-(require 'ob-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
-(require 'ob-python)    ;; requires python, and python-mode
-(require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
+;; (require 'ob)
+;;(require 'ob-sh)
+;;(require 'ob-R)         ;; requires R and ess-mode
+;; (require 'ob-perl)      ;; 
+;; (require 'ob-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
+;; (require 'ob-python)    ;; requires python, and python-mode
+;; (require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
 
 
 (setq-default
+ org-list-automatic-rules t
  org-babel-library-of-babel t
  org-return-follows-link t
  org-agenda-files '("~/notes.txt")
@@ -1053,6 +1047,47 @@
 
 
 
+;; org-list-automatic-rules
+;; org-item-re
+
+
+;; (toggle-debug-on-error 1)
+;;  (org-babel-do-load-languages
+;;        'org-babel-load-languages
+;;        '(
+;; 	 ;;(emacs-lisp . t)
+;; 	 (sh . t)
+;;          ;;(R . t)
+;; 	 ))
+
+
+;; ;; http://orgmode.org/worg/org-contrib/babel/languages.html
+;; ;; active Babel languages
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((R . t)
+;;    (sh . t)
+;;    (emacs-lisp . nil)
+;;    ))
+
+
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((R . t)
+;;    (ditaa . t)
+;;    (dot . t)
+;;    (emacs-lisp . t)
+;;    (gnuplot . t)
+;;    (haskell . nil)
+;;    (ocaml . nil)
+;;    (python . t)
+;;    (ruby . t)
+;;    (screen . nil)
+;;    (sh . t)
+;;    (sql . nil)
+;;    (sqlite . t)))
+
+
 ;; keep "/opt/local/share/info" as the last element of
 ;; Info-default-directory-list because "/opt/local/share/info" has the
 ;; newest stuff
@@ -1073,7 +1108,9 @@
  ;; compilation-search-path "." ;; http://www.mail-archive.com/emacs-pretest-bug@gnu.org/msg11407.html
 )
 
-
+;; see compilation-environment for info on how make deals with subprocess path
+;; (describe-variable (quote compilation-environment))
+;; (describe-variable (quote process-environment))
 
 ;; ;; gfortran 4.1:
 ;; (add-to-list 'compilation-error-regexp-alist
@@ -1179,8 +1216,14 @@
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
 (global-set-key "p" (quote my-isearch-word-at-point))
 
+
 ;; ------------------------------
 ;; shell
 ;; ------------------------------
 
 (shell)
+
+
+
+
+
