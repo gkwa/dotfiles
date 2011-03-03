@@ -152,6 +152,9 @@ installerv()
 
 
 case "$(uname)" in 
+    "CYGWIN")
+	export PATH="/cygdrive/c/cygwin/bin:$PATH"
+	;;
     "Darwin")
 	JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
 	export PATH=/Applications/p4merge.app/Contents/MacOS:$PATH
