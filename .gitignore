@@ -57,3 +57,4 @@
 /bin/repo
 /kee.kdb.lock
 /.cache
+/subversionprojects
