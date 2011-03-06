@@ -536,7 +536,6 @@
  '(global-font-lock-mode t)
  '(ido-case-fold t)
  '(ispell-program-name "/opt/local/bin/aspell")
- '(magit-git-executable "/opt/local/bin/git")
  '(major-mode (quote org-mode))
  '(menu-bar-mode nil)
  '(mode-line-inverse-video nil)
