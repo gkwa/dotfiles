@@ -48,6 +48,7 @@ viewer = woman
  ls = ls-files
  un = ls-files -o --directory .
  ds = diff --stat
+ gss = git submodule summary
  changes=diff --name-status -r
  cl = config -l
  m = ls-files -m
