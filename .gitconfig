@@ -48,7 +48,6 @@ viewer = woman
  ls = ls-files
  un = ls-files -o --directory .
  ds = diff --stat
- gss = git submodule summary
  changes=diff --name-status -r
  cl = config -l
  m = ls-files -m
@@ -74,7 +73,10 @@ viewer = woman
  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
  bsu = branch --set-upstream
  sub = submodule
-
+ ss = submodule summary
+ sf = submodule foreach 
+ sfr = submodule foreach --recursive
+ mb = merge-base
  # fetch remote tracking branches
  frtb = fetch origin refs/heads/*:refs/remotes/origin/*
 
