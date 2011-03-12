@@ -235,3 +235,10 @@ PS1="[\d \t \u@\h:\w ]$ "
 PS1="[\u@\h:\w\$(parse_git_branch)]$ "
 
 
+
+# http://www.saltycrane.com/blog/2008/05/how-to-paste-in-cygwin-bash-using-ctrl/
+# Add the following line to your ~/.bashrc:
+# stty lnext ^q stop undef start undef
+# And add the following line to your ~/.inputrc:
+# "\C-v": paste-from-clipboard
+stty lnext ^q stop undef start undef
