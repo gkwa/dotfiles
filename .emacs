@@ -1093,6 +1093,16 @@
 ;; (setq Info-directory-list (cons (expand-file-name "/opt/local/share/info") Info-default-directory-list))
 
 ;; ------------------------------
+;; nsis mode
+;; ------------------------------
+;; wget -P.elisp http://www.emacswiki.org/emacs/download/nsis-mode.el 
+;; (autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
+;; (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
+;;                                  nsis-mode)) auto-mode-alist))
+;; (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
+;;                                  nsis-mode)) auto-mode-alist))
+
+;; ------------------------------
 ;; compilation mode stuff
 ;; ------------------------------
 

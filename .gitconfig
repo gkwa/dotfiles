@@ -72,6 +72,7 @@ viewer = woman
  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
  bsu = branch --set-upstream
+ su = submodule update
  sub = submodule
  ss = submodule summary
  sf = submodule foreach 
