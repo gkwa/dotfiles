@@ -1185,6 +1185,9 @@
 ;; nsis
 (add-to-list 'compilation-error-regexp-alist
 	     '("^Error in script \"\\([^\"]*\\)\" on line \\([0-9]+\\)" 1 2))
+;; unknown variable/constant "regname" detected, ignoring (PortableEncoder.nsi:201)
+(add-to-list 'compilation-error-regexp-alist
+	     '("unknown variable/constant.*\(\\([^:]*\\):\\([0-9]+\\)" 1 2))
 
 ;; ------------------------------
 ;; my-isearch-word-at-point
