@@ -650,13 +650,6 @@
 		      nil t)))
 
 ;; ------------------------------
-;; php-mode
-;; ------------------------------
-(add-to-list 'load-path "~/.elisp/php-mode-1.5.0")
-(autoload 'php-mode "php-mode" "Enter PHP mode." t)
-
-
-;; ------------------------------
 ;; html-helper-mode
 ;; ------------------------------
 (add-to-list 'load-path "~/.elisp/html-helper-mode/html-helper-mode.el")
@@ -1107,9 +1100,14 @@
 ;; ------------------------------
 
 (require 'compile)
-;; (global-set-key "g" (quote compile))
-(global-set-key "c" (quote compile))
-(global-set-key "h" (quote recompile))
+
+;; http://stackoverflow.com/questions/683425/globally-override-key-binding-in-emacs
+(add-hook 'makefile-mode-hook
+ (lambda ()
+   (define-key makefile-mode-map (kbd "C-c u") 'compile) ;
+   (define-key makefile-mode-map (kbd "C-c i") 'recompile) ;
+))
+
 (setq-default
  compilation-scroll-output t ;; scroll automatically to follow the output as it comes in.
  compilation-skip-threshold 0
@@ -1200,6 +1198,20 @@
 	     '("unknown variable/constant.*\(\\([^:]*\\):\\([0-9]+\\)" 1 2))
 
 ;; ------------------------------
+;; php-mode
+;; ------------------------------
+(add-to-list 'load-path "~/.elisp/php-mode-1.5.0")
+(add-to-list 'auto-mode-alist '("\\.php?\\'" . php-mode))
+(autoload 'php-mode "php-mode" "Enter PHP mode." t)
+
+;; php
+;; Warning: Unexpected character in input:  '\' (ASCII=92) state=1 in 
+;; /Users/demo/pdev/sms/decoder-win/web-upgrade-practice/test/test_accounts_upgrade/accounts-merge.php 
+;; on line 54
+(add-to-list 'compilation-error-regexp-alist
+	     '("^Warning: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
+
+;; ------------------------------
 ;; my-isearch-word-at-point
 ;; ------------------------------
 ;;http://stackoverflow.com/questions/589691/how-can-i-emulate-vims-search-in-gnu-emacs
@@ -1234,8 +1246,3 @@
 ;; ------------------------------
 
 (shell)
-
-
-
-
-
