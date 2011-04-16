@@ -1204,12 +1204,10 @@
 (add-to-list 'auto-mode-alist '("\\.php?\\'" . php-mode))
 (autoload 'php-mode "php-mode" "Enter PHP mode." t)
 
-;; php
-;; Warning: Unexpected character in input:  '\' (ASCII=92) state=1 in 
-;; /Users/demo/pdev/sms/decoder-win/web-upgrade-practice/test/test_accounts_upgrade/accounts-merge.php 
-;; on line 54
 (add-to-list 'compilation-error-regexp-alist
 	     '("^Warning: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
+(add-to-list 'compilation-error-regexp-alist
+	     '(".* fatal error: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
 
 ;; ------------------------------
 ;; my-isearch-word-at-point
