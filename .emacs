@@ -1,3 +1,4 @@
+
 ;; this changes the value of the default-directory variable so that
 ;; the next dired will point you here
 (add-to-list 'load-path "~/.elisp")
@@ -21,6 +22,8 @@
       kept-old-versions 1
       kept-new-versions 3
       version-control t)
+
+
 
 
 
@@ -273,7 +276,8 @@
 ;; http://us.generation-nt.com/answer/emacs-compilation-path-help-173905301.html
 (when (equal system-type 'darwin)
   (progn
-    (add-to-list 'exec-path '("/usr/local/bin" "/opt/local/bin"))
+    (add-to-list 'exec-path '"/opt/local/bin")
+    (add-to-list 'exec-path '"/usr/local/bin")
     (setenv "PATH" (concat "/opt/local/bin" ":" (getenv "PATH"))) ; added this next line due to problems in compilation-environment
     (custom-set-variables
      '(ispell-program-name "/opt/local/bin/aspell")) ; macport aspell
@@ -529,7 +533,7 @@
  '(auto-mode-case-fold t)
  '(bc-bookmark-limit 100)
  '(delete-by-moving-to-trash t)
- '(diary-file (expand-file-name "~/.diary"))
+ '(diary-file (expand-file-name "~/.diary") t)
  '(display-time-mode t nil (time))
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(frame-title-format "emacs - %b" t)
@@ -609,14 +613,6 @@
      '(magit-git-executable "/opt/local/bin/git"))))
 (global-set-key "g" (quote magit-status))
 ;; (global-set-key "\C-ci" 'magit-status)
-
-;; ------------------------------
-;; applescript-mode
-;; ------------------------------
-(add-to-list 'load-path "~/.elisp/applescript-mode.el")
-(autoload 'applescript-mode "applescript-mode" "major mode for editing AppleScript source." t)
-(add-to-list 'auto-mode-alist '("\\.scpt\\'" . applescript-mode))
-(add-to-list 'auto-mode-alist '("\\.applescript\\'" . applescript-mode))
 
 ;; ------------------------------
 ;; xquery-mode
@@ -1197,8 +1193,41 @@
 (add-to-list 'compilation-error-regexp-alist
 	     '("unknown variable/constant.*\(\\([^:]*\\):\\([0-9]+\\)" 1 2))
 
+;; this means hitting the compile button always saves the buffer
+;; having to separately hit C-x C-s is a waste of time
 (setq compilation-ask-about-save nil)
 
+;; make the compile window stick at 12 lines tall
+; (setq compilation-window-height 12)
+
+;; from enberg on #emacs
+;; if the compilation has a zero exit code,
+;; the windows disappears after two seconds
+;; otherwise it stays
+;; (setq compilation-finish-function
+;;      (lambda (buf str)
+;;        (unless (string-match "exited abnormally" str)
+;;          ;;no errors, make the compilation window go away in a few seconds
+;;          (run-at-time
+;;           "2 sec" nil 'delete-windows-on
+;;           (get-buffer-create "*compilation*"))
+;;          (message "No Compilation Errors!"))))
+
+;; ------------------------------
+;; applescript-mode actionscript mode osascript
+;; ------------------------------
+(add-to-list 'load-path "~/.elisp/applescript-mode.el")
+(autoload 'applescript-mode "applescript-mode" "major mode for editing AppleScript source." t)
+(add-to-list 'auto-mode-alist '("\\.scpt\\'" . applescript-mode))
+(add-to-list 'auto-mode-alist '("\\.applescript\\'" . applescript-mode))
+
+;; liveEncoderAutomate.scpt:1338:1339: script error: Expected “else”, etc. but found unknown token. (-2741)
+(add-to-list 'compilation-error-regexp-alist
+	     '("^\\([^:]*\\):\\([0-9]+\\).* script error:" 1 2))
+
+
+(global-set-key "i" (quote recompile))
+(global-set-key "u" (quote compile))
 ;; ------------------------------
 ;; php-mode
 ;; ------------------------------
@@ -1210,6 +1239,8 @@
 	     '("^Warning: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
 (add-to-list 'compilation-error-regexp-alist
 	     '(".* fatal error: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
+
+
 
 ;; ------------------------------
 ;; my-isearch-word-at-point
