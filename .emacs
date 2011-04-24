@@ -1197,6 +1197,8 @@
 (add-to-list 'compilation-error-regexp-alist
 	     '("unknown variable/constant.*\(\\([^:]*\\):\\([0-9]+\\)" 1 2))
 
+(setq compilation-ask-about-save nil)
+
 ;; ------------------------------
 ;; php-mode
 ;; ------------------------------
