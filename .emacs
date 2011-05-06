@@ -1160,52 +1160,36 @@
 (setq apropos-url-alist
       '(("^gw?:? +\\(.*\\)" . ;; Google Web 
          "http://www.google.com/search?q=\\1")
-
         ("^g!:? +\\(.*\\)" . ;; Google Lucky
          "http://www.google.com/search?btnI=I%27m+Feeling+Lucky&q=\\1")
-        
         ("^gl:? +\\(.*\\)" .  ;; Google Linux 
          "http://www.google.com/linux?q=\\1")
-        
         ("^gi:? +\\(.*\\)" . ;; Google Images
          "http://images.google.com/images?sa=N&tab=wi&q=\\1")
-
         ("^gg:? +\\(.*\\)" . ;; Google Groups
          "http://groups.google.com/groups?q=\\1")
-
         ("^gd:? +\\(.*\\)" . ;; Google Directory
          "http://www.google.com/search?&sa=N&cat=gwd/Top&tab=gd&q=\\1")
-
         ("^gn:? +\\(.*\\)" . ;; Google News
          "http://news.google.com/news?sa=N&tab=dn&q=\\1")
-
         ("^gt:? +\\(\\w+\\)|? *\\(\\w+\\) +\\(\\w+://.*\\)" . ;; Google Translate URL
          "http://translate.google.com/translate?langpair=\\1|\\2&u=\\3")
-        
         ("^gt:? +\\(\\w+\\)|? *\\(\\w+\\) +\\(.*\\)" . ;; Google Translate Text
          "http://translate.google.com/translate_t?langpair=\\1|\\2&text=\\3")
-
         ("^/\\.$" . ;; Slashdot 
          "http://www.slashdot.org")
-
         ("^/\\.:? +\\(.*\\)" . ;; Slashdot search
          "http://www.osdn.com/osdnsearch.pl?site=Slashdot&query=\\1")        
-        
         ("^fm$" . ;; Freshmeat
          "http://www.freshmeat.net")
-
         ("^ewiki:? +\\(.*\\)" . ;; Emacs Wiki Search
          "http://www.emacswiki.org/cgi-bin/wiki?search=\\1")
-	
         ("^ewiki$" . ;; Emacs Wiki 
          "http://www.emacswiki.org")
-
         ("^arda$" . ;; The Encyclopedia of Arda 
          "http://www.glyphweb.com/arda/")
-
-        ("^gn:? +\\(.*\\)" . ;; NSIS docs
+        ("^nsis:? +\\(.*\\)" . ;; NSIS docs
          "http://www.google.com/search?q=site:nsis.sourceforge.net%20\\1")
-
 	))
 
 (global-set-key "b" (quote browse-apropos-url-on-region))
@@ -1360,6 +1344,72 @@
 	     '(".* fatal error: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
 
 
+
+;; ------------------------------
+;; gmail gnus
+;; ------------------------------
+;; ;; http://www.emacswiki.org/emacs/GnusGmail#toc2
+
+;; (add-to-list 'gnus-secondary-select-methods '(nnimap "gmail"
+;;                                   (nnimap-address "imap.gmail.com")
+;;                                   (nnimap-server-port 993)
+;;                                   (nnimap-stream ssl)))
+
+
+;; (setq message-send-mail-function 'smtpmail-send-it
+;;       smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+;;       smtpmail-auth-credentials '(("smtp.gmail.com" 587 "taylor.monacelli@streambox.com" nil))
+;;       smtpmail-default-smtp-server "smtp.gmail.com"
+;;       smtpmail-smtp-server "smtp.gmail.com"
+;;       smtpmail-smtp-service 587
+;;       smtpmail-local-domain "streambox.com")
+
+;; ------------------------------
+;; wanderlust
+;; ------------------------------
+
+;; wanderlust
+(autoload 'wl "wl" "Wanderlust" t)
+(autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)
+(autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
+
+;; IMAP
+(setq elmo-imap4-default-server "imap.gmail.com")
+;; (setq elmo-imap4-default-user "<accountname>@gmail.com") 
+(setq elmo-imap4-default-user "taylor.monacelli@streambox.com") 
+(setq elmo-imap4-default-authenticate-type 'clear) 
+(setq elmo-imap4-default-port '993)
+(setq elmo-imap4-default-stream-type 'ssl)
+
+(setq elmo-imap4-use-modified-utf7 t) 
+
+;; SMTP
+(setq wl-smtp-connection-type 'starttls)
+(setq wl-smtp-posting-port 587)
+(setq wl-smtp-authenticate-type "plain")
+(setq wl-smtp-posting-user "mattofransen")
+(setq wl-smtp-posting-server "smtp.gmail.com")
+(setq wl-local-domain "gmail.com")
+
+(setq wl-default-folder "%inbox")
+(setq wl-default-spec "%")
+(setq wl-draft-folder "%[Gmail]/Drafts") ; Gmail IMAP
+(setq wl-trash-folder "%[Gmail]/Trash")
+
+(setq wl-folder-check-async t) 
+
+(setq elmo-imap4-use-modified-utf7 t)
+
+(autoload 'wl-user-agent-compose "wl-draft" nil t)
+(if (boundp 'mail-user-agent)
+    (setq mail-user-agent 'wl-user-agent))
+(if (fboundp 'define-mail-user-agent)
+    (define-mail-user-agent
+      'wl-user-agent
+      'wl-user-agent-compose
+      'wl-draft-send
+      'wl-draft-kill
+      'mail-send-hook))
 
 ;; ------------------------------
 ;; my-isearch-word-at-point
