@@ -647,19 +647,20 @@
 ;; ------------------------------
 ;; html-helper-mode
 ;; ------------------------------
-(add-to-list 'load-path "~/.elisp/html-helper-mode/html-helper-mode.el")
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . html-helper-mode))
+(add-to-list 'load-path "~/.elisp/html-helper-mode")
+(autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
+;;   to invoke html-helper-mode automatically on .html files, do this:
+;;(setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
+;;(add-to-list 'auto-mode-alist '("\\.html?\\'" . html-helper-mode))
 
 (add-to-list 'auto-insert-alist '((html-helper-mode . "Yay HTML") . (concat comment-start " Last modified $Id$" comment-end "\n" comment-start " $HeadURL$" comment-end "\n\n\n" )))
-
 (add-hook 'html-helper-mode-hook  '(lambda () (auto-fill-mode 1) (setq fill-column 60)))
 
 ;; C-c C-n t for HTML mode
 (add-hook 'html-helper-mode-hook
 	  '(lambda ()
 	     (define-key html-helper-mode-map "\C-c\C-nt"
-	       'tidy-buffer-xhtml
-	       )
+	       'tidy-buffer-xhtml)
 	     ;;  	     (define-key texinfo-mode-map "\C-cn"
 	     ;;  	       'forward-paragraph)
 	     )
