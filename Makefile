@@ -1,12 +1,11 @@
-emacs_setup: .elisp/org-mode
+.PHONY:emacs_setup
+emacs_setup:
 	(cd ~/.elisp/org-mode; $(MAKE))
 
-.PHONY: git_sub_update
-git_sub_update:
+.PHONY: update
+update:
 	git submodule update --init --recursive
 
-.elisp/org-mode: git_sub_update
-
-up:
+getnew:
 	(git submodule foreach "git co master")
 	(git submodule foreach "git pull")
