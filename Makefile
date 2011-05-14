@@ -34,13 +34,18 @@ portsupdate:
 	sudo port sync
 	sudo port upgrade outdated
 
+ifeq ($(uname),Darwin)
+clean:
+	sudo rm -rf ~/.local/share/Trash/files/* ~/.Trash/*
+	$(clean_org_mode)
+else
+clean:
+	$(clean_org_mode)
+endif
+
 
 emacs_setup = \
 	cd ~/.elisp/org-mode; $(MAKE)
 
-ifeq ($(uname),Darwin)
-clean:
-	sudo rm -rf ~/.local/share/Trash/files/* ~/.Trash/*
-else
-clean:
-endif
+clean_org_mode = \
+	(cd ~/.elisp/org-mode; $(MAKE) clean)
