@@ -5,7 +5,6 @@ all:						\
 	emacs_setup				\
 	update					\
 	portsupdate
-
 else
 all:						\
 	emacs_setup				\
@@ -38,3 +37,10 @@ portsupdate:
 
 emacs_setup = \
 	cd ~/.elisp/org-mode; $(MAKE)
+
+ifeq ($(uname),Darwin)
+clean:
+	sudo rm -rf ~/.local/share/Trash/files/* ~/.Trash/*
+else
+clean:
+endif
