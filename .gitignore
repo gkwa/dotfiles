@@ -28,6 +28,7 @@
 /.repopickle_.gitconfig
 /.semanticdb/
 /.serverauth.[0-9][0-9]*
+/.bzr.log
 /.ssh/id_dsa
 /.ssh/id_dsa.pub
 /.ssh/known_hosts

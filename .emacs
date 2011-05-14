@@ -1,3 +1,4 @@
+
 ;; this changes the value of the default-directory variable so that
 ;; the next dired will point you here
 (add-to-list 'load-path "~/.elisp")
@@ -21,6 +22,8 @@
       kept-old-versions 1
       kept-new-versions 3
       version-control t)
+
+
 
 
 
@@ -273,7 +276,8 @@
 ;; http://us.generation-nt.com/answer/emacs-compilation-path-help-173905301.html
 (when (equal system-type 'darwin)
   (progn
-    (add-to-list 'exec-path '("/usr/local/bin" "/opt/local/bin"))
+    (add-to-list 'exec-path '"/opt/local/bin")
+    (add-to-list 'exec-path '"/usr/local/bin")
     (setenv "PATH" (concat "/opt/local/bin" ":" (getenv "PATH"))) ; added this next line due to problems in compilation-environment
     (custom-set-variables
      '(ispell-program-name "/opt/local/bin/aspell")) ; macport aspell
@@ -541,7 +545,7 @@
  '(mode-line-inverse-video nil)
  '(nxml-slash-auto-complete-flag t)
  '(ring-bell-function (quote ignore) t)
- '(safe-local-variable-values (quote ((TeX-master . t))))
+ '(safe-local-variable-values (quote ((sgml-tag-region-if-active . t) (sgml-shorttag . t) (sgml-parent-document "Bugzilla-Guide.xml" "book" "chapter") (sgml-omittag . t) (sgml-namecase-general . t) (sgml-minimize-attributes) (sgml-local-ecat-files) (sgml-local-catalogs) (sgml-indent-step . 2) (sgml-indent-data . t) (sgml-general-insert-case . lower) (sgml-exposed-tags) (sgml-balanced-tag-edit . t) (sgml-auto-insert-required-elements . t) (sgml-always-quote-attributes . t) (TeX-master . t))))
  '(scroll-bar-mode nil)
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
  '(truncate-lines t))
@@ -610,14 +614,6 @@
 ;; (global-set-key "\C-ci" 'magit-status)
 
 ;; ------------------------------
-;; applescript-mode
-;; ------------------------------
-(add-to-list 'load-path "~/.elisp/applescript-mode.el")
-(autoload 'applescript-mode "applescript-mode" "major mode for editing AppleScript source." t)
-(add-to-list 'auto-mode-alist '("\\.scpt\\'" . applescript-mode))
-(add-to-list 'auto-mode-alist '("\\.applescript\\'" . applescript-mode))
-
-;; ------------------------------
 ;; xquery-mode
 ;; ------------------------------
 (autoload 'xquery-mode "xquery-mode" "major mode for editing Xquery source." t)
@@ -651,19 +647,20 @@
 ;; ------------------------------
 ;; html-helper-mode
 ;; ------------------------------
-(add-to-list 'load-path "~/.elisp/html-helper-mode/html-helper-mode.el")
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . html-helper-mode))
+(add-to-list 'load-path "~/.elisp/html-helper-mode")
+(autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
+;;   to invoke html-helper-mode automatically on .html files, do this:
+;;(setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
+;;(add-to-list 'auto-mode-alist '("\\.html?\\'" . html-helper-mode))
 
 (add-to-list 'auto-insert-alist '((html-helper-mode . "Yay HTML") . (concat comment-start " Last modified $Id$" comment-end "\n" comment-start " $HeadURL$" comment-end "\n\n\n" )))
-
 (add-hook 'html-helper-mode-hook  '(lambda () (auto-fill-mode 1) (setq fill-column 60)))
 
 ;; C-c C-n t for HTML mode
 (add-hook 'html-helper-mode-hook
 	  '(lambda ()
 	     (define-key html-helper-mode-map "\C-c\C-nt"
-	       'tidy-buffer-xhtml
-	       )
+	       'tidy-buffer-xhtml)
 	     ;;  	     (define-key texinfo-mode-map "\C-cn"
 	     ;;  	       'forward-paragraph)
 	     )
@@ -770,6 +767,46 @@
 ;;       ;; "))
 ;;       ;; 	      org-capture-templates))
 ;;       ))
+
+
+
+;; ------------------------------
+;; easypg
+;; ------------------------------
+;; http://www.emacswiki.org/emacs/EasyPG
+(require 'epa-file)
+(epa-file-enable)
+
+;; ------------------------------
+;; gpg mode
+;; ------------------------------
+;; http://www.emacswiki.org/emacs/AutoEncryption
+(defvar pgg-gpg-user-id "YOUR-ID-HERE")
+(autoload 'pgg-make-temp-file "pgg" "PGG")
+(autoload 'pgg-gpg-decrypt-region "pgg-gpg" "PGG GnuPG")
+(define-generic-mode 'gpg-file-mode
+  (list ?#) 
+  nil nil
+  '(".gpg\\'" ".gpg-encrypted\\'")
+  (list (lambda ()
+	    (add-hook 'before-save-hook
+                      (lambda () 
+                        (let ((pgg-output-buffer (current-buffer)))
+                          (pgg-gpg-encrypt-region (point-min) (point-max)
+                                                  (list pgg-gpg-user-id))))
+                      nil t)
+	    (add-hook 'after-save-hook 
+		      (lambda ()
+                        (let ((pgg-output-buffer (current-buffer)))
+                          (pgg-gpg-decrypt-region (point-min) (point-max)))
+			(set-buffer-modified-p nil)
+			(auto-save-mode nil))
+		      nil t)
+            (let ((pgg-output-buffer (current-buffer)))
+              (pgg-gpg-decrypt-region (point-min) (point-max)))
+	    (auto-save-mode nil)
+	    (set-buffer-modified-p nil)))
+  "Mode for gpg encrypted files")
 
 ;; ------------------------------
 ;; dired-x 
@@ -1094,6 +1131,70 @@
 ;; (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
 ;;                                  nsis-mode)) auto-mode-alist))
 
+
+
+
+
+
+;; ------------------------------
+;; browse-apropose-url
+;; ------------------------------
+
+;; Don't know if it's the best way , but it seemed to work. (Requires emacs >= 20)
+(defun browse-apropos-url (text &optional new-window)
+  (interactive (browse-url-interactive-arg "Location: "))
+  (let ((text (replace-regexp-in-string 
+               "^ *\\| *$" "" 
+               (replace-regexp-in-string "[ \t\n]+" " " text))))
+    (let ((url (assoc-default 
+                text apropos-url-alist 
+                '(lambda (a b) (let () (setq __braplast a) (string-match a b)))
+                text)))
+      (browse-url (replace-regexp-in-string __braplast url text) new-window))))
+
+
+(defun browse-apropos-url-on-region (min max text &optional new-window)
+  (interactive "r \nsAppend region to location: \nP")
+  (browse-apropos-url (concat text " " (buffer-substring min max)) new-window))
+
+;; http://www.emacswiki.org/emacs/BrowseAproposURL#toc6
+(setq apropos-url-alist
+      '(("^gw?:? +\\(.*\\)" . ;; Google Web 
+         "http://www.google.com/search?q=\\1")
+        ("^g!:? +\\(.*\\)" . ;; Google Lucky
+         "http://www.google.com/search?btnI=I%27m+Feeling+Lucky&q=\\1")
+        ("^gl:? +\\(.*\\)" .  ;; Google Linux 
+         "http://www.google.com/linux?q=\\1")
+        ("^gi:? +\\(.*\\)" . ;; Google Images
+         "http://images.google.com/images?sa=N&tab=wi&q=\\1")
+        ("^gg:? +\\(.*\\)" . ;; Google Groups
+         "http://groups.google.com/groups?q=\\1")
+        ("^gd:? +\\(.*\\)" . ;; Google Directory
+         "http://www.google.com/search?&sa=N&cat=gwd/Top&tab=gd&q=\\1")
+        ("^gn:? +\\(.*\\)" . ;; Google News
+         "http://news.google.com/news?sa=N&tab=dn&q=\\1")
+        ("^gt:? +\\(\\w+\\)|? *\\(\\w+\\) +\\(\\w+://.*\\)" . ;; Google Translate URL
+         "http://translate.google.com/translate?langpair=\\1|\\2&u=\\3")
+        ("^gt:? +\\(\\w+\\)|? *\\(\\w+\\) +\\(.*\\)" . ;; Google Translate Text
+         "http://translate.google.com/translate_t?langpair=\\1|\\2&text=\\3")
+        ("^/\\.$" . ;; Slashdot 
+         "http://www.slashdot.org")
+        ("^/\\.:? +\\(.*\\)" . ;; Slashdot search
+         "http://www.osdn.com/osdnsearch.pl?site=Slashdot&query=\\1")        
+        ("^fm$" . ;; Freshmeat
+         "http://www.freshmeat.net")
+        ("^ewiki:? +\\(.*\\)" . ;; Emacs Wiki Search
+         "http://www.emacswiki.org/cgi-bin/wiki?search=\\1")
+        ("^ewiki$" . ;; Emacs Wiki 
+         "http://www.emacswiki.org")
+        ("^arda$" . ;; The Encyclopedia of Arda 
+         "http://www.glyphweb.com/arda/")
+        ("^nsis:? +\\(.*\\)" . ;; NSIS docs
+         "http://www.google.com/search?q=site:nsis.sourceforge.net%20\\1")
+	))
+
+(global-set-key "b" (quote browse-apropos-url-on-region))
+
 ;; ------------------------------
 ;; compilation mode stuff
 ;; ------------------------------
@@ -1196,8 +1297,41 @@
 (add-to-list 'compilation-error-regexp-alist
 	     '("unknown variable/constant.*\(\\([^:]*\\):\\([0-9]+\\)" 1 2))
 
+;; this means hitting the compile button always saves the buffer
+;; having to separately hit C-x C-s is a waste of time
 (setq compilation-ask-about-save nil)
 
+;; make the compile window stick at 12 lines tall
+; (setq compilation-window-height 12)
+
+;; from enberg on #emacs
+;; if the compilation has a zero exit code,
+;; the windows disappears after two seconds
+;; otherwise it stays
+;; (setq compilation-finish-function
+;;      (lambda (buf str)
+;;        (unless (string-match "exited abnormally" str)
+;;          ;;no errors, make the compilation window go away in a few seconds
+;;          (run-at-time
+;;           "2 sec" nil 'delete-windows-on
+;;           (get-buffer-create "*compilation*"))
+;;          (message "No Compilation Errors!"))))
+
+;; ------------------------------
+;; applescript-mode actionscript mode osascript
+;; ------------------------------
+(add-to-list 'load-path "~/.elisp/applescript-mode.el")
+(autoload 'applescript-mode "applescript-mode" "major mode for editing AppleScript source." t)
+(add-to-list 'auto-mode-alist '("\\.scpt\\'" . applescript-mode))
+(add-to-list 'auto-mode-alist '("\\.applescript\\'" . applescript-mode))
+
+;; liveEncoderAutomate.scpt:1338:1339: script error: Expected “else”, etc. but found unknown token. (-2741)
+(add-to-list 'compilation-error-regexp-alist
+	     '("^\\([^:]*\\):\\([0-9]+\\).* script error:" 1 2))
+
+
+(global-set-key "i" (quote recompile))
+(global-set-key "u" (quote compile))
 ;; ------------------------------
 ;; php-mode
 ;; ------------------------------
@@ -1217,6 +1351,74 @@
 
 (global-set-key "i" (quote recompile))
 (global-set-key "u" (quote compile))
+
+
+
+;; ------------------------------
+;; gmail gnus
+;; ------------------------------
+;; ;; http://www.emacswiki.org/emacs/GnusGmail#toc2
+
+;; (add-to-list 'gnus-secondary-select-methods '(nnimap "gmail"
+;;                                   (nnimap-address "imap.gmail.com")
+;;                                   (nnimap-server-port 993)
+;;                                   (nnimap-stream ssl)))
+
+
+;; (setq message-send-mail-function 'smtpmail-send-it
+;;       smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+;;       smtpmail-auth-credentials '(("smtp.gmail.com" 587 "taylor.monacelli@streambox.com" nil))
+;;       smtpmail-default-smtp-server "smtp.gmail.com"
+;;       smtpmail-smtp-server "smtp.gmail.com"
+;;       smtpmail-smtp-service 587
+;;       smtpmail-local-domain "streambox.com")
+
+;; ------------------------------
+;; wanderlust
+;; ------------------------------
+
+;; wanderlust
+(autoload 'wl "wl" "Wanderlust" t)
+(autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)
+(autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
+
+;; IMAP
+(setq elmo-imap4-default-server "imap.gmail.com")
+;; (setq elmo-imap4-default-user "<accountname>@gmail.com") 
+(setq elmo-imap4-default-user "taylor.monacelli@streambox.com") 
+(setq elmo-imap4-default-authenticate-type 'clear) 
+(setq elmo-imap4-default-port '993)
+(setq elmo-imap4-default-stream-type 'ssl)
+
+(setq elmo-imap4-use-modified-utf7 t) 
+
+;; SMTP
+(setq wl-smtp-connection-type 'starttls)
+(setq wl-smtp-posting-port 587)
+(setq wl-smtp-authenticate-type "plain")
+(setq wl-smtp-posting-user "mattofransen")
+(setq wl-smtp-posting-server "smtp.gmail.com")
+(setq wl-local-domain "gmail.com")
+
+(setq wl-default-folder "%inbox")
+(setq wl-default-spec "%")
+(setq wl-draft-folder "%[Gmail]/Drafts") ; Gmail IMAP
+(setq wl-trash-folder "%[Gmail]/Trash")
+
+(setq wl-folder-check-async t) 
+
+(setq elmo-imap4-use-modified-utf7 t)
+
+(autoload 'wl-user-agent-compose "wl-draft" nil t)
+(if (boundp 'mail-user-agent)
+    (setq mail-user-agent 'wl-user-agent))
+(if (fboundp 'define-mail-user-agent)
+    (define-mail-user-agent
+      'wl-user-agent
+      'wl-user-agent-compose
+      'wl-draft-send
+      'wl-draft-kill
+      'mail-send-hook))
 
 ;; ------------------------------
 ;; my-isearch-word-at-point
