@@ -264,8 +264,8 @@
     (progn
       (setq explicit-shell-file-name "c:/cygwin/bin/bash.exe")
 ;;      (add-to-list 'Info-directory-list "c:/cygwin/usr/share/info")
-      (require 'cygwin-mount)
-      (cygwin-mount-activate)
+;      (require 'cygwin-mount)
+;      (cygwin-mount-activate)
       ))
 
 
@@ -529,7 +529,7 @@
  '(auto-mode-case-fold t)
  '(bc-bookmark-limit 100)
  '(delete-by-moving-to-trash t)
- '(diary-file (expand-file-name "~/.diary"))
+ '(diary-file (expand-file-name "~/.diary") t)
  '(display-time-mode t nil (time))
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(frame-title-format "emacs - %b" t)
@@ -540,7 +540,6 @@
  '(menu-bar-mode nil)
  '(mode-line-inverse-video nil)
  '(nxml-slash-auto-complete-flag t)
-; '(org-babel-no-eval-on-ctrl-c-ctrl-c t)
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values (quote ((TeX-master . t))))
  '(scroll-bar-mode nil)
@@ -1210,6 +1209,14 @@
 	     '("^Warning: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
 (add-to-list 'compilation-error-regexp-alist
 	     '(".* fatal error: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
+(add-to-list 'compilation-error-regexp-alist
+	     '("^PHP Notice: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
+(add-to-list 'compilation-error-regexp-alist
+	     '("^PHP Warning: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
+
+
+(global-set-key "i" (quote recompile))
+(global-set-key "u" (quote compile))
 
 ;; ------------------------------
 ;; my-isearch-word-at-point

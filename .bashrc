@@ -226,9 +226,7 @@ genpasswd()
 pack(){ find . -iname "*.packproj"; }
 packo() { pack | sed -e 's,^,open ,'; }
 dmg(){ find . -iname "*.dmg"; }
-
-
-
+    
 # http://www.delorie.com/gnu/docs/emacs/emacs_444.html
 PS1="\u@\h \W$ "
 PS1="[\d \t \u@\h:\w ]$ "
@@ -241,4 +239,4 @@ PS1="[\u@\h:\w\$(parse_git_branch)]$ "
 # stty lnext ^q stop undef start undef
 # And add the following line to your ~/.inputrc:
 # "\C-v": paste-from-clipboard
-stty lnext ^q stop undef start undef
+# stty lnext ^q stop undef start undef
