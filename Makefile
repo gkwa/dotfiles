@@ -1,7 +1,16 @@
-all: \
-	emacs_setup \
-	update \
+uname=$(shell uname)
+
+ifeq ($(uname),Darwin)
+all:						\
+	emacs_setup				\
+	update					\
 	portsupdate
+
+else
+all:						\
+	emacs_setup				\
+	update
+endif
 
 .PHONY:emacs_setup
 emacs_setup:
@@ -16,6 +25,8 @@ upgrade:
 	git submodule foreach "git pull"; \
 	git submodule summary)
 
+t:
+	echo $(uname)
 compile:
 	$(emacs_setup)
 
