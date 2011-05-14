@@ -1,6 +1,6 @@
-uname=$(shell uname)
+uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
 
-ifeq ($(uname),Darwin)
+ifeq ($(uname_S),Darwin)
 all:						\
 	emacs_setup				\
 	update					\
