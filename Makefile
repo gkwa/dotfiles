@@ -9,3 +9,8 @@ update:
 getnew:
 	(git submodule foreach "git co master")
 	(git submodule foreach "git pull")
+
+portsupdate: 
+	sudo port selfupdate
+	sudo port sync
+	sudo port upgrade outdated
