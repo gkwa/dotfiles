@@ -48,3 +48,9 @@ syslinux:
 gerrit2:
 	if [ ! -d $@ ]; then mkdir gerrit2; cd gerrit2; repo init -u git://android.git.kernel.org/tools/manifest.git; else true; fi ;
 	(cd $@ && repo sync)
+
+.PHONY: freebsd
+freebsd:
+	if [ ! -d $@ ]; then svn checkout svn+ssh://svn.freebsd.org/base/head $@; else true; fi ;
+	(cd $@ && svn update)
+
