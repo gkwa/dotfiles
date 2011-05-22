@@ -59,7 +59,8 @@
 /kee.kdb.lock
 /.cache
 /subversionprojects
-/play
+/play/*
+!/play/Makefile
 /.pip/
 /.dropbox
 /.bugz_cookie
