@@ -1439,6 +1439,19 @@
       'mail-send-hook))
 
 ;; ------------------------------
+;; cmake-mode
+;; ------------------------------
+
+;; http://www.cmake.org/CMakeDocs/cmake-mode.el
+
+(setq load-path (cons (expand-file-name "~/.elisp") load-path))
+(require 'cmake-mode)
+(setq auto-mode-alist
+      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
+                ("\\.cmake\\'" . cmake-mode))
+              auto-mode-alist))
+
+;; ------------------------------
 ;; my-isearch-word-at-point
 ;; ------------------------------
 ;;http://stackoverflow.com/questions/589691/how-can-i-emulate-vims-search-in-gnu-emacs
