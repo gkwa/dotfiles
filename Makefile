@@ -1,19 +1,21 @@
+MAKEFLAGS=-j 4
+
 uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
 
 ifeq ($(uname_S),Darwin)
 all:						\
-	emacs_setup				\
+	emacs				\
 	update					\
 	portsupdate
 else
 all:						\
-	emacs_setup				\
+	emacs				\
 	update
 endif
 
-.PHONY:emacs_setup
-emacs_setup:
-	$(emacs_setup)
+.PHONY:emacs
+emacs:
+	$(emacs)
 
 .PHONY: update
 update:
@@ -27,7 +29,7 @@ upgrade:
 t:
 	echo $(uname)
 compile:
-	$(emacs_setup)
+	$(emacs)
 
 portsupdate: 
 	sudo port selfupdate
@@ -44,7 +46,7 @@ clean:
 endif
 
 
-emacs_setup = \
+emacs = \
 	cd ~/.elisp/org-mode; $(MAKE)
 
 clean_org_mode = \

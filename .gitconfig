@@ -80,6 +80,7 @@ viewer = woman
  mb = merge-base
  # fetch remote tracking branches
  frtb = fetch origin refs/heads/*:refs/remotes/origin/*
+ t = tag -l
 
 [color]
 	ui = false
