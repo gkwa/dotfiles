@@ -3,13 +3,13 @@ MAKEFLAGS=-j 4
 uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
 
 ifeq ($(uname_S),Darwin)
-all:						\
-	emacs				\
-	update					\
+all: \
+	emacs \
+	update \
 	portsupdate
 else
-all:						\
-	emacs				\
+all: \
+	emacs \
 	update
 endif
 
@@ -36,7 +36,7 @@ portsupdate:
 	sudo port sync
 	sudo port upgrade outdated
 
-ifeq ($(uname),Darwin)
+ifeq ($(uname_S),Darwin)
 clean:
 	sudo rm -rf ~/.local/share/Trash/files/* ~/.Trash/*
 	$(clean_org_mode)
@@ -47,7 +47,9 @@ endif
 
 
 emacs = \
-	cd ~/.elisp/org-mode; $(MAKE)
+	(cd ~/.elisp/org-mode; \
+		$(MAKE) EMACS=/Applications/MacPorts/Emacs.app/Contents/MacOS/Emacs; \
+		$(MAKE) EMACS=/Applications/MacPorts/Emacs.app/Contents/MacOS/Emacs all;)
 
 clean_org_mode = \
 	(cd ~/.elisp/org-mode; $(MAKE) clean)
