@@ -214,6 +214,20 @@ function parse_git_branch
 }
 
 
+function bitgrep()
+{
+    searchPattern="$1"
+    sed -e 's,.*/Production/Streambox/,/Volumes/Production/Streambox/,' ~/Documents/find-ls.txt | grep -i "$searchPattern"
+	
+}
+
+function bitgrepupdate()
+{
+    test -f /Volumes/Production/Streambox/find-ls.txt && \
+	cp /Volumes/Production/Streambox/find-ls.txt ~/Documents;
+}
+
+
 genpasswd() 
 {
     # from here: http://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html
@@ -221,6 +235,10 @@ genpasswd()
     [ "$l" == "" ] && l=20
     tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
 }
+
+
+
+
 
 
 pack(){ find . -iname "*.packproj"; }
