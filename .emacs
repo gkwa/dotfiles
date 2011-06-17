@@ -558,7 +558,6 @@
  '(global-font-lock-mode t)
  '(ido-case-fold t)
  '(ispell-program-name "/opt/local/bin/aspell")
- '(major-mode (quote org-mode))
  '(menu-bar-mode nil)
  '(mode-line-inverse-video nil)
  '(nxml-slash-auto-complete-flag t)
@@ -1002,8 +1001,6 @@
     (if (looking-at "\C-z")
 	(delete-char 1))))
 
-
-
 ;; ------------------------------
 ;; longlines
 ;; ------------------------------
@@ -1019,17 +1016,15 @@
 (add-to-list 'load-path "~/.elisp/org-mode/lisp/babel")
 (add-to-list 'load-path "~/.elisp/org-mode/lisp/babel/langs")
 (add-to-list 'load-path "~/.elisp/org-mode/contrib/lisp")
+(add-to-list 'load-path "~/.elisp/org-mode/EXPERIMENTAL/") ; make use of .elisp/org-mode/EXPERIMENTAL/org-mediawiki.el
 (require 'org)
 (require 'org-install)
-;; org babel: ob
-(add-to-list 'load-path "~/.elisp/org-mode/lisp")
-;; (require 'ob)
-;;(require 'ob-sh)
+;(require 'ob-sh)
 ;;(require 'ob-R)         ;; requires R and ess-mode
-;; (require 'ob-perl)      ;; 
-;; (require 'ob-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
-;; (require 'ob-python)    ;; requires python, and python-mode
-;; (require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
+;(require 'ob-perl)      ;; 
+;(require 'ob-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
+;(require 'ob-python)    ;; requires python, and python-mode
+;(require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
 
 
 (setq-default
@@ -1039,6 +1034,7 @@
  org-agenda-files '("~/notes.txt")
  org-agenda-include-diary t
  org-agenda-ndays 31
+ org-confirm-babel-evaluate nil
  org-deadline-warning-days 100)
 
 (require 'org-crypt)
@@ -1091,6 +1087,11 @@
 
 (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))
 
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((emacs-lisp . t)
+;; ))
+
 
 
 ;; org-list-automatic-rules
@@ -1107,16 +1108,10 @@
 ;; 	 ))
 
 
-;; ;; http://orgmode.org/worg/org-contrib/babel/languages.html
-;; ;; active Babel languages
-;; (org-babel-do-load-languages
-;;  'org-babel-load-languages
-;;  '((R . t)
-;;    (sh . t)
-;;    (emacs-lisp . nil)
-;;    ))
 
 
+ ;; http://orgmode.org/worg/org-contrib/babel/languages.html
+ ;; active Babel languages
 ;; (org-babel-do-load-languages
 ;;  'org-babel-load-languages
 ;;  '((R . t)
@@ -1133,7 +1128,7 @@
 ;;    (sql . nil)
 ;;    (sqlite . t)))
 
-
+  
 ;; keep "/opt/local/share/info" as the last element of
 ;; Info-default-directory-list because "/opt/local/share/info" has the
 ;; newest stuff
