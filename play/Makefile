@@ -2,6 +2,8 @@ MAKEFLAGS=-j 5
 
 
 update: \
+	jquery \
+	gparted \
 	android_tools \
 	wikitest \
 	git-mediawiki \
@@ -26,6 +28,14 @@ update: \
 
 .PHONY: update
 
+# http://code.google.com/p/chromium/wiki/UsingGit
+
+jquery:
+	[ ! -d $@ ] && git clone git://github.com/jquery/jquery.git
+	(cd $@ && git pull)
+.PHONY: jquery
+
+
 android_tools:
 	if [ ! -d $@ ]; then mkdir $@ && cd $@ && repo init -u git://android.git.kernel.org/tools/manifest.git < /dev/null; else true; fi ;
 	(cd $@ && repo sync)
@@ -41,10 +51,16 @@ git-mediawiki:
 	(cd $@ && git pull)
 .PHONY: git-mediawiki
 
+gparted:
+	if [ ! -d $@ ]; then git clone git://git.gnome.org/gparted $@; else true; fi ;
+	(cd $@ && git pull)
+.PHONY: gparted
+
 wikitest:
 	if [ ! -d $@ ]; then git clone git://github.com/peff/wikitest.git $@; else true; fi ;
 	(cd $@ && git pull)
 .PHONY: wikitest
+
 
 
 timecard:
@@ -156,3 +172,24 @@ freebsd:
 	(cd $@ && svn update)
 .PHONY: freebsd
 
+
+# ##################################################
+# chromium
+# ##################################################
+
+# http://code.google.com/p/chromium/wiki/UsingGit#Getting_the_code
+
+chromium: \
+	chromium/depot_tools \
+	chromium/src
+
+chromium/depot_tools:
+	-svn co http://src.chromium.org/svn/trunk/tools/depot_tools $@
+	cd $@ && svn update
+.PHONY: chromium/depot_tools
+
+
+chromium/src:
+	-git clone http://git.chromium.org/git/chromium.git $@
+	cd $@ && git pull
+.PHONY: chromium/src
