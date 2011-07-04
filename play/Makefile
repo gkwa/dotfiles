@@ -1,7 +1,18 @@
-MAKEFLAGS=-j 5
+MAKEFLAGS=-j 10
 
 
 update: \
+	cpython \
+	python \
+	virtualbox \
+	sphinx-info \
+	pyutils \
+	monodevelop \
+	JSONKit \
+	polypkg \
+	clicktoflash \
+	hudson \
+	rails \
 	jquery \
 	gparted \
 	android_tools \
@@ -10,6 +21,7 @@ update: \
 	timecard \
 	bugzilla \
 	bztools \
+	mono \
 	git \
 	git-gui \
 	gitk \
@@ -22,22 +34,84 @@ update: \
 	ns-3-dev \
 	amarok \
 	cmake \
-	virtualbox \
-	mod_auth_openid \
+	monomac \
+	rst2texinfo \
+	mod_auth_openid
 
+mono: 
+	test -d $@ || git clone git://github.com/mono/mono.git
+	cd $@ && git pull
+.PHONY: mono
 
-.PHONY: update
+rst2texinfo: 
+	test -d $@ || hg clone https://bitbucket.org/jonwaltman/rst2texinfo
+	cd $@ && hg update
+.PHONY: rst2texinfo
+
+cpython:
+	test -d $@ || hg clone http://hg.python.org/cpython
+	cd $@ && hg update
+.PHONY: cpython
+
+python:
+	test -d $@ || git clone http://hg.python.org/python $@/trunk
+	cd $@/trunk && git pull
+.PHONY: python
+
+# https://bitbucket.org/jonwaltman/sphinx-info
+sphinx-info:
+	test -d $@ || hg clone https://bitbucket.org/jonwaltman/sphinx-info
+	cd $@ && hg update
+.PHONY: sphinx-info
+
+pyutils:
+	test -d $@ || git clone git://github.com/kashifpk/pyutils.git
+	cd $@ && git pull
+.PHONY: pyutils
+
+monomac:
+	test -d $@ || git clone git://github.com/mono/monomac.git
+	cd $@ && git pull
+.PHONY: monomac
+
+monodevelop:
+	test -d $@ || git clone git://github.com/mono/monodevelop.git
+	cd $@ && git pull
+.PHONY: monodevelop
+
+JSONKit:
+	test -d $@ || git clone git://github.com/fpillet/JSONKit.git
+	cd $@ && git pull
+.PHONY: JSONKit
+
+polypkg:
+	test -d $@ || git clone git://github.com/tedjp/polypkg.git
+	cd $@ && git pull
+.PHONY: polypkg
+
+clicktoflash:
+	test -d $@ || git clone git://github.com/rentzsch/clicktoflash.git
+	cd $@ && git pull
+.PHONY: clicktoflash
+
+hudson:
+	test -d $@ || git clone git://github.com/hudson/hudson.git
+	cd $@ && git pull
+.PHONY: hudson
+
+rails:
+	test -d $@ || git clone https://github.com/rails/rails.git
+	cd $@ && git pull
+.PHONY: rails
 
 # http://code.google.com/p/chromium/wiki/UsingGit
-
 jquery:
-	[ ! -d $@ ] && git clone git://github.com/jquery/jquery.git
-	(cd $@ && git pull)
+	test -d $@ || git clone git://github.com/jquery/jquery.git
+	cd $@ && git pull
 .PHONY: jquery
 
-
 android_tools:
-	if [ ! -d $@ ]; then mkdir $@ && cd $@ && repo init -u git://android.git.kernel.org/tools/manifest.git < /dev/null; else true; fi ;
+	if test ! -d $@; then mkdir $@ && cd $@ && repo init -u git://android.git.kernel.org/tools/manifest.git < /dev/null; else true; fi ;
 	(cd $@ && repo sync)
 .PHONY: android_tools
 
@@ -47,94 +121,90 @@ android_tools:
 # http://thread.gmane.org/gmane.comp.version-control.git/175525
 # https://git.wiki.kernel.org/index.php/InterfacesFrontendsAndTools
 git-mediawiki:
-	if [ ! -d $@ ]; then git clone git://github.com/singpolyma/git-mediawiki.git $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://github.com/singpolyma/git-mediawiki.git
+	cd $@ && git pull
 .PHONY: git-mediawiki
 
 gparted:
-	if [ ! -d $@ ]; then git clone git://git.gnome.org/gparted $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://git.gnome.org/gparted
+	cd $@ && git pull
 .PHONY: gparted
 
 wikitest:
-	if [ ! -d $@ ]; then git clone git://github.com/peff/wikitest.git $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://github.com/peff/wikitest.git
+	cd $@ && git pull
 .PHONY: wikitest
 
-
-
 timecard:
-	if [ ! -d $@ ]; then git clone git://github.com/peff/timecard.git $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://github.com/peff/timecard.git
+	cd $@ && git pull
 .PHONY: timecard
 
-
 mod_auth_openid:
-	if [ ! -d $@ ]; then git clone git://github.com/bmuller/mod_auth_openid.git $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://github.com/bmuller/mod_auth_openid.git
+	cd $@ && git pull
 .PHONY: mod_auth_openid
 
 # http://techbase.kde.org/Getting_Started/Sources/KDE_git-tutorial
 amarok:
-	if [ ! -d $@ ]; then git clone git://anongit.kde.org/amarok $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://anongit.kde.org/amarok $@
+	cd $@ && git pull
 .PHONY: amarok
 
 cmake:
-	if [ ! -d $@ ]; then git clone http://wildcodes.com/git/CMake $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone http://wildcodes.com/git/CMake
+	cd $@ && git pull
 .PHONY: cmake
 
 virtualbox:
-	if [ ! -d $@ ]; then svn co http://www.virtualbox.org/svn/vbox/trunk $@; else true; fi ;
-	(cd $@ && svn cleanup)
-	(cd $@ && svn update)
+	test -d $@ || svn co http://www.virtualbox.org/svn/vbox/trunk
+	cd $@ && svn cleanup
+	cd $@ && svn update
 .PHONY: virtualbox
 
 dvc:
-	if [ ! -d $@ ]; then bzr co -v http://bzr.xsteve.at/dvc $@; else true; fi ;
-	(cd $@ && bzr update)
+	test -d $@ || bzr co -v http://bzr.xsteve.at/dvc
+	cd $@ && bzr update
 .PHONY: dvc
 
 bugzilla:
-	if [ ! -d $@ ]; then bzr co -v bzr://bzr.mozilla.org/bugzilla/trunk $@; else true; fi ;
-	(cd $@ && bzr update)
+	test -d $@ || bzr co -v bzr://bzr.mozilla.org/bugzilla/trunk $@
+	cd $@ && bzr up
 .PHONY: bugzilla
 
-
 bztools:
-	if [ ! -d $@ ]; then git clone git://github.com/LegNeato/bztools.git $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://github.com/LegNeato/bztools.git
+	cd $@ && git pull
 .PHONY: bztools
 
 git: 
-	if [ ! -d $@ ]; then git clone git://git.kernel.org/pub/scm/git/git.git $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://git.kernel.org/pub/scm/git/git.git
+	cd $@ && git pull
 .PHONY: git
 
 git-gui: 
-	if [ ! -d $@ ]; then git clone git://repo.or.cz/git-gui.git $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://repo.or.cz/git-gui.git
+	cd $@ && git pull
 .PHONY: git-gui
 
 gitk: 
-	if [ ! -d $@ ]; then git clone git://git.kernel.org/pub/scm/gitk/gitk.git $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://git.kernel.org/pub/scm/gitk/gitk.git
+	cd $@ && git pull
 .PHONY: gitk
 
 pybugz:
-	if [ ! -d $@ ]; then git clone git://github.com/williamh/pybugz.git $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://github.com/williamh/pybugz.git
+	cd $@ && git pull
 .PHONY: pybugz
 
 syslinux:
-	if [ ! -d $@ ]; then git clone git://git.kernel.org/pub/scm/boot/syslinux/syslinux.git $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://git.kernel.org/pub/scm/boot/syslinux/syslinux.git
+	cd $@ && git pull
 .PHONY: syslinux
 
 emacs:
-	if [ ! -d $@ ]; then git clone git://git.savannah.gnu.org/emacs.git $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://git.savannah.gnu.org/emacs.git
+	cd $@ && git pull
 .PHONY: emacs
 
 # http://code.google.com/p/gerrit/wiki/Source?tm=4
@@ -144,32 +214,28 @@ gerrit2:
 .PHONY: gerrit2
 
 gsl-shell:
-	if [ ! -d $@ ]; then git clone git://git.savannah.nongnu.org/gsl-shell.git $@; else true; fi ;
-	(cd $@ && git pull)
+	test -d $@ || git clone git://git.savannah.nongnu.org/gsl-shell.git
+	cd $@ && git pull
 .PHONY: gsl-shell
 
 # http://code.google.com/p/waf/
 # http://waf.googlecode.com/svn/docs/wafbook/single.html
 waf:
-	if [ ! -d $@ ]; then \
-		svn checkout http://waf.googlecode.com/svn/trunk/ $@; \
-	else true; fi ;
-	(cd $@ && svn cleanup)
-	(cd $@ && svn update)
+	test -d $@ || svn checkout http://waf.googlecode.com/svn/trunk/ $@
+	cd $@ && svn cleanup
+	cd $@ && svn update
 .PHONY: waf
 
 # The ns-3 Network Simulator http://nsnam.blogspot.com
 ns-3-dev: 
-	if [ ! -d $@ ]; then \
-		hg clone http://code.nsnam.org/ns-3-dev $@; \
-	else true; fi ;
-	(cd $@ && hg update)
+	test -d $@ || hg clone http://code.nsnam.org/ns-3-dev
+	cd $@ && hg update
 .PHONY: ns-3-dev
 
 freebsd:
-	if [ ! -d $@ ]; then svn checkout svn+ssh://svn.freebsd.org/base/head $@; else true; fi ;
-	(cd $@ && svn cleanup)
-	(cd $@ && svn update)
+	test -d $@ || svn checkout svn+ssh://svn.freebsd.org/base/head $@
+	cd $@ && svn cleanup
+	cd $@ && svn update
 .PHONY: freebsd
 
 
