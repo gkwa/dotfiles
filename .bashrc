@@ -217,14 +217,18 @@ function parse_git_branch
 function bitgrep()
 {
     searchPattern="$1"
-    sed -e 's,.*/Production/Streambox/,/Volumes/Production/Streambox/,' ~/Documents/find-ls.txt | grep -i "$searchPattern"
-	
+    sed -e 's,.*/Production/Streambox/,/Volumes/Production/Streambox/,' \
+	~/pdev/production-find-ls/find-ls.txt | grep -iE "$searchPattern"
+
 }
 
 function bitgrepupdate()
 {
     test -f /Volumes/Production/Streambox/find-ls.txt && \
-	cp /Volumes/Production/Streambox/find-ls.txt ~/Documents;
+	cp /Volumes/Production/Streambox/find-ls.txt \
+	~/pdev/production-find-ls && \
+	cd ~/pdev/production-find-ls && git commit -am bitgrepupdate && \
+	git push && git show
 }
 
 

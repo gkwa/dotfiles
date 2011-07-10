@@ -36,7 +36,14 @@ update: \
 	cmake \
 	monomac \
 	rst2texinfo \
-	mod_auth_openid
+	mod_auth_openid \
+	ndesk-options
+
+ndesk-options:
+	test -d $@ || git clone git://git.ndesk.org/pub/scm/ndesk-options
+	cd $@ && git pull
+.PHONY: ndesk-options
+
 
 mono: 
 	test -d $@ || git clone git://github.com/mono/mono.git

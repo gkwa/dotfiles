@@ -6,20 +6,22 @@ ifeq ($(uname_S),Darwin)
 all: \
 	emacs \
 	update \
-	portsupdate
+	pu
 else
 all: \
 	emacs \
 	update
 endif
 
-.PHONY:emacs
+
 emacs:
 	$(emacs)
+.PHONY: emacs
 
-.PHONY: update
+
 update:
 	git submodule update --init --recursive
+.PHONY: update
 
 upgrade:
 	(git submodule foreach "git co master"; \
@@ -31,7 +33,8 @@ t:
 compile:
 	$(emacs)
 
-portsupdate: 
+# ports update
+pu: 
 	sudo port selfupdate
 	sudo port sync
 	sudo port upgrade outdated
