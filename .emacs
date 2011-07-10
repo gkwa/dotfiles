@@ -1394,6 +1394,19 @@
    
 
 
+(defun my-csharp-mode-fn ()
+   "function that runs when csharp-mode is initialized for a buffer."
+;   (turn-on-auto-revert-mode)
+;   (setq indent-tabs-mode nil)
+   (require 'flymake)
+   (flymake-mode 0)
+;   (require 'yasnippet)
+   (yas/minor-mode-on)
+;   (require 'rfringe)
+;   ...insert more code here...
+;   ...including any custom key bindings you might want ...
+)
+(add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
 
 ;; ------------------------------
 ;; gmail gnus
