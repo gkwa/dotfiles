@@ -37,7 +37,13 @@ update: \
 	monomac \
 	rst2texinfo \
 	mod_auth_openid \
-	ndesk-options
+	ndesk-options \
+	selenium-grid
+
+selenium-grid:
+	test -d $@ || git clone git://github.com/nirvdrum/selenium-grid.git
+	cd $@ && git pull
+.PHONY: selenium-grid
 
 ndesk-options:
 	test -d $@ || git clone git://git.ndesk.org/pub/scm/ndesk-options
