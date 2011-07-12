@@ -170,7 +170,7 @@ cmake:
 .PHONY: cmake
 
 virtualbox:
-	test -d $@ || svn co http://www.virtualbox.org/svn/vbox/trunk
+	test -d $@ || svn co http://www.virtualbox.org/svn/vbox/trunk virtualbox
 	cd $@ && svn cleanup
 	cd $@ && svn update
 .PHONY: virtualbox

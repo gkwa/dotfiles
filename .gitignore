@@ -57,7 +57,8 @@
 /bin/repo
 /kee.kdb.lock
 /.cache
-/subversionprojects
+/subversionprojects/*
+!/subversionprojects/Makefile
 /play/*
 !/play/Makefile
 /.pip/
