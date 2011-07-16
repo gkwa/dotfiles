@@ -3,14 +3,18 @@ MAKEFLAGS=-j 4
 uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
 
 ifeq ($(uname_S),Darwin)
+
 all: \
-	emacs \
-	update \
-	pu
+emacs \
+update \
+pu
+
 else
+
 all: \
-	emacs \
-	update
+emacs \
+update
+
 endif
 
 

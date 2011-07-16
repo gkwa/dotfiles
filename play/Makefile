@@ -66,7 +66,18 @@ cpython:
 	cd $@ && hg update
 .PHONY: cpython
 
+gitosis:
+	test -d $@ || git clone git://eagain.net/gitosis.git
+	cd $@ && git pull
+.PHONY: gitosis
+
+topology-doc:
+	test -d $@ || git clone git://github.com/mjdominus/topology-doc.git
+	cd $@ && git pull
+.PHONY: topology-doc
+
 python:
+	mkdir -p $@/trunk
 	test -d $@ || git clone http://hg.python.org/python $@/trunk
 	cd $@/trunk && git pull
 .PHONY: python
