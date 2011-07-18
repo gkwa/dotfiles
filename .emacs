@@ -535,19 +535,6 @@
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
- '(anything-c-use-standard-keys nil)
- '(anything-c-yas-display-key-on-candidate t)
- '(anything-candidate-number-limit 30 t)
- '(anything-dired-bindings 1 t)
- '(anything-etags-enable-tag-file-dir-cache t)
- '(anything-idle-delay 0 t)
- '(anything-quick-update t t)
- '(anything-samewindow t t)
  '(auto-mode-case-fold t)
  '(bc-bookmark-limit 100)
  '(delete-by-moving-to-trash t)
@@ -849,11 +836,27 @@
 ;; ------------------------------
 (add-to-list 'load-path "~/.elisp/anything-config")
 
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
+ '(anything-c-use-standard-keys nil)
+ '(anything-c-yas-display-key-on-candidate t)
+ '(anything-candidate-number-limit 30 t)
+ '(anything-dired-bindings 1 t)
+ '(anything-etags-enable-tag-file-dir-cache t)
+ '(anything-idle-delay 0 t)
+ '(anything-quick-update t t)
+ '(anything-samewindow t t)
+)
 
 (defun my-anything ()
   (interactive)
   (anything-other-buffer
    '(
+     ;; anything-isearch???
      anything-c-source-buffers
      anything-c-source-recentf
      anything-c-source-files-in-current-dir
