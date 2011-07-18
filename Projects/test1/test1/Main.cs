@@ -16,28 +16,10 @@ class Test
   static void Main (){
     XDocument doc = XDocument.Load ("hd-mp-bundle.packproj");
     foreach (var element in doc.Descendants ("key").Where (x => (string)x == "Path")) {
-      if (element.NextNode != null) {
-	StringBuilder sb = new StringBuilder ();
-	sb.Append (String.Format ("NodeType: " + element.NodeType.ToString ().PadRight (10) + "NodeName: " + element.Name));
-	sb.Append (String.Format ("NodeType: " + element.NextNode.NodeType.ToString ().PadRight (10) + "NodeName: " + element.Name));
-	element.Add (new XAttribute ("MyAttr", "Attribute Value"));
-	Console.WriteLine (sb.ToString ());
-
-	switch (node.NodeType)
-	  {
-	  case XmlNodeType.Text:
-            sb.Append((node as XText).Value);
-            break;
-	  case XmlNodeType.Element:
-            sb.Append((node as XElement).Name);
-            break;
-	  case XmlNodeType.Comment:
-            sb.Append((node as XComment).Value);
-            break;
-	  }
-
-      }
-			
+      XNode node = element;
+      string p = ((XElement)node.NextNode).Value;
+      string p2 = p.Replace("/Users/demo/pdev/mediaplayer-hd-osx/", "");
+      ((XElement)node.NextNode).Value = p2;
     }
     doc.Save("1.xml");
 		         

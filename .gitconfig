@@ -84,3 +84,5 @@ viewer = woman
 
 [color]
 	ui = false
+[web]
+	browser = firefox

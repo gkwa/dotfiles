@@ -1,4 +1,3 @@
-
 ;; this changes the value of the default-directory variable so that
 ;; the next dired will point you here
 (add-to-list 'load-path "~/.elisp")
@@ -533,6 +532,13 @@
  diary-file (expand-file-name "~/.diary")
 )
 
+
+
+
+
+
+
+
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
  '(auto-mode-case-fold t)
@@ -552,7 +558,14 @@
  '(safe-local-variable-values (quote ((sgml-tag-region-if-active . t) (sgml-shorttag . t) (sgml-parent-document "Bugzilla-Guide.xml" "book" "chapter") (sgml-omittag . t) (sgml-namecase-general . t) (sgml-minimize-attributes) (sgml-local-ecat-files) (sgml-local-catalogs) (sgml-indent-step . 2) (sgml-indent-data . t) (sgml-general-insert-case . lower) (sgml-exposed-tags) (sgml-balanced-tag-edit . t) (sgml-auto-insert-required-elements . t) (sgml-always-quote-attributes . t) (TeX-master . t))))
  '(scroll-bar-mode nil)
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
- '(truncate-lines t))
+ '(truncate-lines t)
+; ------------------------------
+;; When working in a Rails ERB template, when my cursor is on
+;; the "." in the middle of @position.id and I press C-x-f it
+;; starts "Pinging position.id (Indonesia)" and locks up emacs until
+;; it times out. Any ideas how to stop this behavior?
+ '(ffap-machine-p-known 'reject); https://github.com/technomancy/emacs-starter-kit/issues/39
+)
 
 (global-set-key (kbd "C-c C-c") (quote comment-region))
 (global-set-key (kbd "C-c m") (quote manual-entry))
@@ -1379,23 +1392,6 @@
 
 ;; Optionally, define and register a mode-hook function. To do so, use
 ;; something like this in your .emacs file:
-;;
-;;   (defun my-csharp-mode-fn ()
-;;      "function that runs when csharp-mode is initialized for a buffer."
-;;      (turn-on-auto-revert-mode)
-;;      (setq indent-tabs-mode nil)
-;;      (require 'flymake)
-;;      (flymake-mode 1)
-;;      (require 'yasnippet)
-;;      (yas/minor-mode-on)
-;;      (require 'rfringe)
-;;      ...insert more code here...
-;;      ...including any custom key bindings you might want ...
-;;   )
-;;   (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
-;;
-   
-
 
 (defun my-csharp-mode-fn ()
    "function that runs when csharp-mode is initialized for a buffer."
