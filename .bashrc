@@ -224,6 +224,7 @@ function bitgrep()
 
 function bitgrepupdate()
 {
+    cd ~/pdev/production-find-ls && git pull
     test -f /Volumes/Production/Streambox/find-ls.txt && \
 	cp /Volumes/Production/Streambox/find-ls.txt \
 	~/pdev/production-find-ls && \

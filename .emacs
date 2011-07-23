@@ -871,8 +871,8 @@
    '(
      ;; anything-isearch???
      anything-c-source-buffers
-     anything-c-source-recentf
      anything-c-source-files-in-current-dir
+     anything-c-source-recentf
      anything-for-files-prefered-list
      anything-c-source-ffap-line
      anything-c-source-ffap-guesser
