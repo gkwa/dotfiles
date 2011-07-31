@@ -1,7 +1,18 @@
 MAKEFLAGS=-j 10
 
 
+
 update: \
+	fedora-mingw \
+	slum \
+	clam \
+	unsis \
+	nvda \
+	mongo \
+	tinypy \
+	nsis \
+	gitolite \
+	scons \
 	cpython \
 	python \
 	virtualbox \
@@ -40,10 +51,55 @@ update: \
 	ndesk-options \
 	selenium-grid
 
+# Non-members may check out a read-only working copy anonymously over HTTP.
+
+
+
+fedora-mingw:
+	test -d $@ || git clone git://git.annexia.org/git/fedora-mingw.git
+	cd $@ && git pull
+.PHONY: fedora-mingw
+
+slum:
+	test -d $@ || svn checkout http://slum.googlecode.com/svn/trunk $@
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: slum
+
+clam:
+	test -d $@ || svn co http://clam-project.org/clam/trunk clam
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: clam
+
+unsis:
+	test -d $@ || svn checkout http://unsis.googlecode.com/svn/trunk $@
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: unsis
+
+
+
+# http://www.nvda-project.org/attachment/ticket/1221/sconstruct
+nvda:
+	test -d $@ || bzr checkout --lightweight http://bzr.nvaccess.org/nvda/main $@
+	cd $@ && bzr update
+.PHONY: nvda
+
 selenium-grid:
 	test -d $@ || git clone git://github.com/nirvdrum/selenium-grid.git
 	cd $@ && git pull
 .PHONY: selenium-grid
+
+mongo:
+	test -d $@ || git clone git://github.com/mongodb/mongo.git
+	cd $@ && git pull
+.PHONY: mongo
+
+gitolite:
+	test -d $@ || git clone git://github.com/sitaramc/gitolite.git
+	cd $@ && git pull
+.PHONY: gitolite
 
 ndesk-options:
 	test -d $@ || git clone git://git.ndesk.org/pub/scm/ndesk-options
@@ -180,11 +236,31 @@ cmake:
 	cd $@ && git pull
 .PHONY: cmake
 
+tinypy:
+	test -d $@ || svn checkout http://tinypy.googlecode.com/svn/trunk/ tinypy
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: tinypy
+
 virtualbox:
 	test -d $@ || svn co http://www.virtualbox.org/svn/vbox/trunk virtualbox
 	cd $@ && svn cleanup
 	cd $@ && svn update
 .PHONY: virtualbox
+
+nsis:
+	test -d $@ || svn co https://nsis.svn.sourceforge.net/svnroot/nsis/NSIS/trunk nsis \
+		--trust-server-cert --non-interactive
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: scons
+
+scons:
+	test -d $@ || svn checkout http://scons.tigris.org/svn/scons/trunk scons \
+		--username guest --password ""
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: scons
 
 dvc:
 	test -d $@ || bzr co -v http://bzr.xsteve.at/dvc

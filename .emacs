@@ -599,6 +599,10 @@
 (setq interpreter-mode-alist (cons '("python" . python-mode) interpreter-mode-alist))
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'auto-insert-alist '((python-mode . "Python Mode") . (concat comment-start "-*- python -*-\n\n\n" )))
+(setq auto-mode-alist (cons '("SConstruct" . python-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("sconstruct" . python-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("SConscript" . python-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("sconscript" . python-mode) auto-mode-alist))
 
 ;; ------------------------------
 ;; wikipedia-mode
@@ -1368,6 +1372,10 @@
 (add-to-list 'auto-mode-alist '("\\.php?\\'" . php-mode))
 (autoload 'php-mode "php-mode" "Enter PHP mode." t)
 
+
+;; # PHP Fatal error:  Uncaught exception 'DOMException' with message 'Wrong Document Error' in /Users/demo/pdev/sfs/setup-sfssettings.php:22
+(add-to-list 'compilation-error-regexp-alist
+	     '("^PHP Fatal error: .* in \\(.*\\):\\([0-9]+\\)" 1 2))
 (add-to-list 'compilation-error-regexp-alist
 	     '("^Warning: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
 (add-to-list 'compilation-error-regexp-alist
