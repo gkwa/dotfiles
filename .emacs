@@ -592,19 +592,6 @@
 (add-to-list 'auto-insert-alist '((perl-mode . "Perl Mode") . (concat comment-start "-*- perl -*-\n\n" )))
 
 ;; ------------------------------
-;; python-mode
-;; ------------------------------
-(add-to-list 'load-path "~/.elisp/python-mode-1.0")
-(autoload 'python-mode "python-mode" "Python editing mode." t)
-(setq interpreter-mode-alist (cons '("python" . python-mode) interpreter-mode-alist))
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'auto-insert-alist '((python-mode . "Python Mode") . (concat comment-start "-*- python -*-\n\n\n" )))
-(setq auto-mode-alist (cons '("SConstruct" . python-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("sconstruct" . python-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("SConscript" . python-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("sconscript" . python-mode) auto-mode-alist))
-
-;; ------------------------------
 ;; wikipedia-mode
 ;; ------------------------------
 (autoload 'wikipedia-mode
@@ -1493,6 +1480,24 @@
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
+
+;; ------------------------------
+;; python-mode
+;; ------------------------------
+(add-to-list 'load-path "~/.elisp/python-mode-1.0")
+(autoload 'python-mode "python-mode" "Python editing mode." t)
+(setq interpreter-mode-alist (cons '("python" . python-mode) interpreter-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'auto-insert-alist '((python-mode . "Python Mode") . (concat comment-start "-*- python -*-\n\n\n" )))
+(setq auto-mode-alist (cons '("SConstruct" . python-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("sconstruct" . python-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("SConscript" . python-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("sconscript" . python-mode) auto-mode-alist))
+
+;  File "/Users/demo/pdev/check2000/SConstruct", line 30:
+(add-to-list 'compilation-error-regexp-alist
+	     '("^ +File .\\(.*\\)., line \\([0-9]+\\):" 1 2))
+
 
 ;; ------------------------------
 ;; my-isearch-word-at-point
