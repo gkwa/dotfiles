@@ -2,6 +2,7 @@ MAKEFLAGS=-j 10
 
 
 update: \
+	numpy \
 	cpython \
 	python \
 	virtualbox \
@@ -39,6 +40,11 @@ update: \
 	mod_auth_openid \
 	ndesk-options \
 	selenium-grid
+
+numpy:
+	test -d $@ || git clone git://github.com/numpy/numpy.git
+	cd $@ && git pull
+.PHONY: numpy
 
 selenium-grid:
 	test -d $@ || git clone git://github.com/nirvdrum/selenium-grid.git
