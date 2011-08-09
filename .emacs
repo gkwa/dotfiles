@@ -1,4 +1,3 @@
-
 ;; this changes the value of the default-directory variable so that
 ;; the next dired will point you here
 (add-to-list 'load-path "~/.elisp")
@@ -533,21 +532,15 @@
  diary-file (expand-file-name "~/.diary")
 )
 
+
+
+
+
+
+
+
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
- '(anything-c-use-standard-keys nil)
- '(anything-c-yas-display-key-on-candidate t)
- '(anything-candidate-number-limit 30 t)
- '(anything-dired-bindings 1 t)
- '(anything-etags-enable-tag-file-dir-cache t)
- '(anything-idle-delay 0 t)
- '(anything-quick-update t t)
- '(anything-samewindow t t)
  '(auto-mode-case-fold t)
  '(bc-bookmark-limit 100)
  '(delete-by-moving-to-trash t)
@@ -565,7 +558,14 @@
  '(safe-local-variable-values (quote ((sgml-tag-region-if-active . t) (sgml-shorttag . t) (sgml-parent-document "Bugzilla-Guide.xml" "book" "chapter") (sgml-omittag . t) (sgml-namecase-general . t) (sgml-minimize-attributes) (sgml-local-ecat-files) (sgml-local-catalogs) (sgml-indent-step . 2) (sgml-indent-data . t) (sgml-general-insert-case . lower) (sgml-exposed-tags) (sgml-balanced-tag-edit . t) (sgml-auto-insert-required-elements . t) (sgml-always-quote-attributes . t) (TeX-master . t))))
  '(scroll-bar-mode nil)
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
- '(truncate-lines t))
+ '(truncate-lines t)
+; ------------------------------
+;; When working in a Rails ERB template, when my cursor is on
+;; the "." in the middle of @position.id and I press C-x-f it
+;; starts "Pinging position.id (Indonesia)" and locks up emacs until
+;; it times out. Any ideas how to stop this behavior?
+ '(ffap-machine-p-known 'reject); https://github.com/technomancy/emacs-starter-kit/issues/39
+)
 
 (global-set-key (kbd "C-c C-c") (quote comment-region))
 (global-set-key (kbd "C-c m") (quote manual-entry))
@@ -590,15 +590,6 @@
 (add-to-list 'auto-mode-alist '("\\.pm\\'" . perl-mode))
 (add-to-list 'auto-mode-alist '("\\.pl\\'" . perl-mode))
 (add-to-list 'auto-insert-alist '((perl-mode . "Perl Mode") . (concat comment-start "-*- perl -*-\n\n" )))
-
-;; ------------------------------
-;; python-mode
-;; ------------------------------
-(add-to-list 'load-path "~/.elisp/python-mode-1.0")
-(autoload 'python-mode "python-mode" "Python editing mode." t)
-(setq interpreter-mode-alist (cons '("python" . python-mode) interpreter-mode-alist))
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'auto-insert-alist '((python-mode . "Python Mode") . (concat comment-start "-*- python -*-\n\n\n" )))
 
 ;; ------------------------------
 ;; wikipedia-mode
@@ -849,14 +840,30 @@
 ;; ------------------------------
 (add-to-list 'load-path "~/.elisp/anything-config")
 
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
+ '(anything-c-use-standard-keys nil)
+ '(anything-c-yas-display-key-on-candidate t)
+ '(anything-candidate-number-limit 30 t)
+ '(anything-dired-bindings 1 t)
+ '(anything-etags-enable-tag-file-dir-cache t)
+ '(anything-idle-delay 0 t)
+ '(anything-quick-update t t)
+ '(anything-samewindow t t)
+)
 
 (defun my-anything ()
   (interactive)
   (anything-other-buffer
    '(
+     ;; anything-isearch???
      anything-c-source-buffers
-     anything-c-source-recentf
      anything-c-source-files-in-current-dir
+     anything-c-source-recentf
      anything-for-files-prefered-list
      anything-c-source-ffap-line
      anything-c-source-ffap-guesser
@@ -1352,6 +1359,10 @@
 (add-to-list 'auto-mode-alist '("\\.php?\\'" . php-mode))
 (autoload 'php-mode "php-mode" "Enter PHP mode." t)
 
+
+;; # PHP Fatal error:  Uncaught exception 'DOMException' with message 'Wrong Document Error' in /Users/demo/pdev/sfs/setup-sfssettings.php:22
+(add-to-list 'compilation-error-regexp-alist
+	     '("^PHP Fatal error: .* in \\(.*\\):\\([0-9]+\\)" 1 2))
 (add-to-list 'compilation-error-regexp-alist
 	     '("^Warning: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
 (add-to-list 'compilation-error-regexp-alist
@@ -1376,23 +1387,6 @@
 
 ;; Optionally, define and register a mode-hook function. To do so, use
 ;; something like this in your .emacs file:
-;;
-;;   (defun my-csharp-mode-fn ()
-;;      "function that runs when csharp-mode is initialized for a buffer."
-;;      (turn-on-auto-revert-mode)
-;;      (setq indent-tabs-mode nil)
-;;      (require 'flymake)
-;;      (flymake-mode 1)
-;;      (require 'yasnippet)
-;;      (yas/minor-mode-on)
-;;      (require 'rfringe)
-;;      ...insert more code here...
-;;      ...including any custom key bindings you might want ...
-;;   )
-;;   (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
-;;
-   
-
 
 (defun my-csharp-mode-fn ()
    "function that runs when csharp-mode is initialized for a buffer."
@@ -1486,6 +1480,24 @@
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
                 ("\\.cmake\\'" . cmake-mode))
               auto-mode-alist))
+
+;; ------------------------------
+;; python-mode
+;; ------------------------------
+(add-to-list 'load-path "~/.elisp/python-mode-1.0")
+(autoload 'python-mode "python-mode" "Python editing mode." t)
+(setq interpreter-mode-alist (cons '("python" . python-mode) interpreter-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'auto-insert-alist '((python-mode . "Python Mode") . (concat comment-start "-*- python -*-\n\n\n" )))
+(setq auto-mode-alist (cons '("SConstruct" . python-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("sconstruct" . python-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("SConscript" . python-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("sconscript" . python-mode) auto-mode-alist))
+
+;  File "/Users/demo/pdev/check2000/SConstruct", line 30:
+(add-to-list 'compilation-error-regexp-alist
+	     '("^ +File .\\(.*\\)., line \\([0-9]+\\):" 1 2))
+
 
 ;; ------------------------------
 ;; my-isearch-word-at-point

@@ -3,14 +3,18 @@ MAKEFLAGS=-j 4
 uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
 
 ifeq ($(uname_S),Darwin)
+
 all: \
-	emacs \
-	update \
-	pu
+emacs \
+update \
+pu
+
 else
+
 all: \
-	emacs \
-	update
+emacs \
+update
+
 endif
 
 
@@ -48,15 +52,8 @@ clean:
 	$(clean_org_mode)
 endif
 
-
-zip: /tmp/o.zip
+zip:/tmp/o.zip
 /tmp/o.zip:
-	git ls -c .emacs .elisp | cpio -pamvd /tmp/o
-	7za a /tmp/o.zip /tmp/o
-.PHONY: /tmp/o.zip
-
-exe:/tmp/o.exe
-/tmp/o.exe:
 	rm -rf \
 		/tmp/o \
 		$@
@@ -66,6 +63,7 @@ exe:/tmp/o.exe
 		.gitignore \
 		.gitconfig \
 		.bash_profile \
+		.alias \
 		.bashrc \
 		.emacs_bash \
 		cygwin_setup/home-administrator.bat \
@@ -77,14 +75,13 @@ exe:/tmp/o.exe
 		find .elisp \( -name '.git' -o -iname "*.pyc" -o -iname "*.elc" \) -prune -o -print ;} \
 		| cpio -pamvd /tmp/o;)
 #	7za a /tmp/o.zip /tmp/o
-	(cd /tmp/o; 7za a -sfx /tmp/o.exe .)
-	du -sh /tmp/o.exe
-.PHONY: /tmp/o.exe
+	(cd /tmp/o; 7za a -tzip /tmp/o.zip .)
+	du -sh /tmp/o.zip
+.PHONY: /tmp/o.zip
 
 upload:
-	rsync -vaz --progress /tmp/o.exe boxstream@69.90.235.86:/c/apache/htdocs
-
-
+	du -sh /tmp/o.zip
+	rsync -vaz --progress /tmp/o.zip boxstream@69.90.235.86:/c/apache/htdocs
 
 
 emacs = \
