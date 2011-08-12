@@ -31,13 +31,13 @@ update: \
 	android_tools \
 	wikitest \
 	git-mediawiki \
+	git \
+	git-gui \
+	gitk \
 	timecard \
 	bugzilla \
 	bztools \
 	mono \
-	git \
-	git-gui \
-	gitk \
 	pybugz \
 	syslinux \
 	dvc \

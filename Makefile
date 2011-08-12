@@ -66,6 +66,7 @@ zip:/tmp/o.zip
 		.alias \
 		.bashrc \
 		.emacs_bash \
+		cygwin_setup/cygwin-path.bat \
 		cygwin_setup/home-administrator.bat \
 		cygwin_setup/home-boxstream.bat \
 		cygwin_setup/pathman.exe \
