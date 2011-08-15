@@ -266,8 +266,8 @@
     (progn
       (setq explicit-shell-file-name "c:/cygwin/bin/bash.exe")
 ;;      (add-to-list 'Info-directory-list "c:/cygwin/usr/share/info")
-;      (require 'cygwin-mount)
-;      (cygwin-mount-activate)
+      (require 'cygwin-mount)
+      (cygwin-mount-activate)
 
       ; http://blogs.law.harvard.edu/hoanga/2008/04/10/fixing-that-really-irritating-perl-warning-setting-locale-failed-on/
       ; this error happens in emacs subshells when using 'git commit' unless you have set LC_ALL and LC_CTYPE.

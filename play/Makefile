@@ -1,78 +1,101 @@
 MAKEFLAGS=-j 10
 
-
+gitlog1=git log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m ..origin/master >> ../$@.gitlog
+gitlog2=git log --pretty=tformat:'%h %d %ar %s' --reverse -m ..origin/master >> ../$@.gitlog
+gitlog3=git log -p --reverse -m ..origin/master >> ../$@.gitlog
+gitlog=\
+	echo -------------------------------------------------------------------  >> ../$@.gitlog; \
+	$(gitlog2); \
+	echo -------------------------------------------------------------------  >> ../$@.gitlog; \
+	$(gitlog1); \
+	echo -------------------------------------------------------------------  >> ../$@.gitlog; \
+	$(gitlog3)
 
 update: \
-	junit \
-	numpy \
-	fedora-mingw \
-	slum \
-	clam \
-	unsis \
-	nvda \
-	mongo \
-	tinypy \
-	nsis \
-	gitolite \
-	scons \
-	cpython \
-	python \
-	virtualbox \
-	sphinx-info \
-	pyutils \
-	monodevelop \
-	JSONKit \
-	polypkg \
-	clicktoflash \
-	hudson \
-	rails \
-	jquery \
-	gparted \
-	android_tools \
-	wikitest \
-	git-mediawiki \
-	git \
-	git-gui \
-	gitk \
-	timecard \
-	bugzilla \
-	bztools \
-	mono \
-	pybugz \
-	syslinux \
-	dvc \
-	gerrit2 \
-	emacs \
-	gsl-shell \
-	ns-3-dev \
-	amarok \
-	cmake \
-	monomac \
-	rst2texinfo \
-	mod_auth_openid \
-	ndesk-options \
-	selenium-grid
+pre-commit \
+gitflow \
+gnus \
+junit \
+numpy \
+fedora-mingw \
+slum \
+clam \
+unsis \
+nvda \
+mongo \
+tinypy \
+nsis \
+gitolite \
+scons \
+cpython \
+python \
+virtualbox \
+sphinx-info \
+pyutils \
+monodevelop \
+JSONKit \
+polypkg \
+clicktoflash \
+hudson \
+rails \
+jquery \
+gparted \
+android_tools \
+wikitest \
+git-mediawiki \
+git \
+git-gui \
+gitk \
+timecard \
+bugzilla \
+bztools \
+mono \
+pybugz \
+syslinux \
+dvc \
+gerrit2 \
+emacs \
+gsl-shell \
+ns-3-dev \
+amarok \
+cmake \
+monomac \
+rst2texinfo \
+mod_auth_openid \
+ndesk-options \
+selenium-grid
+
+clean:
+	rm -f \
+		*.gitlog
 
 
+
+pre-commit:
+	test -d $@ || git clone git://github.com/jish/pre-commit.git
+	-rm -f $@.gitlog
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: pre-commit
 
 
 junit:
 	test -d $@ || git clone git://github.com/KentBeck/junit.git
-	cd $@ && git pull
+	-rm -f $@.gitlog
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: junit
 
 numpy:
 	test -d $@ || git clone git://github.com/numpy/numpy.git
-	cd $@ && git pull
+	-rm -f $@.gitlog
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: numpy
 
 # Non-members may check out a read-only working copy anonymously over HTTP.
 
-
-
 fedora-mingw:
 	test -d $@ || git clone git://git.annexia.org/git/fedora-mingw.git
-	cd $@ && git pull
+	-rm -f $@.gitlog
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: fedora-mingw
 
 slum:
@@ -93,8 +116,6 @@ unsis:
 	cd $@ && svn update
 .PHONY: unsis
 
-
-
 # http://www.nvda-project.org/attachment/ticket/1221/sconstruct
 nvda:
 	test -d $@ || bzr checkout --lightweight http://bzr.nvaccess.org/nvda/main $@
@@ -104,31 +125,35 @@ nvda:
 
 selenium-grid:
 	test -d $@ || git clone git://github.com/nirvdrum/selenium-grid.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: selenium-grid
 
 mongo:
 	test -d $@ || git clone git://github.com/mongodb/mongo.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: mongo
 
 gitolite:
 	test -d $@ || git clone git://github.com/sitaramc/gitolite.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: gitolite
 
 ndesk-options:
 	test -d $@ || git clone git://git.ndesk.org/pub/scm/ndesk-options
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: ndesk-options
 
+gnus:
+	test -d $@ || git clone http://git.gnus.org/gnus.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: gnus
 
-mono: 
+mono:
 	test -d $@ || git clone git://github.com/mono/mono.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: mono
 
-rst2texinfo: 
+rst2texinfo:
 	test -d $@ || hg clone https://bitbucket.org/jonwaltman/rst2texinfo
 	cd $@ && hg update
 .PHONY: rst2texinfo
@@ -140,12 +165,12 @@ cpython:
 
 gitosis:
 	test -d $@ || git clone git://eagain.net/gitosis.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: gitosis
 
 topology-doc:
 	test -d $@ || git clone git://github.com/mjdominus/topology-doc.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: topology-doc
 
 python:
@@ -162,48 +187,48 @@ sphinx-info:
 
 pyutils:
 	test -d $@ || git clone git://github.com/kashifpk/pyutils.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: pyutils
 
 monomac:
 	test -d $@ || git clone git://github.com/mono/monomac.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: monomac
 
 monodevelop:
 	test -d $@ || git clone git://github.com/mono/monodevelop.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: monodevelop
 
 JSONKit:
 	test -d $@ || git clone git://github.com/fpillet/JSONKit.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: JSONKit
 
 polypkg:
 	test -d $@ || git clone git://github.com/tedjp/polypkg.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: polypkg
 
 clicktoflash:
 	test -d $@ || git clone git://github.com/rentzsch/clicktoflash.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: clicktoflash
 
 hudson:
 	test -d $@ || git clone git://github.com/hudson/hudson.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: hudson
 
 rails:
 	test -d $@ || git clone https://github.com/rails/rails.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: rails
 
 # http://code.google.com/p/chromium/wiki/UsingGit
 jquery:
 	test -d $@ || git clone git://github.com/jquery/jquery.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: jquery
 
 android_tools:
@@ -218,38 +243,38 @@ android_tools:
 # https://git.wiki.kernel.org/index.php/InterfacesFrontendsAndTools
 git-mediawiki:
 	test -d $@ || git clone git://github.com/singpolyma/git-mediawiki.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: git-mediawiki
 
 gparted:
 	test -d $@ || git clone git://git.gnome.org/gparted
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: gparted
 
 wikitest:
 	test -d $@ || git clone git://github.com/peff/wikitest.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: wikitest
 
 timecard:
 	test -d $@ || git clone git://github.com/peff/timecard.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: timecard
 
 mod_auth_openid:
 	test -d $@ || git clone git://github.com/bmuller/mod_auth_openid.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: mod_auth_openid
 
 # http://techbase.kde.org/Getting_Started/Sources/KDE_git-tutorial
 amarok:
 	test -d $@ || git clone git://anongit.kde.org/amarok $@
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: amarok
 
 cmake:
 	test -d $@ || git clone http://wildcodes.com/git/CMake
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: cmake
 
 tinypy:
@@ -290,37 +315,42 @@ bugzilla:
 
 bztools:
 	test -d $@ || git clone git://github.com/LegNeato/bztools.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: bztools
 
-git: 
+git:
 	test -d $@ || git clone git://git.kernel.org/pub/scm/git/git.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: git
 
-git-gui: 
+git-gui:
 	test -d $@ || git clone git://repo.or.cz/git-gui.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: git-gui
 
-gitk: 
+gitk:
 	test -d $@ || git clone git://git.kernel.org/pub/scm/gitk/gitk.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: gitk
 
 pybugz:
 	test -d $@ || git clone git://github.com/williamh/pybugz.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: pybugz
 
 syslinux:
 	test -d $@ || git clone git://git.kernel.org/pub/scm/boot/syslinux/syslinux.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: syslinux
+
+gitflow:
+	test -d $@ || git clone git://github.com/nvie/gitflow.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: gitflow
 
 emacs:
 	test -d $@ || git clone git://git.savannah.gnu.org/emacs.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: emacs
 
 # http://code.google.com/p/gerrit/wiki/Source?tm=4
@@ -331,7 +361,7 @@ gerrit2:
 
 gsl-shell:
 	test -d $@ || git clone git://git.savannah.nongnu.org/gsl-shell.git
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: gsl-shell
 
 # http://code.google.com/p/waf/
@@ -343,7 +373,7 @@ waf:
 .PHONY: waf
 
 # The ns-3 Network Simulator http://nsnam.blogspot.com
-ns-3-dev: 
+ns-3-dev:
 	test -d $@ || hg clone http://code.nsnam.org/ns-3-dev
 	cd $@ && hg update
 .PHONY: ns-3-dev
@@ -373,5 +403,6 @@ chromium/depot_tools:
 
 chromium/src:
 	-git clone http://git.chromium.org/git/chromium.git $@
-	cd $@ && git pull
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: chromium/src
+
