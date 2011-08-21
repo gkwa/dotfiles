@@ -1531,6 +1531,13 @@
 
 
 ;; ------------------------------
+;; bookmarkplus mode
+;; ------------------------------
+;;http://www.emacswiki.org/emacs/BookmarkPlus
+(add-to-list 'load-path "~/.elisp/bookmarkplus")
+(require 'bookmark+)
+
+;; ------------------------------
 ;; shell
 ;; ------------------------------
 
