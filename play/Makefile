@@ -1,4 +1,4 @@
-MAKEFLAGS=-j 10
+MAKEFLAGS=-j 1
 
 gitlog1=git log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m ..origin/master >> ../$@.gitlog
 gitlog2=git log --pretty=tformat:'%h %d %ar %s' --reverse -m ..origin/master >> ../$@.gitlog
@@ -62,6 +62,7 @@ cmake \
 monomac \
 rst2texinfo \
 mod_auth_openid \
+python-graph-read-only \
 ndesk-options \
 selenium-grid
 
@@ -69,6 +70,11 @@ clean:
 	rm -f \
 		*.gitlog
 
+python-graph-read-only:
+	test -d $@ || svn checkout http://python-graph.googlecode.com/svn/trunk/ python-graph-read-only
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: python-graph-read-only
 
 
 pre-commit:
