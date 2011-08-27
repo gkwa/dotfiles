@@ -295,6 +295,13 @@ virtualbox:
 	cd $@ && svn update
 .PHONY: virtualbox
 
+diffmk:
+	test -d $@ || svn co http://diffmk.svn.sourceforge.net/trunk diffmk
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: diffmk
+
+
 nsis:
 	test -d $@ || svn co https://nsis.svn.sourceforge.net/svnroot/nsis/NSIS/trunk nsis \
 		--trust-server-cert --non-interactive
