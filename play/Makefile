@@ -12,7 +12,11 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+go \
+golang-on-cygwin \
+fetchmail \
 pre-commit \
+grc \
 gitflow \
 gnus \
 junit \
@@ -70,12 +74,27 @@ clean:
 	rm -f \
 		*.gitlog
 
+go:
+	test -d $@ || hg clone -u release https://go.googlecode.com/hg/ go
+	cd $@ && hg update
+.PHONY: go
+
+golang-on-cygwin:
+	test -d $@ || hg clone https://golang-on-cygwin.googlecode.com/hg/ golang-on-cygwin
+	cd $@ && hg update
+.PHONY: golang-on-cygwin
+
 python-graph-read-only:
 	test -d $@ || svn checkout http://python-graph.googlecode.com/svn/trunk/ python-graph-read-only
 	cd $@ && svn cleanup
 	cd $@ && svn update
 .PHONY: python-graph-read-only
 
+fetchmail:
+	test -d $@ || git clone git://gitorious.org/fetchmail/fetchmail.git
+	-rm -f $@.gitlog
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: fetchmail
 
 pre-commit:
 	test -d $@ || git clone git://github.com/jish/pre-commit.git
@@ -360,6 +379,12 @@ gitflow:
 	test -d $@ || git clone git://github.com/nvie/gitflow.git
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: gitflow
+
+grc:
+	test -d $@ || git clone git://github.com/leathekd/grc.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: grc
+
 
 emacs:
 	test -d $@ || git clone git://git.savannah.gnu.org/emacs.git
