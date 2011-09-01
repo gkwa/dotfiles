@@ -783,8 +783,8 @@
 ;; easypg
 ;; ------------------------------
 ;; http://www.emacswiki.org/emacs/EasyPG
-(require 'epa-file)
-(epa-file-enable)
+; (require 'epa-file)
+; (epa-file-enable)
 
 ;; ------------------------------
 ;; gpg mode
