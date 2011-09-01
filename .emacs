@@ -39,7 +39,7 @@
 ;; don't ask about killing subprocesses when killing emacs, just kill
 ;; off all children without question
 ;; http://stackoverflow.com/questions/2706527/make-emacs-stop-asking-active-processes-exist-kill-them-and-exit-anyway
-(add-hook 'comint-exec-hook 
+(add-hook 'comint-exec-hook
       (lambda () (process-kill-without-query (get-buffer-process (current-buffer)))))
 
 
@@ -66,7 +66,7 @@
 (add-to-list 'load-path "~/.elisp/psgml-1.2.5")	;; http://www.lysator.liu.se/~lenst/about_psgml/psgml.html
 
 ;; This mode seems too slow and I've not used it's functionality
-;; (autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t) 
+;; (autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t)
 ;; (autoload 'xml-mode "psgml" "Major mode to edit XML files." t)
 
 (setq auto-mode-case-fold t)
@@ -176,8 +176,8 @@
     ;; from the screen height (for panels, menubars and
     ;; whatnot), then divide by the height of a char to
     ;; get the height we want
-    (add-to-list 'default-frame-alist 
-                 (cons 'height (/ (- (x-display-pixel-height) 200) (frame-char-height)))))))
+    (add-to-list 'default-frame-alist
+		 (cons 'height (/ (- (x-display-pixel-height) 200) (frame-char-height)))))))
 
 (set-frame-size-according-to-resolution)
 
@@ -219,8 +219,8 @@
 
 (add-hook 'find-file-hooks 'auto-insert)
 
-(add-hook 'autoinsert-load-hook 
-	  '(lambda () 
+(add-hook 'autoinsert-load-hook
+	  '(lambda ()
 	     (add-to-list 'auto-insert-alist
 			  '(
 			    ;; the following need an interpreter
@@ -242,8 +242,8 @@
 ;; ;; C-c C-n t for sgml mode
 ;; (add-hook 'sgml-mode-hook
 ;; 	  '(lambda () (define-key sgml-mode-map "\C-c\C-nt" 'tidy-buffer-xml )
-;; 	     ;;  	     (define-key texinfo-mode-map "\C-cn"
-;; 	     ;;  	       'forward-paragraph)
+;; 	     ;;	 	     (define-key texinfo-mode-map "\C-cn"
+;; 	     ;;	 	       'forward-paragraph)
 ;; 	     ))
 
 ;; --------------------------------------------------
@@ -262,7 +262,7 @@
 ;; resize man page to take up whole screen
 (setq Man-notify 'bully)
 
-(if (eq system-type 'windows-nt)	
+(if (eq system-type 'windows-nt)
     (progn
       (setq explicit-shell-file-name "c:/cygwin/bin/bash.exe")
 ;;      (add-to-list 'Info-directory-list "c:/cygwin/usr/share/info")
@@ -328,17 +328,17 @@
 	;; local value for the next variable.  Therefore, an expression
 	;; in BINDINGS can reasonably refer to the preceding symbols
 	;; bound in this `let*' form.  Compare the following example
-	;; with the example above for `let'.  
-	
+	;; with the example above for `let'.
+
 	(let* ((prompt (eshell/pwd))
 	       (tmp (string-match "/[^:/\\]*$" prompt)))
-	  (concat 
-	   (substring prompt (+ tmp 1) (length prompt)) 
+	  (concat
+	   (substring prompt (+ tmp 1) (length prompt))
 
 	   ;; Be careful about removing the following concatination!  I
 	   ;; spent an hour trying to figure this one out.  Without
 	   ;; either a hash or $ you will end up with  "Not Found" error
-	   ;; messages in the Eshell window when you do 
+	   ;; messages in the Eshell window when you do
 	   ;; eshell-previous-matching-input-from-input (most likely
 	   ;; bound to M-p.  M-x customize-group <RET> eshell-prompt
 	   ;; will give you more clues about the Eshell Prompt Regexp
@@ -350,20 +350,6 @@
 ;;http://www.emacswiki.org/cgi-bin/wiki/McMahanDotEmacs
 																																																																																																																																																																																																																   ;;; set the term to avoid ansi garbage in shell mode
 					;(setenv "TERM" "emacs")
-
-
-
-
-(require 'breadcrumb)
-
-;; (global-set-key [(shift space)]         'bc-set)            ;; Shift-SPACE for set bookmark
-;; (global-set-key (quote [33554464]) (quote bc-set))          ;; Shift-SPACE for set bookmark
-(global-set-key [(meta j)]              'bc-previous) ;; M-j for jump to previous
-(global-set-key [(shift meta j)]        'bc-next) ;; Shift-M-j for jump to next
-(global-set-key [(meta up)]             'bc-local-previous) ;; M-up-arrow for local previous
-(global-set-key [(meta down)]           'bc-local-next)	;; M-down-arrow for local next
-(global-set-key [(control c)(j)]        'bc-goto-current) ;; C-c j for jump to current bookmark
-(global-set-key [(control x)(meta j)]   'bc-list) ;; C-x M-j for the bookmark menu list
 
 																																																																																																																																																																																																																					;;; Commands added by calc-private-autoloads on Sat Mar 14 15:01:33 2009.
 (autoload 'calc-dispatch	   "calc" "Calculator Options" t)
@@ -416,9 +402,9 @@
 (defun exit-emacs-client ()
   "consistent exit emacsclient.
 																																																																																																																																																																																																																					     if not in emacs client, echo a message in minibuffer, don't exit emacs.
-																																																																																																																																																																																																																					        if in server mode
+																																																																																																																																																																																																																						if in server mode
 																																																																																																																																																																																																																						      and editing file, do C-x # server-edit
-																																																																																																																																																																																																																						            else do C-x 5 0 delete-frame"
+																																																																																																																																																																																																																							    else do C-x 5 0 delete-frame"
   (interactive)
   (if server-buffer-clients
       (server-edit)
@@ -440,7 +426,7 @@
       (progn
 	(back-to-indentation)
 	(setq bor (point))
-	(end-of-line)	
+	(end-of-line)
 	(setq eol (point))
 	(narrow-to-region bor eol)
 	(back-to-indentation)
@@ -466,7 +452,7 @@
 		    )))
 	    (if (looking-at "^ *\\[file://///10.0.2.10/")
 		(progn
-		  (goto-char (- (point-max) 1)) 
+		  (goto-char (- (point-max) 1))
 		  (delete-char 1)
 		  (beginning-of-line) (delete-char 1)
 		  (let ((sp (search-forward " ")))
@@ -502,8 +488,8 @@
       (progn
 	(let ((cp (point)))
 	  (end-of-line)
-	  (let ((fullpath 
-		 (concat 
+	  (let ((fullpath
+		 (concat
 		  (expand-file-name dired-directory)
 		  (buffer-substring cp (point)))))
 	    (message "%s" fullpath)
@@ -520,6 +506,7 @@
  default-major-mode 'org-mode ;; set default mode
  ;; default-major-mode 'emacs-lisp-mode	;; Silly "Fundamental"
  initial-major-mode 'org-mode ;; set default mode
+
  default-fill-column 72
  compilation-scroll-output t ; scroll automatically to follow the output as it comes in.
  enable-recursive-minibuffers t
@@ -527,7 +514,6 @@
  inhibit-startup-message t ;; - http://www.gnu.org/software/emacs/manual/html_node/Init-Examples.html
  column-number-mode t
  display-buffer-reuse-frames t ; http://www.cs.cmu.edu/cgi-bin/info2www?%28emacs%29Select%20Buffer
- bc-bookmark-limit 100
  delete-by-moving-to-trash t
  frame-title-format "emacs - %b"
  diary-file (expand-file-name "~/.diary")
@@ -543,7 +529,6 @@
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
  '(auto-mode-case-fold t)
- '(bc-bookmark-limit 100)
  '(delete-by-moving-to-trash t)
  '(diary-file (expand-file-name "~/.diary") t)
  '(display-time-mode t nil (time))
@@ -576,7 +561,7 @@
 ;; anything-sources, then anything-c-source-recentf will bring up past
 ;; directories.
 (add-hook 'dired-mode-hook
-	  (lambda () 
+	  (lambda ()
 	    (local-set-key "f" (quote find-dired))
 	    (when recentf-mode
 	      (recentf-add-file default-directory))))
@@ -584,6 +569,29 @@
 
 
 (define-key global-map "\C-xj" 'rename-uniquely)
+
+
+;; ;; ------------------------------
+;; ;; breadcrumb
+;; ;; ------------------------------
+;;
+;; use bookmarksplus until I can get the hang of a bookmarks manager and
+;; then consider breadcrumb
+;;
+;; (setq load-path (append (list (expand-file-name "~/.elisp")) load-path))
+;; (require 'breadcrumb)
+;; (custom-set-variables
+;;  '(bc-bookmark-limit 100)
+;; )
+;; (global-set-key (kbd "S-SPC")           'bc-set)            ;; Shift-SPACE for set bookmark
+;; (global-set-key [(meta j)]              'bc-previous)       ;; M-j for jump to previous
+;; (global-set-key [(shift meta j)]        'bc-next)           ;; Shift-M-j for jump to next
+;; ;; doesn't wurk: (global-set-key (kbd "M-J")             'bc-next)           ;; Shift-M-j for jump to next
+;; (global-set-key [(meta up)]             'bc-local-previous) ;; M-up-arrow for local previous
+;; (global-set-key [(meta down)]           'bc-local-next)     ;; M-down-arrow for local next
+;; (global-set-key [(control c)(j)]        'bc-goto-current)   ;; C-c j for jump to current bookmark
+;; (global-set-key [(control x)(meta j)]   'bc-list)           ;; C-x M-j for the bookmark menu list
+
 
 ;; ------------------------------
 ;; perl-mode
@@ -649,7 +657,7 @@
       (autoload 'malabar-mode
 	"malabar-mode" "java in emacs using malabar mode" t)))
 (add-hook 'malabar-mode-hook
-	  (lambda () 
+	  (lambda ()
 	    (add-hook 'after-save-hook 'malabar-compile-file-silently
 		      nil t)))
 
@@ -670,8 +678,8 @@
 	  '(lambda ()
 	     (define-key html-helper-mode-map "\C-c\C-nt"
 	       'tidy-buffer-xhtml)
-	     ;;  	     (define-key texinfo-mode-map "\C-cn"
-	     ;;  	       'forward-paragraph)
+	     ;;	 	     (define-key texinfo-mode-map "\C-cn"
+	     ;;	 	       'forward-paragraph)
 	     )
 	  )
 
@@ -744,9 +752,9 @@
 (add-to-list 'auto-mode-alist '("CONFIG\\." . bat-mode))
 (add-to-list 'auto-mode-alist '("AUTOEXEC\\." . bat-mode))
 
-(add-hook 'bat-mode-hook 
-	  '(lambda () 
-	     (auto-fill-mode 0) 
+(add-hook 'bat-mode-hook
+	  '(lambda ()
+	     (auto-fill-mode 0)
 	     (setq fill-column 72)
 	     ))
 (add-to-list 'auto-insert-alist '((bat-mode . "Bat Mode") . (concat comment-start "-*- bat -*-\n" "@Echo off\n\n\n")))
@@ -794,31 +802,31 @@
 (autoload 'pgg-make-temp-file "pgg" "PGG")
 (autoload 'pgg-gpg-decrypt-region "pgg-gpg" "PGG GnuPG")
 (define-generic-mode 'gpg-file-mode
-  (list ?#) 
+  (list ?#)
   nil nil
   '(".gpg\\'" ".gpg-encrypted\\'")
   (list (lambda ()
 	    (add-hook 'before-save-hook
-                      (lambda () 
-                        (let ((pgg-output-buffer (current-buffer)))
-                          (pgg-gpg-encrypt-region (point-min) (point-max)
-                                                  (list pgg-gpg-user-id))))
-                      nil t)
-	    (add-hook 'after-save-hook 
 		      (lambda ()
-                        (let ((pgg-output-buffer (current-buffer)))
-                          (pgg-gpg-decrypt-region (point-min) (point-max)))
+			(let ((pgg-output-buffer (current-buffer)))
+			  (pgg-gpg-encrypt-region (point-min) (point-max)
+						  (list pgg-gpg-user-id))))
+		      nil t)
+	    (add-hook 'after-save-hook
+		      (lambda ()
+			(let ((pgg-output-buffer (current-buffer)))
+			  (pgg-gpg-decrypt-region (point-min) (point-max)))
 			(set-buffer-modified-p nil)
 			(auto-save-mode nil))
 		      nil t)
-            (let ((pgg-output-buffer (current-buffer)))
-              (pgg-gpg-decrypt-region (point-min) (point-max)))
+	    (let ((pgg-output-buffer (current-buffer)))
+	      (pgg-gpg-decrypt-region (point-min) (point-max)))
 	    (auto-save-mode nil)
 	    (set-buffer-modified-p nil)))
   "Mode for gpg encrypted files")
 
 ;; ------------------------------
-;; dired-x 
+;; dired-x
 ;; ------------------------------
 
 (add-hook 'dired-load-hook
@@ -869,15 +877,16 @@
      anything-c-source-ffap-line
      anything-c-source-ffap-guesser
      ;; anything-c-source-mac-spotlight  ;; I believe this source is causing slowdown, its the one invoking mdfind
-     ;; anything-c-source-occur     
-     ;; anything-c-source-bookmarks
+     ;; anything-c-source-occur
+;;     anything-c-source-firefox-bookmarks causes error if ~/.mozilla/firefox/bookmarks.html doesn't exist
+;;     anything-bookmarks ;; mcausese error
      ;; anything-c-source-bm
      ;; anything-mini
      ;; anything-minibuffer-history
      anything-c-source-kill-ring
 ;;     anything-dired-copy-file
      ;;     anything-c-source-file-name-history
-     anything-c-source-mark-ring 
+     anything-c-source-mark-ring
      ;; anything-c-source-info-pages
      ;; anything-c-source-man-pages
      anything-c-source-buffer-not-found
@@ -886,7 +895,7 @@
      ;; anything-c-source-files-in-all-dired
      anything-c-source-minibuffer-history
      ;; this one causes save-excursion: Marker does not point anywhere error when mark is not set
-     ;; anything-c-source-mark-ring 
+     ;; anything-c-source-mark-ring
      ;; anything-c-source-global-mark-ring causes problems when
      ;; switching back to original buffer.  Its as though save-excursion
      ;; isn't working because upon returning to the buffer, your
@@ -904,7 +913,6 @@
    " *my-anything*"))
 (global-set-key "," (quote my-anything))
 (require 'anything-config)		; loads anything.el too
-
 
 ;; ===========================
 ;; Custom Functions
@@ -946,7 +954,7 @@
       (insert (format "%4d %c\n" i i))))
   (beginning-of-buffer))
 
-;; Function to run Tidy HTML parser on buffer, this requires external app Tidy 
+;; Function to run Tidy HTML parser on buffer, this requires external app Tidy
 (defun tidy-buffer-xhtml ()
   "Run Tidy HTML parser on current buffer."
   (interactive)
@@ -957,7 +965,7 @@
       (shell-command-on-region (point-min) (point-max)
 			       (concat cmd tmp)
 			       t)
-					;(shell-command-on-region (point-min) (point-max) "tidyClean" 
+					;(shell-command-on-region (point-min) (point-max) "tidyClean"
 					;t)
       (find-file-other-window tmp)
       (other-window 1)
@@ -969,7 +977,7 @@
     )
   )
 
-;; Function to run Tidy xml parser on buffer, this requires external app Tidy 
+;; Function to run Tidy xml parser on buffer, this requires external app Tidy
 (defun tidy-buffer-xml ()
   "Run Tidy XML parser on current buffer."
   (interactive)
@@ -992,7 +1000,7 @@
 
 
 																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		     ;;; Convert DOS file format to Unix
-;; look at 
+;; look at
 ;; M-x comint-strip-ctrl-m
 ;;   Command: Strip trailing `^M' characters from the current output group.
 ;; from: elf@ee.ryerson.ca (Luis Fernandes)
@@ -1029,7 +1037,7 @@
 (require 'org-install)
 ;(require 'ob-sh)
 ;;(require 'ob-R)         ;; requires R and ess-mode
-;(require 'ob-perl)      ;; 
+;(require 'ob-perl)      ;;
 ;(require 'ob-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
 ;(require 'ob-python)    ;; requires python, and python-mode
 ;(require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
@@ -1078,7 +1086,7 @@
 (setq org-agenda-custom-commands '(("f" occur-tree "FIXME")))
 
 (add-hook 'org-mode-hook
-	  (lambda () 
+	  (lambda ()
 	    (local-set-key "c" (quote calendar))))
 
 ;; Encrypt all entries before saving
@@ -1136,7 +1144,7 @@
 ;;    (sql . nil)
 ;;    (sqlite . t)))
 
-  
+
 ;; keep "/opt/local/share/info" as the last element of
 ;; Info-default-directory-list because "/opt/local/share/info" has the
 ;; newest stuff
@@ -1145,7 +1153,7 @@
 ;; ------------------------------
 ;; nsis mode
 ;; ------------------------------
-;; wget -P.elisp http://www.emacswiki.org/emacs/download/nsis-mode.el 
+;; wget -P.elisp http://www.emacswiki.org/emacs/download/nsis-mode.el
 ;; (autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
 ;; (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
 ;;                                  nsis-mode)) auto-mode-alist))
@@ -1164,13 +1172,13 @@
 ;; Don't know if it's the best way , but it seemed to work. (Requires emacs >= 20)
 (defun browse-apropos-url (text &optional new-window)
   (interactive (browse-url-interactive-arg "Location: "))
-  (let ((text (replace-regexp-in-string 
-               "^ *\\| *$" "" 
-               (replace-regexp-in-string "[ \t\n]+" " " text))))
-    (let ((url (assoc-default 
-                text apropos-url-alist 
-                '(lambda (a b) (let () (setq __braplast a) (string-match a b)))
-                text)))
+  (let ((text (replace-regexp-in-string
+	       "^ *\\| *$" ""
+	       (replace-regexp-in-string "[ \t\n]+" " " text))))
+    (let ((url (assoc-default
+		text apropos-url-alist
+		'(lambda (a b) (let () (setq __braplast a) (string-match a b)))
+		text)))
       (browse-url (replace-regexp-in-string __braplast url text) new-window))))
 
 
@@ -1180,38 +1188,38 @@
 
 ;; http://www.emacswiki.org/emacs/BrowseAproposURL#toc6
 (setq apropos-url-alist
-      '(("^gw?:? +\\(.*\\)" . ;; Google Web 
-         "http://www.google.com/search?q=\\1")
-        ("^g!:? +\\(.*\\)" . ;; Google Lucky
-         "http://www.google.com/search?btnI=I%27m+Feeling+Lucky&q=\\1")
-        ("^gl:? +\\(.*\\)" .  ;; Google Linux 
-         "http://www.google.com/linux?q=\\1")
-        ("^gi:? +\\(.*\\)" . ;; Google Images
-         "http://images.google.com/images?sa=N&tab=wi&q=\\1")
-        ("^gg:? +\\(.*\\)" . ;; Google Groups
-         "http://groups.google.com/groups?q=\\1")
-        ("^gd:? +\\(.*\\)" . ;; Google Directory
-         "http://www.google.com/search?&sa=N&cat=gwd/Top&tab=gd&q=\\1")
-        ("^gn:? +\\(.*\\)" . ;; Google News
-         "http://news.google.com/news?sa=N&tab=dn&q=\\1")
-        ("^gt:? +\\(\\w+\\)|? *\\(\\w+\\) +\\(\\w+://.*\\)" . ;; Google Translate URL
-         "http://translate.google.com/translate?langpair=\\1|\\2&u=\\3")
-        ("^gt:? +\\(\\w+\\)|? *\\(\\w+\\) +\\(.*\\)" . ;; Google Translate Text
-         "http://translate.google.com/translate_t?langpair=\\1|\\2&text=\\3")
-        ("^/\\.$" . ;; Slashdot 
-         "http://www.slashdot.org")
-        ("^/\\.:? +\\(.*\\)" . ;; Slashdot search
-         "http://www.osdn.com/osdnsearch.pl?site=Slashdot&query=\\1")        
-        ("^fm$" . ;; Freshmeat
-         "http://www.freshmeat.net")
-        ("^ewiki:? +\\(.*\\)" . ;; Emacs Wiki Search
-         "http://www.emacswiki.org/cgi-bin/wiki?search=\\1")
-        ("^ewiki$" . ;; Emacs Wiki 
-         "http://www.emacswiki.org")
-        ("^arda$" . ;; The Encyclopedia of Arda 
-         "http://www.glyphweb.com/arda/")
-        ("^nsis:? +\\(.*\\)" . ;; NSIS docs
-         "http://www.google.com/search?q=site:nsis.sourceforge.net%20\\1")
+      '(("^gw?:? +\\(.*\\)" . ;; Google Web
+	 "http://www.google.com/search?q=\\1")
+	("^g!:? +\\(.*\\)" . ;; Google Lucky
+	 "http://www.google.com/search?btnI=I%27m+Feeling+Lucky&q=\\1")
+	("^gl:? +\\(.*\\)" .  ;; Google Linux
+	 "http://www.google.com/linux?q=\\1")
+	("^gi:? +\\(.*\\)" . ;; Google Images
+	 "http://images.google.com/images?sa=N&tab=wi&q=\\1")
+	("^gg:? +\\(.*\\)" . ;; Google Groups
+	 "http://groups.google.com/groups?q=\\1")
+	("^gd:? +\\(.*\\)" . ;; Google Directory
+	 "http://www.google.com/search?&sa=N&cat=gwd/Top&tab=gd&q=\\1")
+	("^gn:? +\\(.*\\)" . ;; Google News
+	 "http://news.google.com/news?sa=N&tab=dn&q=\\1")
+	("^gt:? +\\(\\w+\\)|? *\\(\\w+\\) +\\(\\w+://.*\\)" . ;; Google Translate URL
+	 "http://translate.google.com/translate?langpair=\\1|\\2&u=\\3")
+	("^gt:? +\\(\\w+\\)|? *\\(\\w+\\) +\\(.*\\)" . ;; Google Translate Text
+	 "http://translate.google.com/translate_t?langpair=\\1|\\2&text=\\3")
+	("^/\\.$" . ;; Slashdot
+	 "http://www.slashdot.org")
+	("^/\\.:? +\\(.*\\)" . ;; Slashdot search
+	 "http://www.osdn.com/osdnsearch.pl?site=Slashdot&query=\\1")
+	("^fm$" . ;; Freshmeat
+	 "http://www.freshmeat.net")
+	("^ewiki:? +\\(.*\\)" . ;; Emacs Wiki Search
+	 "http://www.emacswiki.org/cgi-bin/wiki?search=\\1")
+	("^ewiki$" . ;; Emacs Wiki
+	 "http://www.emacswiki.org")
+	("^arda$" . ;; The Encyclopedia of Arda
+	 "http://www.glyphweb.com/arda/")
+	("^nsis:? +\\(.*\\)" . ;; NSIS docs
+	 "http://www.google.com/search?q=site:nsis.sourceforge.net%20\\1")
 	))
 
 (global-set-key "b" (quote browse-apropos-url-on-region))
@@ -1433,13 +1441,13 @@
 
 ;; IMAP
 (setq elmo-imap4-default-server "imap.gmail.com")
-;; (setq elmo-imap4-default-user "<accountname>@gmail.com") 
-(setq elmo-imap4-default-user "taylor.monacelli@streambox.com") 
-(setq elmo-imap4-default-authenticate-type 'clear) 
+;; (setq elmo-imap4-default-user "<accountname>@gmail.com")
+(setq elmo-imap4-default-user "taylor.monacelli@streambox.com")
+(setq elmo-imap4-default-authenticate-type 'clear)
 (setq elmo-imap4-default-port '993)
 (setq elmo-imap4-default-stream-type 'ssl)
 
-(setq elmo-imap4-use-modified-utf7 t) 
+(setq elmo-imap4-use-modified-utf7 t)
 
 ;; SMTP
 (setq wl-smtp-connection-type 'starttls)
@@ -1454,7 +1462,7 @@
 (setq wl-draft-folder "%[Gmail]/Drafts") ; Gmail IMAP
 (setq wl-trash-folder "%[Gmail]/Trash")
 
-(setq wl-folder-check-async t) 
+(setq wl-folder-check-async t)
 
 (setq elmo-imap4-use-modified-utf7 t)
 
@@ -1479,8 +1487,8 @@
 (require 'cmake-mode)
 (setq auto-mode-alist
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
-                ("\\.cmake\\'" . cmake-mode))
-              auto-mode-alist))
+		("\\.cmake\\'" . cmake-mode))
+	      auto-mode-alist))
 
 ;; ------------------------------
 ;; python-mode
@@ -1511,24 +1519,52 @@
 (defun my-isearch-yank-word-hook ()
   (when (equal this-command 'my-isearch-word-at-point)
     (let ((string (concat "\\<"
-                          (buffer-substring-no-properties
-                           (progn (skip-syntax-backward "w_") (point))
-                           (progn (skip-syntax-forward "w_") (point)))
-                          "\\>")))
+			  (buffer-substring-no-properties
+			   (progn (skip-syntax-backward "w_") (point))
+			   (progn (skip-syntax-forward "w_") (point)))
+			  "\\>")))
       (if (and isearch-case-fold-search
-               (eq 'not-yanks search-upper-case))
-          (setq string (downcase string)))
+	       (eq 'not-yanks search-upper-case))
+	  (setq string (downcase string)))
       (setq isearch-string string
-            isearch-message
-            (concat isearch-message
-                    (mapconcat 'isearch-text-char-description
-                               string ""))
-            isearch-yank-flag t)
+	    isearch-message
+	    (concat isearch-message
+		    (mapconcat 'isearch-text-char-description
+			       string ""))
+	    isearch-yank-flag t)
       (isearch-search-and-update))))
 
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
 (global-set-key "p" (quote my-isearch-word-at-point))
 
+
+;; ------------------------------
+;; desktop sessions
+;; ------------------------------
+; (desktop-save-mode 1)
+
+;; ------------------------------
+;; turn on winner-mode
+;; ------------------------------
+(winner-mode 1)
+
+;; ------------------------------
+;; grc mode
+;; ------------------------------
+;; https://github.com/leathekd/grc
+;; grc aims to be a full featured Google Reader Client for Emacs. It
+;; currently supports many of the common features (reading, marking
+;; read, kept unread, starring, reading comments, etc.) with many others
+;; on the way.
+(add-to-list 'load-path "~/.elisp/grc")
+(require 'grc)
+
+;; ------------------------------
+;; bookmarkplus mode
+;; ------------------------------
+;;http://www.emacswiki.org/emacs/BookmarkPlus
+(add-to-list 'load-path "~/.elisp/bookmarkplus")
+(require 'bookmark+)
 
 ;; ------------------------------
 ;; shell
