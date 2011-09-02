@@ -5,7 +5,14 @@ all: \
 	ls \
 	osx_ed_webapi \
 	sbwww \
-	win_ed_webapi
+	win_ed_webapi \
+	lstmptrash
+
+lstmptrash:
+	test -d $@ || svn co http://vcs.streambox.com/rep/$@ 
+	(cd $@ && svn cleanup)
+	(cd $@ && svn update)
+.PHONY: lstmptrash
 
 dashboard: 
 	test -d $@ || svn co http://vcs.streambox.com/rep/$@ 
