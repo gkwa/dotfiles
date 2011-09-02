@@ -1549,17 +1549,6 @@
 (winner-mode 1)
 
 ;; ------------------------------
-;; grc mode
-;; ------------------------------
-;; https://github.com/leathekd/grc
-;; grc aims to be a full featured Google Reader Client for Emacs. It
-;; currently supports many of the common features (reading, marking
-;; read, kept unread, starring, reading comments, etc.) with many others
-;; on the way.
-(add-to-list 'load-path "~/.elisp/grc")
-(require 'grc)
-
-;; ------------------------------
 ;; bookmarkplus mode
 ;; ------------------------------
 ;;http://www.emacswiki.org/emacs/BookmarkPlus
