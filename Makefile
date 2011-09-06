@@ -4,12 +4,15 @@ uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
 
 ifeq ($(uname_S),Darwin)
 
+EMACS=/Applications/MacPorts/Emacs.app/Contents/MacOS/Emacsa
+
 all: \
 emacs \
 update \
 pu
-
 else
+
+EMACS=/cygdrive/c/Program\\ Files/emacs-23.3/bin/emacs.exe
 
 all: \
 emacs \
@@ -38,7 +41,7 @@ compile:
 	$(emacs)
 
 # ports update
-pu: 
+pu:
 	sudo port selfupdate
 	sudo port sync
 	sudo port upgrade outdated
@@ -84,11 +87,11 @@ upload:
 	du -sh /tmp/o.zip
 	rsync -vaz --progress /tmp/o.zip boxstream@69.90.235.86:/c/apache/htdocs
 
-
 emacs = \
 	(cd ~/.elisp/org-mode; \
-		$(MAKE) EMACS=/Applications/MacPorts/Emacs.app/Contents/MacOS/Emacs; \
-		$(MAKE) EMACS=/Applications/MacPorts/Emacs.app/Contents/MacOS/Emacs all;)
+		$(MAKE) EMACS="$(EMACS)"; \
+		$(MAKE) EMACS="$(EMACS)" all;)
+
 
 clean_org_mode = \
 	(cd ~/.elisp/org-mode; $(MAKE) clean)
