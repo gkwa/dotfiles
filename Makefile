@@ -80,9 +80,10 @@ zip:/tmp/o.zip
 	du -sh /tmp/o.zip
 .PHONY: /tmp/o.zip
 
-upload:
-	du -sh /tmp/o.zip
+upload: /tmp/o.zip
 	rsync -vaz --progress /tmp/o.zip boxstream@69.90.235.86:/c/apache/htdocs
+	rsync -vaz --progress /tmp/o.zip /Volumes/taylor.monacelli
+	du -sh /tmp/o.zip
 
 
 emacs = \

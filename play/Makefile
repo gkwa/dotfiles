@@ -12,6 +12,8 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+kBuild \
+node \
 go \
 golang-on-cygwin \
 fetchmail \
@@ -67,8 +69,11 @@ monomac \
 rst2texinfo \
 mod_auth_openid \
 python-graph-read-only \
+mozilla-1.9.git \
 ndesk-options \
 selenium-grid
+
+
 
 clean:
 	rm -f \
@@ -78,6 +83,17 @@ go:
 	test -d $@ || hg clone -u release https://go.googlecode.com/hg/ go
 	cd $@ && hg update
 .PHONY: go
+
+
+
+
+
+mozilla-1.9.git:
+	test -d $@ || git clone git://repo.or.cz/mozilla-1.9.git
+	-rm -f $@.gitlog
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: mozilla-1.9.git
+
 
 golang-on-cygwin:
 	test -d $@ || hg clone https://golang-on-cygwin.googlecode.com/hg/ golang-on-cygwin
@@ -122,6 +138,13 @@ fedora-mingw:
 	-rm -f $@.gitlog
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: fedora-mingw
+
+kBuild:
+# possibly newer version are listed here http://svn.netlabs.org/kbuild/wiki/Download
+	test -d $@ || svn co http://svn.netlabs.org/repos/kbuild/tags/kBuild-0.1.5-p2 $@
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: kBuild
 
 slum:
 	test -d $@ || svn checkout http://slum.googlecode.com/svn/trunk $@
@@ -351,9 +374,15 @@ bztools:
 .PHONY: bztools
 
 git:
-	test -d $@ || git clone git://git.kernel.org/pub/scm/git/git.git
+	test -d $@ || git clone git://github.com/git/git.git
+	(cd git; git config remote.origin.url git://git.kernel.org/pub/scm/git/git.git)
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: git
+
+node:
+	test -d $@ || git clone git://github.com/joyent/node.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: node
 
 git-gui:
 	test -d $@ || git clone git://repo.or.cz/git-gui.git

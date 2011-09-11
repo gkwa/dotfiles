@@ -170,7 +170,7 @@
     ;; and smaller 80 column windows for smaller displays
     ;; pick whatever numbers make sense for you
     (if (> (x-display-pixel-width) 1280)
-        (add-to-list 'default-frame-alist (cons 'width 120))
+	(add-to-list 'default-frame-alist (cons 'width 120))
       (add-to-list 'default-frame-alist (cons 'width 80)))
     ;; for the height, subtract a couple hundred pixels
     ;; from the screen height (for panels, menubars and
@@ -871,6 +871,8 @@
    '(
      ;; anything-isearch???
      anything-c-source-buffers
+     anything-c-source-bookmarks
+     anything-c-source-mac-spotlight
      anything-c-source-files-in-current-dir
      anything-c-source-recentf
      anything-for-files-prefered-list
