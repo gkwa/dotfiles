@@ -873,6 +873,7 @@
      anything-c-source-buffers
      anything-c-source-bookmarks
      anything-c-source-mac-spotlight
+     anything-c-source-locate
      anything-c-source-files-in-current-dir
      anything-c-source-recentf
      anything-for-files-prefered-list
