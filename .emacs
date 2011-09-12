@@ -849,22 +849,6 @@
 ;; ------------------------------
 (add-to-list 'load-path "~/.elisp/anything-config")
 
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
- '(anything-c-use-standard-keys nil)
- '(anything-c-yas-display-key-on-candidate t)
- '(anything-candidate-number-limit 30 t)
- '(anything-dired-bindings 1 t)
- '(anything-etags-enable-tag-file-dir-cache t)
- '(anything-idle-delay 0 t)
- '(anything-quick-update t t)
- '(anything-samewindow t t)
-)
-
 (defun my-anything ()
   (interactive)
   (anything-other-buffer
@@ -916,6 +900,17 @@
    " *my-anything*"))
 (global-set-key "," (quote my-anything))
 (require 'anything-config)		; loads anything.el too
+
+(setq anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
+(setq anything-c-use-standard-keys nil)
+(setq anything-c-yas-display-key-on-candidate t)
+(setq anything-candidate-number-limit 30)
+(setq anything-dired-bindings 1)
+(setq anything-etags-enable-tag-file-dir-cache t)
+(setq anything-idle-delay 0.1)
+(setq anything-input-idle-delay 0.1)
+(setq anything-quick-update t)
+(setq anything-samewindow t)
 
 ;; ===========================
 ;; Custom Functions
