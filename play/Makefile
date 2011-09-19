@@ -12,6 +12,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+emacs-tiny-tools \
 kBuild \
 node \
 go \
@@ -69,6 +70,7 @@ monomac \
 rst2texinfo \
 mod_auth_openid \
 python-graph-read-only \
+gitster \
 mozilla-1.9.git \
 ndesk-options \
 selenium-grid
@@ -84,15 +86,25 @@ go:
 	cd $@ && hg update
 .PHONY: go
 
+# junio's repo
+# https://mail.google.com/mail/?account_id=taylor.monacelli@streambox.com&shva=1#search/from%3Ajunio+github/1325c4d77836ead8
+gitster:
+	test -d $@ || git clone git://github.com/gitster/git.git $@
+	-rm -f $@.gitlog
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: gitster
 
+emacs-tiny-tools:
+	test -d $@ || git clone git://git.savannah.nongnu.org/emacs-tiny-tools.git
+	-rm -f $@.gitlog
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: emacs-tiny-tools
 
-
-
-mozilla-1.9.git:
+mozilla-1.9:
 	test -d $@ || git clone git://repo.or.cz/mozilla-1.9.git
 	-rm -f $@.gitlog
 	(cd $@ && git fetch && $(gitlog) && git pull)
-.PHONY: mozilla-1.9.git
+.PHONY: mozilla-1.9
 
 
 golang-on-cygwin:
