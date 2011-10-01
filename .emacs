@@ -251,7 +251,8 @@
 ;; global key sets
 
 
-(global-set-key "j" (quote rename-uniquely))
+
+(global-set-key (kbd "C-c j") 'rename-uniquely)
 
 
 ;; C-c i calls insert-date-string
