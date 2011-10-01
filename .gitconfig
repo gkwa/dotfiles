@@ -86,3 +86,6 @@ viewer = woman
 	ui = false
 [web]
 	browser = firefox
+[log]
+# from: git config --global log.abbrevCommit 7
+	abbrevCommit = 7
