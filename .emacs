@@ -251,7 +251,8 @@
 ;; global key sets
 
 
-(global-set-key "j" (quote rename-uniquely))
+
+(global-set-key (kbd "C-c j") 'rename-uniquely)
 
 
 ;; C-c i calls insert-date-string
@@ -857,8 +858,10 @@
      ;; anything-isearch???
      anything-c-source-buffers
      anything-c-source-bookmarks
-     anything-c-source-mac-spotlight
-     anything-c-source-locate
+;; it seems that anything mode is just too slow when using
+;; anything-c-source-mac-spotlight and anything-c-source-locate
+;     anything-c-source-mac-spotlight
+;     anything-c-source-locate
      anything-c-source-files-in-current-dir
      anything-c-source-recentf
      anything-for-files-prefered-list
