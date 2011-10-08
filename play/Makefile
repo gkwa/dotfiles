@@ -76,10 +76,12 @@ ndesk-options \
 selenium-grid
 
 
+git:
+	test -d $@ || git clone git://github.com/git/git.git
+	(cd git; git config remote.origin.url git://github.com/git/git.git)
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: git
 
-clean:
-	rm -f \
-		*.gitlog
 
 go:
 	test -d $@ || hg clone -u release https://go.googlecode.com/hg/ go
@@ -385,12 +387,6 @@ bztools:
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: bztools
 
-git:
-	test -d $@ || git clone git://github.com/git/git.git
-	(cd git; git config remote.origin.url git://git.kernel.org/pub/scm/git/git.git)
-	(cd $@ && git fetch && $(gitlog) && git pull)
-.PHONY: git
-
 node:
 	test -d $@ || git clone git://github.com/joyent/node.git
 	(cd $@ && git fetch && $(gitlog) && git pull)
@@ -485,3 +481,11 @@ chromium/src:
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: chromium/src
 
+
+# ##################################################
+# cleanup
+# ##################################################
+
+clean:
+	rm -f \
+		*.gitlog
