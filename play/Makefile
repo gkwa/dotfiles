@@ -12,6 +12,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+pfsense \
 emacs-tiny-tools \
 kBuild \
 node \
@@ -75,6 +76,12 @@ mozilla-1.9.git \
 ndesk-options \
 selenium-grid
 
+
+pfsense:
+# http://devwiki.pfsense.org/GitWorkflow
+	test -d $@ || git clone git://github.com/bsdperimeter/pfsense.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: pfsense
 
 git:
 	test -d $@ || git clone git://github.com/git/git.git
