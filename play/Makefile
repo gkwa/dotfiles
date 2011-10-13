@@ -12,6 +12,8 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+git_osx_installer \
+bash-completion \
 pfsense \
 emacs-tiny-tools \
 kBuild \
@@ -76,6 +78,15 @@ mozilla-1.9.git \
 ndesk-options \
 selenium-grid
 
+git_osx_installer:
+	test -d $@ || git clone git://github.com/timcharper/git_osx_installer.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: git_osx_installer
+
+bash-completion:
+	test -d $@ || git clone git://git.debian.org/git/bash-completion/bash-completion.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: bash-completion
 
 pfsense:
 # http://devwiki.pfsense.org/GitWorkflow
