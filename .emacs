@@ -252,7 +252,7 @@
 
 
 
-(global-set-key (kbd "C-c j") 'rename-uniquely)
+
 
 
 ;; C-c i calls insert-date-string
@@ -570,8 +570,8 @@
 
 
 
-(define-key global-map "\C-xj" 'rename-uniquely)
-
+;(define-key global-map "\C-xj" 'rename-uniquely)
+(global-set-key (kbd "C-c j") 'rename-uniquely)
 
 ;; ;; ------------------------------
 ;; ;; breadcrumb
