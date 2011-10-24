@@ -113,10 +113,10 @@
 source ~/.alias
 
 hs()
-{ 
+{
     if test ! -z "$1"; then
-        # if first arg is number, then tail -number
-	if test $(expr "$1" : "[0-9]*$") -gt 0; then 
+	# if first arg is number, then tail -number
+	if test $(expr "$1" : "[0-9]*$") -gt 0; then
 	    history | tail -$1 | \
 		sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,' | \
 		grep -v "hs $1";
@@ -126,14 +126,14 @@ hs()
 		grep -i "$1" | grep -v "hs $1";
 	fi;
     else
-	history | sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,' 
+	history | sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,'
     fi;
 }
 
 gitOrderBranchByDate()
 {
     git status 2>&1 | grep "fatal" && return 1
-    for k in `git branch -a|grep -v "no branch"|sed -e 's,^..,,;s,.* ->.*,,';`; do 
+    for k in `git branch -a|grep -v "no branch"|sed -e 's,^..,,;s,.* ->.*,,';`; do
 	echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k|head -n 1`\\t$k;
     done|sort -r
 }
@@ -151,27 +151,31 @@ installerv()
 
 
 
-case "$(uname)" in 
+case "$(uname)" in
     "CYGWIN")
 	export PATH="/cygdrive/c/cygwin/bin:$PATH"
 	;;
     "Darwin")
-	JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
+	export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
+
+	export PATH=/Applications/MacPorts/Emacs.app/Contents/MacOS/bin:$PATH # for emacsclient
 	export PATH=/Applications/MacPorts/Emacs.app/Contents/MacOS:$PATH
 	export PATH=/Applications/p4merge.app/Contents/MacOS:$PATH
 	export PATH=/usr/local/bin:$PATH
 	export PATH=/opt/local/sbin:$PATH
 	export PATH=/opt/local/bin:$PATH
-	export JAVA_HOME
+	export PATH=$PATH:/Developer/usr/bin
+	# for plistbuddy:
+	export PATH=$PATH:/usr/libexec
 # gitk complains "Application initialization failed: couldn't connect to
 # display ":0.0"" on osx, commented out
 #	export DISPLAY=:0.0
 
-	# 
+	#
 	function rdp() { open ~/pdev/rdp-connect/$1.rdp; }
 
 	# installer functions
-	imgmountpoint() { 
+	imgmountpoint() {
 	    # echo disktuil eject \
 	    # 	$(hdid -plist $1 | grep dev-entry -A1 | \
 	    # 	grep string | cut -d\> -f2 | cut -d\< -f1 | \
@@ -180,21 +184,27 @@ case "$(uname)" in
 	    hdid -plist $1 | grep mount-point -A1 | \
 		grep string | cut -d\> -f2 | cut -d\< -f1;
 	}
-	myumount2() { 
-	    diskutil eject "$(imgmountpoint $1)"; 
-	    
+	myumount2() {
+	    diskutil eject "$(imgmountpoint $1)";
+
 	}
-	myinstall() { 
-#	    set -x; 
-	    hdid $1; 
-	    pushd "$(imgmountpoint $1)"; 
-	    sudo installer -pkg "$(ls -1 | grep -i pkg | head -1)" -target /; 
-	    popd; 
+	myinstall() {
+#	    set -x;
+	    hdid $1;
+	    pushd "$(imgmountpoint $1)";
+	    sudo installer -pkg "$(ls -1 | grep -i pkg | head -1)" -target /;
+	    popd;
 	    echo sleeping for 4 secs to allow stuff to catchup
-	    sleep 4; 
-	    myumount2 "$1"; 
+	    sleep 4;
+	    myumount2 "$1";
 	}
-        # usage: myinstall LiveEncoder_1.03_intel_NTSC_Internal.dmg
+
+	# http://www.saltycrane.com/blog/2008/05/how-to-paste-in-cygwin-bash-using-ctrl/
+	# Add the following line to your ~/.bashrc:
+	stty lnext ^q stop undef start undef
+	# And add the following line to your ~/.inputrc:
+	# "\C-v": paste-from-clipboard
+	# stty lnext ^q stop undef start undef
 
 	;;
     "Linux")
@@ -234,7 +244,7 @@ function bitgrepupdate()
 }
 
 
-genpasswd() 
+genpasswd()
 {
     # from here: http://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html
     local l=$1
@@ -250,7 +260,7 @@ genpasswd()
 pack(){ find . -iname "*.packproj"; }
 packo() { pack | sed -e 's,^,open ,'; }
 dmg(){ find . -iname "*.dmg"; }
-    
+
 # http://www.delorie.com/gnu/docs/emacs/emacs_444.html
 PS1="\u@\h \W$ "
 PS1="[\d \t \u@\h:\w ]$ "
@@ -264,3 +274,7 @@ PS1="[\u@\h:\w\$(parse_git_branch)]$ "
 # And add the following line to your ~/.inputrc:
 # "\C-v": paste-from-clipboard
 # stty lnext ^q stop undef start undef
+
+
+
+export ALTERNATE_EDITOR=””

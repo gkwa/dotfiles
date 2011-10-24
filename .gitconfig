@@ -89,3 +89,7 @@ viewer = woman
 [log]
 # from: git config --global log.abbrevCommit 7
 	abbrevCommit = 7
+[diff]
+	color = true
+[rerere]
+	enabled = 1

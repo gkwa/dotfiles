@@ -12,6 +12,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+mplayer-build \
 git_osx_installer \
 bash-completion \
 pfsense \
@@ -131,6 +132,14 @@ golang-on-cygwin:
 	test -d $@ || hg clone https://golang-on-cygwin.googlecode.com/hg/ golang-on-cygwin
 	cd $@ && hg update
 .PHONY: golang-on-cygwin
+
+# http://repo.or.cz/w/mplayer-build.git
+mplayer-build:
+	test -d $@ || git clone git://repo.or.cz/mplayer-build.git
+	-rm -f $@.gitlog
+	(cd $@ && git fetch && $(gitlog) && git pull)
+	(cd $@ && git sub update --init --recursive)
+.PHONY: mplayer
 
 python-graph-read-only:
 	test -d $@ || svn checkout http://python-graph.googlecode.com/svn/trunk/ python-graph-read-only
