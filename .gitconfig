@@ -77,6 +77,7 @@ viewer = woman
  ss = submodule summary
  sf = submodule foreach 
  sfr = submodule foreach --recursive
+ sfu = submodule update --init --recursive
  mb = merge-base
  # fetch remote tracking branches
  frtb = fetch origin refs/heads/*:refs/remotes/origin/*

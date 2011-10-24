@@ -4,13 +4,13 @@ uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
 
 ##############################
 ifeq ($(uname_S),Darwin)
-all: emacs update ports
+all: upgrade emacs ports
 clean:
 	sudo rm -rf ~/.local/share/Trash/files/* ~/.Trash/*
 	$(clean_org_mode)
 
 else
-all: emacs update
+all: upgrade emacs
 clean:
 	$(clean_org_mode)
 endif
@@ -21,9 +21,9 @@ emacs:
 .PHONY: emacs
 
 ##############################
-update:
+subupdate:
 	git submodule update --init --recursive
-.PHONY: update
+.PHONY: subupdate
 
 ##############################
 upgrade:
@@ -41,13 +41,13 @@ compile:
 
 ##############################
 # ports update
-ports: 
+ports:
 	sudo port selfupdate
 	sudo port sync
 	sudo port upgrade outdated
 
 ##############################
-zip:/tmp/o.zip
+zip: /tmp/o.zip
 /tmp/o.zip:
 	rm -rf \
 		/tmp/o \
@@ -72,7 +72,9 @@ zip:/tmp/o.zip
 		find .elisp \( -name '.git' -o -iname "*.pyc" -o -iname "*.elc" \) -prune -o -print ;} \
 		| cpio -pamvd /tmp/o;)
 #	7za a /tmp/o.zip /tmp/o
-	(cd /tmp/o; 7za a -tzip /tmp/o.zip .)
+# macports 7za is broken (for me right now, switching to zip)
+#	(cd /tmp/o; 7za a -tzip /tmp/o.zip .)
+	(cd /tmp/o; zip -9r /tmp/o.zip .)
 	du -sh /tmp/o.zip
 .PHONY: /tmp/o.zip
 
