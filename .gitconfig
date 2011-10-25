@@ -77,6 +77,7 @@ viewer = woman
  ss = submodule summary
  sf = submodule foreach 
  sfr = submodule foreach --recursive
+ sfu = submodule update --init --recursive
  mb = merge-base
  # fetch remote tracking branches
  frtb = fetch origin refs/heads/*:refs/remotes/origin/*
@@ -86,3 +87,10 @@ viewer = woman
 	ui = false
 [web]
 	browser = firefox
+[log]
+# from: git config --global log.abbrevCommit 7
+	abbrevCommit = 7
+[diff]
+	color = true
+[rerere]
+	enabled = 1

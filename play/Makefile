@@ -12,6 +12,13 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+mplayer-build \
+git_osx_installer \
+bash-completion \
+pfsense \
+emacs-tiny-tools \
+kBuild \
+node \
 go \
 golang-on-cygwin \
 fetchmail \
@@ -67,22 +74,72 @@ monomac \
 rst2texinfo \
 mod_auth_openid \
 python-graph-read-only \
+gitster \
+mozilla-1.9.git \
 ndesk-options \
 selenium-grid
 
-clean:
-	rm -f \
-		*.gitlog
+git_osx_installer:
+	test -d $@ || git clone git://github.com/timcharper/git_osx_installer.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: git_osx_installer
+
+bash-completion:
+	test -d $@ || git clone git://git.debian.org/git/bash-completion/bash-completion.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: bash-completion
+
+pfsense:
+# http://devwiki.pfsense.org/GitWorkflow
+	test -d $@ || git clone git://github.com/bsdperimeter/pfsense.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: pfsense
+
+git:
+	test -d $@ || git clone git://github.com/git/git.git
+	(cd git; git config remote.origin.url git://github.com/git/git.git)
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: git
+
 
 go:
 	test -d $@ || hg clone -u release https://go.googlecode.com/hg/ go
 	cd $@ && hg update
 .PHONY: go
 
+# junio's repo
+# https://mail.google.com/mail/?account_id=taylor.monacelli@streambox.com&shva=1#search/from%3Ajunio+github/1325c4d77836ead8
+gitster:
+	test -d $@ || git clone git://github.com/gitster/git.git $@
+	-rm -f $@.gitlog
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: gitster
+
+emacs-tiny-tools:
+	test -d $@ || git clone git://git.savannah.nongnu.org/emacs-tiny-tools.git
+	-rm -f $@.gitlog
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: emacs-tiny-tools
+
+mozilla-1.9:
+	test -d $@ || git clone git://repo.or.cz/mozilla-1.9.git
+	-rm -f $@.gitlog
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: mozilla-1.9
+
+
 golang-on-cygwin:
 	test -d $@ || hg clone https://golang-on-cygwin.googlecode.com/hg/ golang-on-cygwin
 	cd $@ && hg update
 .PHONY: golang-on-cygwin
+
+# http://repo.or.cz/w/mplayer-build.git
+mplayer-build:
+	test -d $@ || git clone git://repo.or.cz/mplayer-build.git
+	-rm -f $@.gitlog
+	(cd $@ && git fetch && $(gitlog) && git pull)
+	(cd $@ && git sub update --init --recursive)
+.PHONY: mplayer
 
 python-graph-read-only:
 	test -d $@ || svn checkout http://python-graph.googlecode.com/svn/trunk/ python-graph-read-only
@@ -122,6 +179,13 @@ fedora-mingw:
 	-rm -f $@.gitlog
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: fedora-mingw
+
+kBuild:
+# possibly newer version are listed here http://svn.netlabs.org/kbuild/wiki/Download
+	test -d $@ || svn co http://svn.netlabs.org/repos/kbuild/tags/kBuild-0.1.5-p2 $@
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: kBuild
 
 slum:
 	test -d $@ || svn checkout http://slum.googlecode.com/svn/trunk $@
@@ -350,10 +414,10 @@ bztools:
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: bztools
 
-git:
-	test -d $@ || git clone git://git.kernel.org/pub/scm/git/git.git
+node:
+	test -d $@ || git clone git://github.com/joyent/node.git
 	(cd $@ && git fetch && $(gitlog) && git pull)
-.PHONY: git
+.PHONY: node
 
 git-gui:
 	test -d $@ || git clone git://repo.or.cz/git-gui.git
@@ -444,3 +508,11 @@ chromium/src:
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: chromium/src
 
+
+# ##################################################
+# cleanup
+# ##################################################
+
+clean:
+	rm -f \
+		*.gitlog

@@ -170,7 +170,7 @@
     ;; and smaller 80 column windows for smaller displays
     ;; pick whatever numbers make sense for you
     (if (> (x-display-pixel-width) 1280)
-        (add-to-list 'default-frame-alist (cons 'width 120))
+	(add-to-list 'default-frame-alist (cons 'width 120))
       (add-to-list 'default-frame-alist (cons 'width 80)))
     ;; for the height, subtract a couple hundred pixels
     ;; from the screen height (for panels, menubars and
@@ -251,7 +251,8 @@
 ;; global key sets
 
 
-(global-set-key "j" (quote rename-uniquely))
+
+
 
 
 ;; C-c i calls insert-date-string
@@ -261,6 +262,7 @@
 
 ;; resize man page to take up whole screen
 (setq Man-notify 'bully)
+
 
 (if (eq system-type 'windows-nt)
     (progn
@@ -568,8 +570,8 @@
 
 
 
-(define-key global-map "\C-xj" 'rename-uniquely)
-
+;(define-key global-map "\C-xj" 'rename-uniquely)
+(global-set-key (kbd "C-c j") 'rename-uniquely)
 
 ;; ;; ------------------------------
 ;; ;; breadcrumb
@@ -849,28 +851,17 @@
 ;; ------------------------------
 (add-to-list 'load-path "~/.elisp/anything-config")
 
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
- '(anything-c-use-standard-keys nil)
- '(anything-c-yas-display-key-on-candidate t)
- '(anything-candidate-number-limit 30 t)
- '(anything-dired-bindings 1 t)
- '(anything-etags-enable-tag-file-dir-cache t)
- '(anything-idle-delay 0 t)
- '(anything-quick-update t t)
- '(anything-samewindow t t)
-)
-
 (defun my-anything ()
   (interactive)
   (anything-other-buffer
    '(
      ;; anything-isearch???
      anything-c-source-buffers
+     anything-c-source-bookmarks
+;; it seems that anything mode is just too slow when using
+;; anything-c-source-mac-spotlight and anything-c-source-locate
+;     anything-c-source-mac-spotlight
+;     anything-c-source-locate
      anything-c-source-files-in-current-dir
      anything-c-source-recentf
      anything-for-files-prefered-list
@@ -913,6 +904,17 @@
    " *my-anything*"))
 (global-set-key "," (quote my-anything))
 (require 'anything-config)		; loads anything.el too
+
+(setq anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
+(setq anything-c-use-standard-keys nil)
+(setq anything-c-yas-display-key-on-candidate t)
+(setq anything-candidate-number-limit 30)
+(setq anything-dired-bindings 1)
+(setq anything-etags-enable-tag-file-dir-cache t)
+(setq anything-idle-delay 0.1)
+(setq anything-input-idle-delay 0.1)
+(setq anything-quick-update t)
+(setq anything-samewindow t)
 
 ;; ===========================
 ;; Custom Functions
@@ -1556,7 +1558,12 @@
 (require 'bookmark+)
 
 ;; ------------------------------
+;; psvn.el
+;; ------------------------------
+; (require 'psvn)
+
+
+;; ------------------------------
 ;; shell
 ;; ------------------------------
-
 (shell)
