@@ -16,7 +16,7 @@
 ####################################################################################################
 
 
-MAKEFLAGS=-j 1
+MAKEFLAGS=-j 10
 
 gitlog1=git log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m ..origin/master >> ../$@.gitlog
 gitlog2=git log --pretty=tformat:'%h %d %ar %s' --reverse -m ..origin/master >> ../$@.gitlog
@@ -93,8 +93,16 @@ mod_auth_openid \
 python-graph-read-only \
 gitster \
 mozilla-1.9.git \
+keepassx \
 ndesk-options \
 selenium-grid
+
+keepassx:
+	test -d $@ || svn --trust-server-cert checkout https://keepassx.svn.sourceforge.net/svnroot/keepassx keepassx
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: keepassx
+
 
 git_osx_installer:
 	test -d $@ || git clone git://github.com/timcharper/git_osx_installer.git
