@@ -82,6 +82,7 @@ pybugz \
 syslinux \
 dvc \
 gerrit2 \
+gerrit \
 emacs \
 gsl-shell \
 ns-3-dev \
@@ -103,6 +104,10 @@ keepassx:
 	cd $@ && svn update
 .PHONY: keepassx
 
+gerrit:
+	test -d $@ || git clone https://code.google.com/p/gerrit gerrit
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: gerrit
 
 git_osx_installer:
 	test -d $@ || git clone git://github.com/timcharper/git_osx_installer.git

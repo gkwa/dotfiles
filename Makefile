@@ -49,7 +49,7 @@ compile:
 # ports update
 ports:
 	sudo port selfupdate
-	sudo port sync
+	sudo port -v sync
 	sudo port upgrade outdated
 
 ##############################
