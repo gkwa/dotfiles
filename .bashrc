@@ -278,3 +278,20 @@ PS1="[\u@\h:\w\$(parse_git_branch)]$ "
 
 
 export ALTERNATE_EDITOR=””
+
+
+
+
+function drop()
+{
+    if test ! -z "$1"; then
+	find ~/Dropbox/Public | \
+	    grep -iE "$1" | \
+	    sed -e \
+	    's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g'
+    else
+	find ~/Dropbox/Public | \
+	    sed -e \
+	    's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g'
+    fi;
+}
