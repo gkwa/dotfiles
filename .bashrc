@@ -172,7 +172,7 @@ case "$(uname)" in
 #	export DISPLAY=:0.0
 
 	#
-	function rdp() { open ~/pdev/rdp-connect/$1.rdp; }
+	function rdp() { find ~/Documents/RDC\ Connections -iname "*rdp*" | grep -i "$1" | sed -e 's,^,open ",;s,$,",'; }
 
 	# installer functions
 	imgmountpoint() {

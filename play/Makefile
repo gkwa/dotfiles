@@ -96,7 +96,32 @@ gitster \
 mozilla-1.9.git \
 keepassx \
 ndesk-options \
-selenium-grid
+selenium-grid \
+php-src \
+php-src-5.2 \
+php-src-trunk
+
+
+# git mirror of php source from svn
+php-src:
+	test -d $@ || git clone git://github.com/php/php-src.git
+	cd $@ && git config remote.origin.url git://github.com/php/php-src.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: git
+
+# http://www.php.net/svn.php
+php-src-5.2:
+	test -d $@ || svn checkout https://svn.php.net/repository/php/php-src/branches/PHP_5_2 $@
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: php-src-5.2
+
+# http://www.php.net/svn.php
+php-src-trunk:
+	test -d $@ || svn checkout https://svn.php.net/repository/php/php-src/trunk php-src-trunk
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: php-src-trunk
 
 keepassx:
 	test -d $@ || svn --trust-server-cert checkout https://keepassx.svn.sourceforge.net/svnroot/keepassx keepassx
