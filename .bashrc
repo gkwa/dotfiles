@@ -172,6 +172,30 @@ case "$(uname)" in
 #	export DISPLAY=:0.0
 
 	#
+
+	function locate()
+	{
+	    /opt/local/libexec/gnubin/locate \
+		--database=$HOME/Documents/locate.updatedb.readynas \
+		"$@" | sed -e 's,^/c,/Volumes,'
+	}
+
+	function gn()
+	{
+	    grep -i "$1" ~/notes.txt
+	}
+
+	function bitgrepupdate()
+	{
+	    cd ~/pdev/production-find-ls && git pull
+	    test -f /Volumes/Production/Streambox/find-ls.txt && \
+		cp /Volumes/Production/Streambox/find-ls.txt \
+		~/pdev/production-find-ls && \
+		dos2unix find-ls.txt && \
+		cd ~/pdev/production-find-ls && git commit -am bitgrepupdate && \
+		git push && git show
+	}
+
 	function rdp() { find ~/Documents/RDC\ Connections -iname "*rdp*" | grep -i "$1" | sed -e 's,^,open ",;s,$,",'; }
 
 	# installer functions
@@ -232,16 +256,6 @@ function bitgrep()
 
 }
 
-function bitgrepupdate()
-{
-    cd ~/pdev/production-find-ls && git pull
-    test -f /Volumes/Production/Streambox/find-ls.txt && \
-	cp /Volumes/Production/Streambox/find-ls.txt \
-	~/pdev/production-find-ls && \
-	dos2unix find-ls.txt && \
-	cd ~/pdev/production-find-ls && git commit -am bitgrepupdate && \
-	git push && git show
-}
 
 
 genpasswd()
