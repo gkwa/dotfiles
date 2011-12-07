@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+python-bugzilla \
 mplayer-build \
 git_osx_installer \
 bash-completion \
@@ -101,6 +102,11 @@ php-src \
 php-src-5.2 \
 php-src-trunk
 
+python-bugzilla:
+	test -d $@ || git clone git://git.fedorahosted.org/git/python-bugzilla
+	cd $@ && git config remote.origin.url git://git.fedorahosted.org/git/python-bugzilla
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: git
 
 # git mirror of php source from svn
 php-src:
