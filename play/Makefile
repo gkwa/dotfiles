@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+bradleywright-emacs-d \
 python-bugzilla \
 mplayer-build \
 git_osx_installer \
@@ -101,6 +102,12 @@ selenium-grid \
 php-src \
 php-src-5.2 \
 php-src-trunk
+
+bradleywright-emacs-d:
+	test -d $@ || git clone git://github.com/bradleywright/emacs-d.git bradleywright-emacs-d
+	cd $@ && git config remote.origin.url git://github.com/bradleywright/emacs-d.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: bradleywright-emacs-d
 
 python-bugzilla:
 	test -d $@ || git clone git://git.fedorahosted.org/git/python-bugzilla
