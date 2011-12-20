@@ -23,6 +23,8 @@ viewer = woman
 	cmd = p4merge.exe \\\"$BASE\\\" \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$MERGED\\\"
 
 [alias]
+ showc = show --color
+ gb = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
  wu = log --stat origin..@{0}  # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
  # good examples
  # http://git.wiki.kernel.org/index.php/Aliases
@@ -37,12 +39,13 @@ viewer = woman
  sub = submodule
  ap = add --patch
  dno = diff --name-only
+ diffc = diff --color
  ci = commit
  lc = log ORIG_HEAD.. --stat --no-merges
  lrn = log --reverse --name-status -m
  subup = submodule update
  s = status
- dc = diff --cached
+ dc = diff --cached --color
  dmod = diff --name-only --diff-filter=M
  dd =   diff --name-only --diff-filter=D
  ls = ls-files
@@ -50,7 +53,8 @@ viewer = woman
  ds = diff --stat
  changes=diff --name-status -r
  cl = config -l
- m = ls-files -m
+ lsm = ls-files -m
+ lsd = ls-files -d
  la = log --abbrev-commit
  lfh = log --pretty=tformat:'%h %d %ar %s' --reverse ..FETCH_HEAD --name-status -m
  ln = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
@@ -75,7 +79,7 @@ viewer = woman
  su = submodule update
  sub = submodule
  ss = submodule summary
- sf = submodule foreach 
+ sf = submodule foreach
  sfr = submodule foreach --recursive
  sfu = submodule update --init --recursive
  mb = merge-base
@@ -83,14 +87,32 @@ viewer = woman
  frtb = fetch origin refs/heads/*:refs/remotes/origin/*
  t = tag -l
 
-[color]
-	ui = false
 [web]
 	browser = firefox
-[log]
-# from: git config --global log.abbrevCommit 7
-	abbrevCommit = 7
-[diff]
-	color = true
+# [log]
+# # from: git config --global log.abbrevCommit 7
+# 	abbrevCommit = 7
+
 [rerere]
 	enabled = 1
+
+# [color]
+#   ui = true
+#   diff = auto
+# [color "branch"]
+#   current = yellow reverse
+#   local = yellow
+#   remote = green
+# [color "diff"]
+#   meta = yellow bold
+#   frag = magenta bold
+#   old = red bold
+#   new = green bold
+#   whitespace = red reverse
+# [color "status"]
+#   added = yellow
+#   changed = green
+#   untracked = cyan
+[core]
+ whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+
