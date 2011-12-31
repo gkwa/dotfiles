@@ -29,6 +29,7 @@ viewer = woman
  # good examples
  # http://git.wiki.kernel.org/index.php/Aliases
  br = branch
+ fp = format-patch
  bra = branch -a
  head = !git rev-list HEAD -1 --abbrev-commit
  prune-all = !git remote | xargs -n 1 git remote prune --dry-run
@@ -39,13 +40,13 @@ viewer = woman
  sub = submodule
  ap = add --patch
  dno = diff --name-only
- diffc = diff --color
  ci = commit
  lc = log ORIG_HEAD.. --stat --no-merges
  lrn = log --reverse --name-status -m
  subup = submodule update
  s = status
- dc = diff --cached --color
+ diffc = diff --cached --color
+ dc = diff --color
  dmod = diff --name-only --diff-filter=M
  dd =   diff --name-only --diff-filter=D
  ls = ls-files
@@ -115,4 +116,3 @@ viewer = woman
 #   untracked = cyan
 [core]
  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-

@@ -30,6 +30,8 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+thucydides \
+pweave \
 bradleywright-emacs-d \
 python-bugzilla \
 mplayer-build \
@@ -101,6 +103,8 @@ ndesk-options \
 selenium-grid \
 php-src \
 php-src-5.2 \
+Selenium2-Java-QuickStart-Archetype \
+Selenium2 \
 php-src-trunk
 
 bradleywright-emacs-d:
@@ -169,6 +173,11 @@ git:
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: git
 
+# https://bitbucket.org/mpastell/pweave
+pweave:
+	test -d $@ || hg clone https://bitbucket.org/mpastell/pweave
+	cd $@ && hg update
+.PHONY: pweave
 
 go:
 	test -d $@ || hg clone -u release https://go.googlecode.com/hg/ go
@@ -512,11 +521,28 @@ gitflow:
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: gitflow
 
+thucydides:
+	test -d $@ || git clone git://github.com/thucydides-webtests/thucydides.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: thucydides
+
+git://github.com/thucydides-webtests/thucydides.git
+
+
 grc:
 	test -d $@ || git clone git://github.com/leathekd/grc.git
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: grc
 
+Selenium2:
+	test -d $@ || git clone git://github.com/Selenium2/Selenium2.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: Selenium2
+
+Selenium2-Java-QuickStart-Archetype:
+	test -d $@ || git clone git://github.com/sebarmeli/Selenium2-Java-QuickStart-Archetype.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: Selenium2-Java-QuickStart-Archetype
 
 emacs:
 	test -d $@ || git clone git://git.savannah.gnu.org/emacs.git
