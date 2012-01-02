@@ -300,6 +300,7 @@
     (add-to-list 'exec-path '"/usr/local/bin")
     (setenv "PATH" (concat "/opt/local/bin" ":" (getenv "PATH"))) ; added this next line due to problems in compilation-environment
     (custom-set-variables
+     '(compile-command "gmake -k ")
      '(ispell-program-name "/opt/local/bin/aspell")) ; macport aspell
     ;;      (require 'w3m-load) ; available through macports (sudo port install emacs-w3m)
     ;; http://docs.freebsd.org/info/texinfo/texinfo.info.Other_Info_Directories.html
@@ -530,6 +531,10 @@
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(auto-mode-case-fold t)
  '(delete-by-moving-to-trash t)
  '(diary-file (expand-file-name "~/.diary") t)
@@ -538,7 +543,8 @@
  '(frame-title-format "emacs - %b" t)
  '(global-font-lock-mode t)
  '(ido-case-fold t)
- '(ispell-program-name "/opt/local/bin/aspell")
+ '(ispell-program-name "aspell")
+ '(magit-git-executable "git")
  '(menu-bar-mode nil)
  '(mode-line-inverse-video nil)
  '(nxml-slash-auto-complete-flag t)
