@@ -30,6 +30,8 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+emacs-starter-kit \
+MediaWiki \
 thucydides \
 pweave \
 bradleywright-emacs-d \
@@ -106,6 +108,18 @@ php-src-5.2 \
 Selenium2-Java-QuickStart-Archetype \
 Selenium2 \
 php-src-trunk
+
+# http://www.mediawiki.org/wiki/Developer_hub
+MediaWiki:
+	test -d $@ || svn checkout http://svn.wikimedia.org/svnroot/mediawiki/trunk/phase3 MediaWiki
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: MediaWiki
+
+emacs-starter-kit:
+	test -d $@ || git clone git://github.com/technomancy/emacs-starter-kit.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: emacs-starter-kit
 
 bradleywright-emacs-d:
 	test -d $@ || git clone git://github.com/bradleywright/emacs-d.git bradleywright-emacs-d

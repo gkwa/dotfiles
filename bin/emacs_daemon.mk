@@ -19,6 +19,11 @@ emacsclient1:
 	$(EMACS_CLIENT) --server-file=emacs1000 -n -c &
 	ls $(EMACS_SERVER_FILE)
 
+emacsclient_debug_init:
+	if test -z "$(emacs_daemon_pid)"; then rm -f $(EMACS_SERVER_FILE); $(daemon); fi
+	$(EMACS) --debug-init
+	ls $(EMACS_SERVER_FILE)
+
 kill: killdaemon
 killdaemon:
 	@$(killdaemon)
