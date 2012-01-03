@@ -799,8 +799,10 @@
 ;; easypg
 ;; ------------------------------
 ;; http://www.emacswiki.org/emacs/EasyPG
-; (require 'epa-file)
-; (epa-file-enable)
+;; wget -P ~/.elisp http://git.savannah.gnu.org/cgit/emacs.git/plain/lisp/epa-file.el
+(add-to-list 'load-path "~/.elisp")
+(require 'epa-file)
+(epa-file-enable)
 
 ;; ------------------------------
 ;; gpg mode
@@ -832,11 +834,6 @@
 	    (auto-save-mode nil)
 	    (set-buffer-modified-p nil)))
   "Mode for gpg encrypted files")
-;; wget -P ~/.elisp http://git.savannah.gnu.org/cgit/emacs.git/plain/lisp/epa-file.el
-(add-to-list 'load-path "~/.elisp")
-(require 'epa-file)
-(epa-file-enable)
-
 
 ;; ------------------------------
 ;; dired-x
