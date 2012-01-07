@@ -38,6 +38,7 @@
 /CygwinInstall/setup.log.full
 /Downloads
 /Library
+!/Library/Application Support/Quicksilver/Actions
 /Movies
 /Music
 /Pictures
