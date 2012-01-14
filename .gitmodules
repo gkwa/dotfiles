@@ -16,6 +16,9 @@
 [submodule ".elisp/malabar-mode"]
 	path = .elisp/malabar-mode
 	url = git://github.com/espenhw/malabar-mode.git
+[submodule ".elisp/sauron"]
+	path = .elisp/sauron
+	url = git://github.com/djcb/sauron.git
 [submodule ".elisp/magit"]
 	path = .elisp/magit
-	url = git://gitorious.org/magit/mainline.git
+	url = git://github.com/magit/magit.git
