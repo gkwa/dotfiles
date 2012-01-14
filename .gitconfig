@@ -36,6 +36,7 @@ viewer = woman
  # https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
  rs = !sh -c 'git remote show $1' -
  rso = remote show origin
+ cp = cherry-pick
  co = checkout
  sub = submodule
  ap = add --patch
@@ -69,7 +70,8 @@ viewer = woman
  sb = show-branch
  lpo = log --pretty=tformat:'%h %d %ar %s' --reverse
  lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
- lg = log --graph --name-only
+ lg = log --pretty=format:'%h %ar - %s' --graph
+ rb = rebase
  rso = remote show origin
  dns = diff --name-status
  diffstat=diff --stat -r
