@@ -30,6 +30,8 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+topgit \
+build-emacs \
 emacs-starter-kit \
 MediaWiki \
 thucydides \
@@ -116,10 +118,20 @@ MediaWiki:
 	cd $@ && svn update
 .PHONY: MediaWiki
 
+topgit:
+	test -d $@ || git clone git://repo.or.cz/topgit.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: topgit
+
 emacs-starter-kit:
 	test -d $@ || git clone git://github.com/technomancy/emacs-starter-kit.git
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: emacs-starter-kit
+
+build-emacs:
+	test -d $@ || git clone git://github.com/caldwell/build-emacs.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: build-emacs
 
 bradleywright-emacs-d:
 	test -d $@ || git clone git://github.com/bradleywright/emacs-d.git bradleywright-emacs-d
