@@ -9,7 +9,8 @@ EMACS=/Applications/MacPorts/Emacs.app/Contents/MacOS/Emacs
 
 all: upgrade emacs ports
 clean:
-	sudo rm -rf ~/.local/share/Trash/files/* ~/.Trash/*
+	cd ~/.local/share/Trash/files/ && sudo rm -rf
+	cd ~/.Trash && sudo rm -rf
 	$(clean_org_mode)
 
 else
