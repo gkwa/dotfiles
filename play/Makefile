@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+filezilla \
 topgit \
 build-emacs \
 emacs-starter-kit \
@@ -622,6 +623,11 @@ chromium/depot_tools:
 	cd $@ && svn update
 .PHONY: chromium/depot_tools
 
+
+filezilla:
+	-svn co https://svn.filezilla-project.org/svn/FileZilla3/trunk filezilla --trust-server-cert --non-interactive
+	cd $@ && svn update
+.PHONY: filezilla
 
 chromium/src:
 	-git clone http://git.chromium.org/git/chromium.git $@
