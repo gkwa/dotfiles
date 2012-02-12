@@ -1547,6 +1547,7 @@
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
 (global-set-key "p" (quote my-isearch-word-at-point))
 
+(global-set-key "w" (quote whitespace-cleanup))
 
 ;; ------------------------------
 ;; desktop sessions
