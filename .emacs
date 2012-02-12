@@ -1054,7 +1054,7 @@
 
 
 (setq-default
- org-list-automatic-rules t
+;;; org-list-automatic-rules t ; don't do this it gives error: org-set-regexps-and-options: Wrong type argument: listp, t
  org-babel-library-of-babel t
  org-return-follows-link t
  org-agenda-files '("~/notes.txt")
