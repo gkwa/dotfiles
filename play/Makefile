@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+windows-package-manager \
 filezilla \
 topgit \
 build-emacs \
@@ -205,6 +206,12 @@ pweave:
 	test -d $@ || hg clone https://bitbucket.org/mpastell/pweave
 	cd $@ && hg update
 .PHONY: pweave
+
+windows-package-manager:
+	test -d $@ || hg clone https://code.google.com/p/windows-package-manager
+	cd $@ && hg update
+.PHONY: windows-package-manager
+
 
 go:
 	test -d $@ || hg clone -u release https://go.googlecode.com/hg/ go
