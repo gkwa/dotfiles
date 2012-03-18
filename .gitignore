@@ -1,6 +1,7 @@
 *.actl3
 *.mov
 .svn
+/.lesshst
 /.CFUserTextEncoding
 /.DS_Store
 /.RData

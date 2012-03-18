@@ -30,6 +30,9 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+mod_perl \
+mod_perl-2.0 \
+augeas \
 windows-package-manager \
 filezilla \
 topgit \
@@ -607,6 +610,22 @@ ns-3-dev:
 	test -d $@ || hg clone http://code.nsnam.org/ns-3-dev
 	cd $@ && hg update
 .PHONY: ns-3-dev
+
+mod_perl-2.0:
+	test -d $@ || svn co https://svn.apache.org/repos/asf/perl/modperl/trunk/ mod_perl-2.0
+	cd $@ && svn udpate
+.PHONY: mod_perl-2.0
+
+mod_perl:
+	test -d $@ || git clone git://github.com/apache/mod_perl.git
+	cd $@ && git pull
+.PHONY: mod_perl
+
+augeas:
+	test -d $@ || git clone git://github.com/lutter/augeas.git
+	cd $@ && git pull
+.PHONY: augeas
+
 
 freebsd:
 	test -d $@ || svn checkout svn+ssh://svn.freebsd.org/base/head $@
