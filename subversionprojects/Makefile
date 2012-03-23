@@ -1,12 +1,19 @@
 MAKEFLAGS=-j 5
 
 all: \
+	ds \
 	dashboard \
 	ls \
 	osx_ed_webapi \
 	sbwww \
 	win_ed_webapi \
 	lstmptrash
+
+ds:
+	test -d $@ || svn co http://vcs.streambox.com/rep/$@
+	(cd $@ && svn cleanup)
+	(cd $@ && svn update)
+.PHONY: ds
 
 lstmptrash:
 	test -d $@ || svn co http://vcs.streambox.com/rep/$@ 
