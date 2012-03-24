@@ -1579,6 +1579,14 @@
 (ctags-update-minor-mode 1)
 
 ;; ------------------------------
+;; ------------------------------
+;; Window Number mode
+;; ------------------------------
+;; http://nschum.de/src/emacs/window-numbering-mode/
+(add-to-list 'load-path "~/.elisp")
+(require 'window-numbering)
+(window-numbering-mode 1)
+;; ------------------------------
 ;; shell
 ;; ------------------------------
 (shell)
