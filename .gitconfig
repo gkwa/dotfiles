@@ -23,6 +23,11 @@ viewer = woman
 	cmd = p4merge.exe \\\"$BASE\\\" \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$MERGED\\\"
 
 [alias]
+ perm = "!sh -c 'git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e \"s/^old/NEW/;s/^new/old/;s/^NEW/new/\" | git apply'"
+ dcn = diff --color --name-only
+ dcns = diff --color --name-status
+ j = jump
+ lb = check-ref-format --branch @{-1}
  showc = show --color
  gb = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
  wu = log --stat origin..@{0}  # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
