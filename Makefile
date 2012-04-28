@@ -62,6 +62,7 @@ zip: /tmp/o.zip
 	({ git ls \
 		.bash_profile \
 		.bashrc \
+		.minttyrc \
 		.inputrc \
 		.alias \
 		.gitmodules \
