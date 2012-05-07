@@ -1565,6 +1565,8 @@
 ;; ------------------------------
 ;;http://www.emacswiki.org/emacs/BookmarkPlus
 (add-to-list 'load-path "~/.elisp/bookmarkplus")
+(set-variable (quote bookmark-save-flag) 1 nil)
+(set-variable (quote bmkp-last-as-first-bookmark-file) "~/.emacs.bmk" nil)
 (require 'bookmark+)
 
 ;; ------------------------------
