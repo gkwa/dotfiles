@@ -30,6 +30,8 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+gdrive-cli \
+sparkle \
 mod_perl \
 mod_perl-2.0 \
 augeas \
@@ -92,6 +94,7 @@ bugzilla \
 bztools \
 mono \
 pybugz \
+linux-2.6 \
 syslinux \
 dvc \
 gerrit2 \
@@ -112,6 +115,7 @@ ndesk-options \
 selenium-grid \
 php-src \
 php-src-5.2 \
+gitlab \
 Selenium2-Java-QuickStart-Archetype \
 Selenium2 \
 php-src-trunk
@@ -122,6 +126,27 @@ MediaWiki:
 	cd $@ && svn cleanup
 	cd $@ && svn update
 .PHONY: MediaWiki
+
+linux-2.6:
+	test -d $@ || git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: linux-2.6.git
+
+gdrive-cli.git:
+	test -d $@ || git clone git://github.com/tom-dignan/gdrive-cli.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: gdrive-cli.git
+
+gitlabhq:
+	test -d $@ || git clone git://github.com/gitlabhq/gitlabhq.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: gitlabhq
+
+
+sparkle:
+	test -d $@ || git clone git://github.com/andymatuschak/Sparkle.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: sparkle
 
 topgit:
 	test -d $@ || git clone git://repo.or.cz/topgit.git
@@ -562,9 +587,6 @@ thucydides:
 	test -d $@ || git clone git://github.com/thucydides-webtests/thucydides.git
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: thucydides
-
-git://github.com/thucydides-webtests/thucydides.git
-
 
 grc:
 	test -d $@ || git clone git://github.com/leathekd/grc.git
