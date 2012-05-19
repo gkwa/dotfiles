@@ -679,9 +679,8 @@ filezilla:
 .PHONY: filezilla
 
 mplayer:
-	-svn checkout svn://svn.mplayerhq.hu/mplayer/trunk mplayer \
-		--trust-server-cert --non-interactive
-	cd $@ && svn update
+	git clone git://repo.or.cz/mplayer.git
+	cd $@ && git pull
 .PHONY: mplayer
 
 

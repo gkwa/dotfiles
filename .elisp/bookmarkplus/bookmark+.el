@@ -4,12 +4,12 @@
 ;; Description: Bookmark+: extensions to standard library `bookmark.el'.
 ;; Author: Drew Adams, Thierry Volpiatto
 ;; Maintainer: Drew Adams (concat "drew.adams" "@" "oracle" ".com")
-;; Copyright (C) 2000-2011, Drew Adams, all rights reserved.
+;; Copyright (C) 2000-2012, Drew Adams, all rights reserved.
 ;; Copyright (C) 2009, Thierry Volpiatto, all rights reserved.
 ;; Created: Fri Sep 15 07:58:41 2000
-;; Last-Updated: Mon Aug  1 08:59:18 2011 (-0700)
+;; Last-Updated: Sun Mar 18 12:54:27 2012 (-0700)
 ;;           By: dradams
-;;     Update #: 14963
+;;     Update #: 14985
 ;; URL: http://www.emacswiki.org/cgi-bin/wiki/bookmark+.el
 ;; Keywords: bookmarks, bookmark+, placeholders, annotations, search, info, url, w3m, gnus
 ;; Compatibility: GNU Emacs: 20.x, 21.x, 22.x, 23.x
@@ -17,7 +17,7 @@
 ;; Features that might be required by this library:
 ;;
 ;;   `bookmark', `bookmark+-1', `bookmark+-bmu', `bookmark+-key',
-;;   `bookmark+-lit', `bookmark+-mac', `dired', `dired-aux',
+;;   `bookmark+-lit', `bookmark+-mac', `cl', `dired', `dired-aux',
 ;;   `dired-x', `ffap', `pp', `pp+'.
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -56,6 +56,25 @@
 ;;
 ;;    (The commentary links in #1 and #3 work only if you have library
 ;;    `bookmark+-doc.el' in your `load-path'.)
+;;
+;;
+;;    ****** NOTE ******
+;;
+;;      Whenever you update Bookmark+ (i.e., download new versions of
+;;      Bookmark+ source files), I recommend that you do the
+;;      following:
+;;
+;;      1. Delete all existing byte-compiled Bookmark+ files
+;;         (bookmark+*.elc).
+;;      2. Load Bookmark+ (`load-library' or `require').
+;;      3. Byte-compile the source files.
+;;
+;;      In particular, always load `bookmark+-mac.el' (not
+;;      `bookmark+-mac.elc') before you byte-compile new versions of
+;;      the files, in case there have been any changes to Lisp macros
+;;      (in `bookmark+-mac.el').
+;;
+;;    ******************
 ;;
 ;;
 ;;    ****** NOTE ******
@@ -103,6 +122,8 @@
 ;;
 ;;      Again, sorry for this inconvenience.
 ;;
+;;    ******************
+;;
 ;;
 ;;  Commands defined here:
 ;;
@@ -136,24 +157,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'bookmark)                     ; Vanilla Emacs.
-(require 'bookmark+-mac)                ; Lisp macros.
-(require 'bookmark+-lit nil t)          ; Optional (soft require) - no error if not found.  If you do
-                                        ; not want to use `bookmark+-lit.el' then simply do not put
-                                        ; it in your `load-path'.
-(require 'bookmark+-bmu)                ; `*Bookmark List*' stuff.
-(require 'bookmark+-1)                  ; Rest of Bookmark+ required stuff, except keys & menus.
-(require 'bookmark+-key)                ; Keys & menus.
-
-;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;###autoload
-(defconst bmkp-version-number "3.2.2")
+(defconst bmkp-version-number "3.4.1")
 
 ;;;###autoload
 (defun bmkp-version ()
   "Show version number of library `bookmark+.el'."
   (interactive)
   (message "Bookmark+, version %s" bmkp-version-number))
+
+
+;; Load Bookmark+ libraries.
+;;
+(require 'bookmark+-mac)                ; Lisp macros.
+(require 'bookmark+-lit nil t)          ; Optional (soft require) - no error if not found.  If you do
+                                        ; not want to use `bookmark+-lit.el' then simply do not put
+                                        ; that file in your `load-path'.
+(require 'bookmark+-bmu)                ; `*Bookmark List*' (aka "menu list") stuff.
+(require 'bookmark+-1)                  ; Rest of Bookmark+, except keys & menus.
+(require 'bookmark+-key)                ; Keys & menus.
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 

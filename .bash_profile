@@ -37,4 +37,14 @@ if [ -f /opt/local/etc/bash_completion ]; then
     # . /opt/local/etc/bash_completion.d/git-completion
 fi
 
-export MANPATH=$MANPATH:/opt/local/share/man:/opt/local/man:/usr/share
+# http://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html
+case $(uname) in
+    "FreeBSD"|"Linux")
+	unset MANPATH
+	export PAGER=cat
+	;;
+    "Dwarwin")
+	export \
+	    MANPATH=$MANPATH:/opt/local/share/man:/opt/local/man:/usr/share
+	;;
+esac

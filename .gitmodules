@@ -22,6 +22,3 @@
 [submodule ".elisp/magit"]
 	path = .elisp/magit
 	url = git://github.com/magit/magit.git
-[submodule "bash_completion.d"]
-	path = bash_completion.d
-	url = git://github.com/bobthecow/git-flow-completion.git

@@ -117,13 +117,13 @@ hs()
     if test ! -z "$1"; then
 	# if first arg is number, then tail -number
 	if test $(expr "$1" : "[0-9]*$") -gt 0; then
-	    history | tail -$1 | \
-		sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,' | \
-		grep -v "hs $1";
+	    history | tail -$1 |
+	    sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,' |
+	    grep -v "hs $1";
 	else
-	    history | \
-		sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,' | \
-		grep -i "$1" | grep -v "hs $1";
+	    history |
+	    sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,' |
+	    grep -i "$1" | grep -v "hs $1";
 	fi;
     else
 	history | sed -e 's,^[[:blank:]]*[0-9]*[[:blank:]]*,,'
@@ -152,12 +152,27 @@ installerv()
 
 
 case "$(uname)" in
+##############################
     "CYGWIN")
+##############################
 	export PATH="/cygdrive/c/cygwin/bin:$PATH"
+	# http://www.saltycrane.com/blog/2008/05/how-to-paste-in-cygwin-bash-using-ctrl/
+	# Add the following line to your ~/.bashrc:
+	stty lnext ^q stop undef start undef
+	# And add the following line to your ~/.inputrc:
+	# "\C-v": paste-from-clipboard
+	# stty lnext ^q stop undef start undef
+	pbcopy(){ getclip; }
+	pbpaste(){ putclip; }
 	;;
-    "Darwin")
-	export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
 
+
+##############################
+    "Darwin")
+##############################
+	export EDITOR=$HOME/bin/e
+	export PATH=~/play/git/contrib/git-jump:$PATH
+	export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
 	export PATH=/Applications/MacPorts/Emacs.app/Contents/MacOS/bin:$PATH # for emacsclient
 	export PATH=/Applications/MacPorts/Emacs.app/Contents/MacOS:$PATH
 	export PATH=/Applications/p4merge.app/Contents/MacOS:$PATH
@@ -167,30 +182,35 @@ case "$(uname)" in
 	export PATH=$PATH:/Developer/usr/bin
 	# for plistbuddy:
 	export PATH=$PATH:/usr/libexec
+	# for Apple /Developer/usr/bin/make since macports is broken now
+	export PATH=$PATH:/Developer/usr/bin
+	# for emacsclient when emacs is in daemon mode
+	export EMACS_SERVER_FILE=~/.emacs.d/server/emacs1000
+
 # gitk complains "Application initialization failed: couldn't connect to
 # display ":0.0"" on osx, commented out
 #	export DISPLAY=:0.0
 
 	#
 
-	function locate()
-	{
-	    /opt/local/libexec/gnubin/locate \
-		--database=$HOME/Documents/locate.updatedb.readynas \
-		"$@" | sed -e 's,^/c,/Volumes,'
+	# function locate()
+	# {
+	#     /opt/local/libexec/gnubin/locate \
+	# 	--database=$HOME/Documents/locate.updatedb.readynas:/var/db/locate.database \
+	# 	"$@" | sed -e 's,^/c,/Volumes,'
 
-	    remote=/Volumes/Development/locate.updatedb.readynas
-	    local=$HOME/Documents/locate.updatedb.readynas
+	#     remote=/Volumes/Development/locate.updatedb.readynas
+	#     local=$HOME/Documents/locate.updatedb.readynas
 
-	    if [ -f $remote ]
-	    then
-		if [ $local -ot $remote ]
-		then
-		    echo updating $local
-		    cp $remote $local &
-		fi
-	    fi
-	}
+	#     if [ -f $remote ]
+	#     then
+	# 	if [ $local -ot $remote ]
+	# 	then
+	# 			echo updating $local
+	# 			cp $remote $local &
+	# 	fi
+	#     fi
+	# }
 
 	function gn()
 	{
@@ -212,10 +232,10 @@ case "$(uname)" in
 
 	# installer functions
 	imgmountpoint() {
-	    # echo disktuil eject \
-	    # 	$(hdid -plist $1 | grep dev-entry -A1 | \
-	    # 	grep string | cut -d\> -f2 | cut -d\< -f1 | \
-	    # 	sed -e 's,/dev/,,')
+			# echo disktuil eject \
+			# 	$(hdid -plist $1 | grep dev-entry -A1 | \
+			# 	grep string | cut -d\> -f2 | cut -d\< -f1 | \
+			# 	sed -e 's,/dev/,,')
 
 	    hdid -plist $1 | grep mount-point -A1 | \
 		grep string | cut -d\> -f2 | cut -d\< -f1;
@@ -225,7 +245,7 @@ case "$(uname)" in
 
 	}
 	myinstall() {
-#	    set -x;
+#			set -x;
 	    hdid $1;
 	    pushd "$(imgmountpoint $1)";
 	    sudo installer -pkg "$(ls -1 | grep -i pkg | head -1)" -target /;
@@ -235,62 +255,132 @@ case "$(uname)" in
 	    myumount2 "$1";
 	}
 
-	# http://www.saltycrane.com/blog/2008/05/how-to-paste-in-cygwin-bash-using-ctrl/
-	# Add the following line to your ~/.bashrc:
-	stty lnext ^q stop undef start undef
-	# And add the following line to your ~/.inputrc:
-	# "\C-v": paste-from-clipboard
-	# stty lnext ^q stop undef start undef
+
+	check_git_dirty()
+	{
+	    dir=$1
+	    if test -z "$1"
+	    then
+		dir=.
+	    else
+		dir=$1
+	    fi
+
+	    if test ! -d "$dir"
+	    then
+		echo "$dir doesn't exist"
+		exit
+	    fi
+
+	    d=$(pwd)
+	    cd "$dir" && \
+		git update-index -q --refresh
+	    if test ! -z "$(git diff-index --name-only HEAD --)"
+	    then
+#		echo dirty
+		git status
+	    else
+		cd "$d"
+	    fi
+	}
+
+
+	mfs()
+	{
+	    mdfind -onlyin ~/pdev "$1"
+	}
+
+
+	gg_replace() {
+	    if [[ "$#" == "0" ]]; then
+		echo 'Usage:'
+		echo '  gg_replace term replacement file_mask'
+		echo
+		echo 'Example:'
+		echo '  gg_replace cappuchino cappuccino *.html'
+		echo
+	    else
+		find=$1; shift
+		replace=$1; shift
+
+		ORIG_GLOBIGNORE=$GLOBIGNORE
+		GLOBIGNORE=*.*
+
+		if [[ "$#" = "0" ]]; then
+		    set -- ' ' $@
+		fi
+
+		while [[ "$#" -gt "0" ]]; do
+		    for file in `git grep -l $find -- $1`; do
+			sed -i '' "s/$find/$replace/g" $file
+		    done
+		    shift
+		done
+
+		GLOBIGNORE=$ORIG_GLOBIGNORE
+	    fi
+	}
+	gg_dasherize() {
+	    gg_replace $1 `echo $1 | sed -e 's/_/-/g'` $2
+	}
+
+
+
 
 	;;
-    "Linux")
-	ip=$(/sbin/ip addr show dev eth0 | grep "inet " | cut -d\/ -f1 | awk '{print $2}')
-	if test ! -z "$ip"; then
-	    PS1="[\d \t \u@${ip}:\w ]$ "
-	fi
-	;;
+##############################
+    "Linux|FreeBSD")
+##############################
+    ip=$(/sbin/ip addr show dev eth0 | grep "inet " | cut -d\/ -f1 | awk '{print $2}')
+    if test ! -z "$ip"; then
+	PS1="[\d \t \u@${ip}:\w ]$ "
+    fi
+    ;;
+
 esac
 
 export PATH=$HOME/bin:$PATH
 
 function parse_git_branch
 {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "("${ref#refs/heads/}")"
-}
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    echo "("${ref#refs/heads/}")"
+    }
 
 
-function bitgrep()
-{
-    searchPattern="$1"
-    sed -e 's,.*/Production/Streambox/,/Volumes/Production/Streambox/,' \
-	~/pdev/production-find-ls/find-ls.txt | grep -iE "$searchPattern"
+    function bitgrep()
+    {
+	searchPattern="$1"
+	sed -e 's,.*/Production/Streambox/,/Volumes/Production/Streambox/,' \
+	    ~/pdev/production-find-ls/find-ls.txt | grep -iE "$searchPattern"
 
-}
-
-
-
-genpasswd()
-{
-    # from here: http://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html
-    local l=$1
-    [ "$l" == "" ] && l=20
-    tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
-}
+    }
 
 
 
+    genpasswd()
+    {
+		# from here: http://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html
+	local l=$1
+	[ "$l" == "" ] && l=20
+	tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
+    }
 
 
 
-pack(){ find . -iname "*.packproj"; }
-packo() { pack | sed -e 's,^,open ,'; }
-dmg(){ find . -iname "*.dmg"; }
+
+
+
+    pack(){ find . -iname "*.packproj"; }
+    packo() { pack | sed -e 's,^,open ,'; }
+    dmg(){ find . -iname "*.dmg"; }
+
+
 
 # http://www.delorie.com/gnu/docs/emacs/emacs_444.html
-PS1="\u@\h \W$ "
-PS1="[\d \t \u@\h:\w ]$ "
-PS1="[\u@\h:\w\$(parse_git_branch)]$ "
+    PS1="\u@\h \W$ "
+    PS1="[\d \t \u@\h:\w ]$ "
+    PS1="[\u@\h:\w\$(parse_git_branch)]$ "
 
 
 
@@ -303,21 +393,31 @@ PS1="[\u@\h:\w\$(parse_git_branch)]$ "
 
 
 
-export ALTERNATE_EDITOR=””
+    export ALTERNATE_EDITOR=””
 
 
 
 
-function drop()
-{
-    if test ! -z "$1"; then
-	find ~/Dropbox/Public | \
-	    grep -iE "$1" | \
-	    sed -e \
-	    's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g'
-    else
-	find ~/Dropbox/Public | \
-	    sed -e \
-	    's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g'
-    fi;
-}
+    drop()
+    {
+	if test ! -z "$1"; then
+	    find ~/Dropbox/Public | \
+		grep -iE "$1" | \
+		sed -e \
+		's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g'
+
+	else
+	    find ~/Dropbox/Public | \
+		sed -e \
+		's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g'| \
+		xargs ls -t
+	fi;
+    }
+
+
+
+# GIT_PS1_SHOWSTASHSTATE=1
+# GIT_PS1_SHOWUNTRACKEDFILES=1
+# GIT_PS1_SHOWUPSTREAM="auto"
+# source ~/.git-completion.bash # this might cause bash to be really slow
+# PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
