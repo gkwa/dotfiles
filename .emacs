@@ -23,17 +23,7 @@
       version-control t)
 
 
-
-
-
-
-
-
-
-
-
-
-
+(show-paren-mode 1); http://www.netexpertise.eu/en/misc/emacs-configuration.html
 
 
 ;; don't ask about killing subprocesses when killing emacs, just kill
@@ -41,12 +31,6 @@
 ;; http://stackoverflow.com/questions/2706527/make-emacs-stop-asking-active-processes-exist-kill-them-and-exit-anyway
 (add-hook 'comint-exec-hook
       (lambda () (process-kill-without-query (get-buffer-process (current-buffer)))))
-
-
-
-
-
-
 
 
 (require 'autoinsert) ;; leave this before any setting to variable auto-insert-alist
@@ -105,13 +89,6 @@
 ;; to you .emacs.
 (unify-8859-on-decoding-mode); nxml-mode suggested adding this
 
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
-
 (set-foreground-color "white")
 (set-background-color "black")
 (set-cursor-color "red")
@@ -161,30 +138,8 @@
 	  (set-frame-height (selected-frame) 200)
 	  (set-frame-width (selected-frame) 150)))))
 
-
-(defun set-frame-size-according-to-resolution ()
-  (interactive)
-  (if window-system
-  (progn
-    ;; use 120 char wide window for largeish displays
-    ;; and smaller 80 column windows for smaller displays
-    ;; pick whatever numbers make sense for you
-    (if (> (x-display-pixel-width) 1280)
-	(add-to-list 'default-frame-alist (cons 'width 120))
-      (add-to-list 'default-frame-alist (cons 'width 80)))
-    ;; for the height, subtract a couple hundred pixels
-    ;; from the screen height (for panels, menubars and
-    ;; whatnot), then divide by the height of a char to
-    ;; get the height we want
-    (add-to-list 'default-frame-alist
-		 (cons 'height (/ (- (x-display-pixel-height) 200) (frame-char-height)))))))
-
-(set-frame-size-according-to-resolution)
-
 ;; (if (equal window-system nil)
 ;;     (shell nil))
-
-(setq initial-frame-alist '((top . 10) (left . 30)))
 
 ;; Pgup/dn will return exactly to the starting point.
 (setq scroll-preserve-screen-position 1)
@@ -231,8 +186,6 @@
 			    ((caml-mode . "Caml Mode") . (concat comment-start "-*- caml -*-\n\n\n" ))
 			    ((css-mode . "CSS Mode") . (concat comment-start " Last modified $Id$" comment-end "\n" comment-start " $HeadURL$" comment-end "\n\n\n" ))
 			    ))))
-
-
 
 ;; --------------------------------------------------
 
@@ -290,8 +243,8 @@
       (setenv "LC_ALL" "en_US.UTF-8")
 ;      (setenv "CYGWIN" "binmode tty ntsec")
       (setenv "CYGWIN" "bimmode ntsec")
+      (add-hook 'after-init-hook '(lambda () (w32-send-sys-command ?\xf030))) ;; maximize on startup, http://www.emacswiki.org/emacs/FrameSize#toc2
       ))
-
 
 ;; setup env path for subprocesses
 ;; http://us.generation-nt.com/answer/emacs-compilation-path-help-173905301.html
@@ -352,10 +305,10 @@
 (setenv "PS1" "\\u@\h \\W$ ")
 
 ;;http://www.emacswiki.org/cgi-bin/wiki/McMahanDotEmacs
-																																																																																																																																																																																																																   ;;; set the term to avoid ansi garbage in shell mode
-					;(setenv "TERM" "emacs")
+;;; set the term to avoid ansi garbage in shell mode
+;(setenv "TERM" "emacs")
 
-																																																																																																																																																																																																																					;;; Commands added by calc-private-autoloads on Sat Mar 14 15:01:33 2009.
+;;; Commands added by calc-private-autoloads on Sat Mar 14 15:01:33 2009.
 (autoload 'calc-dispatch	   "calc" "Calculator Options" t)
 (autoload 'full-calc		   "calc" "Full-screen Calculator" t)
 (autoload 'full-calc-keypad	   "calc" "Full-screen X Calculator" t)
@@ -369,9 +322,7 @@
 (autoload 'calc-grab-region	   "calc" "Grab region of Calc data" t)
 (autoload 'calc-grab-rectangle	   "calc" "Grab rectangle of data" t)
 (global-set-key "\e#" 'calc-dispatch)
-																																																																																																																																																																																																																					;;; End of Calc autoloads.
-
-
+;;; End of Calc autoloads.
 
 ;; ;; svn export https://svn.r-project.org/ESS/trunk ~/.elisp/ess
 ;; (if (file-directory-p "~/.elisp/ess")
@@ -379,41 +330,83 @@
 ;;       (add-to-list 'load-path "~/.elisp/ess")
 ;;       (require 'ess-site)))
 
-
-
-
-
-;; --------------------------------------------------
-;; emacs server setup
-;; --------------------------------------------------
-;;http://www.emacswiki.org/emacs-en/emacsd
-;; only start emacs server when it's not started, I hate warnings.
-;; http://www.emacswiki.org/emacs/download/EmacsdInitScript
-
-;; (if (>= (string-to-number emacs-version) 22)
-;;     (progn
-;;       (setq server-socket-file "/tmp/emacs1000/server")
-;;       (unless (file-exists-p server-socket-file)
-;; 	(server-start)
-;; )))
-
-;; (server-start)
-
-;; So emacs won't try to start the server again.
-
-;; This function may be useful if you are always in a client. I bind it to C-c q. So I don't need to use C-x # or C-x 5 0 any more.
+;; This function may be useful if you are always in a client. I bind it
+;; to C-c q. So I don't need to use C-x # or C-x 5 0 any more.
 
 (defun exit-emacs-client ()
   "consistent exit emacsclient.
-																																																																																																																																																																																																																					     if not in emacs client, echo a message in minibuffer, don't exit emacs.
-																																																																																																																																																																																																																						if in server mode
-																																																																																																																																																																																																																						      and editing file, do C-x # server-edit
-																																																																																																																																																																																																																							    else do C-x 5 0 delete-frame"
+if not in emacs client, echo a message in minibuffer, don't exit emacs.
+if in server mode
+and editing file, do C-x # server-edit
+else do C-x 5 0 delete-frame"
   (interactive)
   (if server-buffer-clients
       (server-edit)
     (delete-frame)))
 (global-set-key (kbd "C-c q") 'exit-emacs-client)
+
+
+
+;; ------------------------------
+;; fit-frame
+;; ------------------------------
+(add-to-list 'load-path "~/.elisp")
+(require 'fit-frame)
+(autoload 'maximize-frame "frame-cmds" nil t)
+
+;; ------------------------------
+;; setup emacsclient frame dimensions and color
+;; ------------------------------
+
+;; http://www.emacswiki.org/emacs/SettingFrameColorsForEmacsClient
+
+(defun setup-window-system-frame-colours (&rest frame)
+  (if window-system
+      (let ((f (if (car frame)
+		   (car frame)
+		 (selected-frame))))
+	(progn
+	  (set-frame-font "Bera Sans Mono-11")
+	  (set-face-background 'default "#232F2F" f)
+	  (set-face-foreground 'default "#FFFFFF" f)
+	  (set-face-background 'fringe  "#000000" f)
+	  (set-face-background 'cursor "#ff7f00" f)
+	  (set-face-background 'mode-line "#2F4F4F" f)
+	  (set-face-foreground 'mode-line "#BCBf91" f)))))
+
+(defun setup-window-system-frame-dimensions (&rest frame)
+  (if window-system
+      (let ((f (if (car frame)
+		   (car frame)
+		 (selected-frame))))
+	(progn
+	  (maximize-frame (quote both))))))
+
+
+(setq server-mode t)
+(setq server-name "emacs1000")
+(setq server-use-tcp t)
+
+(require 'server)
+(defadvice server-create-window-system-frame
+  (after set-window-system-frame-colours ())
+  "Set custom frame colours when creating the first frame on a display"
+  (message "Running after frame-initialize")
+  (setup-window-system-frame-colours))
+(ad-activate 'server-create-window-system-frame)
+(add-hook 'after-make-frame-functions 'setup-window-system-frame-colours t)
+(add-hook 'after-make-frame-functions 'setup-window-system-frame-dimensions t)
+
+;; http://stackoverflow.com/questions/885793/emacs-error-when-calling-server-start
+(when (and (= emacs-major-version 23)
+	   (= emacs-minor-version 1)
+	   (equal window-system 'w32))
+  (setq w32-get-true-file-attributes nil))
+
+(require 'server)
+(when (and (eq window-system 'w32) (file-exists-p (getenv "APPDATA")))
+  (setq server-auth-dir (concat (getenv "APPDATA") "/.emacs.d/server"))
+  (make-directory server-auth-dir))
 
 ;; --------------------------------------------------
 ;; given some path such as  \\10.0.2.10\Production\Streambox\...\StreamboxOSX3.72b32.zip
@@ -537,30 +530,32 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(auto-mode-case-fold t)
+ '(bmkp-last-as-first-bookmark-file "~/.emacs.bmk")
+ '(compilation-error-regexp-alist (quote (("^?:[ 	]+at com.mycompany.+(\\([^()
+]+\\):\\([0-9]+\\))$" 2 3) ("^\\[ERROR\\].+
+\\(.*\\):.\\([0-9]+\\)" 1 2) ("^git_jump:\\(.*\\):\\([0-9]+\\):" 1 2))))
+ '(compile-command "gmake -k ")
  '(delete-by-moving-to-trash t)
  '(diary-file (expand-file-name "~/.diary") t)
  '(display-time-mode t nil (time))
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
+ '(ffap-machine-p-known (quote reject))
  '(frame-title-format "emacs - %b" t)
  '(global-font-lock-mode t)
  '(ido-case-fold t)
  '(ispell-program-name "aspell")
- '(magit-git-executable "git")
+ '(magit-git-executable "/opt/local/bin/git")
  '(menu-bar-mode nil)
  '(mode-line-inverse-video nil)
  '(nxml-slash-auto-complete-flag t)
+ '(recentf-max-menu-items 100)
  '(ring-bell-function (quote ignore) t)
- '(safe-local-variable-values (quote ((sgml-tag-region-if-active . t) (sgml-shorttag . t) (sgml-parent-document "Bugzilla-Guide.xml" "book" "chapter") (sgml-omittag . t) (sgml-namecase-general . t) (sgml-minimize-attributes) (sgml-local-ecat-files) (sgml-local-catalogs) (sgml-indent-step . 2) (sgml-indent-data . t) (sgml-general-insert-case . lower) (sgml-exposed-tags) (sgml-balanced-tag-edit . t) (sgml-auto-insert-required-elements . t) (sgml-always-quote-attributes . t) (TeX-master . t))))
+ '(safe-local-variable-values (quote ((lexical-binding . t) (sgml-tag-region-if-active . t) (sgml-shorttag . t) (sgml-parent-document "Bugzilla-Guide.xml" "book" "chapter") (sgml-omittag . t) (sgml-namecase-general . t) (sgml-minimize-attributes) (sgml-local-ecat-files) (sgml-local-catalogs) (sgml-indent-step . 2) (sgml-indent-data . t) (sgml-general-insert-case . lower) (sgml-exposed-tags) (sgml-balanced-tag-edit . t) (sgml-auto-insert-required-elements . t) (sgml-always-quote-attributes . t) (TeX-master . t))))
  '(scroll-bar-mode nil)
+ '(split-height-threshold nil)
+ '(split-width-threshold 0)
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
- '(truncate-lines t)
-; ------------------------------
-;; When working in a Rails ERB template, when my cursor is on
-;; the "." in the middle of @position.id and I press C-x-f it
-;; starts "Pinging position.id (Indonesia)" and locks up emacs until
-;; it times out. Any ideas how to stop this behavior?
- '(ffap-machine-p-known 'reject); https://github.com/technomancy/emacs-starter-kit/issues/39
-)
+ '(truncate-lines t))
 
 (global-set-key (kbd "C-c C-c") (quote comment-region))
 (global-set-key (kbd "C-c m") (quote manual-entry))
@@ -638,6 +633,15 @@
      '(magit-git-executable "/opt/local/bin/git"))))
 (global-set-key "g" (quote magit-status))
 ;; (global-set-key "\C-ci" 'magit-status)
+
+;; change magit diff colors
+;; http://readystate4.com/2011/02/22/emacs-changing-magits-default-diff-colors/
+(eval-after-load 'magit
+  '(progn
+     (set-face-foreground 'magit-diff-add "green3")
+     (set-face-foreground 'magit-diff-del "red3")
+     (when (not window-system)
+       (set-face-background 'magit-item-highlight "black"))))
 
 ;; ------------------------------
 ;; xquery-mode
@@ -747,7 +751,7 @@
 ;; http://www.emacswiki.org/emacs/RecentFiles
 (autoload 'recentf "RecentF" "Enter recentf mode." t)
 (setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
-(setq recentf-max-saved-items 2500)
+(setq recentf-max-saved-items 100)
 (recentf-mode 1)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
@@ -849,6 +853,7 @@
 	    (setq dired-omit-files
 		  (concat dired-omit-files "\\|^\\..+$"))
 	    ))
+
 (add-hook 'dired-mode-hook
 	  (lambda ()
 	    ;; Set dired-x buffer-local variables here.  For example:
@@ -864,15 +869,15 @@
   (interactive)
   (anything-other-buffer
    '(
-     ;; anything-isearch???
      anything-c-source-buffers
      anything-c-source-bookmarks
+     anything-c-source-recentf
+     ;; anything-isearch???
+     anything-c-source-files-in-current-dir
 ;; it seems that anything mode is just too slow when using
 ;; anything-c-source-mac-spotlight and anything-c-source-locate
 ;     anything-c-source-mac-spotlight
 ;     anything-c-source-locate
-     anything-c-source-files-in-current-dir
-     anything-c-source-recentf
      anything-for-files-prefered-list
      anything-c-source-ffap-line
      anything-c-source-ffap-guesser
@@ -1053,7 +1058,6 @@
 ;(require 'ob-python)    ;; requires python, and python-mode
 ;(require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
 
-
 (setq-default
 ;;; org-list-automatic-rules t ; don't do this it gives error: org-set-regexps-and-options: Wrong type argument: listp, t
  org-babel-library-of-babel t
@@ -1137,8 +1141,8 @@
 
 
 
- ;; http://orgmode.org/worg/org-contrib/babel/languages.html
- ;; active Babel languages
+;; ;;http://orgmode.org/worg/org-contrib/babel/languages.html
+;; ;;active Babel languages
 ;; (org-babel-do-load-languages
 ;;  'org-babel-load-languages
 ;;  '((R . t)
@@ -1155,6 +1159,11 @@
 ;;    (sql . nil)
 ;;    (sqlite . t)))
 
+(require 'ob-R)
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((emacs-lisp . nil)
+;;    (R . t)))
 
 ;; keep "/opt/local/share/info" as the last element of
 ;; Info-default-directory-list because "/opt/local/share/info" has the
@@ -1396,13 +1405,24 @@
 (global-set-key "i" (quote recompile))
 (global-set-key "u" (quote compile))
 
+
+;; (when (equal system-type 'darwin)
+;;   (progn
+;;     (custom-set-variables 
+;;      '(compilation-search-path 
+;;        (quote 
+;; 	(nil "~/pdev/maven-practice/11/my-app/src/test/java/com/mycompany/app/pages" 
+;; 	     "/Users/demo/play/Selenium2/java/client/src/org/openqa/selenium/firefox" "")))
+
+
+
 ;; ------------------------------
 ;; csharp-mode
 ;; ------------------------------
 ;; http://www.emacswiki.org/emacs/download/csharp-mode.el
 
 (add-to-list 'load-path "~/.elisp")
-(add-to-list 'auto-mode-alist '("\\.cs?\\'" . csharp-mode))
+; (add-to-list 'auto-mode-alist '("\\.cs?\\'" . csharp-mode))
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 
 ;; Optionally, define and register a mode-hook function. To do so, use
@@ -1488,6 +1508,16 @@
       'wl-draft-kill
       'mail-send-hook))
 
+
+
+; http://praveen.kumar.in/2011/03/09/making-gnu-emacs-detect-custom-error-messages-a-maven-example/
+(add-to-list 'compilation-error-regexp-alist 'maven)
+(add-to-list 'compilation-error-regexp-alist-alist
+       '(maven "\\[ERROR\\] \\(.+?\\):\\[\\([0-9]+\\),\\([0-9]+\\)\\].*"
+           1 2 3))
+
+
+
 ;; ------------------------------
 ;; cmake-mode
 ;; ------------------------------
@@ -1546,9 +1576,23 @@
       (isearch-search-and-update))))
 
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
-(global-set-key "p" (quote my-isearch-word-at-point))
 
+(global-set-key "p" (quote my-isearch-word-at-point))
 (global-set-key "w" (quote whitespace-cleanup))
+
+
+;; ------------------------------
+;; git jump with quickfix files
+;; ------------------------------
+
+;; http://aaroncrane.co.uk/2011/11/git_jump_emacs/
+
+(defun quickfix-open (files)
+  (setq-default compilation-directory default-directory)
+  (compilation-start
+   (concat "cat "
+           (mapconcat #'shell-quote-argument files " "))))
+
 
 ;; ------------------------------
 ;; desktop sessions
@@ -1581,6 +1625,20 @@
 (ctags-update-minor-mode 1)
 
 ;; ------------------------------
+;; sauron mode
+;; ------------------------------
+;; https://github.com/djcb/sauron/blob/master/README.org
+(add-to-list 'load-path "~/.elisp/sauron")
+(require 'sauron)
+
+;; ------------------------------
+;; shell
+;; ------------------------------
+
+; (debug-on-entry (quote comint-history-isearch-backward))
+; (debug-on-entry (quote comint-previous-matching-input))
+;(debug-on-entry (quote isearch-search-string))
+
 ;; ------------------------------
 ;; Window Number mode
 ;; ------------------------------
@@ -1588,7 +1646,14 @@
 (add-to-list 'load-path "~/.elisp")
 (require 'window-numbering)
 (window-numbering-mode 1)
+
 ;; ------------------------------
 ;; shell
 ;; ------------------------------
 (shell)
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )

@@ -45,6 +45,7 @@ thucydides \
 pweave \
 bradleywright-emacs-d \
 python-bugzilla \
+mplayer \
 mplayer-build \
 git_osx_installer \
 bash-completion \
@@ -676,6 +677,12 @@ filezilla:
 	-svn co https://svn.filezilla-project.org/svn/FileZilla3/trunk filezilla --trust-server-cert --non-interactive
 	cd $@ && svn update
 .PHONY: filezilla
+
+mplayer:
+	git clone git://repo.or.cz/mplayer.git
+	cd $@ && git pull
+.PHONY: mplayer
+
 
 chromium/src:
 	-git clone http://git.chromium.org/git/chromium.git $@
