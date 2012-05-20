@@ -216,7 +216,6 @@
 ;; resize man page to take up whole screen
 (setq Man-notify 'bully)
 
-(require 'psvn)
 
 (if (eq system-type 'windows-nt)
     (progn
