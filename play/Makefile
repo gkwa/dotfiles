@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+subversion \
 gdrive-cli \
 sparkle \
 mod_perl \
@@ -672,6 +673,11 @@ chromium/depot_tools:
 	cd $@ && svn update
 .PHONY: chromium/depot_tools
 
+subversion:
+	-svn co http://svn.apache.org/repos/asf/subversion/trunk subversion \
+		--trust-server-cert --non-interactive
+	cd $@ && svn update
+.PHONY: subversion
 
 filezilla:
 	-svn co https://svn.filezilla-project.org/svn/FileZilla3/trunk filezilla --trust-server-cert --non-interactive
