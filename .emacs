@@ -1616,7 +1616,7 @@ else do C-x 5 0 delete-frame"
 ;; ------------------------------
 ;; psvn.el
 ;; ------------------------------
-; (require 'psvn)
+(require 'psvn)
 
 ;; ------------------------------
 ;; ctags-update
