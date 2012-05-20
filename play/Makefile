@@ -689,7 +689,6 @@ mplayer:
 	cd $@ && git pull
 .PHONY: mplayer
 
-
 chromium/src:
 	-git clone http://git.chromium.org/git/chromium.git $@
 	(cd $@ && git fetch && $(gitlog) && git pull)
