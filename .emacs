@@ -371,13 +371,6 @@ else do C-x 5 0 delete-frame"
 
 
 ;; ------------------------------
-;; fit-frame
-;; ------------------------------
-(add-to-list 'load-path "~/.elisp")
-(require 'fit-frame)
-(autoload 'maximize-frame "frame-cmds" nil t)
-
-;; ------------------------------
 ;; setup emacsclient frame dimensions and color
 ;; ------------------------------
 
@@ -548,10 +541,10 @@ else do C-x 5 0 delete-frame"
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(auto-mode-case-fold t)
  '(bmkp-last-as-first-bookmark-file "~/.emacs.bmk")
  '(compilation-error-regexp-alist (quote (("^?:[ 	]+at com.mycompany.+(\\([^()
@@ -559,7 +552,7 @@ else do C-x 5 0 delete-frame"
 \\(.*\\):.\\([0-9]+\\)" 1 2) ("^git_jump:\\(.*\\):\\([0-9]+\\):" 1 2))))
  '(compile-command "make -k ")
  '(delete-by-moving-to-trash t)
- '(diary-file (expand-file-name "~/.diary") t)
+ '(diary-file (expand-file-name "~/.diary"))
  '(display-time-mode t nil (time))
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(ffap-machine-p-known (quote reject))
@@ -1680,13 +1673,17 @@ else do C-x 5 0 delete-frame"
 ;; ------------------------------
 ; (require 'psvn)
 
+;; ------------------------------
+;; newsticker
+;; ------------------------------
+;; == Newsticker ==
+(setq newsticker-url-list
+      (quote (("ACM Queue" "http://queue.acm.org/rss/feeds/blogroll.xml" nil nil nil))))
 
 ;; ------------------------------
 ;; shell
 ;; ------------------------------
-; (debug-on-entry (quote comint-history-isearch-backward))
-; (debug-on-entry (quote comint-previous-matching-input))
-;(debug-on-entry (quote isearch-search-string))
+(shell)
 
 ;; ------------------------------
 ;; Window Number mode
@@ -1695,19 +1692,3 @@ else do C-x 5 0 delete-frame"
 (add-to-list 'load-path "~/.elisp")
 (require 'window-numbering)
 (window-numbering-mode 1)
-
-; (debug-on-entry (quote comint-history-isearch-backward))
-; (debug-on-entry (quote comint-previous-matching-input))
-;(debug-on-entry (quote isearch-search-string))
-
-
-;; ------------------------------
-;; shell
-;; ------------------------------
-(shell)
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
