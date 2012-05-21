@@ -6,9 +6,10 @@
 # killing daemon will kill all clients too.  Kill daemon by 'make kill'
 # usage: make kill
 
-EMACS_BASEPATH=/Applications/MacPorts/Emacs.app/Contents/MacOS
-EMACS=$(EMACS_BASEPATH)/Emacs
-EMACS_CLIENT=$(EMACS_BASEPATH)/bin/emacsclient
+EMACS_BASEPATH=/Users/demo/play/emacs
+EMACS=$(EMACS_BASEPATH)/src/emacs-24.1.50.1
+EMACS_CLIENT=$(EMACS_BASEPATH)/lib-src/emacsclient
+
 EMACS_SERVER_FILE=~/.emacs.d/server/emacs1000
 
 emacs_daemon_pid=$(shell sh -c 'ps -ef|grep -v make| grep -v grep|grep -iE "emacs.*daemon" | awk '\''{print $$2}'\''')
