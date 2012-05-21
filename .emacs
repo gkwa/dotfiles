@@ -29,7 +29,7 @@
 ;; don't ask about killing subprocesses when killing emacs, just kill
 ;; off all children without question
 ;; http://stackoverflow.com/questions/2706527/make-emacs-stop-asking-active-processes-exist-kill-them-and-exit-anyway
-(add-hook 'comint-exec-hook
+(add-hook 'comint-exec-hook 
       (lambda () (process-kill-without-query (get-buffer-process (current-buffer)))))
 
 
@@ -50,7 +50,7 @@
 (add-to-list 'load-path "~/.elisp/psgml-1.2.5")	;; http://www.lysator.liu.se/~lenst/about_psgml/psgml.html
 
 ;; This mode seems too slow and I've not used it's functionality
-;; (autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t)
+;; (autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t) 
 ;; (autoload 'xml-mode "psgml" "Major mode to edit XML files." t)
 
 (setq auto-mode-case-fold t)
@@ -174,8 +174,8 @@
 
 (add-hook 'find-file-hooks 'auto-insert)
 
-(add-hook 'autoinsert-load-hook
-	  '(lambda ()
+(add-hook 'autoinsert-load-hook 
+	  '(lambda () 
 	     (add-to-list 'auto-insert-alist
 			  '(
 			    ;; the following need an interpreter
@@ -195,8 +195,8 @@
 ;; ;; C-c C-n t for sgml mode
 ;; (add-hook 'sgml-mode-hook
 ;; 	  '(lambda () (define-key sgml-mode-map "\C-c\C-nt" 'tidy-buffer-xml )
-;; 	     ;;	 	     (define-key texinfo-mode-map "\C-cn"
-;; 	     ;;	 	       'forward-paragraph)
+;; 	     ;;  	     (define-key texinfo-mode-map "\C-cn"
+;; 	     ;;  	       'forward-paragraph)
 ;; 	     ))
 
 ;; --------------------------------------------------
@@ -217,7 +217,7 @@
 (setq Man-notify 'bully)
 
 
-(if (eq system-type 'windows-nt)
+(if (eq system-type 'windows-nt)	
     (progn
       (setq explicit-shell-file-name "c:/cygwin/bin/bash.exe")
 ;;      (add-to-list 'Info-directory-list "c:/cygwin/usr/share/info")
@@ -253,7 +253,6 @@
     (add-to-list 'exec-path '"/usr/local/bin")
     (setenv "PATH" (concat "/opt/local/bin" ":" (getenv "PATH"))) ; added this next line due to problems in compilation-environment
     (custom-set-variables
-     '(compile-command "gmake -k ")
      '(ispell-program-name "/opt/local/bin/aspell")) ; macport aspell
     ;;      (require 'w3m-load) ; available through macports (sudo port install emacs-w3m)
     ;; http://docs.freebsd.org/info/texinfo/texinfo.info.Other_Info_Directories.html
@@ -284,17 +283,17 @@
 	;; local value for the next variable.  Therefore, an expression
 	;; in BINDINGS can reasonably refer to the preceding symbols
 	;; bound in this `let*' form.  Compare the following example
-	;; with the example above for `let'.
-
+	;; with the example above for `let'.  
+	
 	(let* ((prompt (eshell/pwd))
 	       (tmp (string-match "/[^:/\\]*$" prompt)))
-	  (concat
-	   (substring prompt (+ tmp 1) (length prompt))
+	  (concat 
+	   (substring prompt (+ tmp 1) (length prompt)) 
 
 	   ;; Be careful about removing the following concatination!  I
 	   ;; spent an hour trying to figure this one out.  Without
 	   ;; either a hash or $ you will end up with  "Not Found" error
-	   ;; messages in the Eshell window when you do
+	   ;; messages in the Eshell window when you do 
 	   ;; eshell-previous-matching-input-from-input (most likely
 	   ;; bound to M-p.  M-x customize-group <RET> eshell-prompt
 	   ;; will give you more clues about the Eshell Prompt Regexp
@@ -304,10 +303,10 @@
 (setenv "PS1" "\\u@\h \\W$ ")
 
 ;;http://www.emacswiki.org/cgi-bin/wiki/McMahanDotEmacs
-;;; set the term to avoid ansi garbage in shell mode
-;(setenv "TERM" "emacs")
+																																																																																																																																																																																																																   ;;; set the term to avoid ansi garbage in shell mode
+					;(setenv "TERM" "emacs")
 
-;;; Commands added by calc-private-autoloads on Sat Mar 14 15:01:33 2009.
+																																																																																																																																																																																																																					;;; Commands added by calc-private-autoloads on Sat Mar 14 15:01:33 2009.
 (autoload 'calc-dispatch	   "calc" "Calculator Options" t)
 (autoload 'full-calc		   "calc" "Full-screen Calculator" t)
 (autoload 'full-calc-keypad	   "calc" "Full-screen X Calculator" t)
@@ -321,7 +320,7 @@
 (autoload 'calc-grab-region	   "calc" "Grab region of Calc data" t)
 (autoload 'calc-grab-rectangle	   "calc" "Grab rectangle of data" t)
 (global-set-key "\e#" 'calc-dispatch)
-;;; End of Calc autoloads.
+																																																																																																																																																																																																																					;;; End of Calc autoloads.
 
 ;; ;; svn export https://svn.r-project.org/ESS/trunk ~/.elisp/ess
 ;; (if (file-directory-p "~/.elisp/ess")
@@ -329,15 +328,38 @@
 ;;       (add-to-list 'load-path "~/.elisp/ess")
 ;;       (require 'ess-site)))
 
+
+
+
+
+;; --------------------------------------------------
+;; emacs server setup
+;; --------------------------------------------------
+;;http://www.emacswiki.org/emacs-en/emacsd
+;; only start emacs server when it's not started, I hate warnings.
+;; http://www.emacswiki.org/emacs/download/EmacsdInitScript
+
+;; (if (>= (string-to-number emacs-version) 22)
+;;     (progn
+;;       (setq server-socket-file "/tmp/emacs1000/server")
+;;       (unless (file-exists-p server-socket-file)
+;; 	(server-start)
+;; )))
+
+;; (server-start)
+
+;; So emacs won't try to start the server again.  
+
+;; This function may be useful if you are always in a client. I bind it to C-c q. So I don't need to use C-x # or C-x 5 0 any more.
 ;; This function may be useful if you are always in a client. I bind it
 ;; to C-c q. So I don't need to use C-x # or C-x 5 0 any more.
 
 (defun exit-emacs-client ()
   "consistent exit emacsclient.
-if not in emacs client, echo a message in minibuffer, don't exit emacs.
-if in server mode
-and editing file, do C-x # server-edit
-else do C-x 5 0 delete-frame"
+																																																																																																																																																																																																																					     if not in emacs client, echo a message in minibuffer, don't exit emacs.
+																																																																																																																																																																																																																					        if in server mode
+																																																																																																																																																																																																																						      and editing file, do C-x # server-edit
+																																																																																																																																																																																																																						            else do C-x 5 0 delete-frame"
   (interactive)
   (if server-buffer-clients
       (server-edit)
@@ -422,7 +444,7 @@ else do C-x 5 0 delete-frame"
       (progn
 	(back-to-indentation)
 	(setq bor (point))
-	(end-of-line)
+	(end-of-line)	
 	(setq eol (point))
 	(narrow-to-region bor eol)
 	(back-to-indentation)
@@ -448,7 +470,7 @@ else do C-x 5 0 delete-frame"
 		    )))
 	    (if (looking-at "^ *\\[file://///10.0.2.10/")
 		(progn
-		  (goto-char (- (point-max) 1))
+		  (goto-char (- (point-max) 1)) 
 		  (delete-char 1)
 		  (beginning-of-line) (delete-char 1)
 		  (let ((sp (search-forward " ")))
@@ -484,8 +506,8 @@ else do C-x 5 0 delete-frame"
       (progn
 	(let ((cp (point)))
 	  (end-of-line)
-	  (let ((fullpath
-		 (concat
+	  (let ((fullpath 
+		 (concat 
 		  (expand-file-name dired-directory)
 		  (buffer-substring cp (point)))))
 	    (message "%s" fullpath)
@@ -524,16 +546,12 @@ else do C-x 5 0 delete-frame"
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
  '(auto-mode-case-fold t)
  '(bmkp-last-as-first-bookmark-file "~/.emacs.bmk")
  '(compilation-error-regexp-alist (quote (("^?:[ 	]+at com.mycompany.+(\\([^()
 ]+\\):\\([0-9]+\\))$" 2 3) ("^\\[ERROR\\].+
 \\(.*\\):.\\([0-9]+\\)" 1 2) ("^git_jump:\\(.*\\):\\([0-9]+\\):" 1 2))))
- '(compile-command "gmake -k ")
+ '(compile-command "make -k ")
  '(delete-by-moving-to-trash t)
  '(diary-file (expand-file-name "~/.diary") t)
  '(display-time-mode t nil (time))
@@ -564,7 +582,7 @@ else do C-x 5 0 delete-frame"
 ;; anything-sources, then anything-c-source-recentf will bring up past
 ;; directories.
 (add-hook 'dired-mode-hook
-	  (lambda ()
+	  (lambda () 
 	    (local-set-key "f" (quote find-dired))
 	    (when recentf-mode
 	      (recentf-add-file default-directory))))
@@ -669,7 +687,7 @@ else do C-x 5 0 delete-frame"
       (autoload 'malabar-mode
 	"malabar-mode" "java in emacs using malabar mode" t)))
 (add-hook 'malabar-mode-hook
-	  (lambda ()
+	  (lambda () 
 	    (add-hook 'after-save-hook 'malabar-compile-file-silently
 		      nil t)))
 
@@ -690,8 +708,8 @@ else do C-x 5 0 delete-frame"
 	  '(lambda ()
 	     (define-key html-helper-mode-map "\C-c\C-nt"
 	       'tidy-buffer-xhtml)
-	     ;;	 	     (define-key texinfo-mode-map "\C-cn"
-	     ;;	 	       'forward-paragraph)
+	     ;;  	     (define-key texinfo-mode-map "\C-cn"
+	     ;;  	       'forward-paragraph)
 	     )
 	  )
 
@@ -764,9 +782,9 @@ else do C-x 5 0 delete-frame"
 (add-to-list 'auto-mode-alist '("CONFIG\\." . bat-mode))
 (add-to-list 'auto-mode-alist '("AUTOEXEC\\." . bat-mode))
 
-(add-hook 'bat-mode-hook
-	  '(lambda ()
-	     (auto-fill-mode 0)
+(add-hook 'bat-mode-hook 
+	  '(lambda () 
+	     (auto-fill-mode 0) 
 	     (setq fill-column 72)
 	     ))
 (add-to-list 'auto-insert-alist '((bat-mode . "Bat Mode") . (concat comment-start "-*- bat -*-\n" "@Echo off\n\n\n")))
@@ -816,31 +834,31 @@ else do C-x 5 0 delete-frame"
 (autoload 'pgg-make-temp-file "pgg" "PGG")
 (autoload 'pgg-gpg-decrypt-region "pgg-gpg" "PGG GnuPG")
 (define-generic-mode 'gpg-file-mode
-  (list ?#)
+  (list ?#) 
   nil nil
   '(".gpg\\'" ".gpg-encrypted\\'")
   (list (lambda ()
 	    (add-hook 'before-save-hook
+                      (lambda () 
+                        (let ((pgg-output-buffer (current-buffer)))
+                          (pgg-gpg-encrypt-region (point-min) (point-max)
+                                                  (list pgg-gpg-user-id))))
+                      nil t)
+	    (add-hook 'after-save-hook 
 		      (lambda ()
-			(let ((pgg-output-buffer (current-buffer)))
-			  (pgg-gpg-encrypt-region (point-min) (point-max)
-						  (list pgg-gpg-user-id))))
-		      nil t)
-	    (add-hook 'after-save-hook
-		      (lambda ()
-			(let ((pgg-output-buffer (current-buffer)))
-			  (pgg-gpg-decrypt-region (point-min) (point-max)))
+                        (let ((pgg-output-buffer (current-buffer)))
+                          (pgg-gpg-decrypt-region (point-min) (point-max)))
 			(set-buffer-modified-p nil)
 			(auto-save-mode nil))
 		      nil t)
-	    (let ((pgg-output-buffer (current-buffer)))
-	      (pgg-gpg-decrypt-region (point-min) (point-max)))
+            (let ((pgg-output-buffer (current-buffer)))
+              (pgg-gpg-decrypt-region (point-min) (point-max)))
 	    (auto-save-mode nil)
 	    (set-buffer-modified-p nil)))
   "Mode for gpg encrypted files")
 
 ;; ------------------------------
-;; dired-x
+;; dired-x 
 ;; ------------------------------
 
 (add-hook 'dired-load-hook
@@ -883,7 +901,7 @@ else do C-x 5 0 delete-frame"
      anything-c-source-ffap-line
      anything-c-source-ffap-guesser
      ;; anything-c-source-mac-spotlight  ;; I believe this source is causing slowdown, its the one invoking mdfind
-     ;; anything-c-source-occur
+     ;; anything-c-source-occur     
 ;;     anything-c-source-firefox-bookmarks causes error if ~/.mozilla/firefox/bookmarks.html doesn't exist
 ;;     anything-bookmarks ;; mcausese error
      ;; anything-c-source-bm
@@ -892,7 +910,7 @@ else do C-x 5 0 delete-frame"
      anything-c-source-kill-ring
 ;;     anything-dired-copy-file
      ;;     anything-c-source-file-name-history
-     anything-c-source-mark-ring
+     anything-c-source-mark-ring 
      ;; anything-c-source-info-pages
      ;; anything-c-source-man-pages
      anything-c-source-buffer-not-found
@@ -901,7 +919,7 @@ else do C-x 5 0 delete-frame"
      ;; anything-c-source-files-in-all-dired
      anything-c-source-minibuffer-history
      ;; this one causes save-excursion: Marker does not point anywhere error when mark is not set
-     ;; anything-c-source-mark-ring
+     ;; anything-c-source-mark-ring 
      ;; anything-c-source-global-mark-ring causes problems when
      ;; switching back to original buffer.  Its as though save-excursion
      ;; isn't working because upon returning to the buffer, your
@@ -971,7 +989,7 @@ else do C-x 5 0 delete-frame"
       (insert (format "%4d %c\n" i i))))
   (beginning-of-buffer))
 
-;; Function to run Tidy HTML parser on buffer, this requires external app Tidy
+;; Function to run Tidy HTML parser on buffer, this requires external app Tidy 
 (defun tidy-buffer-xhtml ()
   "Run Tidy HTML parser on current buffer."
   (interactive)
@@ -982,7 +1000,7 @@ else do C-x 5 0 delete-frame"
       (shell-command-on-region (point-min) (point-max)
 			       (concat cmd tmp)
 			       t)
-					;(shell-command-on-region (point-min) (point-max) "tidyClean"
+					;(shell-command-on-region (point-min) (point-max) "tidyClean" 
 					;t)
       (find-file-other-window tmp)
       (other-window 1)
@@ -994,7 +1012,7 @@ else do C-x 5 0 delete-frame"
     )
   )
 
-;; Function to run Tidy xml parser on buffer, this requires external app Tidy
+;; Function to run Tidy xml parser on buffer, this requires external app Tidy 
 (defun tidy-buffer-xml ()
   "Run Tidy XML parser on current buffer."
   (interactive)
@@ -1017,7 +1035,7 @@ else do C-x 5 0 delete-frame"
 
 
 																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		     ;;; Convert DOS file format to Unix
-;; look at
+;; look at 
 ;; M-x comint-strip-ctrl-m
 ;;   Command: Strip trailing `^M' characters from the current output group.
 ;; from: elf@ee.ryerson.ca (Luis Fernandes)
@@ -1054,7 +1072,7 @@ else do C-x 5 0 delete-frame"
 (require 'org-install)
 ;(require 'ob-sh)
 ;;(require 'ob-R)         ;; requires R and ess-mode
-;(require 'ob-perl)      ;;
+;(require 'ob-perl)      ;; 
 ;(require 'ob-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
 ;(require 'ob-python)    ;; requires python, and python-mode
 ;(require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
@@ -1102,7 +1120,7 @@ else do C-x 5 0 delete-frame"
 (setq org-agenda-custom-commands '(("f" occur-tree "FIXME")))
 
 (add-hook 'org-mode-hook
-	  (lambda ()
+	  (lambda () 
 	    (local-set-key "c" (quote calendar))))
 
 ;; Encrypt all entries before saving
@@ -1165,7 +1183,7 @@ else do C-x 5 0 delete-frame"
 ;;  'org-babel-load-languages
 ;;  '((emacs-lisp . nil)
 ;;    (R . t)))
-
+  
 ;; keep "/opt/local/share/info" as the last element of
 ;; Info-default-directory-list because "/opt/local/share/info" has the
 ;; newest stuff
@@ -1174,7 +1192,7 @@ else do C-x 5 0 delete-frame"
 ;; ------------------------------
 ;; nsis mode
 ;; ------------------------------
-;; wget -P.elisp http://www.emacswiki.org/emacs/download/nsis-mode.el
+;; wget -P.elisp http://www.emacswiki.org/emacs/download/nsis-mode.el 
 ;; (autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
 ;; (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
 ;;                                  nsis-mode)) auto-mode-alist))
@@ -1193,13 +1211,13 @@ else do C-x 5 0 delete-frame"
 ;; Don't know if it's the best way , but it seemed to work. (Requires emacs >= 20)
 (defun browse-apropos-url (text &optional new-window)
   (interactive (browse-url-interactive-arg "Location: "))
-  (let ((text (replace-regexp-in-string
-	       "^ *\\| *$" ""
-	       (replace-regexp-in-string "[ \t\n]+" " " text))))
-    (let ((url (assoc-default
-		text apropos-url-alist
-		'(lambda (a b) (let () (setq __braplast a) (string-match a b)))
-		text)))
+  (let ((text (replace-regexp-in-string 
+               "^ *\\| *$" "" 
+               (replace-regexp-in-string "[ \t\n]+" " " text))))
+    (let ((url (assoc-default 
+                text apropos-url-alist 
+                '(lambda (a b) (let () (setq __braplast a) (string-match a b)))
+                text)))
       (browse-url (replace-regexp-in-string __braplast url text) new-window))))
 
 
@@ -1209,38 +1227,38 @@ else do C-x 5 0 delete-frame"
 
 ;; http://www.emacswiki.org/emacs/BrowseAproposURL#toc6
 (setq apropos-url-alist
-      '(("^gw?:? +\\(.*\\)" . ;; Google Web
-	 "http://www.google.com/search?q=\\1")
-	("^g!:? +\\(.*\\)" . ;; Google Lucky
-	 "http://www.google.com/search?btnI=I%27m+Feeling+Lucky&q=\\1")
-	("^gl:? +\\(.*\\)" .  ;; Google Linux
-	 "http://www.google.com/linux?q=\\1")
-	("^gi:? +\\(.*\\)" . ;; Google Images
-	 "http://images.google.com/images?sa=N&tab=wi&q=\\1")
-	("^gg:? +\\(.*\\)" . ;; Google Groups
-	 "http://groups.google.com/groups?q=\\1")
-	("^gd:? +\\(.*\\)" . ;; Google Directory
-	 "http://www.google.com/search?&sa=N&cat=gwd/Top&tab=gd&q=\\1")
-	("^gn:? +\\(.*\\)" . ;; Google News
-	 "http://news.google.com/news?sa=N&tab=dn&q=\\1")
-	("^gt:? +\\(\\w+\\)|? *\\(\\w+\\) +\\(\\w+://.*\\)" . ;; Google Translate URL
-	 "http://translate.google.com/translate?langpair=\\1|\\2&u=\\3")
-	("^gt:? +\\(\\w+\\)|? *\\(\\w+\\) +\\(.*\\)" . ;; Google Translate Text
-	 "http://translate.google.com/translate_t?langpair=\\1|\\2&text=\\3")
-	("^/\\.$" . ;; Slashdot
-	 "http://www.slashdot.org")
-	("^/\\.:? +\\(.*\\)" . ;; Slashdot search
-	 "http://www.osdn.com/osdnsearch.pl?site=Slashdot&query=\\1")
-	("^fm$" . ;; Freshmeat
-	 "http://www.freshmeat.net")
-	("^ewiki:? +\\(.*\\)" . ;; Emacs Wiki Search
-	 "http://www.emacswiki.org/cgi-bin/wiki?search=\\1")
-	("^ewiki$" . ;; Emacs Wiki
-	 "http://www.emacswiki.org")
-	("^arda$" . ;; The Encyclopedia of Arda
-	 "http://www.glyphweb.com/arda/")
-	("^nsis:? +\\(.*\\)" . ;; NSIS docs
-	 "http://www.google.com/search?q=site:nsis.sourceforge.net%20\\1")
+      '(("^gw?:? +\\(.*\\)" . ;; Google Web 
+         "http://www.google.com/search?q=\\1")
+        ("^g!:? +\\(.*\\)" . ;; Google Lucky
+         "http://www.google.com/search?btnI=I%27m+Feeling+Lucky&q=\\1")
+        ("^gl:? +\\(.*\\)" .  ;; Google Linux 
+         "http://www.google.com/linux?q=\\1")
+        ("^gi:? +\\(.*\\)" . ;; Google Images
+         "http://images.google.com/images?sa=N&tab=wi&q=\\1")
+        ("^gg:? +\\(.*\\)" . ;; Google Groups
+         "http://groups.google.com/groups?q=\\1")
+        ("^gd:? +\\(.*\\)" . ;; Google Directory
+         "http://www.google.com/search?&sa=N&cat=gwd/Top&tab=gd&q=\\1")
+        ("^gn:? +\\(.*\\)" . ;; Google News
+         "http://news.google.com/news?sa=N&tab=dn&q=\\1")
+        ("^gt:? +\\(\\w+\\)|? *\\(\\w+\\) +\\(\\w+://.*\\)" . ;; Google Translate URL
+         "http://translate.google.com/translate?langpair=\\1|\\2&u=\\3")
+        ("^gt:? +\\(\\w+\\)|? *\\(\\w+\\) +\\(.*\\)" . ;; Google Translate Text
+         "http://translate.google.com/translate_t?langpair=\\1|\\2&text=\\3")
+        ("^/\\.$" . ;; Slashdot 
+         "http://www.slashdot.org")
+        ("^/\\.:? +\\(.*\\)" . ;; Slashdot search
+         "http://www.osdn.com/osdnsearch.pl?site=Slashdot&query=\\1")        
+        ("^fm$" . ;; Freshmeat
+         "http://www.freshmeat.net")
+        ("^ewiki:? +\\(.*\\)" . ;; Emacs Wiki Search
+         "http://www.emacswiki.org/cgi-bin/wiki?search=\\1")
+        ("^ewiki$" . ;; Emacs Wiki 
+         "http://www.emacswiki.org")
+        ("^arda$" . ;; The Encyclopedia of Arda 
+         "http://www.glyphweb.com/arda/")
+        ("^nsis:? +\\(.*\\)" . ;; NSIS docs
+         "http://www.google.com/search?q=site:nsis.sourceforge.net%20\\1")
 	))
 
 (global-set-key "b" (quote browse-apropos-url-on-region))
@@ -1473,13 +1491,13 @@ else do C-x 5 0 delete-frame"
 
 ;; IMAP
 (setq elmo-imap4-default-server "imap.gmail.com")
-;; (setq elmo-imap4-default-user "<accountname>@gmail.com")
-(setq elmo-imap4-default-user "taylor.monacelli@streambox.com")
-(setq elmo-imap4-default-authenticate-type 'clear)
+;; (setq elmo-imap4-default-user "<accountname>@gmail.com") 
+(setq elmo-imap4-default-user "taylor.monacelli@streambox.com") 
+(setq elmo-imap4-default-authenticate-type 'clear) 
 (setq elmo-imap4-default-port '993)
 (setq elmo-imap4-default-stream-type 'ssl)
 
-(setq elmo-imap4-use-modified-utf7 t)
+(setq elmo-imap4-use-modified-utf7 t) 
 
 ;; SMTP
 (setq wl-smtp-connection-type 'starttls)
@@ -1494,7 +1512,7 @@ else do C-x 5 0 delete-frame"
 (setq wl-draft-folder "%[Gmail]/Drafts") ; Gmail IMAP
 (setq wl-trash-folder "%[Gmail]/Trash")
 
-(setq wl-folder-check-async t)
+(setq wl-folder-check-async t) 
 
 (setq elmo-imap4-use-modified-utf7 t)
 
@@ -1529,8 +1547,8 @@ else do C-x 5 0 delete-frame"
 (require 'cmake-mode)
 (setq auto-mode-alist
       (append '(("CMakeLists\\.txt\\'" . cmake-mode)
-		("\\.cmake\\'" . cmake-mode))
-	      auto-mode-alist))
+                ("\\.cmake\\'" . cmake-mode))
+              auto-mode-alist))
 
 ;; ------------------------------
 ;; python-mode
@@ -1561,19 +1579,19 @@ else do C-x 5 0 delete-frame"
 (defun my-isearch-yank-word-hook ()
   (when (equal this-command 'my-isearch-word-at-point)
     (let ((string (concat "\\<"
-			  (buffer-substring-no-properties
-			   (progn (skip-syntax-backward "w_") (point))
-			   (progn (skip-syntax-forward "w_") (point)))
-			  "\\>")))
+                          (buffer-substring-no-properties
+                           (progn (skip-syntax-backward "w_") (point))
+                           (progn (skip-syntax-forward "w_") (point)))
+                          "\\>")))
       (if (and isearch-case-fold-search
-	       (eq 'not-yanks search-upper-case))
-	  (setq string (downcase string)))
+               (eq 'not-yanks search-upper-case))
+          (setq string (downcase string)))
       (setq isearch-string string
-	    isearch-message
-	    (concat isearch-message
-		    (mapconcat 'isearch-text-char-description
-			       string ""))
-	    isearch-yank-flag t)
+            isearch-message
+            (concat isearch-message
+                    (mapconcat 'isearch-text-char-description
+                               string ""))
+            isearch-yank-flag t)
       (isearch-search-and-update))))
 
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
@@ -1636,9 +1654,14 @@ else do C-x 5 0 delete-frame"
 (require 'sauron)
 
 ;; ------------------------------
+;; psvn.el
+;; ------------------------------
+; (require 'psvn)
+
+
+;; ------------------------------
 ;; shell
 ;; ------------------------------
-
 ; (debug-on-entry (quote comint-history-isearch-backward))
 ; (debug-on-entry (quote comint-previous-matching-input))
 ;(debug-on-entry (quote isearch-search-string))
