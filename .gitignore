@@ -1,7 +1,16 @@
+/play/*
+!/play/Makefile
+
+/subversionprojects/*
+!/subversionprojects/Makefile
+
+/Library
+!/Library/Application Support/Quicksilver/Actions
+
+
 *.actl3
 *.mov
 .svn
-/.lesshst
 /.CFUserTextEncoding
 /.DS_Store
 /.RData
@@ -9,61 +18,63 @@
 /.Trash/
 /.Xauthority
 /.abbrev_defs
+/.aspell.en.pws
 /.bash_history
+/.bazaar/
 /.breadcrumb
+/.bugz_cookie
+/.bzr.log
+/.cache
 /.cpan/
 /.cups/
+/.dropbox/
+/.elisp/*.elc
 /.emacs.d/
 /.fontconfig
 /.gitk
 /.keepassx/
+/.lesshst
 /.local/share/Trash
 /.m2
 /.macports/
+/.mono/
 /.mozilla/
 /.org-timestamps
 /.org.eclipse.epp.usagedata.recording.userId
+/.pip/
 /.projects.ede
+/.quickfix
 /.recentf
+/.recently-used
 /.repoconfig
 /.repopickle_.gitconfig
+/.rnd
 /.semanticdb/
 /.serverauth.[0-9][0-9]*
-/.bzr.log
+/.sh_history
 /.ssh/id_dsa
 /.ssh/id_dsa.pub
 /.ssh/known_hosts
+/.subversion/
 /.tramp_history
+/.viminfo
 /.wireshark
 /CygwinInstall/setup.log
 /CygwinInstall/setup.log.full
+/Desktop/.DS_Store
+/Desktop/.localized
 /Downloads
-/Library
-!/Library/Application Support/Quicksilver/Actions
+/Google Drive/
 /Movies
 /Music
 /Pictures
-/cygwin_setup/deploy/Program Files/CygwinInstall/setup.log
-/cygwin_setup/deploy/Program Files/CygwinInstall/setup.log.full
-/p
-/tmp/
-/trash/
-/.rnd
-/.aspell.en.pws
-/.elisp/*.elc
-/Desktop/.DS_Store
-/Desktop/.localized
 /Public/.com.apple.timemachine.supported
 /Public/.localized
 /Public/Drop Box/.localized
 /bin/repo
+/cygwin_setup/deploy/Program Files/CygwinInstall/setup.log
+/cygwin_setup/deploy/Program Files/CygwinInstall/setup.log.full
 /kee.kdb.lock
-/.cache
-/subversionprojects/*
-!/subversionprojects/Makefile
-/play/*
-!/play/Makefile
-/.pip/
-/.dropbox
-/.bugz_cookie
-/.bazaar
+/p
+/tmp/
+/trash/
