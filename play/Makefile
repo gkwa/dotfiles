@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+curl \
 subversion \
 gdrive-cli \
 sparkle \
@@ -683,6 +684,12 @@ filezilla:
 	-svn co https://svn.filezilla-project.org/svn/FileZilla3/trunk filezilla --trust-server-cert --non-interactive
 	cd $@ && svn update
 .PHONY: filezilla
+
+curl:
+	git clone git://github.com/bagder/curl.git
+	cd $@ && git pull
+.PHONY: curl
+
 
 mplayer:
 	git clone git://repo.or.cz/mplayer.git

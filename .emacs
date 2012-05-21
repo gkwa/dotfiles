@@ -303,10 +303,10 @@
 (setenv "PS1" "\\u@\h \\W$ ")
 
 ;;http://www.emacswiki.org/cgi-bin/wiki/McMahanDotEmacs
-																																																																																																																																																																																																																   ;;; set the term to avoid ansi garbage in shell mode
-					;(setenv "TERM" "emacs")
+;;; set the term to avoid ansi garbage in shell mode
+;(setenv "TERM" "emacs")
 
-																																																																																																																																																																																																																					;;; Commands added by calc-private-autoloads on Sat Mar 14 15:01:33 2009.
+;;; Commands added by calc-private-autoloads on Sat Mar 14 15:01:33 2009.
 (autoload 'calc-dispatch	   "calc" "Calculator Options" t)
 (autoload 'full-calc		   "calc" "Full-screen Calculator" t)
 (autoload 'full-calc-keypad	   "calc" "Full-screen X Calculator" t)
@@ -320,13 +320,16 @@
 (autoload 'calc-grab-region	   "calc" "Grab region of Calc data" t)
 (autoload 'calc-grab-rectangle	   "calc" "Grab rectangle of data" t)
 (global-set-key "\e#" 'calc-dispatch)
-																																																																																																																																																																																																																					;;; End of Calc autoloads.
+
+;;; End of Calc autoloads.
+
 
 ;; ;; svn export https://svn.r-project.org/ESS/trunk ~/.elisp/ess
 ;; (if (file-directory-p "~/.elisp/ess")
 ;;     (progn
 ;;       (add-to-list 'load-path "~/.elisp/ess")
 ;;       (require 'ess-site)))
+
 
 
 
@@ -350,16 +353,15 @@
 
 ;; So emacs won't try to start the server again.  
 
-;; This function may be useful if you are always in a client. I bind it to C-c q. So I don't need to use C-x # or C-x 5 0 any more.
 ;; This function may be useful if you are always in a client. I bind it
 ;; to C-c q. So I don't need to use C-x # or C-x 5 0 any more.
 
 (defun exit-emacs-client ()
   "consistent exit emacsclient.
-																																																																																																																																																																																																																					     if not in emacs client, echo a message in minibuffer, don't exit emacs.
-																																																																																																																																																																																																																					        if in server mode
-																																																																																																																																																																																																																						      and editing file, do C-x # server-edit
-																																																																																																																																																																																																																						            else do C-x 5 0 delete-frame"
+if not in emacs client, echo a message in minibuffer, don't exit emacs.
+if in server mode
+and editing file, do C-x # server-edit
+else do C-x 5 0 delete-frame"
   (interactive)
   (if server-buffer-clients
       (server-edit)
@@ -546,6 +548,10 @@
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(auto-mode-case-fold t)
  '(bmkp-last-as-first-bookmark-file "~/.emacs.bmk")
  '(compilation-error-regexp-alist (quote (("^?:[ 	]+at com.mycompany.+(\\([^()
@@ -1183,7 +1189,7 @@
 ;;  'org-babel-load-languages
 ;;  '((emacs-lisp . nil)
 ;;    (R . t)))
-  
+
 ;; keep "/opt/local/share/info" as the last element of
 ;; Info-default-directory-list because "/opt/local/share/info" has the
 ;; newest stuff
@@ -1613,8 +1619,23 @@
    (concat "cat "
            (mapconcat #'shell-quote-argument files " "))))
 
+
 (global-set-key "p" (quote my-isearch-word-at-point))
 (global-set-key "w" (quote whitespace-cleanup))
+
+
+;; ------------------------------
+;; git jump with quickfix files
+;; ------------------------------
+
+;; http://aaroncrane.co.uk/2011/11/git_jump_emacs/
+
+(defun quickfix-open (files)
+  (setq-default compilation-directory default-directory)
+  (compilation-start
+   (concat "cat "
+           (mapconcat #'shell-quote-argument files " "))))
+
 
 ;; ------------------------------
 ;; desktop sessions
@@ -1654,6 +1675,7 @@
 (require 'sauron)
 
 ;; ------------------------------
+
 ;; psvn.el
 ;; ------------------------------
 ; (require 'psvn)
@@ -1674,20 +1696,10 @@
 (require 'window-numbering)
 (window-numbering-mode 1)
 
-;; ------------------------------
-;; sauron mode
-;; ------------------------------
-;; https://github.com/djcb/sauron/blob/master/README.org
-(add-to-list 'load-path "~/.elisp/sauron")
-(require 'sauron)
-
-;; ------------------------------
-;; shell
-;; ------------------------------
-
 ; (debug-on-entry (quote comint-history-isearch-backward))
 ; (debug-on-entry (quote comint-previous-matching-input))
 ;(debug-on-entry (quote isearch-search-string))
+
 
 ;; ------------------------------
 ;; shell
