@@ -414,10 +414,13 @@ function parse_git_branch
 	fi;
     }
 
-
-
+##############################
+# Git bash completion
+##############################
+# GIT_PS1_SHOWDIRTYSTATE=1
 # GIT_PS1_SHOWSTASHSTATE=1
 # GIT_PS1_SHOWUNTRACKEDFILES=1
 # GIT_PS1_SHOWUPSTREAM="auto"
-# source ~/.git-completion.bash # this might cause bash to be really slow
+# # source ~/.git-completion.bash # this might cause bash to be really slow
+# source ~/play/git/contrib/completion/git-completion.bash
 # PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
