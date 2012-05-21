@@ -30,6 +30,11 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+ffmpeg_bundle \
+ffmpeg \
+ffmpeg-web \
+libav \
+audacity-read-only \
 curl \
 subversion \
 gdrive-cli \
@@ -129,6 +134,32 @@ MediaWiki:
 	cd $@ && svn cleanup
 	cd $@ && svn update
 .PHONY: MediaWiki
+
+##############################
+
+ffmpeg_bundle: libav ffmpeg-web ffmpeg
+
+libav:
+	[ -d $@ ] || git clone git://git.libav.org/libav.git
+	cd $@ && git fetch && $(gitlog) && git pull
+.PHONY: libav
+
+ffmpeg-web:
+	[ -d $@ ] || git clone git://ffmpeg.org/ffmpeg-web.git
+	cd $@ && git fetch && $(gitlog) && git pull
+.PHONY: ffmpeg-web
+
+libav:
+	[ -d $@ ] || git clone git://git.libav.org/libav.git
+	cd $@ && git fetch && $(gitlog) && git pull
+.PHONY: libav
+
+ffmpeg:
+	[ -d $@ ] || git clone git://source.ffmpeg.org/ffmpeg.git
+	cd $@ && git fetch && $(gitlog) && git pull
+.PHONY: ffmpeg
+
+##############################
 
 linux-2.6:
 	test -d $@ || git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
@@ -679,6 +710,11 @@ subversion:
 		--trust-server-cert --non-interactive
 	cd $@ && svn update
 .PHONY: subversion
+
+audacity-read-only:
+	-svn checkout http://audacity.googlecode.com/svn/audacity-src/trunk audacity-read-only
+	cd $@ && svn update
+.PHONY: audacity-read-only
 
 filezilla:
 	-svn co https://svn.filezilla-project.org/svn/FileZilla3/trunk filezilla --trust-server-cert --non-interactive
