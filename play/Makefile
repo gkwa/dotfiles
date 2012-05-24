@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+imagemagick \
 ffmpeg_bundle \
 ffmpeg \
 ffmpeg-web \
@@ -720,6 +721,13 @@ filezilla:
 	-svn co https://svn.filezilla-project.org/svn/FileZilla3/trunk filezilla --trust-server-cert --non-interactive
 	cd $@ && svn update
 .PHONY: filezilla
+
+# To retrieve, or check out ImageMagick development, use this command:
+# http://www.imagemagick.org/script/subversion.php
+imagemagick:
+	-svn co https://www.imagemagick.org/subversion/ImageMagick/trunk ImageMagick --trust-server-cert --non-interactive
+	cd $@ && svn update
+.PHONY: imagemagick
 
 curl:
 	git clone git://github.com/bagder/curl.git
