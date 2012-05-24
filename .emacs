@@ -1661,13 +1661,6 @@ else do C-x 5 0 delete-frame"
 (ctags-update-minor-mode 1)
 
 ;; ------------------------------
-;; sauron mode
-;; ------------------------------
-;; https://github.com/djcb/sauron/blob/master/README.org
-(add-to-list 'load-path "~/.elisp/sauron")
-(require 'sauron)
-
-;; ------------------------------
 
 ;; psvn.el
 ;; ------------------------------
