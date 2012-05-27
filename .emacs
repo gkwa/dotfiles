@@ -561,7 +561,6 @@ else do C-x 5 0 delete-frame"
  '(global-font-lock-mode t)
  '(ido-case-fold t)
  '(ispell-program-name "aspell")
- '(magit-git-executable "/opt/local/bin/git")
  '(menu-bar-mode nil)
  '(mode-line-inverse-video nil)
  '(nxml-slash-auto-complete-flag t)
@@ -660,6 +659,7 @@ else do C-x 5 0 delete-frame"
      (when (not window-system)
        (set-face-background 'magit-item-highlight "black"))))
 
+(set-variable (quote magit-log-auto-more) t nil); pull more logs when reach end of page
 ;; ------------------------------
 ;; xquery-mode
 ;; ------------------------------
