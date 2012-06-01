@@ -6,9 +6,9 @@
 # killing daemon will kill all clients too.  Kill daemon by 'make kill'
 # usage: make kill
 
-EMACS_BASEPATH=/Users/demo/play/emacs
-EMACS=$(EMACS_BASEPATH)/src/emacs-24.1.50.1
-EMACS_CLIENT=$(EMACS_BASEPATH)/lib-src/emacsclient
+EMACS_BASEPATH=/usr/local/bin
+EMACS=$(EMACS_BASEPATH)/emacs
+EMACS_CLIENT=$(EMACS_BASEPATH)/emacsclient
 
 EMACS_SERVER_FILE=~/.emacs.d/server/emacs1000
 
