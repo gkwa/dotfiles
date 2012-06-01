@@ -70,12 +70,6 @@ zip: /tmp/o.zip
 		.emacs_bash \
 		.gitignore \
 		.gitconfig \
-		cygwin_setup/cygwin-path.bat \
-		cygwin_setup/home-administrator.bat \
-		cygwin_setup/home-boxstream.bat \
-		cygwin_setup/pathman.exe \
-		cygwin_setup/robocopy.exe \
-		cygwin_setup/setx.exe \
 		.elisp ; \
 		find .elisp \( -name '.git' -o -iname "*.pyc" -o -iname "*.elc" \) -prune -o -print ;} \
 		| cpio -pamvd /tmp/o;)
