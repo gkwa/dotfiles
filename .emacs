@@ -423,7 +423,9 @@ else do C-x 5 0 delete-frame"
 (require 'server)
 (when (and (eq window-system 'w32) (file-exists-p (getenv "APPDATA")))
   (setq server-auth-dir (concat (getenv "APPDATA") "/.emacs.d/server"))
-  (make-directory server-auth-dir))
+  (setq parent-server-auth-dir (concat (getenv "APPDATA") "/.emacs.d"))
+  (if (not (file-directory-p server-auth-dir))
+      (make-directory server-auth-dir t)))
 
 ;; --------------------------------------------------
 ;; given some path such as  \\10.0.2.10\Production\Streambox\...\StreamboxOSX3.72b32.zip
