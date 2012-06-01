@@ -929,7 +929,7 @@ else do C-x 5 0 delete-frame"
      ;; anything-c-source-global-mark-ring
      anything-c-source-minibuffer-history
      anything-c-source-ctags
-     anything-c-source-info-pages
+;     anything-c-source-info-pages
      ;; anything-c-source-info-elisp; this gives error progn: Symbol's function definition is void: Info-find-node
      ;; anything-c-source-man-pages
      ;; anything-c-source-locate
