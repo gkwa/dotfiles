@@ -913,7 +913,7 @@ else do C-x 5 0 delete-frame"
 ;;     anything-dired-copy-file
      ;;     anything-c-source-file-name-history
      anything-c-source-mark-ring 
-     ;; anything-c-source-info-pages
+     ;; anything-c-source-info-pages; Emacs on windows can't find info dir on windows, comment it out until a rainy day
      ;; anything-c-source-man-pages
      anything-c-source-buffer-not-found
      ;; anything-c-google-suggest-url
