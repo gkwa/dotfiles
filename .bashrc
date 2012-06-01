@@ -244,6 +244,9 @@ case "$(uname)" in
 	    diskutil eject "$(imgmountpoint $1)";
 
 	}
+	nasumount(){
+	    mount | grep 10.0.2.10 | awk '{print $1}' | xargs -n1 umount
+	}
 	myinstall() {
 #			set -x;
 	    hdid $1;
