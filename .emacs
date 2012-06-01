@@ -242,7 +242,7 @@
       (setenv "LC_CTYPE" "en_US.UTF-8")
       (setenv "LC_ALL" "en_US.UTF-8")
       ; (setenv "CYGWIN" "binmode tty ntsec"); binmode, tty and ntsecare obsolete as of cygwin v1.7 http://cygwin.com/cygwin-ug-net/using-cygwinenv.html
-      (add-hook 'after-init-hook '(lambda () (w32-send-sys-command ?\xf030))) ;; maximize on startup, http://www.emacswiki.org/emacs/FrameSize#toc2
+;      (add-hook 'after-init-hook '(lambda () (w32-send-sys-command ?\xf030))) ;; maximize on startup, http://www.emacswiki.org/emacs/FrameSize#toc2
       ))
 
 ;; setup env path for subprocesses
