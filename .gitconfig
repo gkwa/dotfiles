@@ -82,7 +82,8 @@ viewer = woman
  l4n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -40 -m
  l = log --pretty=tformat:'%h %d %ar %s' --reverse
  sb = show-branch
- lpo = log --pretty=tformat:'%h %d %ar %s' --reverse
+ lpo = log --pretty=tformat:'%h %d %ar %s'
+ lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
  lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
  lg = log --pretty=format:'%h %ar - %s' --graph
 
