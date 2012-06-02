@@ -1688,6 +1688,7 @@ else do C-x 5 0 delete-frame"
 (add-to-list 'load-path "~/.elisp")
 (require 'window-numbering)
 (window-numbering-mode 1)
+
 ;; ------------------------------
 ;; Frame resolution
 ;; ------------------------------
@@ -1712,4 +1713,5 @@ else do C-x 5 0 delete-frame"
 
 (if (eq system-type 'windows-nt)
     (progn
-      (set-frame-size-according-to-resolution)))
+      (set-frame-size-according-to-resolution)
+      (set-frame-position (selected-frame) 70 10)))
