@@ -2,28 +2,43 @@
 # A '#' or ';' character indicates a comment.
 #
 
-; core variables
+##############################
 [core]
+##############################
+
+; core variables
+
 ; Don't trust file modes
 filemode = false
 
-; user identity
+##############################
 [user]
+##############################
+
+; user identity
 ; name = "Taylor Monacelli"
 name = boxstream
 email = "taylor.monacelli@streambox.com"
 
+##############################
 [man]
+##############################
 ; viewer = konqueror
 viewer = woman
 
+##############################
 [merge]
+##############################
 	tool = p4merge
+
+##############################
 [mergetool "p4merge"]
+##############################
 	cmd = p4merge.exe \\\"$BASE\\\" \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$MERGED\\\"
 
-
+##############################
 [alias]
+##############################
 lcr = log --pretty=tformat:'%h %d %ar %s' --abbrev-commit --no-merges @{1}.. --reverse
 lcrs = log --abbrev-commit --no-merges --stat @{1}.. --reverse
 lcrp = log --abbrev-commit --no-merges -p     @{1}.. --reverse
@@ -110,13 +125,17 @@ mb = merge-base
 frtb = fetch origin refs/heads/*:refs/remotes/origin/*
 t = tag -l
 
+##############################
 [web]
+##############################
 	browser = firefox
 # [log]
 # # from: git config --global log.abbrevCommit 7
 # 	abbrevCommit = 7
 
+##############################
 [rerere]
+##############################
 	enabled = 1
 
 # [color]
@@ -136,7 +155,13 @@ t = tag -l
 #   added = yellow
 #   changed = green
 #   untracked = cyan
+
+##############################
 [core]
+##############################
  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+
+##############################
 [color]
+##############################
 	ui = auto
