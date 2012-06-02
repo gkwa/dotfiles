@@ -24,91 +24,91 @@ viewer = woman
 
 
 [alias]
- lcr = log --pretty=tformat:'%h %d %ar %s' --abbrev-commit --no-merges @{1}.. --reverse
- lcrs = log --abbrev-commit --no-merges --stat @{1}.. --reverse
- lcrp = log --abbrev-commit --no-merges -p     @{1}.. --reverse
- des = describe
- cbc = "!sh -c 'git rev-parse --abbrev-ref HEAD; git rev-parse --abbrev-ref HEAD |tr -d \"\\r\" | tr -d \"\\n\"|pbcopy'"
- lbc = "!sh -c 'git check-ref-format --branch @{-1}; git check-ref-format --branch @{-1}|tr -d \"\\r\" | tr -d \"\\n\"|pbcopy'"
- lb = check-ref-format --branch @{-1}
- fixperm = "!sh -c 'git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e \"s/^old/NEW/;s/^new/old/;s/^NEW/new/\" | git apply'"
- # show me the last branch I was on
- dcn = diff --color --name-only
- dcns = diff --color --name-status
- j = jump
- showc = show --color
- sns = show --color --name-status
- gb = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
- wu = log --stat origin..@{0}  # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
- # good examples
- # http://git.wiki.kernel.org/index.php/Aliases
- br = branch
- fp = format-patch
- bra = branch -a
- head = !git rev-list HEAD -1 --abbrev-commit
- prune-all = !git remote | xargs -n 1 git remote prune --dry-run
- # https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
- rs = !sh -c 'git remote show $1' -
- rso = remote show origin
- cp = cherry-pick
- co = checkout
- sub = submodule
- ap = add --patch
- dno = diff --name-only
- ci = commit
- lc = log ORIG_HEAD.. --stat --no-merges
- lrn = log --reverse --name-status -m
- subup = submodule update
- s = status
- diffc = diff --cached --color
- dc = diff --color
- dmod = diff --name-only --diff-filter=M
- dd =   diff --name-only --diff-filter=D
- lsr =  "!f_gitconfig() { [ ! -z \"$1\" ] && git ls-files \"*$1*\" || git ls-files; }; f_gitconfig"
- ls = ls-files
- un = ls-files -o --directory .
- ds = diff --stat
- changes = diff --name-status -r
+lcr = log --pretty=tformat:'%h %d %ar %s' --abbrev-commit --no-merges @{1}.. --reverse
+lcrs = log --abbrev-commit --no-merges --stat @{1}.. --reverse
+lcrp = log --abbrev-commit --no-merges -p     @{1}.. --reverse
+des = describe
+cbc = "!sh -c 'git rev-parse --abbrev-ref HEAD; git rev-parse --abbrev-ref HEAD |tr -d \"\\r\" | tr -d \"\\n\"|pbcopy'"
+lbc = "!sh -c 'git check-ref-format --branch @{-1}; git check-ref-format --branch @{-1}|tr -d \"\\r\" | tr -d \"\\n\"|pbcopy'"
+lb = check-ref-format --branch @{-1}
+fixperm = "!sh -c 'git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e \"s/^old/NEW/;s/^new/old/;s/^NEW/new/\" | git apply'"
+# show me the last branch I was on
+dcn = diff --color --name-only
+dcns = diff --color --name-status
+j = jump
+showc = show --color
+sns = show --color --name-status
+gb = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
+wu = log --stat origin..@{0}  # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
+# good examples
+# http://git.wiki.kernel.org/index.php/Aliases
+br = branch
+fp = format-patch
+bra = branch -a
+head = !git rev-list HEAD -1 --abbrev-commit
+prune-all = !git remote | xargs -n 1 git remote prune --dry-run
+# https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
+rs = !sh -c 'git remote show $1' -
+rso = remote show origin
+cp = cherry-pick
+co = checkout
+sub = submodule
+ap = add --patch
+dno = diff --name-only
+ci = commit
+lc = log ORIG_HEAD.. --stat --no-merges
+lrn = log --reverse --name-status -m
+subup = submodule update
+s = status
+diffc = diff --cached --color
+dc = diff --color
+dmod = diff --name-only --diff-filter=M
+dd =   diff --name-only --diff-filter=D
+lsr =  "!f_gitconfig() { [ ! -z \"$1\" ] && git ls-files \"*$1*\" || git ls-files; }; f_gitconfig"
+ls = ls-files
+un = ls-files -o --directory .
+ds = diff --stat
+changes = diff --name-status -r
 
- cl = config -l
- lsm = ls-files -m
- lsd = ls-files -d
- la = log --abbrev-commit
- lfh = log --pretty=tformat:'%h %d %ar %s' --reverse ..FETCH_HEAD --name-status -m
- ln = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
- l2 = log --pretty=tformat:'%h %d %ar %s' --reverse -20
- l2n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -20 -m
- l3 = log --pretty=tformat:'%h %d %ar %s' --reverse -30
- l3n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -30 -m
- l4 = log --pretty=tformat:'%h %d %ar %s' --reverse -40
- l4n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -40 -m
- l = log --pretty=tformat:'%h %d %ar %s' --reverse
- sb = show-branch
- lpo = log --pretty=tformat:'%h %d %ar %s'
- lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
- lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
- lg = log --pretty=format:'%h %ar - %s' --graph
+cl = config -l
+lsm = ls-files -m
+lsd = ls-files -d
+la = log --abbrev-commit
+lfh = log --pretty=tformat:'%h %d %ar %s' --reverse ..FETCH_HEAD --name-status -m
+ln = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
+l2 = log --pretty=tformat:'%h %d %ar %s' --reverse -20
+l2n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -20 -m
+l3 = log --pretty=tformat:'%h %d %ar %s' --reverse -30
+l3n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -30 -m
+l4 = log --pretty=tformat:'%h %d %ar %s' --reverse -40
+l4n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -40 -m
+l = log --pretty=tformat:'%h %d %ar %s' --reverse
+sb = show-branch
+lpo = log --pretty=tformat:'%h %d %ar %s'
+lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
+lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
+lg = log --pretty=format:'%h %ar - %s' --graph
 
- lgns =  "!f_gitconfig() { [ ! -z \"$1\" ] && git log --abbrev-commit --stat --name-status -\"$1\" || git log --stat --name-status; }; f_gitconfig"
+lgns =  "!f_gitconfig() { [ ! -z \"$1\" ] && git log --abbrev-commit --stat --name-status -\"$1\" || git log --stat --name-status; }; f_gitconfig"
 
- rb = rebase
- rso = remote show origin
- dns = diff --name-status
- diffstat=diff --stat -r
- gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
- whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
- whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
- bsu = branch --set-upstream
- su = submodule update
- sub = submodule
- ss = submodule summary
- sf = submodule foreach
- sfr = submodule foreach --recursive
- sfu = submodule update --init --recursive
- mb = merge-base
- # fetch remote tracking branches
- frtb = fetch origin refs/heads/*:refs/remotes/origin/*
- t = tag -l
+rb = rebase
+rso = remote show origin
+dns = diff --name-status
+diffstat=diff --stat -r
+gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
+whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+bsu = branch --set-upstream
+su = submodule update
+sub = submodule
+ss = submodule summary
+sf = submodule foreach
+sfr = submodule foreach --recursive
+sfu = submodule update --init --recursive
+mb = merge-base
+# fetch remote tracking branches
+frtb = fetch origin refs/heads/*:refs/remotes/origin/*
+t = tag -l
 
 [web]
 	browser = firefox
