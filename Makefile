@@ -65,10 +65,8 @@ zip: /tmp/o.zip
 		.minttyrc \
 		.inputrc \
 		.alias \
-		.gitmodules \
 		.emacs \
 		.emacs_bash \
-		.gitignore \
 		.gitconfig \
 		.elisp ; \
 		find .elisp \( -name '.git' -o -iname "*.pyc" -o -iname "*.elc" \) -prune -o -print ;} \
