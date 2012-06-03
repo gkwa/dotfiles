@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+misspell-check \
 imagemagick \
 ffmpeg_bundle \
 ffmpeg \
@@ -744,6 +745,12 @@ chromium/src:
 	-git clone http://git.chromium.org/git/chromium.git $@
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: chromium/src
+
+
+misspell-check:
+	-git clone git://github.com/lyda/misspell-check.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: misspell-check
 
 
 # ##################################################
