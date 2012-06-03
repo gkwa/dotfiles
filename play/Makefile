@@ -141,11 +141,6 @@ MediaWiki:
 
 ffmpeg_bundle: libav ffmpeg-web ffmpeg
 
-libav:
-	[ -d $@ ] || git clone git://git.libav.org/libav.git
-	cd $@ && git fetch && $(gitlog) && git pull
-.PHONY: libav
-
 ffmpeg-web:
 	[ -d $@ ] || git clone git://ffmpeg.org/ffmpeg-web.git
 	cd $@ && git fetch && $(gitlog) && git pull
