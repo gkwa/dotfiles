@@ -128,6 +128,7 @@ php-src-5.2 \
 gitlab \
 Selenium2-Java-QuickStart-Archetype \
 Selenium2 \
+Quicksilver \
 php-src-trunk
 
 # http://www.mediawiki.org/wiki/Developer_hub
@@ -746,6 +747,11 @@ misspell-check:
 	-git clone git://github.com/lyda/misspell-check.git $@
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: misspell-check
+
+Quicksilver:
+	-git clone git://github.com/quicksilver/Quicksilver.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: Quicksilver
 
 
 # ##################################################
