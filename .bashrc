@@ -212,6 +212,11 @@ case "$(uname)" in
 	#     fi
 	# }
 
+	function psearch()
+	{
+	    mdfind "$1" -onlyin ~/pdev
+	}
+
 	function gn()
 	{
 	    grep -i "$1" ~/notes.txt
