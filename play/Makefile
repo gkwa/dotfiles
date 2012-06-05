@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+mintty-read-only \
 misspell-check \
 imagemagick \
 ffmpeg_bundle \
@@ -130,6 +131,13 @@ Selenium2-Java-QuickStart-Archetype \
 Selenium2 \
 Quicksilver \
 php-src-trunk
+
+# Non-members may check out a read-only working copy anonymously over HTTP.
+mintty-read-only:
+	test -d $@ || svn checkout http://mintty.googlecode.com/svn/trunk/ mintty-read-only
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: mintty-read-only
 
 # http://www.mediawiki.org/wiki/Developer_hub
 MediaWiki:
