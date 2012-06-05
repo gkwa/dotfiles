@@ -153,7 +153,7 @@ installerv()
 
 case "$(uname)" in
 ##############################
-    "CYGWIN")
+    CYGWIN_NT*)
 ##############################
 	export PATH="/cygdrive/c/cygwin/bin:$PATH"
 	# http://www.saltycrane.com/blog/2008/05/how-to-paste-in-cygwin-bash-using-ctrl/
@@ -168,7 +168,7 @@ case "$(uname)" in
 
 
 ##############################
-    "Darwin")
+    Darwin)
 ##############################
 	export EDITOR=$HOME/bin/e
 	export PATH=~/play/git/contrib/git-jump:$PATH
