@@ -212,6 +212,32 @@ case "$(uname)" in
 	#     fi
 	# }
 
+	function repo_setup()
+	{
+	    project=$(basename `pwd`)
+
+	    echo git init '&&' \
+		git config remote.origin.url ssh://boxstream@development.streambox.com:5979/var/www/html/proj/$project.git
+
+	    echo git clone --reference ~/pdev/nsis-streambox2 \
+		--no-hardlinks \
+		ssh://boxstream@development.streambox.com:5979/var/www/html/proj/nsis-streambox2.git \
+		'&&' \
+		git sub add ssh://boxstream@development.streambox.com:5979/var/www/html/proj/nsis-streambox2.git
+
+	    echo
+
+	    echo ssh dev '"cd /var/www/html/proj; sh setupproj.sh '$project'"'
+	    echo git push origin master
+
+	    echo
+
+	    echo ~/pdev/manifest/default.xml
+	    echo '<project name="'$project'" path="'$project'" />'
+	    echo cp ~/pdev/nsis-baseline/{template.nsi,VERSION.mk,Makefile} .
+	    echo '(cd ~/pdev/manifest && git commit -am "Adds project '$project'")'
+
+	}
 	function psearch()
 	{
 	    mdfind "$1" -onlyin ~/pdev
