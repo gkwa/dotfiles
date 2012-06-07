@@ -228,13 +228,13 @@ case "$(uname)" in
 	    echo
 
 	    echo ssh dev '"cd /var/www/html/proj; sh setupproj.sh '$project'"'
+	    echo cp ~/pdev/nsis-baseline/{template.nsi,VERSION.mk,Makefile} .
 	    echo git push origin master
 
 	    echo
 
 	    echo ~/pdev/manifest/default.xml
 	    echo '<project name="'$project'" path="'$project'" />'
-	    echo cp ~/pdev/nsis-baseline/{template.nsi,VERSION.mk,Makefile} .
 	    echo '(cd ~/pdev/manifest && git commit -am "Adds project '$project'")'
 
 	}
