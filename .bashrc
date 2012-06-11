@@ -193,24 +193,24 @@ case "$(uname)" in
 
 	#
 
-	# function locate()
-	# {
-	#     /opt/local/libexec/gnubin/locate \
-	# 	--database=$HOME/Documents/locate.updatedb.readynas:/var/db/locate.database \
-	# 	"$@" | sed -e 's,^/c,/Volumes,'
+	function locatern()
+	{
+	    /opt/local/libexec/gnubin/locate \
+		--database=$HOME/Documents/locate.updatedb.readynas \
+		"$@" | sed -e 's,^/c,/Volumes,'
 
-	#     remote=/Volumes/Development/locate.updatedb.readynas
-	#     local=$HOME/Documents/locate.updatedb.readynas
+	    remote=/Volumes/Development/locate.updatedb.readynas
+	    local=$HOME/Documents/locate.updatedb.readynas
 
-	#     if [ -f $remote ]
-	#     then
-	# 	if [ $local -ot $remote ]
-	# 	then
-	# 			echo updating $local
-	# 			cp $remote $local &
-	# 	fi
-	#     fi
-	# }
+	    if [ -f $remote ]
+	    then
+		if [ $local -ot $remote ]
+		then
+		    echo updating $local
+		    cp $remote $local &
+		fi
+	    fi
+	}
 
 	function repo_setup()
 	{
