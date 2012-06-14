@@ -61,7 +61,6 @@ br = branch
 fp = format-patch
 bra = branch -a
 head = !git rev-list HEAD -1 --abbrev-commit
-prune-all = !git remote | xargs -n 1 git remote prune --dry-run
 # https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
 rs = !sh -c 'git remote show $1' -
 rso = remote show origin
