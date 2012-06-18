@@ -253,7 +253,6 @@
     (add-to-list 'exec-path '"/usr/local/bin")
     (setenv "PATH" (concat "/opt/local/bin" ":" (getenv "PATH"))) ; added this next line due to problems in compilation-environment
     (custom-set-variables
-     '(compile-command "gmake -k ")
      '(ispell-program-name "/opt/local/bin/aspell")) ; macport aspell
     ;;      (require 'w3m-load) ; available through macports (sudo port install emacs-w3m)
     ;; http://docs.freebsd.org/info/texinfo/texinfo.info.Other_Info_Directories.html
@@ -1277,6 +1276,11 @@ else do C-x 5 0 delete-frame"
    (define-key makefile-mode-map (kbd "C-c u") 'compile) ;
    (define-key makefile-mode-map (kbd "C-c i") 'recompile) ;
 ))
+
+(when (equal system-type 'darwin)
+  (progn
+    (custom-set-variables
+     '(compile-command "gmake -k "))))
 
 (setq-default
  compilation-scroll-output t ;; scroll automatically to follow the output as it comes in.
