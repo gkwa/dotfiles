@@ -8,6 +8,7 @@
 !/Library/Application Support/Quicksilver/Actions
 
 
+*.elc
 *.actl3
 *.mov
 .svn
