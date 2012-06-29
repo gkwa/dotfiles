@@ -162,8 +162,8 @@ case "$(uname)" in
 	# And add the following line to your ~/.inputrc:
 	# "\C-v": paste-from-clipboard
 	# stty lnext ^q stop undef start undef
-	pbcopy(){ getclip; }
-	pbpaste(){ putclip; }
+	pbcopy(){ putclip; }
+	pbpaste(){ getclip; }
 	;;
 
 
