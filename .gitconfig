@@ -101,7 +101,7 @@ sb = show-branch
 lpo = log --pretty=tformat:'%h %d %ar %s'
 lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
 lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
-lg = log --pretty=format:'%h %ar - %s' --graph
+lg = log --pretty=tformat:'%h %ar - %s' --graph
 
 lgns =  "!f_gitconfig() { [ ! -z \"$1\" ] && git log --abbrev-commit --stat --name-status -\"$1\" || git log --stat --name-status; }; f_gitconfig"
 
