@@ -2,17 +2,17 @@
 # scons \
 # Updating '.':
 # Authentication realm: <http://scons.tigris.org:80> CollabNet Subversion Repository
-# Password for 'demo': 
+# Password for 'demo':
 # Authentication realm: <http://scons.tigris.org:80> CollabNet Subversion Repository
 # Username: demo
-# Password for 'demo': 
+# Password for 'demo':
 # Authentication realm: <http://scons.tigris.org:80> CollabNet Subversion Repository
-# Username: 
-# Password for '': 
+# Username:
+# Password for '':
 # svn: E170001: Unable to connect to a repository at URL 'http://scons.tigris.org/svn/scons/trunk'
 # svn: E170001: OPTIONS of 'http://scons.tigris.org/svn/scons/trunk': authorization failed: Could not authenticate to server: rejected Basic challenge (http://scons.tigris.org)
 # make: *** [scons] Error 1
-# [demo@demos-imac:~/play(master)]$ 
+# [demo@demos-imac:~/play(master)]$
 ####################################################################################################
 
 
