@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+zf2 \
 mintty-read-only \
 misspell-check \
 imagemagick \
@@ -154,6 +155,14 @@ ffmpeg-web:
 	[ -d $@ ] || git clone git://ffmpeg.org/ffmpeg-web.git
 	cd $@ && git fetch && $(gitlog) && git pull
 .PHONY: ffmpeg-web
+
+# php stack
+# http://framework.zend.com/
+# https://github.com/zendframework/zf2
+zf2:
+	[ -d $@ ] || git clone git://github.com/zendframework/zf2.git
+	cd $@ && git fetch && $(gitlog) && git pull
+.PHONY: zf2
 
 libav:
 	[ -d $@ ] || git clone git://git.libav.org/libav.git
