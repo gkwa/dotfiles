@@ -1,0 +1,70 @@
+#
+# Default values for all accounts.
+#
+
+defaults
+# Activate TLS (also known as SSL) security.
+tls on
+# Enable full TLS/SSL certificate checks.
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+# tls_trust_file /opt/local/share/curl/curl-ca-bundle.crt
+# Use the POP3-over-TLS variant instead of the STARTTLS variant.
+# This is often called "POP3 with SSL". Most servers support this.
+tls_starttls off
+# Use the procmail mail delivery agent.
+# delivery mda "/usr/bin/procmail -f '%F' -d $USER"
+delivery mbox ~/Mail/new
+
+# For Sendmail:
+#delivery mda "/usr/sbin/sendmail -oi -oem -f '%F' -- $USER"
+# For msmtp (delivery via SMTP):
+#delivery mda "/usr/bin/msmtp --host=localhost --from='%F' -- $USER"
+# Delivery to a maildir folder:
+#delivery maildir ~/Mail/incoming
+# Delivery to a MBOX mail folder:
+#delivery mbox ~/Mail/new
+# Delivery to an Exchange pickup directory:
+#delivery exchange c:\exchange\pickup
+
+#
+# Two pop3 mailboxes at the provider.
+#
+
+# mpop doesn't work with hotmail/live.com
+account live.com
+host pop3.live.com
+user mtmonacelli@live.com
+password {secret}
+# timeout 20
+keep on
+auth on
+
+#
+# A freemail service.
+#
+account freemail
+host pop.freemail.example
+user 1238476
+passwordeval gpg -d ~/.mpop.password.gpg
+
+# The service runs SpamAssassin, so test each mail for the "X-Spam-Status: Yes"
+# header, and delete all mails with this header before downloading them.
+filter   if [ "`grep "^X-Spam-Status: Yes"`" ]; then exit 1; else exit 0; fi
+
+
+##############################
+# gmail
+##############################
+account gmail
+host pop.gmail.com
+user taylormonacelli@gmail.com
+passwordeval security find-internet-password -g -a taylormonacelli@gmail.com 2>&1 | sed -ne '/^password:/{s,^password: ,,;s,[:"],,g;p;}'
+skipsize 700k
+auth on
+keep on
+
+#
+# set a default account (optional).
+#
+
+account default : gmail

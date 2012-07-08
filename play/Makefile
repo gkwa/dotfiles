@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+mpop \
 zf2 \
 mintty-read-only \
 misspell-check \
@@ -155,6 +156,11 @@ ffmpeg-web:
 	[ -d $@ ] || git clone git://ffmpeg.org/ffmpeg-web.git
 	cd $@ && git fetch && $(gitlog) && git pull
 .PHONY: ffmpeg-web
+
+mpop:
+	[ -d $@ ] || git clone git://mpop.git.sourceforge.net/gitroot/mpop/mpop
+	cd $@ && git fetch && $(gitlog) && git pull
+.PHONY: mpop
 
 # php stack
 # http://framework.zend.com/
