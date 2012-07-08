@@ -30,6 +30,9 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+gnupg \
+gnucash \
+msmtp \
 mpop \
 zf2 \
 mintty-read-only \
@@ -134,6 +137,17 @@ Selenium2 \
 Quicksilver \
 php-src-trunk
 
+gnupg:
+	test -d $@ || git clone git://git.gnupg.org/gnupg.git
+	cd $@ && git fetch && $(gitlog) && git pull
+.PHONY: gnupg
+
+
+gnucash:
+	test -d $@ || git clone git://github.com/Gnucash/gnucash.git
+	cd $@ && git fetch && $(gitlog) && git pull
+.PHONY: gnucash
+
 # Non-members may check out a read-only working copy anonymously over HTTP.
 mintty-read-only:
 	test -d $@ || svn checkout http://mintty.googlecode.com/svn/trunk/ mintty-read-only
@@ -161,6 +175,11 @@ mpop:
 	[ -d $@ ] || git clone git://mpop.git.sourceforge.net/gitroot/mpop/mpop
 	cd $@ && git fetch && $(gitlog) && git pull
 .PHONY: mpop
+
+msmtp:
+	[ -d $@ ] || git clone git://msmtp.git.sourceforge.net/gitroot/msmtp/msmtp
+	cd $@ && git fetch && $(gitlog) && git pull
+.PHONY: msmtp
 
 # php stack
 # http://framework.zend.com/
