@@ -59,7 +59,7 @@ account gmail
 host pop.gmail.com
 user taylormonacelli@gmail.com
 passwordeval security find-internet-password -g -a taylormonacelli@gmail.com 2>&1 | sed -ne '/^password:/{s,^password: ,,;s,[:"],,g;p;}'
-skipsize 700k
+# skipsize 700k
 auth on
 keep on
 
