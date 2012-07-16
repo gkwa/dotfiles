@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+bockbuild \
 gnupg \
 gnucash \
 msmtp \
@@ -136,6 +137,11 @@ Selenium2-Java-QuickStart-Archetype \
 Selenium2 \
 Quicksilver \
 php-src-trunk
+
+bockbuild:
+	-git clone git://github.com/abock/bockbuild.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: bockbuild
 
 gnupg:
 	test -d $@ || git clone git://git.gnupg.org/gnupg.git
