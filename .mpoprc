@@ -13,7 +13,8 @@ tls_trust_file /opt/local/share/curl/curl-ca-bundle.crt
 tls_starttls off
 # Use the procmail mail delivery agent.
 # delivery mda "/usr/bin/procmail -f '%F' -d $USER"
-delivery mbox ~/Mail/new
+# delivery mbox ~/Mail/new
+delivery maildir ~/Mail/incoming
 
 # For Sendmail:
 #delivery mda "/usr/sbin/sendmail -oi -oem -f '%F' -- $USER"
@@ -59,7 +60,7 @@ account gmail
 host pop.gmail.com
 user taylormonacelli@gmail.com
 passwordeval security find-internet-password -g -a taylormonacelli@gmail.com 2>&1 | sed -ne '/^password:/{s,^password: ,,;s,[:"],,g;p;}'
-# skipsize 700k
+# skipsize 700k #skip arbitrary sized emails if you're in a rush
 auth on
 keep on
 
