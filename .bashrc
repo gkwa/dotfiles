@@ -234,10 +234,9 @@ case "$(uname)" in
 
 	    echo
 
-	    echo ~/pdev/manifest/default.xml
 	    echo '<project name="'$project'" path="'$project'" />'
-	    echo '(cd ~/pdev/manifest && git commit -am "Adds project '$project'")'
-	    echo '(cd ~/pdev/manifest && git push)'
+	    echo ~/pdev/manifest/default.xml
+	    echo '(cd ~/pdev/manifest && git commit -am "Adds project '$project'" && git push)'
 
 	}
 	function psearch()
