@@ -136,7 +136,15 @@ gitlab \
 Selenium2-Java-QuickStart-Archetype \
 Selenium2 \
 Quicksilver \
-php-src-trunk
+php-src-trunk \
+wanderlust
+
+
+# https://github.com/wanderlust/wanderlust
+wanderlust:
+	-git clone git://github.com/wanderlust/wanderlust.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: wanderlust
 
 bockbuild:
 	-git clone git://github.com/abock/bockbuild.git $@
@@ -315,6 +323,10 @@ pweave:
 	cd $@ && hg update
 .PHONY: pweave
 
+
+
+
+npackd: windows-package-manager
 windows-package-manager:
 	test -d $@ || hg clone https://code.google.com/p/windows-package-manager
 	cd $@ && hg update
