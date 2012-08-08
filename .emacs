@@ -272,6 +272,8 @@
     (add-to-list 'load-path "/opt/local/var/macports/software/git-core/1.7.1_0+doc+svn/opt/local/share/doc/git-core/contrib/emacs")
     (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp/international")
     (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp")
+
+    (load-theme (quote tango-dark) nil nil)
     ))
 
 ;; Change the default eshell prompt
@@ -411,7 +413,7 @@ else do C-x 5 0 delete-frame"
   (setup-window-system-frame-colours))
 (ad-activate 'server-create-window-system-frame)
 (add-hook 'after-make-frame-functions 'setup-window-system-frame-colours t)
-(add-hook 'after-make-frame-functions 'setup-window-system-frame-dimensions t)
+;; (add-hook 'after-make-frame-functions 'setup-window-system-frame-dimensions t)
 
 ;; http://stackoverflow.com/questions/885793/emacs-error-when-calling-server-start
 (when (and (= emacs-major-version 23)
@@ -564,6 +566,7 @@ else do C-x 5 0 delete-frame"
  '(menu-bar-mode nil)
  '(mode-line-inverse-video nil)
  '(nxml-slash-auto-complete-flag t)
+ '(org-agenda-text-search-extra-files (quote (agenda-archives)))
  '(recentf-max-menu-items 100)
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values (quote ((lexical-binding . t) (sgml-tag-region-if-active . t) (sgml-shorttag . t) (sgml-parent-document "Bugzilla-Guide.xml" "book" "chapter") (sgml-omittag . t) (sgml-namecase-general . t) (sgml-minimize-attributes) (sgml-local-ecat-files) (sgml-local-catalogs) (sgml-indent-step . 2) (sgml-indent-data . t) (sgml-general-insert-case . lower) (sgml-exposed-tags) (sgml-balanced-tag-edit . t) (sgml-auto-insert-required-elements . t) (sgml-always-quote-attributes . t) (TeX-master . t))))
@@ -1144,39 +1147,25 @@ else do C-x 5 0 delete-frame"
 
 
 
-;; org-list-automatic-rules
-;; org-item-re
+;;http://orgmode.org/worg/org-contrib/babel/languages.html
+;;active Babel languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((R . t)
+   (ditaa . t)
+   (dot . t)
+   (emacs-lisp . t)
+   (gnuplot . t)
+   (haskell . nil)
+   (ocaml . nil)
+   (python . t)
+   (ruby . t)
+   (screen . nil)
+   (sh . t)
+   (sql . nil)
+   (sqlite . t)))
 
 
-;; (toggle-debug-on-error 1)
-;;  (org-babel-do-load-languages
-;;        'org-babel-load-languages
-;;        '(
-;;	 ;;(emacs-lisp . t)
-;;	 (sh . t)
-;;          ;;(R . t)
-;;	 ))
-
-
-
-
-;; ;;http://orgmode.org/worg/org-contrib/babel/languages.html
-;; ;;active Babel languages
-;; (org-babel-do-load-languages
-;;  'org-babel-load-languages
-;;  '((R . t)
-;;    (ditaa . t)
-;;    (dot . t)
-;;    (emacs-lisp . t)
-;;    (gnuplot . t)
-;;    (haskell . nil)
-;;    (ocaml . nil)
-;;    (python . t)
-;;    (ruby . t)
-;;    (screen . nil)
-;;    (sh . t)
-;;    (sql . nil)
-;;    (sqlite . t)))
 
 (require 'ob-R)
 ;; (org-babel-do-load-languages
@@ -1188,6 +1177,9 @@ else do C-x 5 0 delete-frame"
 ;; Info-default-directory-list because "/opt/local/share/info" has the
 ;; newest stuff
 ;; (setq Info-directory-list (cons (expand-file-name "/opt/local/share/info") Info-default-directory-list))
+
+
+
 
 ;; ------------------------------
 ;; nsis mode
@@ -1202,7 +1194,13 @@ else do C-x 5 0 delete-frame"
 
 
 
+;; org-agenda-text-search-extra-files
+;; http://orgmode.org/worg/org-tutorials/advanced-searching.html
 
+(setq org-agenda-files '("~/notes.txt"))
+;; http://lists.gnu.org/archive/html/emacs-orgmode/2011-09/msg00267.html
+(setq org-agenda-text-search-extra-files 
+      (directory-files "~/notes" t "^[^.#].*\\.\\(org$\\|org_archive$\\)"))
 
 ;; ------------------------------
 ;; browse-apropose-url
@@ -1767,6 +1765,7 @@ if breakpoints are present in `python-mode' files"
     (progn
       (set-frame-size-according-to-resolution)
       (set-frame-position (selected-frame) 70 10)))
+
 ;; ------------------------------
 ;; programmable completion pcomplete
 ;; ------------------------------
