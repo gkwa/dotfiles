@@ -46,7 +46,7 @@ sbwww:
 .PHONY: sbwww
 
 win_ed_webapi:
-	test -d $@ || svn co http://vcs.streambox.com/rep/$@
+	test -d $@ || svn co http://vcs.streambox.com/rep/$@ --username taylor
 	(cd $@ && svn cleanup)
 	(cd $@ && svn update)
 .PHONY: win_ed_webapi
