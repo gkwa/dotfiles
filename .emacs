@@ -1654,23 +1654,11 @@ if breakpoints are present in `python-mode' files"
    (concat "cat "
 	   (mapconcat #'shell-quote-argument files " "))))
 
+(add-to-list 'compilation-error-regexp-alist
+	     '("^git_jump:\\(.*\\):\\([0-9]+\\)" 1 2))
 
 (global-set-key "p" (quote my-isearch-word-at-point))
 (global-set-key "w" (quote whitespace-cleanup))
-
-
-;; ------------------------------
-;; git jump with quickfix files
-;; ------------------------------
-
-;; http://aaroncrane.co.uk/2011/11/git_jump_emacs/
-
-(defun quickfix-open (files)
-  (setq-default compilation-directory default-directory)
-  (compilation-start
-   (concat "cat "
-	   (mapconcat #'shell-quote-argument files " "))))
-
 
 ;; ------------------------------
 ;; desktop sessions
