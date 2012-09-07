@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+octopress \
 bockbuild \
 gnupg \
 gnucash \
@@ -145,6 +146,12 @@ wanderlust:
 	-git clone git://github.com/wanderlust/wanderlust.git $@
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: wanderlust
+
+octopress:
+	-git clone git://github.com/imathis/octopress.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: octopress
+
 
 bockbuild:
 	-git clone git://github.com/abock/bockbuild.git $@
