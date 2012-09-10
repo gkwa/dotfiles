@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+asciidoc-8.6.8 \
 octopress \
 bockbuild \
 gnupg \
@@ -329,6 +330,14 @@ pweave:
 	test -d $@ || hg clone https://bitbucket.org/mpastell/pweave
 	cd $@ && hg update
 .PHONY: pweave
+
+# http://www.methods.co.nz/asciidoc/INSTALL.html#_installing_from_the_mercurial_repository
+asciidoc-8.6.8:
+	hg clone -r 8.6.8 https://asciidoc.googlecode.com/hg/ asciidoc-8.6.8
+	test -d $@ || hg clone -r 8.6.8 https://asciidoc.googlecode.com/hg/ asciidoc-8.6.8
+	cd $@ && hg update
+.PHONY: pweave
+
 
 
 
