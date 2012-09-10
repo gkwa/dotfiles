@@ -553,7 +553,6 @@ else do C-x 5 0 delete-frame"
  '(compilation-error-regexp-alist (quote (("^?:[	]+at com.mycompany.+(\\([^()
 ]+\\):\\([0-9]+\\))$" 2 3) ("^\\[ERROR\\].+
 \\(.*\\):.\\([0-9]+\\)" 1 2) ("^git_jump:\\(.*\\):\\([0-9]+\\):" 1 2))))
- '(compile-command "make -k ")
  '(delete-by-moving-to-trash t)
  '(diary-file (expand-file-name "~/.diary"))
  '(display-time-mode t nil (time))
@@ -1269,11 +1268,6 @@ else do C-x 5 0 delete-frame"
    (define-key makefile-mode-map (kbd "C-c u") 'compile) ;
    (define-key makefile-mode-map (kbd "C-c i") 'recompile) ;
 ))
-
-(when (equal system-type 'darwin)
-  (progn
-    (custom-set-variables
-     '(compile-command "gmake -k "))))
 
 (setq-default
  compilation-scroll-output t ;; scroll automatically to follow the output as it comes in.
