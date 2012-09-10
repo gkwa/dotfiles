@@ -6,12 +6,13 @@
 ;; Maintainer: Drew Adams
 ;; Copyright (C) 2000-2012, Drew Adams, all rights reserved.
 ;; Created: Sun Aug 15 11:12:30 2010 (-0700)
-;; Last-Updated: Thu Apr 12 11:00:03 2012 (-0700)
+;; Last-Updated: Thu Aug 23 09:20:39 2012 (-0700)
 ;;           By: dradams
-;;     Update #: 90
+;;     Update #: 103
 ;; URL: http://www.emacswiki.org/cgi-bin/wiki/bookmark+-mac.el
+;; Doc URL: http://www.emacswiki.org/cgi-bin/wiki/BookmarkPlus
 ;; Keywords: bookmarks, bookmark+, placeholders, annotations, search, info, url, w3m, gnus
-;; Compatibility: GNU Emacs: 20.x, 21.x, 22.x, 23.x
+;; Compatibility: GNU Emacs: 20.x, 21.x, 22.x, 23.x, 24.x
 ;; 
 ;; Features that might be required by this library:
 ;;
@@ -100,11 +101,8 @@
 ;;    `bmkp-define-cycle-command',
 ;;    `bmkp-define-next+prev-cycle-commands',
 ;;    `bmkp-define-sort-command', `bmkp-define-file-sort-predicate',
-;;    `bmkp-menu-bar-make-toggle'.
-;;
-;;  Non-interactive functions defined here:
-;;
-;;    `bmkp-assoc-delete-all', `bmkp-replace-regexp-in-string'.
+;;    `bmkp-menu-bar-make-toggle',
+;;    `bmkp-with-output-to-plain-temp-buffer'.
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
@@ -159,38 +157,20 @@
 ;; bmkp-file-bookmark-p, bmkp-float-time, bmkp-local-file-bookmark-p,
 ;; bmkp-msg-about-sort-order, bmkp-reverse-sort-p, bmkp-sort-comparer
  
-;;(@* "Functions")
-
-;;; Functions --------------------------------------------------------
-
-;;; These functions are general functions.  They are here because they are used in macro
-;;; `bmkp-define-sort-command'.  That macro is in this file because it is used only to create
-;;; bmenu commands.
-
-;; Used in `bmkp-define-sort-command'.
-(defun bmkp-assoc-delete-all (key alist)
-  "Delete from ALIST all elements whose car is `equal' to KEY.
-Return the modified alist.
-Elements of ALIST that are not conses are ignored."
-  (while (and (consp (car alist)) (equal (car (car alist)) key))  (setq alist  (cdr alist)))
-  (let ((tail  alist)
-        tail-cdr)
-    (while (setq tail-cdr  (cdr tail))
-      (if (and (consp (car tail-cdr))  (equal (car (car tail-cdr)) key))
-          (setcdr tail (cdr tail-cdr))
-        (setq tail  tail-cdr))))
-  alist)
-
-;; Used in `bmkp-define-sort-command'.
-(defun bmkp-replace-regexp-in-string (regexp rep string &optional fixedcase literal subexp start)
-  "Replace all matches for REGEXP with REP in STRING and return STRING."
-  (if (fboundp 'replace-regexp-in-string) ; Emacs > 20.
-      (replace-regexp-in-string regexp rep string fixedcase literal subexp start)
-    (if (string-match regexp string) (replace-match rep nil nil string) string))) ; Emacs 20
- 
 ;;(@* "Macros")
 
 ;;; Macros -----------------------------------------------------------
+
+;;;###autoload
+(defmacro bmkp-with-output-to-plain-temp-buffer (buf &rest body)
+  "Like `with-output-to-temp-buffer', but with no *Help* navigation stuff."
+  `(unwind-protect
+    (progn
+      (remove-hook 'temp-buffer-setup-hook 'help-mode-setup)
+      (remove-hook 'temp-buffer-show-hook  'help-mode-finish)
+      (with-output-to-temp-buffer ,buf ,@body))
+    (add-hook 'temp-buffer-setup-hook 'help-mode-setup)
+    (add-hook 'temp-buffer-show-hook  'help-mode-finish)))
 
 ;;;###autoload
 (defmacro bmkp-define-cycle-command (type &optional otherp)

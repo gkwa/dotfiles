@@ -7,16 +7,17 @@
 ;; Copyright (C) 2000-2012, Drew Adams, all rights reserved.
 ;; Copyright (C) 2009, Thierry Volpiatto, all rights reserved.
 ;; Created: Mon Jul 12 09:05:21 2010 (-0700)
-;; Last-Updated: Fri Jun 15 11:16:24 2012 (-0700)
+;; Last-Updated: Mon Sep  3 16:36:01 2012 (-0700)
 ;;           By: dradams
-;;     Update #: 2176
+;;     Update #: 2201
 ;; URL: http://www.emacswiki.org/cgi-bin/wiki/bookmark+-bmu.el
+;; Doc URL: http://www.emacswiki.org/cgi-bin/wiki/BookmarkPlus
 ;; Keywords: bookmarks, bookmark+, placeholders, annotations, search, info, url, w3m, gnus
-;; Compatibility: GNU Emacs: 20.x, 21.x, 22.x, 23.x
+;; Compatibility: GNU Emacs: 20.x, 21.x, 22.x, 23.x, 24.x
 ;;
 ;; Features that might be required by this library:
 ;;
-;;   `bookmark', `bookmark+-mac', `pp'.
+;;   `bookmark', `pp'.
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -136,7 +137,8 @@
 ;;    `bmkp-bmenu-mark-url-bookmarks',
 ;;    `bmkp-bmenu-mark-variable-list-bookmarks',
 ;;    `bmkp-bmenu-mark-w3m-bookmarks', `bmkp-bmenu-mouse-3-menu',
-;;    `bmkp-bmenu-mode-status-help', `bmkp-bmenu-omit',
+;;    `bmkp-bmenu-mode-status-help',
+;;    `bmkp-bmenu-nb-marked-in-mode-name', `bmkp-bmenu-omit',
 ;;    `bmkp-bmenu-omit-marked', `bmkp-bmenu-omit/unomit-marked',
 ;;    `bmkp-bmenu-paste-add-tags',
 ;;    `bmkp-bmenu-paste-add-tags-to-marked',
@@ -219,7 +221,7 @@
 ;;
 ;;  Non-interactive functions defined here:
 ;;
-;;    `bmkp-bmenu-barf-if-not-in-menu-list',
+;;    `bmkp-assoc-delete-all', `bmkp-bmenu-barf-if-not-in-menu-list',
 ;;    `bmkp-bmenu-cancel-incremental-filtering',
 ;;    `bmkp-bmenu-filter-alist-by-annotation-regexp',
 ;;    `bmkp-bmenu-filter-alist-by-bookmark-name-regexp',
@@ -231,6 +233,7 @@
 ;;    `bmkp-bmenu-mark/unmark-bookmarks-tagged-some/not-all',
 ;;    `bmkp-bmenu-propertize-item', `bmkp-bmenu-read-filter-input',
 ;;    `bmkp-face-prop', `bmkp-maybe-unpropertize-bookmark-names',
+;;    `bmkp-replace-regexp-in-string',
 ;;    `bmkp-reverse-multi-sort-order', `bmkp-reverse-sort-order'.
 ;;
 ;;  Internal variables defined here:
@@ -238,15 +241,15 @@
 ;;    `bmkp-bmenu-before-hide-marked-alist',
 ;;    `bmkp-bmenu-before-hide-unmarked-alist',
 ;;    `bmkp-bmenu-define-command-menu', `bmkp-bmenu-filter-function',
-;;    `bmkp-bmenu-filter-pattern', `bmkp-bmenu-filter-prompt',
-;;    `bmkp-bmenu-filter-timer', `bmkp-bmenu-first-time-p',
-;;    `bmkp-flagged-bookmarks', `bmkp-bmenu-header-lines',
-;;    `bmkp-bmenu-highlight-menu', `bmkp-bmenu-line-overlay',
-;;    `bmkp-bmenu-mark-menu', `bmkp-bmenu-marked-bookmarks',
-;;    `bmkp-bmenu-marks-width', `bmkp-bmenu-menubar-menu',
-;;    `bmkp-bmenu-omit-menu', `bmkp-bmenu-show-menu',
-;;    `bmkp-bmenu-sort-menu', `bmkp-bmenu-tags-menu',
-;;    `bmkp-bmenu-title', `bmkp-last-bmenu-bookmark'.
+;;    `bmkp-bmenu-filter-pattern', `bmkp-bmenu-filter-timer',
+;;    `bmkp-bmenu-first-time-p', `bmkp-flagged-bookmarks',
+;;    `bmkp-bmenu-header-lines', `bmkp-bmenu-highlight-menu',
+;;    `bmkp-bmenu-line-overlay', `bmkp-bmenu-mark-menu',
+;;    `bmkp-bmenu-marked-bookmarks', `bmkp-bmenu-marks-width',
+;;    `bmkp-bmenu-menubar-menu', `bmkp-bmenu-omit-menu',
+;;    `bmkp-bmenu-show-menu', `bmkp-bmenu-sort-menu',
+;;    `bmkp-bmenu-tags-menu', `bmkp-bmenu-title',
+;;    `bmkp-last-bmenu-bookmark'.
 ;;
 ;;
 ;;  ***** NOTE: The following commands defined in `bookmark.el'
@@ -325,9 +328,37 @@
 (defalias 'bmkp-bookmark-name-from-record 'bookmark-name-from-full-record)
 
 
-(require 'bookmark+-mac) ;; bmkp-define-sort-command, bmkp-with-output-to-plain-temp-buffer
+(eval-when-compile
+ (or (condition-case nil
+         (load-library "bookmark+-mac") ; Use load-library to ensure latest .elc.
+       (error nil))
+     (require 'bookmark+-mac)))         ; Require, so can load separately if not on `load-path'.
+;; bmkp-define-sort-command, bmkp-with-output-to-plain-temp-buffer
 
 (put 'bmkp-with-output-to-plain-temp-buffer 'common-lisp-indent-function '(4 &body))
+
+
+;;; These functions are used in macro `bmkp-define-sort-command'.
+;;;
+(defun bmkp-replace-regexp-in-string (regexp rep string &optional fixedcase literal subexp start)
+  "Replace all matches for REGEXP with REP in STRING and return STRING."
+  (if (fboundp 'replace-regexp-in-string) ; Emacs > 20.
+      (replace-regexp-in-string regexp rep string fixedcase literal subexp start)
+    (if (string-match regexp string) (replace-match rep nil nil string) string))) ; Emacs 20
+
+(defun bmkp-assoc-delete-all (key alist)
+  "Delete from ALIST all elements whose car is `equal' to KEY.
+Return the modified alist.
+Elements of ALIST that are not conses are ignored."
+  (while (and (consp (car alist)) (equal (car (car alist)) key))  (setq alist  (cdr alist)))
+  (let ((tail  alist)
+        tail-cdr)
+    (while (setq tail-cdr  (cdr tail))
+      (if (and (consp (car tail-cdr))  (equal (car (car tail-cdr)) key))
+          (setcdr tail (cdr tail-cdr))
+        (setq tail  tail-cdr))))
+  alist)
+
 
 ;; (eval-when-compile (require 'bookmark+-1))
 ;; bmkp-add-tags, bmkp-alpha-p, bmkp-bookmark-creation-cp,
@@ -729,8 +760,6 @@ Bookmark names thus begin in this column number (since zero-based).")
 (defvar bmkp-bmenu-filter-function  nil "Latest filtering function for `*Bookmark List*' display.")
 
 (defvar bmkp-bmenu-filter-pattern "" "Regexp for incremental filtering.")
-
-(defvar bmkp-bmenu-filter-prompt "Pattern: " "Prompt for `bmkp-bmenu-filter-incrementally'.")
 
 (defvar bmkp-bmenu-filter-timer nil "Timer used for incremental filtering.")
 
@@ -1170,7 +1199,7 @@ Non-nil INTERACTIVEP means `bookmark-bmenu-list' was called
         (insert "\n")))
     (goto-char (point-min)) (forward-line bmkp-bmenu-header-lines)
     (bookmark-bmenu-mode)
-    (when bookmark-bmenu-toggle-filenames (bookmark-bmenu-toggle-filenames t))
+    (when bookmark-bmenu-toggle-filenames (bookmark-bmenu-toggle-filenames t 'NO-MSG-P))
     (when (and (fboundp 'fit-frame-if-one-window)
                (eq (selected-window) (get-buffer-window (get-buffer-create "*Bookmark List*") 0)))
       (fit-frame-if-one-window)))
@@ -1648,8 +1677,8 @@ Non-nil optional arg NO-MSG-P means do not show progress messages."
   (unless show  (setq bookmark-bmenu-toggle-filenames  (not bookmark-bmenu-toggle-filenames)))
   (let ((bookmark-bmenu-toggle-filenames  (or show  bookmark-bmenu-toggle-filenames)))
     (if bookmark-bmenu-toggle-filenames
-        (bookmark-bmenu-show-filenames no-msg-p)
-      (bookmark-bmenu-hide-filenames no-msg-p))))
+        (bookmark-bmenu-show-filenames nil no-msg-p)
+      (bookmark-bmenu-hide-filenames nil no-msg-p))))
 
 
 ;; REPLACES ORIGINAL in `bookmark.el'.
@@ -2354,8 +2383,7 @@ From Lisp, non-nil optional arg MSG-P means show progress messages."
                     char)
                 (catch 'bmkp-bmenu-read-filter-input
                   (while (condition-case nil
-                             (setq char  (read-char (concat bmkp-bmenu-filter-prompt
-                                                            bmkp-bmenu-filter-pattern)))
+                             (setq char  (read-char (concat "Pattern: " bmkp-bmenu-filter-pattern)))
                            ;; `read-char' raises an error for non-char event.
                            (error (throw 'bmkp-bmenu-read-filter-input nil)))
                     (case char
@@ -2364,7 +2392,7 @@ From Lisp, non-nil optional arg MSG-P means show progress messages."
                                   (throw 'bmkp-bmenu-read-filter-input 'QUIT)) ; Quit.
                       (?\d        (or (null tmp-list) ; No-op if no chars to delete.
                                       (pop tmp-list)
-                                      t)) ; Delete last char of `*-filter-pattern'.
+                                      t)) ; Delete last char of `bmkp-bmenu-filter-pattern'.
                       (t          (push (text-char-description char) tmp-list))) ; Accumulate CHAR.
                     (setq bmkp-bmenu-filter-pattern  (mapconcat #'identity (reverse tmp-list) ""))))))
       (message "Restoring display prior to incremental filtering...")
@@ -3744,12 +3772,14 @@ Autosave bookmarks:\t%s\nAutosave list display:\t%s\n\n\n"
             (when (and (fboundp 'display-images-p)  (display-images-p)
                        bmkp-bmenu-image-bookmark-icon-file
                        (file-readable-p bmkp-bmenu-image-bookmark-icon-file))
-              (insert "  ") (insert-image (create-image bmkp-bmenu-image-bookmark-icon-file nil nil :ascent 95))
+              (insert "  ")
+              (insert-image (create-image bmkp-bmenu-image-bookmark-icon-file nil nil :ascent 95))
               (insert " Image file\n"))
-            (insert "  " gnus) (insert "  " info) (insert "  " man) (insert "  " url) (insert "  " local-no-region)
-            (insert "  " local-w-region) (insert "  " no-file) (insert "  " buffer) (insert "  " no-buf)
-            (insert "  " remote) (insert "  " sudo) (insert "  " local-dir) (insert "  " file-handler)
-            (insert "  " bookmark-list) (insert "  " bookmark-file) (insert "  " desktop) (insert "  " sequence)
+            (insert "  " gnus) (insert "  " info) (insert "  " man) (insert "  " url)
+            (insert "  " local-no-region) (insert "  " local-w-region) (insert "  " no-file)
+            (insert "  " buffer) (insert "  " no-buf) (insert "  " remote) (insert "  " sudo)
+            (insert "  " local-dir) (insert "  " file-handler) (insert "  " bookmark-list)
+            (insert "  " bookmark-file) (insert "  " desktop) (insert "  " sequence)
             (insert "  " variable-list) (insert "  " function) (insert "  " bad)
             (insert "\n\nKeys without prefix `C-x' are available only here (`*Bookmark List*').\n")
             (insert "Keys with prefix `C-x' are available everywhere.\n\n")
@@ -4212,6 +4242,59 @@ the same name."
   "Return a list with elements `face' or `font-lock-face' and VALUE.
 Starting with Emacs 22, the first element is `font-lock-face'."
   (list (if (> emacs-major-version 21) 'font-lock-face 'face) value))
+
+(when (> emacs-major-version 21)
+  (defun bmkp-bmenu-nb-marked-in-mode-name ()
+    "Add number of marked and flagged lines to mode name in the mode line.
+\(Flagged means flagged for deletion.)
+If the current line is marked/flagged and there are others
+marked/flagged after it then show `N/M', where N is the number
+marked/flagged through the current line and M is the total number
+marked/flagged."
+    (setq mode-name
+          `(,mode-name
+            (:eval (let* ((marked-regexp   "^>")
+                          (nb-marked       (count-matches marked-regexp
+                                                          (point-min) (point-max))))
+                     (if (not (> nb-marked 0))
+                         ""
+                       (propertize
+                        (format " %s%d>"
+                                (save-excursion
+                                  (forward-line 0)
+                                  (if (looking-at (concat marked-regexp ".*"))
+                                      (format "%d/" (1+ (count-matches marked-regexp
+                                                                       (point-min) (point))))
+                                    ""))
+                                nb-marked)
+                        'face 'bmkp-mode-line-marked))))
+            (:eval (let* ((flagged-regexp  "^D")
+                          (nb-flagged      (count-matches flagged-regexp
+                                                          (point-min) (point-max))))
+                     (if (not (> nb-flagged 0))
+                         ""
+                       (propertize
+                        (format " %s%dD"
+                                (save-excursion
+                                  (forward-line 0)
+                                  (if (looking-at (concat flagged-regexp ".*"))
+                                      (format "%d/" (1+ (count-matches flagged-regexp
+                                                                       (point-min) (point))))
+                                    ""))
+                                nb-flagged)
+                        'face 'bmkp-mode-line-flagged)))))))
+
+  (defface bmkp-mode-line-marked
+      '((t (:inherit 'bmkp->-mark)))
+    "*Face for marked number in mode line `mode-name' for Dired buffers."
+    :group 'bookmark-plus :group 'font-lock-highlighting-faces)
+
+  (defface bmkp-mode-line-flagged
+      '((t (:foreground "Red")))
+    "*Face for flagged number in mode line `mode-name' for Dired buffers."
+    :group 'bookmark-plus :group 'font-lock-highlighting-faces)
+
+  (add-hook 'bookmark-bmenu-mode-hook 'bmkp-bmenu-nb-marked-in-mode-name))
 
 
 ;;(@* "Sorting - Commands")
