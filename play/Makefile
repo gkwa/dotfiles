@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+jekyll_generator \
 asciidoc-8.6.8 \
 octopress \
 bockbuild \
@@ -141,6 +142,10 @@ Quicksilver \
 php-src-trunk \
 wanderlust
 
+jekyll_generator:
+	-git clone git://github.com/drnic/jekyll_generator.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: jekyll_generator
 
 # https://github.com/wanderlust/wanderlust
 wanderlust:
