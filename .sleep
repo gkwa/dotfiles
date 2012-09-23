@@ -1,0 +1,3 @@
+#!/bin/sh
+
+sh $HOME/bin/osx_unmount_drives_when_sleep.sh
