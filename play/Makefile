@@ -30,6 +30,9 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+windirstat \
+jinja2 \
+cheetah \
 jekyll_generator \
 asciidoc-8.6.8 \
 octopress \
@@ -141,6 +144,11 @@ Selenium2 \
 Quicksilver \
 php-src-trunk \
 wanderlust
+
+jinja2:
+	-git clone git://github.com/mitsuhiko/jinja2.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: jinja2
 
 jekyll_generator:
 	-git clone git://github.com/drnic/jekyll_generator.git $@
@@ -329,6 +337,11 @@ git:
 	(cd git; git config remote.origin.url git://github.com/git/git.git)
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: git
+
+windirstat:
+	test -d $@ || hg clone http://windirstat.hg.sourceforge.net:8000/hgroot/windirstat/windirstat
+	cd $@ && hg update
+.PHONY: windirstat
 
 # https://bitbucket.org/mpastell/pweave
 pweave:
@@ -828,6 +841,11 @@ misspell-check:
 	-git clone git://github.com/lyda/misspell-check.git $@
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: misspell-check
+
+cheetah:
+	-git clone git://github.com/cheetahtemplate/cheetah.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: cheetah
 
 Quicksilver:
 	-git clone git://github.com/quicksilver/Quicksilver.git $@
