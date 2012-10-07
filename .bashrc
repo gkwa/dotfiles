@@ -193,6 +193,61 @@ case "$(uname)" in
 
 	#
 
+	encoder_decoder_cleanup()
+	{
+	    while [ $# -gt 0 ]; do
+		case "$1" in
+		    -d|--debug)
+			# "-d" or "--debug" parameter?
+			DEBUG=1
+			set -x
+			;;
+		    -c|--clean)
+			rm -f /tmp/ed.updatedb
+			shift
+			;;
+		    -s|--search)
+			SEARCH_ARGS="$2"
+			shift
+			;;
+
+		esac
+		shift # Check next set of parameters.
+	    done
+
+	    if test ! -f /tmp/ed.updatedb; then
+		cat >/tmp/encoder_decoder_cleanup_step1.sh<<EOF
+		cd /tmp
+		updatedb --output=ed.updatedb --localpaths='\
+/Production/!Latest \
+/Production/Streambox/Beta/Encoder \
+/Production/Streambox/Beta/Decoder'
+		zip -9 ed.updatedb.zip ed.updatedb
+		du -sh ed.updatedb.zip
+EOF
+		scp /tmp/encoder_decoder_cleanup_step1.sh rn:/tmp
+		ssh rn sh /tmp/encoder_decoder_cleanup_step1.sh
+
+		# now rn:/tmp/encoder_decoder_cleanup_step1.zip exists
+		# lets retrieve it
+		scp rn:/tmp/ed.updatedb.zip /tmp
+		(cd /tmp && 7z x -y ed.updatedb.zip >/dev/null)
+	    fi;
+
+	    if test ! -z "$SEARCH_ARGS"; then
+		glocate \
+		    --database=/tmp/ed.updatedb \
+		    "$SEARCH_ARGS" | \
+		    sed -e 's,^/c,/Volumes,'
+	    fi
+
+	    # scp rn:/tmp/encoder_decoder_cleanup_step1.txt /tmp
+	    # grep 8274a15 /tmp/encoder_decoder_cleanup_step1.txt \
+	    #	| sed -e 's,^,rm -f ,' | tee /tmp/encoder_decoder_cleanup_step2.txt
+#	    scp /tmp/encoder_decoder_cleanup_step2.txt rn:/tmp
+#	    ssh rn sh -x /tmp/encoder_decoder_cleanup_step2.txt
+	}
+
 	function locatern()
 	{
 	    /opt/local/libexec/gnubin/locate \
