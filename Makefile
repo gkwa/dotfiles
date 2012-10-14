@@ -63,6 +63,7 @@ zip: /tmp/o.zip
 		.bash_profile \
 		.bashrc \
 		.minttyrc \
+		.ackrc \
 		.inputrc \
 		.alias \
 		.emacs \
