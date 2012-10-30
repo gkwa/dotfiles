@@ -39,6 +39,14 @@ viewer = woman
 ##############################
 [alias]
 ##############################
+
+# http://git-blame.blogspot.com/2012/08/leftover-bits.html
+hold = "!sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && \
+          git branch -D $1' -"
+
+mss = merge -s subtree --squash --no-commit
+amfix = am --ignore-space-change --reject --whitespace=fix
+sra = show-ref --abbrev=7
 lcr = log --pretty=tformat:'%h %d %ar %s' --abbrev-commit --no-merges @{1}.. --reverse
 lcrs = log --abbrev-commit --no-merges --stat @{1}.. --reverse
 lcrp = log --abbrev-commit --no-merges -p     @{1}.. --reverse
@@ -96,6 +104,8 @@ l3 = log --pretty=tformat:'%h %d %ar %s' --reverse -30
 l3n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -30 -m
 l4 = log --pretty=tformat:'%h %d %ar %s' --reverse -40
 l4n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -40 -m
+l5 = log --pretty=tformat:'%h %d %ar %s' --reverse -50
+l5n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -50 -m
 l = log --pretty=tformat:'%h %d %ar %s' --reverse
 sb = show-branch
 lpo = log --pretty=tformat:'%h %d %ar %s'
@@ -112,7 +122,7 @@ diffstat=diff --stat -r
 gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
 whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
 whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
-bsu = branch --set-upstream
+bsu = branch --set-upstream-to
 su = submodule update
 sub = submodule
 ss = submodule summary
@@ -164,3 +174,5 @@ t = tag -l
 [color]
 ##############################
 	ui = auto
+[push]
+	default = simple
