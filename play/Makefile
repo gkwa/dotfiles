@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+theunarchiver \
 windirstat \
 jinja2 \
 cheetah \
@@ -118,6 +119,7 @@ bztools \
 mono \
 pybugz \
 linux-2.6 \
+linux \
 syslinux \
 dvc \
 gerrit2 \
@@ -241,6 +243,11 @@ linux-2.6:
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: linux-2.6.git
 
+linux:
+	test -d $@ || git clone git://github.com/torvalds/linux.git
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: linux
+
 gdrive-cli.git:
 	test -d $@ || git clone git://github.com/tom-dignan/gdrive-cli.git
 	(cd $@ && git fetch && $(gitlog) && git pull)
@@ -337,6 +344,11 @@ git:
 	(cd git; git config remote.origin.url git://github.com/git/git.git)
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: git
+
+theunarchiver:
+	test -d $@ || hg clone hg clone https://code.google.com/p/theunarchiver
+	cd $@ && hg update
+.PHONY: theunarchiver
 
 windirstat:
 	test -d $@ || hg clone http://windirstat.hg.sourceforge.net:8000/hgroot/windirstat/windirstat
