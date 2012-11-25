@@ -1812,3 +1812,10 @@ if breakpoints are present in `python-mode' files"
 
 ; from /Users/demo/play/emacs/lisp/pcomplete.el
 (add-hook 'shell-mode-hook 'pcomplete-shell-setup)
+;; ------------------------------
+;; puppet mode
+;; ------------------------------
+;; Setup puppet-mode for autoloading
+(add-to-list 'load-path "~/.elisp/puppet-syntax-emacs")
+(autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests")
+(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
