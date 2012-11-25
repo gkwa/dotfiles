@@ -1429,7 +1429,7 @@ else do C-x 5 0 delete-frame"
 (add-to-list 'auto-mode-alist '("\\.scpt\\'" . applescript-mode))
 (add-to-list 'auto-mode-alist '("\\.applescript\\'" . applescript-mode))
 
-;; liveEncoderAutomate.scpt:1338:1339: script error: Expected “else”, etc. but found unknown token. (-2741)
+;; liveEncoderAutomate.scpt:1338:1339: script error: Expected "else", etc. but found unknown token. (-2741)
 (add-to-list 'compilation-error-regexp-alist
 	     '("^\\([^:]*\\):\\([0-9]+\\).* script error:" 1 2))
 
