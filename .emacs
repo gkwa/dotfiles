@@ -616,6 +616,20 @@ else do C-x 5 0 delete-frame"
 
 
 ;; ------------------------------
+;; copy line
+;; ------------------------------
+;; http://www.emacswiki.org/emacs/CopyingWholeLines#toc4
+(defun copy-line (arg)
+  "Copy lines (as many as prefix argument) in the kill ring"
+  (interactive "p")
+  (kill-ring-save (line-beginning-position)
+		  (line-beginning-position (+ 1 arg)))
+  (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
+
+;; optional key binding
+(global-set-key "\C-h\C-k" 'copy-line)
+
+;; ------------------------------
 ;; perl-mode
 ;; ------------------------------
 (add-to-list 'auto-mode-alist '("\\.pm\\'" . perl-mode))
