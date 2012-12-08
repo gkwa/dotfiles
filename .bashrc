@@ -272,7 +272,7 @@ EOF
 	    project=$(basename `pwd`)
 
 	    echo git init '&&' \
-		git config remote.origin.url ssh://boxstream@development.streambox.com:5979/var/www/html/proj/$project.git
+		git config remote.origin.url dev:~/proj/$project.git
 
 	    echo git clone --reference ~/pdev/nsis-streambox2 \
 		--no-hardlinks \
