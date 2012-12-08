@@ -283,16 +283,24 @@ EOF
 	    echo
 
 	    echo ssh dev '"cd /var/www/html/proj; sh setupproj.sh '$project'"'
-	    echo cp ~/pdev/nsis-baseline/{template.nsi,VERSION.mk,Makefile} .
-	    echo '# git add . && git commit -am blah'
-	    echo git push origin master
 
 	    echo
 
+	    echo cp ~/pdev/nsis-baseline/{template.nsi,VERSION.mk,Makefile} .
+	    echo '# git add . && git commit -am blah'
+	    echo git push --set-upstream origin master
+
+	    echo
+
+	    echo git push --set-upstream origin master
+	    echo g remote rm origin
+	    echo git remote add -f -t master -m master origin dev:~/proj/$project.git
+
+	    echo
+
+	    echo '(cd ~/pdev/manifest && git commit -am "Adds project '$project'" && git push)'
 	    echo '<project name="'$project'" path="'$project'" />'
 	    echo ~/pdev/manifest/default.xml
-	    echo '(cd ~/pdev/manifest && git commit -am "Adds project '$project'" && git push)'
-
 	}
 	function psearch()
 	{
