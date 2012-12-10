@@ -501,14 +501,17 @@ function parse_git_branch
 	if test ! -z "$1"; then
 	    find ~/Dropbox/Public | \
 		grep -iE "$1" | \
+		xargs ls -t | \
 		sed -e \
-		's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g'
+		's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g' | \
+		tail -r
 
 	else
 	    find ~/Dropbox/Public | \
+		xargs ls -t | \
 		sed -e \
-		's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g'| \
-		xargs ls -t
+		's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g' | \
+		tail -r
 	fi;
     }
 
