@@ -30,6 +30,10 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+bzr \
+ipxe \
+puppetlabs-mysql \
+patchutils \
 theunarchiver \
 windirstat \
 jinja2 \
@@ -146,6 +150,21 @@ Selenium2 \
 Quicksilver \
 php-src-trunk \
 wanderlust
+
+ipxe:
+	-git clone git://git.ipxe.org/ipxe.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: ipxe
+
+puppetlabs-mysql:
+	-git clone git://github.com/puppetlabs/puppetlabs-mysql.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: puppetlabs-mysql
+
+patchutils:
+	-git clone git://git.fedorahosted.org/git/patchutils.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: patchutils
 
 jinja2:
 	-git clone git://github.com/mitsuhiko/jinja2.git $@
@@ -488,6 +507,10 @@ nvda:
 	cd $@ && bzr update
 .PHONY: nvda
 
+bzr:
+	test -d $@ || bzr checkout bzr://bzr.mozilla.org/bugzilla/trunk $@
+	cd $@ && bzr update
+.PHONY: bzr
 
 selenium-grid:
 	test -d $@ || git clone git://github.com/nirvdrum/selenium-grid.git
