@@ -12,6 +12,9 @@
 *.actl3
 *.mov
 .svn
+/.cabal/
+/.gem/
+/.mepro.xml
 /.CFUserTextEncoding
 /.DS_Store
 /.RData

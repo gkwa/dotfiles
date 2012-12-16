@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+iTerm2 \
 bzr \
 ipxe \
 puppetlabs-mysql \
@@ -150,6 +151,11 @@ Selenium2 \
 Quicksilver \
 php-src-trunk \
 wanderlust
+
+iTerm2:
+	-git clone git://github.com/gnachman/iTerm2.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: iTerm2
 
 ipxe:
 	-git clone git://git.ipxe.org/ipxe.git $@

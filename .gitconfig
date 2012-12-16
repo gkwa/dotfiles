@@ -44,6 +44,11 @@ viewer = woman
 hold = "!sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && \
           git branch -D $1' -"
 
+rb5 = rebase --interactive head~50
+rb4 = rebase --interactive head~40
+rb3 = rebase --interactive head~30
+rb2 = rebase --interactive head~20
+rb1 = rebase --interactive head~10
 mss = merge -s subtree --squash --no-commit
 amfix = am --ignore-space-change --reject --whitespace=fix
 sra = show-ref --abbrev=7
