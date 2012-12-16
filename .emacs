@@ -30,7 +30,7 @@
 ;; off all children without question
 ;; http://stackoverflow.com/questions/2706527/make-emacs-stop-asking-active-processes-exist-kill-them-and-exit-anyway
 (add-hook 'comint-exec-hook
-      (lambda () (process-kill-without-query (get-buffer-process (current-buffer)))))
+	  (lambda () (process-kill-without-query (get-buffer-process (current-buffer)))))
 
 
 (require 'autoinsert) ;; leave this before any setting to variable auto-insert-alist
@@ -202,11 +202,6 @@
 ;; --------------------------------------------------
 
 ;; global key sets
-
-
-
-
-
 
 ;; C-c i calls insert-date-string
 (global-set-key (kbd "C-c i") 'insert-date-string)
@@ -1211,11 +1206,11 @@ else do C-x 5 0 delete-frame"
 ;; ------------------------------
 ;; nsis mode
 ;; ------------------------------
-(add-to-list 'load-path "~/.elisp/nsis-mode")
-(autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
-(setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
-				 nsis-mode)) auto-mode-alist))
-(setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
+(if (eq system-type 'windows-nt) ; This slows down emacs too much on OSX
+    (progn
+      (add-to-list 'load-path "~/.elisp/nsis-mode")
+      (autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
+      (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
 				 nsis-mode)) auto-mode-alist))
 ;; ------------------------------
 
