@@ -1211,15 +1211,13 @@ else do C-x 5 0 delete-frame"
 ;; ------------------------------
 ;; nsis mode
 ;; ------------------------------
-;; wget -P.elisp http://www.emacswiki.org/emacs/download/nsis-mode.el
-;; (autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
-;; (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
-;;                                  nsis-mode)) auto-mode-alist))
-;; (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
-;;                                  nsis-mode)) auto-mode-alist))
-
-
-
+(add-to-list 'load-path "~/.elisp/nsis-mode")
+(autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
+(setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
+				 nsis-mode)) auto-mode-alist))
+(setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
+				 nsis-mode)) auto-mode-alist))
+;; ------------------------------
 
 ;; org-agenda-text-search-extra-files
 ;; http://orgmode.org/worg/org-tutorials/advanced-searching.html
