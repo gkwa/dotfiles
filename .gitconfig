@@ -118,6 +118,14 @@ lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
 lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
 lg = log --pretty=tformat:'%h %ar - %s' --graph
 
+##############################
+# http://wynnnetherland.com/journal/dotfiles-discovery
+loll = log --graph --decorate --pretty=oneline --abbrev-commit
+lol = !git --no-pager loll
+lolal = log --graph --decorate --pretty=oneline --abbrev-commit --all
+lola = !git --no-pager lolal
+##############################
+
 lgns =  "!f_gitconfig() { [ ! -z \"$1\" ] && git log --abbrev-commit --stat --name-status -\"$1\" || git log --stat --name-status; }; f_gitconfig"
 
 rb = rebase
