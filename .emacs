@@ -219,19 +219,19 @@
       (require 'cygwin-mount)
       (cygwin-mount-activate)
 
-      ; http://blogs.law.harvard.edu/hoanga/2008/04/10/fixing-that-really-irritating-perl-warning-setting-locale-failed-on/
-      ; this error happens in emacs subshells when using 'git commit' unless you have set LC_ALL and LC_CTYPE.
-      ; this error (below) is fixed by setting LC_ALL and LC_CTYPE.
-      ; This doesn't happen in cygwin bash conseole, but only in emacs
-      ; bash subshell.
-;; + perl -i.bak -pe 's{exec git-update-server-info}{exec git update-server-info}' hooks/post-update
-;; perl: warning: Setting locale failed.
-;; perl: warning: Please check that your locale settings:
-;;	LC_ALL = (unset),
-;;	LANG = "ENU"
-;;     are supported and installed on your system.
-;; perl: warning: Falling back to the standard locale ("C").
-;; + git update-server-info
+      ;; http://blogs.law.harvard.edu/hoanga/2008/04/10/fixing-that-really-irritating-perl-warning-setting-locale-failed-on/
+      ;; this error happens in emacs subshells when using 'git commit' unless you have set LC_ALL and LC_CTYPE.
+      ;; this error (below) is fixed by setting LC_ALL and LC_CTYPE.
+      ;; This doesn't happen in cygwin bash conseole, but only in emacs
+      ;; bash subshell.
+      ;; + perl -i.bak -pe 's{exec git-update-server-info}{exec git update-server-info}' hooks/post-update
+      ;; perl: warning: Setting locale failed.
+      ;; perl: warning: Please check that your locale settings:
+      ;;	LC_ALL = (unset),
+      ;;	LANG = "ENU"
+      ;;     are supported and installed on your system.
+      ;; perl: warning: Falling back to the standard locale ("C").
+      ;; + git update-server-info
       ;; (setenv "LC_CTYPE" (getenv "LC_CTYPE"))
       ;; (setenv "LC_ALL" (getenv "LC_ALL"))
       (setenv "LC_CTYPE" "en_US.UTF-8")
@@ -301,7 +301,7 @@
 
 ;;http://www.emacswiki.org/cgi-bin/wiki/McMahanDotEmacs
 ;;; set the term to avoid ansi garbage in shell mode
-;(setenv "TERM" "emacs")
+;;(setenv "TERM" "emacs")
 
 ;;; Commands added by calc-private-autoloads on Sat Mar 14 15:01:33 2009.
 (autoload 'calc-dispatch	   "calc" "Calculator Options" t)
