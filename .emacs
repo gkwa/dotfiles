@@ -244,6 +244,16 @@
       (setenv "LC_ALL" "en_US.UTF-8")
       ; (setenv "CYGWIN" "binmode tty ntsec"); binmode, tty and ntsecare obsolete as of cygwin v1.7 http://cygwin.com/cygwin-ug-net/using-cygwinenv.html
 ;      (add-hook 'after-init-hook '(lambda () (w32-send-sys-command ?\xf030))) ;; maximize on startup, http://www.emacswiki.org/emacs/FrameSize#toc2
+
+
+      ;; http://pages.cs.wisc.edu/~quefeng/.emacs
+      ;; open current buffer directory in explorer
+      (defun open-buffer-path ()
+	"Run explorer on the directory of the current buffer."
+	(interactive)
+	(shell-command (concat "explorer "
+			       (replace-regexp-in-string "/" "\\" (file-name-directory (buffer-file-name)) t t)
+			       )))
       ))
 
 ;; setup env path for subprocesses
