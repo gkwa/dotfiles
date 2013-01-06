@@ -489,7 +489,7 @@ else do C-x 5 0 delete-frame"
 			(beginning-of-line)
 			(replace-string "http://dl.dropbox.com/u/9140609" "/Volumes")
 			)
-		      ))))))))))
+		    ))))))))))
 
 (global-set-key "w" (quote flipunc))
 
@@ -527,14 +527,7 @@ else do C-x 5 0 delete-frame"
  display-buffer-reuse-frames t ; http://www.cs.cmu.edu/cgi-bin/info2www?%28emacs%29Select%20Buffer
  delete-by-moving-to-trash t
  frame-title-format "emacs - %b"
- diary-file (expand-file-name "~/.diary")
-)
-
-
-
-
-
-
+ diary-file (expand-file-name "~/.diary"))
 
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
@@ -586,7 +579,7 @@ else do C-x 5 0 delete-frame"
 
 
 
-;(define-key global-map "\C-xj" 'rename-uniquely)
+;;(define-key global-map "\C-xj" 'rename-uniquely)
 (global-set-key (kbd "C-c j") 'rename-uniquely)
 
 ;; ;; ------------------------------
@@ -1189,7 +1182,7 @@ else do C-x 5 0 delete-frame"
 
 (setq org-agenda-files '("~/notes.txt"))
 ;; http://lists.gnu.org/archive/html/emacs-orgmode/2011-09/msg00267.html
-(setq org-agenda-text-search-extra-files 
+(setq org-agenda-text-search-extra-files
       (directory-files "~/notes" t "^[^.#].*\\.\\(org$\\|org_archive$\\)"))
 
 ;; ------------------------------
@@ -1269,12 +1262,12 @@ else do C-x 5 0 delete-frame"
     (require 'compile))
   ; Close STDIN to keep ack from going into filter mode
   (let ((null-device (format "< %s" null-device))
-        (grep-command ack-command)
-        (grep-history ack-history)
-        (grep-host-defaults-alist ack-host-defaults-alist))
+	(grep-command ack-command)
+	(grep-history ack-history)
+	(grep-host-defaults-alist ack-host-defaults-alist))
     (call-interactively 'grep)
     (setq ack-history             grep-history
-          ack-host-defaults-alist grep-host-defaults-alist)))
+	  ack-host-defaults-alist grep-host-defaults-alist)))
 
 ;; ------------------------------
 ;; compilation mode stuff
