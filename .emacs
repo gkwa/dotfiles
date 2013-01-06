@@ -1000,8 +1000,8 @@ else do C-x 5 0 delete-frame"
    '(
      anything-c-source-buffers
      anything-c-source-recentf
-     anything-c-source-files-in-current-dir
      anything-c-source-bookmarks
+     anything-c-source-files-in-current-dir
      anything-c-source-recentf
      ;; anything-isearch???
      anything-c-source-files-in-current-dir
