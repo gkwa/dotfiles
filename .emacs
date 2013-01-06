@@ -3,6 +3,8 @@
 (prefer-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
 ;; ------------------------------
+
+
 ;; this changes the value of the default-directory variable so that
 ;; the next dired will point you here
 (add-to-list 'load-path "~/.elisp")
@@ -212,7 +214,6 @@
 (global-set-key (kbd "C-c i") 'insert-date-string)
 
 
-
 ;; resize man page to take up whole screen
 (setq Man-notify 'bully)
 
@@ -220,7 +221,7 @@
 (if (eq system-type 'windows-nt)
     (progn
       (setq explicit-shell-file-name "c:/cygwin/bin/bash.exe")
-;;      (add-to-list 'Info-directory-list "c:/cygwin/usr/share/info")
+      ;;      (add-to-list 'Info-directory-list "c:/cygwin/usr/share/info")
       (require 'cygwin-mount)
       (cygwin-mount-activate)
 
@@ -568,6 +569,7 @@ else do C-x 5 0 delete-frame"
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
  '(use-file-dialog nil)
  '(truncate-lines t))
+
 
 (global-set-key (kbd "C-c C-c") (quote comment-region))
 (global-set-key (kbd "C-c m") (quote manual-entry))
