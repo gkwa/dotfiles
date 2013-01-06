@@ -1694,6 +1694,20 @@ if breakpoints are present in `python-mode' files"
 (ctags-update-minor-mode 1)
 
 ;; ------------------------------
+;; ctags
+;; ------------------------------
+
+;; (setq path-to-ctags "/usr/local/bin/ctags") ;; <- your ctags path here
+(setq path-to-ctags "ctags") ;; <- your ctags path here
+(defun create-tags (dir-name)
+  "Create tags file."
+  (interactive "DDirectory: ")
+  (shell-command
+   (format "%s -f %s/TAGS -e -R %s" path-to-ctags dir-name (directory-file-name dir-name)))
+  )
+(global-set-key "t" (quote create-tags))
+
+;; ------------------------------
 
 ;; psvn.el
 ;; ------------------------------
