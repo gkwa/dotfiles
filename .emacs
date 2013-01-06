@@ -1821,6 +1821,9 @@ if breakpoints are present in `python-mode' files"
 
 ; from /Users/demo/play/emacs/lisp/pcomplete.el
 (add-hook 'shell-mode-hook 'pcomplete-shell-setup)
+
+;; ends pcomplete mode setup
+;; ------------------------------
 ;; ------------------------------
 ;; puppet mode
 ;; ------------------------------
