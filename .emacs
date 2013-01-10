@@ -285,6 +285,12 @@
 
     (load-theme (quote tango-dark) nil nil)
     ))
+    ;; ------------------------------
+    ;; On osx, when I try C-DEL, then all I get is DEL.  I want to bind
+    ;; C-DEL to backward-kill-word, but since I can't generate the C-DEL
+    ;; key, I'm using the function key fn
+    (global-set-key [deletechar] (quote backward-kill-word))
+    ;; ------------------------------
 
 ;; Change the default eshell prompt
 (setq eshell-prompt-function
