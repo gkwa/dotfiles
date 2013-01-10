@@ -286,6 +286,23 @@
     (load-theme (quote tango-dark) nil nil)
     ))
     ;; ------------------------------
+    ;; tmux/emacs/osx clipboard integration
+    ;; https://gist.github.com/267162
+    (defun copy-from-osx ()
+      (shell-command-to-string "pbpaste"))
+
+    (defun paste-to-osx (text &optional push)
+      (let ((process-connection-type nil))
+	(let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+	  (process-send-string proc text)
+	  (process-send-eof proc))))
+
+    (setq interprogram-cut-function 'paste-to-osx)
+    (setq interprogram-paste-function 'copy-from-osx)
+    ;; ends tmux/emacs/osx clipboard integration
+    ;; ------------------------------
+
+    ;; ------------------------------
     ;; On osx, when I try C-DEL, then all I get is DEL.  I want to bind
     ;; C-DEL to backward-kill-word, but since I can't generate the C-DEL
     ;; key, I'm using the function key fn
