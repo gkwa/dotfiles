@@ -5,6 +5,7 @@
 !/subversionprojects/Makefile
 
 /Library
+!/Library/Preferences/com.googlecode.iterm2.plist
 !/Library/Application Support/Quicksilver/Actions
 
 
