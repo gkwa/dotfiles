@@ -154,7 +154,7 @@ makerules()
 {
     if test -f Makefile; then
 	# http://stackoverflow.com/questions/3063507/list-goals-targets-in-gnu-make/3632592#3632592
-	make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' | sort
+	make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}'
     fi
 }
 
