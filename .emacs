@@ -1865,6 +1865,25 @@ if breakpoints are present in `python-mode' files"
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
 ;; ------------------------------
+;; el-get
+;; ------------------------------
+;; https://github.com/dimitri/el-get
+
+(add-to-list 'load-path "~/.elisp/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (let (el-get-master-branch)
+      (goto-char (point-max))
+      (eval-print-last-sexp))))
+
+(el-get 'sync)
+
+
+
+
 ;; tramp
 ;; ------------------------------
 (require 'backup-dir)
