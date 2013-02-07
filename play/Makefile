@@ -30,6 +30,16 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+mu \
+wireshark \
+winsparkle \
+tmux-MacOSX-pasteboard \
+tmux \
+tmpdisk \
+gitx \
+webloc \
+hakyll-examples \
+vagrant \
 iTerm2 \
 bzr \
 ipxe \
@@ -151,6 +161,56 @@ Selenium2 \
 Quicksilver \
 php-src-trunk \
 wanderlust
+
+mu:
+	-git clone git://github.com/djcb/mu.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: mu
+
+wireshark:
+	-git clone http://code.wireshark.org/git/wireshark  $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: wireshark
+
+winsparkle:
+	-git clone git://github.com/vslavik/winsparkle.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: winsparkle
+
+tmux-MacOSX-pasteboard:
+	-git clone git://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: tmux-MacOSX-pasteboard
+
+tmux:
+	-git clone git://repo.or.cz/tmux.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: tmux
+
+tmpdisk:
+	-git clone git://github.com/inkscribbles/tmpdisk.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: tmpdisk
+
+gitx:
+	-git clone git://github.com/brotherbard/gitx.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: gitx
+
+webloc:
+	-git clone git://github.com/peterc/webloc.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: webloc
+
+hakyll-examples:
+	-git clone git://github.com/jaspervdj/hakyll-examples.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: hakyll-examples
+
+vagrant:
+	-git clone git://github.com/mitchellh/vagrant.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: vagrant
 
 iTerm2:
 	-git clone git://github.com/gnachman/iTerm2.git $@
