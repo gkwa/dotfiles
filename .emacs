@@ -279,6 +279,16 @@
     ;; (add-to-list 'Info-directory-list "/opt/local/var/macports/software/gcc43/4.3.4_0/opt/local/share/gcc43/info")
     ;; (add-to-list 'Info-directory-list "/usr/share/info")
 
+    ;; ------------------------------
+    ;; pbcopy.el allows cut-paste from emacs into other apps
+    ;; ------------------------------
+    ;; http://mindlev.wordpress.com/2011/06/13/emacs-in-a-terminal-on-osx/
+    ;; wget -P ~/.elisp https://gist.github.com/daniel-nelson/1023272/raw/7b0db196d1184e3a2f43b31c601c415f1d41830f/pbcopy.el
+    (add-to-list 'load-path "~/.elisp")
+    (require 'pbcopy)
+    (turn-on-pbcopy)
+    ;; ------------------------------
+
     (add-to-list 'load-path "/opt/local/var/macports/software/git-core/1.7.1_0+doc+svn/opt/local/share/doc/git-core/contrib/emacs")
     (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp/international")
     (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp")
