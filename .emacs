@@ -763,14 +763,11 @@ else do C-x 5 0 delete-frame"
 ;; ------------------------------
 ;; yasnippet
 ;; ------------------------------
-;; cd ~; svn export http://yasnippet.googlecode.com/svn/trunk/ .elisp/yasnippet-read-only
-(add-to-list 'load-path "~/.elisp/yasnippet-read-only")
-(add-to-list 'load-path "~/.elisp/yasnippet-read-only/snippets")
+(add-to-list 'load-path "~/.elisp/yasnippet")
 
 (require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.elisp/yasnippet-read-only/snippets")
-(yas/load-directory "~/.elisp/yasnippet-org-mode")
+(setq yas/snippet-dirs '("~/.elisp/yasnippet/snippets" "~/.elisp/yasnippet-org-mode"))
+(yas/global-mode 1)
 
 ;; ------------------------------
 ;; multi-term mode

@@ -28,6 +28,12 @@
 [submodule ".elisp/nsis-mode"]
 	path = .elisp/nsis-mode
 	url = git://github.com/mlf176f2/nsis-mode.git
+[submodule ".elisp/auto-complete"]
+	path = .elisp/auto-complete
+	url = git://github.com/auto-complete/auto-complete.git
 [submodule ".elisp/el-get"]
 	path = .elisp/el-get
 	url = git://github.com/dimitri/el-get.git
+[submodule ".elisp/yasnippet"]
+	path = .elisp/yasnippet
+	url = https://github.com/capitaomorte/yasnippet
