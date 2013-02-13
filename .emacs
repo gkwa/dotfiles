@@ -1855,6 +1855,27 @@ if breakpoints are present in `python-mode' files"
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
 ;; ------------------------------
+;; package
+;; ------------------------------
+;; http://sachachua.com/blog/2011/01/emacs-24-package-manager
+
+;; You should then be able to call M-x package-list-packages to browse
+;; and install Emacs packages.
+
+(if (>= (string-to-number emacs-version) 24)
+    (progn
+
+      (require 'package)
+      ;; Add the original Emacs Lisp Package Archive
+      (add-to-list 'package-archives
+		   '("elpa" . "http://tromey.com/elpa/"))
+      ;; Add the user-contributed repository
+      (add-to-list 'package-archives
+		   '("marmalade" . "http://marmalade-repo.org/packages/"))
+))
+
+
+;; ------------------------------
 ;; el-get
 ;; ------------------------------
 ;; https://github.com/dimitri/el-get
