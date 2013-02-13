@@ -14,11 +14,8 @@ filemode = false
 ##############################
 [user]
 ##############################
-
-; user identity
-; name = "Taylor Monacelli"
-name = boxstream
-email = "taylor.monacelli@streambox.com"
+name = taylor
+email = tailor@u.washington.edu
 
 ##############################
 [man]
@@ -29,21 +26,47 @@ viewer = woman
 ##############################
 [merge]
 ##############################
-	tool = p4merge
+tool = p4merge
 
 ##############################
 [mergetool "p4merge"]
 ##############################
-	cmd = p4merge.exe \\\"$BASE\\\" \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$MERGED\\\"
+# cmd = p4merge.exe \\\"$BASE\\\" \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$MERGED\\\"
+cmd = p4merge \\\"$BASE\\\" \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$MERGED\\\"
 
 ##############################
 [alias]
 ##############################
 
+# ------------------------------
+# whitespace cleanup
+# ------------------------------
+# http://gitster.livejournal.com/45019.html
+# # http://gitster.livejournal.com/45019.html
+# wsadd = "!sh -c 'git diff -- \"$@\" | git apply --cached --whitespace=fix;\
+# git checkout -- ${1-.} \"$@\"' -"
+
+# I'd rather be safe and not run
+# git checkout -- ${1-.} \"$@\"' -"
+# since I can't always be sure that the whitespace should be discarded
+# http://gitster.livejournal.com/45019.html
+wsadd = "!sh -c 'git diff -- \"$@\" | git apply --cached --whitespace=fix'"
+# ------------------------------
+
+
 # http://git-blame.blogspot.com/2012/08/leftover-bits.html
 hold = "!sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && \
-          git branch -D $1' -"
+	  git branch -D $1' -"
 
+rsm = reset --merge
+st = stash
+sta = stash apply
+stl = stash list
+stp = stash pop
+stk = stash --keep-index
+conf = diff --name-only --diff-filter=U # list conflicts:
+cmah = commit --amend -C head
+cma = commit --amend
 rb5 = rebase --interactive head~50
 rb4 = rebase --interactive head~40
 rb3 = rebase --interactive head~30
@@ -51,6 +74,7 @@ rb2 = rebase --interactive head~20
 rb1 = rebase --interactive head~10
 mss = merge -s subtree --squash --no-commit
 amfix = am --ignore-space-change --reject --whitespace=fix
+ama = am --abort
 sra = show-ref --abbrev=7
 lcr = log --pretty=tformat:'%h %d %ar %s' --abbrev-commit --no-merges @{1}.. --reverse
 lcrs = log --abbrev-commit --no-merges --stat @{1}.. --reverse
@@ -66,6 +90,10 @@ dcns = diff --color --name-status
 j = jump
 showc = show --color
 sns = show --color --name-status
+
+# show the name of the files without a commit message
+sno = show --pretty="format:" --name-only
+
 gb = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
 wu = log --stat origin..@{0}  # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
 # good examples
@@ -78,6 +106,7 @@ head = !git rev-list HEAD -1 --abbrev-commit
 rs = !sh -c 'git remote show $1' -
 rso = remote show origin
 cp = cherry-pick
+cpa = cherry-pick --abort
 co = checkout
 sub = submodule
 ap = add --patch
@@ -88,7 +117,11 @@ lrn = log --reverse --name-status -m
 subup = submodule update
 s = status
 diffc = diff --cached --color
+diffcw = diff --word-diff --color
+diffw = diff --word-diff
 dc = diff --color
+dcw = diff --color --word-diff
+showm = show --color --diff-filter=M
 dmod = diff --name-only --diff-filter=M
 dd =   diff --name-only --diff-filter=D
 lsr =  "!f_gitconfig() { [ ! -z \"$1\" ] && git ls-files \"*$1*\" || git ls-files; }; f_gitconfig"
@@ -116,7 +149,12 @@ sb = show-branch
 lpo = log --pretty=tformat:'%h %d %ar %s'
 lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
 lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
-lg = log --pretty=tformat:'%h %ar - %s' --graph
+lga = log --pretty=tformat:'%h %ar - %s' --graph
+lg = log --pretty=tformat:'%h %ar - %s' --graph -40
+lg1 = log --pretty=tformat:'%h %ar - %s' --graph -10
+lg2 = log --pretty=tformat:'%h %ar - %s' --graph -20
+lg3 = log --pretty=tformat:'%h %ar - %s' --graph -30
+lg4 = log --pretty=tformat:'%h %ar - %s' --graph -40
 
 ##############################
 # http://wynnnetherland.com/journal/dotfiles-discovery
@@ -129,6 +167,8 @@ lola = !git --no-pager lolal
 lgns =  "!f_gitconfig() { [ ! -z \"$1\" ] && git log --abbrev-commit --stat --name-status -\"$1\" || git log --stat --name-status; }; f_gitconfig"
 
 rb = rebase
+rba = rebase --abort
+rbc = rebase --continue
 rso = remote show origin
 dns = diff --name-status
 diffstat=diff --stat -r
@@ -153,12 +193,12 @@ t = tag -l
 	browser = firefox
 # [log]
 # # from: git config --global log.abbrevCommit 7
-# 	abbrevCommit = 7
+#	abbrevCommit = 7
 
 ##############################
 [rerere]
 ##############################
-	enabled = 1
+	enabled = 0
 
 # [color]
 #   ui = true
