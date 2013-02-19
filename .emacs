@@ -854,7 +854,6 @@ else do C-x 5 0 delete-frame"
 ;; wget -P ~/.elisp http://git.savannah.gnu.org/cgit/emacs.git/plain/lisp/epa-file.el
 (add-to-list 'load-path "~/.elisp")
 (require 'epa-file)
-(epa-file-enable)
 
 ;; ------------------------------
 ;; dired-x
