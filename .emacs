@@ -1075,7 +1075,7 @@ else do C-x 5 0 delete-frame"
 (setq anything-c-google-suggest-url "http://www.google.cn/complete/search?hl=en&js=true&qu=")
 (setq anything-c-use-standard-keys nil)
 (setq anything-c-yas-display-key-on-candidate t)
-(setq anything-candidate-number-limit 30)
+(setq anything-candidate-number-limit 50)
 (setq anything-dired-bindings 1)
 (setq anything-etags-enable-tag-file-dir-cache t)
 (setq anything-idle-delay 0.1)
