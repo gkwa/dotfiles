@@ -179,6 +179,8 @@ case "$(uname)" in
     Darwin)
 ##############################
 
+	export INFOPATH=/usr/local/share/info:$INFOPATH
+
 	#homebrew uses this if its defined, otherwise homebrew will
 	#install its own which is fine, but I'm often more uptodate on
 	#git than brew is.
