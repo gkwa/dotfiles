@@ -178,6 +178,12 @@ case "$(uname)" in
 ##############################
     Darwin)
 ##############################
+
+	#homebrew uses this if its defined, otherwise homebrew will
+	#install its own which is fine, but I'm often more uptodate on
+	#git than brew is.
+	export GIT=/usr/local/bin/git
+
 	export EDITOR=$HOME/bin/e
 	export PATH=~/play/git/contrib/git-jump:$PATH
 	export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
