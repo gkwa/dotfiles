@@ -1,3 +1,7 @@
+;; this changes the value of the default-directory variable so that
+;; the next dired will point you here
+(add-to-list 'load-path "~/.elisp")
+
 ;; ------------------------------
 ;; bookmarkplus mode
 ;; ------------------------------
@@ -11,11 +15,6 @@
 (prefer-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
 ;; ------------------------------
-
-
-;; this changes the value of the default-directory variable so that
-;; the next dired will point you here
-(add-to-list 'load-path "~/.elisp")
 
 (find-file "~/notes.txt" t)
 
