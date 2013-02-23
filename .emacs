@@ -591,7 +591,6 @@ else do C-x 5 0 delete-frame"
  '(mode-line-inverse-video nil)
  '(nxml-slash-auto-complete-flag t)
  '(org-agenda-text-search-extra-files (quote (agenda-archives)))
- '(recentf-max-menu-items 100)
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values (quote ((lexical-binding . t) (sgml-tag-region-if-active . t) (sgml-shorttag . t) (sgml-parent-document "Bugzilla-Guide.xml" "book" "chapter") (sgml-omittag . t) (sgml-namecase-general . t) (sgml-minimize-attributes) (sgml-local-ecat-files) (sgml-local-catalogs) (sgml-indent-step . 2) (sgml-indent-data . t) (sgml-general-insert-case . lower) (sgml-exposed-tags) (sgml-balanced-tag-edit . t) (sgml-auto-insert-required-elements . t) (sgml-always-quote-attributes . t) (TeX-master . t))))
  '(scroll-bar-mode nil)
@@ -806,6 +805,7 @@ else do C-x 5 0 delete-frame"
 (setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
 (setq recentf-max-saved-items 100)
 (recentf-mode 1)
+(setq recentf-max-menu-items 100)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
 ;; ------------------------------
