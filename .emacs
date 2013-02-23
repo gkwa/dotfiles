@@ -1,4 +1,12 @@
 ;; ------------------------------
+;; bookmarkplus mode
+;; ------------------------------
+;;http://www.emacswiki.org/emacs/BookmarkPlus
+(add-to-list 'load-path "~/.elisp/bookmark-plus")
+(set-variable (quote bookmark-save-flag) 1 nil)
+(set-variable (quote bmkp-last-as-first-bookmark-file) "~/.emacs.d/bookmarks" nil)
+(require 'bookmark+)
+
 ;; http://flask.pocoo.org/docs/unicode/
 (prefer-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
@@ -568,7 +576,6 @@ else do C-x 5 0 delete-frame"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-mode-case-fold t)
- '(bmkp-last-as-first-bookmark-file "~/.emacs.bmk")
  '(compilation-error-regexp-alist (quote (("^?:[	]+at com.mycompany.+(\\([^()
 ]+\\):\\([0-9]+\\))$" 2 3) ("^\\[ERROR\\].+
 \\(.*\\):.\\([0-9]+\\)" 1 2) ("^git_jump:\\(.*\\):\\([0-9]+\\):" 1 2))))
@@ -1702,14 +1709,6 @@ if breakpoints are present in `python-mode' files"
 (winner-mode 1)
 
 ;; ------------------------------
-;; bookmarkplus mode
-;; ------------------------------
-;;http://www.emacswiki.org/emacs/BookmarkPlus
-(add-to-list 'load-path "~/.elisp/bookmarkplus")
-(set-variable (quote bookmark-save-flag) 1 nil)
-(set-variable (quote bmkp-last-as-first-bookmark-file) "~/.emacs.d/bookmarks" nil)
-(require 'bookmark+)
-
 ;; ------------------------------
 ;; psvn.el
 ;; ------------------------------
