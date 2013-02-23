@@ -1204,13 +1204,16 @@ else do C-x 5 0 delete-frame"
 ;; ------------------------------
 ;; nsis mode
 ;; ------------------------------
-(if (eq system-type 'windows-nt) ; This slows down emacs too much on OSX
-    (progn
-      (add-to-list 'load-path "~/.elisp/nsis-mode")
-      (autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
-      (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
-				 nsis-mode)) auto-mode-alist))
-;; ------------------------------
+;; ;; nsis-mode works but its too darn slow..disabling
+;; (if (eq system-type 'windows-nt) ; This slows down emacs too much on OSX
+;;     (progn
+;;       (add-to-list 'load-path "~/.elisp/nsis-mode")
+;;       (autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
+;;       (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
+;; 				       nsis-mode)) auto-mode-alist))
+;;       (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
+;; 				       nsis-mode)) auto-mode-alist))))
+;; ;; ------------------------------
 
 ;; org-agenda-text-search-extra-files
 ;; http://orgmode.org/worg/org-tutorials/advanced-searching.html
