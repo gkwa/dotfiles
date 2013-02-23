@@ -301,13 +301,14 @@
     (add-to-list 'load-path "/opt/local/var/macports/software/emacs-app/23.2_0/Applications/MacPorts/Emacs.app/Contents/Resources/lisp")
 
     (load-theme (quote tango-dark) nil nil)
-    ))
+
     ;; ------------------------------
     ;; On osx, when I try C-DEL, then all I get is DEL.  I want to bind
     ;; C-DEL to backward-kill-word, but since I can't generate the C-DEL
     ;; key, I'm using the function key fn
     (global-set-key [deletechar] (quote backward-kill-word))
     ;; ------------------------------
+    )) ; end (when (equal system-type 'darwin)...
 
 ;; Change the default eshell prompt
 (setq eshell-prompt-function
@@ -964,11 +965,6 @@ else do C-x 5 0 delete-frame"
 ;; ))
 
 
-
-; ----------------------
-
-; causes
-
 ;; Warning (initialization): An error occurred while loading `c:/cygwin/home/demo/.emacs':
 
 ;; Symbol's function definition is void: org-find-library-dir
@@ -998,10 +994,6 @@ else do C-x 5 0 delete-frame"
    (sh . t)
    (sql . nil)
    (sqlite . t)))
-
-
-; ----------------------
-
 
 
 (require 'ob-R)
@@ -1646,12 +1638,6 @@ if breakpoints are present in `python-mode' files"
 (winner-mode 1)
 
 ;; ------------------------------
-;; ------------------------------
-;; psvn.el
-;; ------------------------------
-(require 'psvn)
-
-;; ------------------------------
 ;; ctags-update
 ;; ------------------------------
 (require 'ctags-update)
@@ -1672,10 +1658,9 @@ if breakpoints are present in `python-mode' files"
 (global-set-key "t" (quote create-tags))
 
 ;; ------------------------------
-
 ;; psvn.el
 ;; ------------------------------
-; (require 'psvn)
+;; (require 'psvn)
 
 ;; ------------------------------
 ;; custom-set-faces
