@@ -580,7 +580,6 @@ else do C-x 5 0 delete-frame"
 \\(.*\\):.\\([0-9]+\\)" 1 2) ("^git_jump:\\(.*\\):\\([0-9]+\\):" 1 2))))
  '(delete-by-moving-to-trash t)
  '(diary-file (expand-file-name "~/.diary"))
-;; '(display-time-mode t nil (time)) ;; disabling this speeds up emacs load time since emacs doesn't have to load time module
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(ffap-machine-p-known (quote reject))
  '(frame-title-format "emacs - %b" t)
@@ -799,8 +798,8 @@ else do C-x 5 0 delete-frame"
 (autoload 'recentf "RecentF" "Enter recentf mode." t)
 (setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
 (setq recentf-max-saved-items 100)
-(recentf-mode 1)
 (setq recentf-max-menu-items 100)
+;;(recentf-mode 1)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
 ;; ------------------------------
