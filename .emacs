@@ -1310,6 +1310,7 @@ else do C-x 5 0 delete-frame"
 ))
 
 (setq-default
+ compilation-always-kill t
  compilation-scroll-output t ;; scroll automatically to follow the output as it comes in.
  compilation-skip-threshold 0
  compilation-auto-jump-to-first-error t
