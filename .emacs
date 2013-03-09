@@ -11,6 +11,7 @@
 (set-variable (quote bmkp-last-as-first-bookmark-file) "~/.emacs.d/bookmarks" nil)
 (require 'bookmark+)
 
+;; ------------------------------
 ;; http://flask.pocoo.org/docs/unicode/
 (prefer-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
@@ -1905,6 +1906,7 @@ if breakpoints are present in `python-mode' files"
 ;; end mu configuration
 ;; ------------------------------
 
+;; ------------------------------
 ;; tramp
 ;; ------------------------------
 (require 'backup-dir)
