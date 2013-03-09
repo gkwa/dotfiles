@@ -1022,9 +1022,7 @@ else do C-x 5 0 delete-frame"
      anything-c-source-recentf
      anything-c-source-bookmarks
      anything-c-source-files-in-current-dir
-     anything-c-source-recentf
      ;; anything-isearch???
-     anything-c-source-files-in-current-dir
      ;; it seems that anything mode is just too slow when using
      ;; anything-c-source-mac-spotlight and anything-c-source-locate
      ;;     anything-c-source-mac-spotlight
@@ -1076,8 +1074,8 @@ else do C-x 5 0 delete-frame"
 (setq anything-candidate-number-limit 50)
 (setq anything-dired-bindings 1)
 (setq anything-etags-enable-tag-file-dir-cache t)
-(setq anything-idle-delay 0.1)
-(setq anything-input-idle-delay 0.1)
+(setq anything-idle-delay 0.01)
+(setq anything-input-idle-delay 0.01)
 (setq anything-quick-update t)
 (setq anything-samewindow t)
 
