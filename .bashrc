@@ -187,7 +187,7 @@ case "$(uname)" in
 	export GIT=/usr/local/bin/git
 
 	export EDITOR=$HOME/bin/e
-	export PATH=~/play/git/contrib/git-jump:$PATH
+	export PATH=~/play/gitster/contrib/git-jump:$PATH
 	export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
 	export PATH=/Applications/MacPorts/Emacs.app/Contents/MacOS/bin:$PATH # for emacsclient
 	export PATH=/Applications/MacPorts/Emacs.app/Contents/MacOS:$PATH

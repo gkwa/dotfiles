@@ -1413,6 +1413,12 @@ else do C-x 5 0 delete-frame"
 ;;           (get-buffer-create "*compilation*"))
 ;;          (message "No Compilation Errors!"))))
 
+(when (equal system-type 'darwin)
+  (progn
+    (add-to-list 'compilation-error-regexp-alist
+		 '("^git_jump:\\(.*\\):\\([0-9]+\\)" 1 2))
+    ))
+
 ;; ------------------------------
 ;; applescript-mode actionscript mode osascript
 ;; ------------------------------
