@@ -417,7 +417,6 @@ else do C-x 5 0 delete-frame"
 		   (car frame)
 		 (selected-frame))))
 	(progn
-	  (set-frame-font "Bera Sans Mono-11")
 	  (set-face-background 'default "#232F2F" f)
 	  (set-face-foreground 'default "#FFFFFF" f)
 	  (set-face-background 'fringe  "#000000" f)
