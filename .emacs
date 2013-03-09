@@ -596,8 +596,8 @@ else do C-x 5 0 delete-frame"
  '(split-height-threshold nil)
  '(split-width-threshold 0)
  '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
- '(use-file-dialog nil)
- '(truncate-lines t))
+ '(truncate-lines t)
+ '(use-file-dialog nil))
 
 
 (global-set-key (kbd "C-c C-c") (quote comment-region))
