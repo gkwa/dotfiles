@@ -251,7 +251,6 @@
       (setenv "LC_ALL" "en_US.UTF-8")
 ;      (add-hook 'after-init-hook '(lambda () (w32-send-sys-command ?\xf030))) ;; maximize on startup, http://www.emacswiki.org/emacs/FrameSize#toc2
 
-
       ;; http://pages.cs.wisc.edu/~quefeng/.emacs
       ;; open current buffer directory in explorer
       (defun open-buffer-path ()
@@ -615,8 +614,6 @@ else do C-x 5 0 delete-frame"
 	    (when recentf-mode
 	      (recentf-add-file default-directory))))
 
-
-
 ;;(define-key global-map "\C-xj" 'rename-uniquely)
 (global-set-key (kbd "C-c j") 'rename-uniquely)
 
@@ -640,7 +637,6 @@ else do C-x 5 0 delete-frame"
 ;; (global-set-key [(meta down)]           'bc-local-next)     ;; M-down-arrow for local next
 ;; (global-set-key [(control c)(j)]        'bc-goto-current)   ;; C-c j for jump to current bookmark
 ;; (global-set-key [(control x)(meta j)]   'bc-list)           ;; C-x M-j for the bookmark menu list
-
 
 ;; ------------------------------
 ;; copy line
@@ -763,8 +759,6 @@ else do C-x 5 0 delete-frame"
 ;; (setq ffap-require-prefix t)
 ;; ;; browse urls at point via w3m
 ;; ;; (setq ffap-url-fetcher 'w3m-browse-url)
-
-
 
 ;; ------------------------------
 ;; yasnippet
@@ -1304,10 +1298,10 @@ else do C-x 5 0 delete-frame"
 
 ;; http://stackoverflow.com/questions/683425/globally-override-key-binding-in-emacs
 (add-hook 'makefile-mode-hook
- (lambda ()
-   (define-key makefile-mode-map (kbd "C-c u") 'compile) ;
-   (define-key makefile-mode-map (kbd "C-c i") 'recompile) ;
-))
+	  (lambda ()
+	    (define-key makefile-mode-map (kbd "C-c u") 'compile) ;
+	    (define-key makefile-mode-map (kbd "C-c i") 'recompile) ;
+	    ))
 
 (setq-default
  compilation-always-kill t
@@ -1315,7 +1309,7 @@ else do C-x 5 0 delete-frame"
  compilation-skip-threshold 0
  compilation-auto-jump-to-first-error t
  ;; compilation-search-path "." ;; http://www.mail-archive.com/emacs-pretest-bug@gnu.org/msg11407.html
-)
+ )
 
 ;; see compilation-environment for info on how make deals with subprocess path
 ;; (describe-variable (quote compilation-environment))
@@ -1699,20 +1693,20 @@ if breakpoints are present in `python-mode' files"
 (defun set-frame-size-according-to-resolution ()
   (interactive)
   (if window-system
-  (progn
-    ;; use 120 char wide window for largeish displays
-    ;; and smaller 80 column windows for smaller displays
-    ;; pick whatever numbers make sense for you
-    (if (> (x-display-pixel-width) 1280)
-	   (add-to-list 'default-frame-alist (cons 'width 120))
-	   (add-to-list 'default-frame-alist (cons 'width 80)))
-    ;; for the height, subtract a couple hundred pixels
-    ;; from the screen height (for panels, menubars and
-    ;; whatnot), then divide by the height of a char to
-    ;; get the height we want
-    (add-to-list 'default-frame-alist
-	 (cons 'height (/ (- (x-display-pixel-height) 200)
-			     (frame-char-height)))))))
+      (progn
+	;; use 120 char wide window for largeish displays
+	;; and smaller 80 column windows for smaller displays
+	;; pick whatever numbers make sense for you
+	(if (> (x-display-pixel-width) 1280)
+	    (add-to-list 'default-frame-alist (cons 'width 120))
+	  (add-to-list 'default-frame-alist (cons 'width 80)))
+	;; for the height, subtract a couple hundred pixels
+	;; from the screen height (for panels, menubars and
+	;; whatnot), then divide by the height of a char to
+	;; get the height we want
+	(add-to-list 'default-frame-alist
+		     (cons 'height (/ (- (x-display-pixel-height) 200)
+				      (frame-char-height)))))))
 
 (if (eq system-type 'windows-nt)
     (progn
