@@ -1792,14 +1792,140 @@ if breakpoints are present in `python-mode' files"
       (add-to-list 'package-archives
 		   '("marmalade" . "http://marmalade-repo.org/packages/"))
 ))
+;; mu configuration
+;; ------------------------------
+
+;; https://groups.google.com/forum/?fromgroups=#!msg/mu-discuss/FngEnN8u4NI/30lcyEWTaSgJ
+
+(add-to-list 'load-path "/usr/local/stow/mu/0.9.9.5-dev6/share/emacs/site-lisp/mu4e")
+(require 'mu4e)
+
+;; mu4e-update-interval index
+
+(setq mu4e-headers-skip-duplicates t)
+;; (setq mu4e-update-interval 30);; for debugging, lets run offlineimap manually by setting this to nil
+;; (setq mu4e-update-interval 300)
+(setq mu4e-update-interval nil)
+;; (setq mu4e-get-mail-command "offlineimap") ;; or fetchmail, or ...
+;; (setq mu4e-get-mail-command "true") ;; or fetchmail, or ...
+
+;; `mu4e-maildir' takes an actual filesystem-path, the other folder
+;; names are all relative to `mu4e-maildir'.
+;; these are actually the defaults
+
+;; mu4e-bookmarks
+; ;'(mu4e-bookmarks (quote (("flag:unread AND NOT flag:trashed" "Unread
+; ;messages" 117) ("date:30..now" "In last month" 109) ("date:1h..now"
+; ;"In last hour" 104) ("date:today..now" "Today's messages" 116)
+; ;("date:7d..now" "Last 7 days" 119) ("mime:image/*" "Messages with
+; ;images" 112))))
+
+;; sending mail -- replace USERNAME with your gmail username
+;; also, make sure the gnutls command line utils are installed
+;; package 'gnutls-bin' in Debian/Ubuntu
+
+(require 'smtpmail)
+(setq message-send-mail-function 'smtpmail-send-it)
+(setq starttls-use-gnutls t)
+
+;; don't save message to Sent Messages, Gmail/IMAP takes care of this
+(setq mu4e-confirm-quit nil)
+(setq mu4e-headers-results-limit 500)
+(setq mu4e-sent-messages-behavior 'delete)
+(setq mu4e-view-image-max-width 800)
+(setq mu4e-view-show-images t)
+
+(add-to-list 'mu4e-bookmarks '("date:5h..now" "in last 5 hours" 53))
+(add-to-list 'mu4e-bookmarks '("date:3h..now" "in last 3 hours" 51))
+(add-to-list 'mu4e-bookmarks '("flag:unread AND NOT flag:trashed" "Unread messages" 117))
+(add-to-list 'mu4e-bookmarks '("date:1m..now" "in last month" 109))
+(add-to-list 'mu4e-bookmarks '("date:1h..now" "in last hour" 104))
+(add-to-list 'mu4e-bookmarks '("date:24h..now" "Today's messages" 116))
+(add-to-list 'mu4e-bookmarks '("date:7d..now" "Last 7 days" 119))
+(add-to-list 'mu4e-bookmarks '("mime:image/*" "Messages with images" 112))
+(add-to-list 'mu4e-bookmarks '("size:5M..500M" "Big messages" ?b))
+
+;; mu4e-update-mail-and-index
+;; (mu4e-toggle-logging)
+
+;; `emacs' allows you to select an e-mail program as the default program
+;; it uses when you press <C-x m> (`compose-mail'), call
+;; `report-emacs-bug' and so on. If you want to use mu4e for this, you
+;; do so by adding the following to your configuration:
+(setq mail-user-agent 'mu4e-user-agent)
+
+;; setup some handy shortcuts
+;; you can quickly switch to your Inbox -- press ``ji''
+;; then, when you want archive some messages, move them to
+;; the 'All Mail' folder by pressing ``ma''.
+(setq mu4e-maildir-shortcuts
+      '(
+	("/Personal/INBOX"               . ?i)
+	("/Personal/[Gmail].Sent Mail"   . ?s)
+	("/Personal/[Gmail].Trash"       . ?t)
+	("/Personal/[Gmail].All Mail"    . ?a)
+
+	("/Streambox/INBOX"               . ?p)
+	("/Streambox/[Gmail].Sent Mail"   . ?m)
+	))
 
 
+(setq user-full-name "Taylor Monacelli")
+;; (setq smtpmail-stream-type starttls)
+(setq smtpmail-smtp-service 587)
+(setq mu4e-account-alist ;; https://groups.google.com/forum/?fromgroups=#!topic/mu-discuss/7I2SicOiLJ8
+      '(("Personal"
+	 (message-signature (concat "Taylor Monacelli\n" "http://www.example.com\n"))
+	 (smtpmail-default-smtp-server "smtp.gmail.com")
+	 (smtpmail-local-domain "u.washington.edu")
+	 (smtpmail-smtp-server "smtp.gmail.com")
+	 (smtpmail-smtp-user "taylormonacelli")
+	 (user-mail-address "taylormonacelli@gmail.com")
+         (mu4e-drafts-folder "/Personal/[Gmail].Drafts")
+         (mu4e-sent-folder "/Personal/[Gmail].Sent Mail")
+         (mu4e-trash-folder "/Personal/[Gmail].Trash")
+         (user-mail-address "tailor@u.washington.edu")
+         )
+        ("Streambox"
+	 (message-signature (concat "Taylor Monacelli\n" "http://www.example.com\n"))
+	 (smtpmail-default-smtp-server "smtp.gmail.com")
+	 (smtpmail-local-domain "streambox.com")
+	 (smtpmail-smtp-server "smtp.gmail.com")
+	 (smtpmail-smtp-user "taylor.monacelli@streambox.com")
+	 (user-mail-address "taylor.monacell@streambox.com")
+         (mu4e-drafts-folder "/Streambox/[Gmail].Drafts")
+         (mu4e-sent-folder "/Streambox/[Gmail].Sent Mail")
+         (mu4e-trash-folder "/Streambox/[Gmail].Trash")
+         (user-mail-address "taylor.monacelli@streambox.com")
+         )
+	))
+
+(defun mu4e-set-account ()
+  "Set the account for composing a message."
+  (let* ((account
+          (if mu4e-compose-parent-message
+              (let ((maildir (mu4e-msg-field mu4e-compose-parent-message :maildir)))
+                (string-match "/\\(.*?\\)/" maildir)
+                (match-string 1 maildir))
+            (completing-read (format "Compose with account: (%s) "
+                                     (mapconcat #'(lambda (var) (car var)) jk-mu4e-account-alist "/"))
+                             (mapcar #'(lambda (var) (car var)) jk-mu4e-account-alist)
+                             nil t nil nil (caar jk-mu4e-account-alist))))
+         (account-vars (cdr (assoc account jk-mu4e-account-alist))))
+    (if account-vars
+        (mapc #'(lambda (var)
+                  (set (car var) (cadr var)))
+              account-vars))))
+
+(add-hook 'mu4e-index-updated-hook
+	  (defun new-mail-sound ()
+	    (shell-command "terminal-notifier -message 'finished: mu4e-index-updated-hook'")))
 
 
+(global-set-key (kbd "C-t") (quote mu4e))
 
-
-
-
+;; end mu configuration
+;; ------------------------------
 
 ;; tramp
 ;; ------------------------------
