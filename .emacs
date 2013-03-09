@@ -1758,6 +1758,10 @@ if breakpoints are present in `python-mode' files"
 
 ;; ends pcomplete mode setup
 ;; ------------------------------
+
+;; http://snarfed.org/dotfiles/.emacs
+(setenv "PAGER" "cat")
+
 ;; ------------------------------
 ;; puppet mode
 ;; ------------------------------
