@@ -1010,7 +1010,7 @@ else do C-x 5 0 delete-frame"
 
 
 ;; ------------------------------
-;; anything mode
+;; anything mode anything-mode
 ;; ------------------------------
 (add-to-list 'load-path "~/.elisp/anything-config")
 
