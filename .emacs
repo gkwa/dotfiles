@@ -892,12 +892,12 @@ else do C-x 5 0 delete-frame"
 (add-to-list 'load-path "~/.elisp/org-mode/contrib/lisp")
 (add-to-list 'load-path "~/.elisp/org-mode/EXPERIMENTAL/") ; make use of .elisp/org-mode/EXPERIMENTAL/org-mediawiki.el
 (require 'org)
-;(require 'ob-sh)
+;;(require 'ob-sh)
 ;;(require 'ob-R)         ;; requires R and ess-mode
-;(require 'ob-perl)      ;;
-;(require 'ob-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
-;(require 'ob-python)    ;; requires python, and python-mode
-;(require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
+;;(require 'ob-perl)      ;;
+;;(require 'ob-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
+;;(require 'ob-python)    ;; requires python, and python-mode
+;;(require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
 
 (setq-default
 ;;; org-list-automatic-rules t ; don't do this it gives error: org-set-regexps-and-options: Wrong type argument: listp, t
@@ -1025,22 +1025,22 @@ else do C-x 5 0 delete-frame"
      anything-c-source-recentf
      ;; anything-isearch???
      anything-c-source-files-in-current-dir
-;; it seems that anything mode is just too slow when using
-;; anything-c-source-mac-spotlight and anything-c-source-locate
-;     anything-c-source-mac-spotlight
-;     anything-c-source-locate
+     ;; it seems that anything mode is just too slow when using
+     ;; anything-c-source-mac-spotlight and anything-c-source-locate
+     ;;     anything-c-source-mac-spotlight
+     ;;     anything-c-source-locate
      anything-for-files-prefered-list
      anything-c-source-ffap-line
      anything-c-source-ffap-guesser
      ;; anything-c-source-mac-spotlight  ;; I believe this source is causing slowdown, its the one invoking mdfind
      ;; anything-c-source-occur
-;;     anything-c-source-firefox-bookmarks causes error if ~/.mozilla/firefox/bookmarks.html doesn't exist
-;;     anything-bookmarks ;; mcausese error
+     ;;     anything-c-source-firefox-bookmarks causes error if ~/.mozilla/firefox/bookmarks.html doesn't exist
+     ;;     anything-bookmarks ;; mcausese error
      ;; anything-c-source-bm
      ;; anything-mini
      ;; anything-minibuffer-history
      anything-c-source-kill-ring
-;;     anything-dired-copy-file
+     ;;     anything-dired-copy-file
      ;;     anything-c-source-file-name-history
      anything-c-source-mark-ring
      ;; anything-c-source-info-pages; Emacs on windows can't find info dir on windows, comment it out until a rainy day
@@ -1049,7 +1049,7 @@ else do C-x 5 0 delete-frame"
      ;; anything-c-google-suggest-url
      ;; anything-c-source-emacs-commands
      ;; anything-c-source-files-in-all-dired
-     anything-c-source-minibuffer-history
+     ;; anything-c-source-minibuffer-history
      ;; this one causes save-excursion: Marker does not point anywhere error when mark is not set
      ;; anything-c-source-mark-ring
      ;; anything-c-source-global-mark-ring causes problems when
@@ -1059,7 +1059,7 @@ else do C-x 5 0 delete-frame"
      ;; anything-c-source-global-mark-ring
      anything-c-source-minibuffer-history
      anything-c-source-ctags
-;     anything-c-source-info-pages
+     ;;     anything-c-source-info-pages
      ;; anything-c-source-info-elisp; this gives error progn: Symbol's function definition is void: Info-find-node
      ;; anything-c-source-man-pages
      ;; anything-c-source-locate
@@ -1285,11 +1285,11 @@ else do C-x 5 0 delete-frame"
 (defun ack ()
   "Like grep, but using ack-command as the default"
   (interactive)
-  ; Make sure grep has been initialized
+  ;; Make sure grep has been initialized
   (if (>= emacs-major-version 22)
       (require 'grep)
     (require 'compile))
-  ; Close STDIN to keep ack from going into filter mode
+  ;; Close STDIN to keep ack from going into filter mode
   (let ((null-device (format "< %s" null-device))
 	(grep-command ack-command)
 	(grep-history ack-history)
@@ -1405,7 +1405,7 @@ else do C-x 5 0 delete-frame"
 (setq compilation-ask-about-save nil)
 
 ;; make the compile window stick at 12 lines tall
-; (setq compilation-window-height 12)
+;; (setq compilation-window-height 12)
 
 ;; from enberg on #emacs
 ;; if the compilation has a zero exit code,
@@ -1476,24 +1476,24 @@ else do C-x 5 0 delete-frame"
 ;; http://www.emacswiki.org/emacs/download/csharp-mode.el
 
 (add-to-list 'load-path "~/.elisp")
-; (add-to-list 'auto-mode-alist '("\\.cs?\\'" . csharp-mode))
+;; (add-to-list 'auto-mode-alist '("\\.cs?\\'" . csharp-mode))
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 
 ;; Optionally, define and register a mode-hook function. To do so, use
 ;; something like this in your .emacs file:
 
 (defun my-csharp-mode-fn ()
-   "function that runs when csharp-mode is initialized for a buffer."
-;   (turn-on-auto-revert-mode)
-;   (setq indent-tabs-mode nil)
-   (require 'flymake)
-   (flymake-mode 0)
-;   (require 'yasnippet)
-   (yas/minor-mode-on)
-;   (require 'rfringe)
-;   ...insert more code here...
-;   ...including any custom key bindings you might want ...
-)
+  "function that runs when csharp-mode is initialized for a buffer."
+  ;;   (turn-on-auto-revert-mode)
+  ;;   (setq indent-tabs-mode nil)
+  (require 'flymake)
+  (flymake-mode 0)
+  ;;   (require 'yasnippet)
+  (yas/minor-mode-on)
+  ;;   (require 'rfringe)
+  ;;   ...insert more code here...
+  ;;   ...including any custom key bindings you might want ...
+  )
 (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
 
 ;; ------------------------------
@@ -1533,7 +1533,7 @@ else do C-x 5 0 delete-frame"
 (setq auto-mode-alist (cons '("SConscript" . python-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("sconscript" . python-mode) auto-mode-alist))
 
-;  File "/Users/demo/pdev/check2000/SConstruct", line 30:
+;;  File "/Users/demo/pdev/check2000/SConstruct", line 30:
 (add-to-list 'compilation-error-regexp-alist
 	     '("^ +File .\\(.*\\)., line \\([0-9]+\\):" 1 2))
 
@@ -1630,7 +1630,7 @@ if breakpoints are present in `python-mode' files"
 ;; ------------------------------
 ;; desktop sessions
 ;; ------------------------------
-; (desktop-save-mode 1)
+;; (desktop-save-mode 1)
 
 ;; ------------------------------
 ;; turn on winner-mode
@@ -1696,7 +1696,7 @@ if breakpoints are present in `python-mode' files"
 ;; ------------------------------
 ;; Frame resolution
 ;; ------------------------------
-; http://stackoverflow.com/questions/92971/how-do-i-set-the-size-of-emacs-window
+;; http://stackoverflow.com/questions/92971/how-do-i-set-the-size-of-emacs-window
 (defun set-frame-size-according-to-resolution ()
   (interactive)
   (if window-system
@@ -1725,8 +1725,7 @@ if breakpoints are present in `python-mode' files"
 ;; ------------------------------
 
 ;; http://www.masteringemacs.org/articles/2012/01/16/pcomplete-context-sensitive-completion-emacs/
-
-; emacs pcomplete git branch
+;; emacs pcomplete git branch
 
 (defconst pcmpl-git-commands
   '("add" "bisect" "branch" "checkout" "clone"
@@ -1761,7 +1760,7 @@ if breakpoints are present in `python-mode' files"
     (pcomplete-here* (pcmpl-git-get-refs "heads")))))
 
 
-; from /Users/demo/play/emacs/lisp/pcomplete.el
+;; from $HOME/play/emacs/lisp/pcomplete.el
 (add-hook 'shell-mode-hook 'pcomplete-shell-setup)
 
 ;; ends pcomplete mode setup
