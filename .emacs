@@ -1498,7 +1498,6 @@ else do C-x 5 0 delete-frame"
 (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
 
 ;; ------------------------------
-;; ------------------------------
 ;; cmake-mode
 ;; ------------------------------
 
