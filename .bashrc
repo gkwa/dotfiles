@@ -160,9 +160,9 @@ makerules()
 
 
 case "$(uname)" in
-##############################
+
     CYGWIN_NT*)
-##############################
+
 	export PATH="/cygdrive/c/cygwin/bin:$PATH"
 	# http://www.saltycrane.com/blog/2008/05/how-to-paste-in-cygwin-bash-using-ctrl/
 	# Add the following line to your ~/.bashrc:
@@ -175,9 +175,7 @@ case "$(uname)" in
 	;;
 
 
-##############################
     Darwin)
-##############################
 
 	export INFOPATH=/usr/local/share/info:$INFOPATH
 
@@ -199,13 +197,13 @@ case "$(uname)" in
 	# for emacsclient when emacs is in daemon mode
 	export EMACS_SERVER_FILE=~/.emacs.d/server/emacs1000
 
-# gitk complains "Application initialization failed: couldn't connect to
-# display ":0.0"" on osx, commented out
-#	export DISPLAY=:0.0
 	#pandoc and haskell cabal defaults to ~/.cabal/bin
 	export PATH=~/.cabal/bin:$PATH
 	export MANPATH=~/.cabal/share/man:$MANPATH
 
+	# gitk complains "Application initialization failed: couldn't connect to
+	# display ":0.0"" on osx, commented out
+	#	export DISPLAY=:0.0
 
 	#
 
@@ -260,8 +258,8 @@ EOF
 	    # scp rn:/tmp/encoder_decoder_cleanup_step1.txt /tmp
 	    # grep 8274a15 /tmp/encoder_decoder_cleanup_step1.txt \
 	    #	| sed -e 's,^,rm -f ,' | tee /tmp/encoder_decoder_cleanup_step2.txt
-#	    scp /tmp/encoder_decoder_cleanup_step2.txt rn:/tmp
-#	    ssh rn sh -x /tmp/encoder_decoder_cleanup_step2.txt
+	    #	    scp /tmp/encoder_decoder_cleanup_step2.txt rn:/tmp
+	    #	    ssh rn sh -x /tmp/encoder_decoder_cleanup_step2.txt
 	}
 
 	function locatern()
@@ -343,10 +341,10 @@ EOF
 
 	# installer functions
 	imgmountpoint() {
-			# echo disktuil eject \
-			# 	$(hdid -plist $1 | grep dev-entry -A1 | \
-			# 	grep string | cut -d\> -f2 | cut -d\< -f1 | \
-			# 	sed -e 's,/dev/,,')
+	    # echo disktuil eject \
+	    #	$(hdid -plist $1 | grep dev-entry -A1 | \
+	    #	grep string | cut -d\> -f2 | cut -d\< -f1 | \
+	    #	sed -e 's,/dev/,,')
 
 	    hdid -plist $1 | grep mount-point -A1 | \
 		grep string | cut -d\> -f2 | cut -d\< -f1;
@@ -359,7 +357,7 @@ EOF
 	    mount | grep 10.0.2.10 | awk '{print $1}' | xargs -n1 umount
 	}
 	myinstall() {
-#			set -x;
+	    #			set -x;
 	    hdid $1;
 	    pushd "$(imgmountpoint $1)";
 	    sudo installer -pkg "$(ls -1 | grep -i pkg | head -1)" -target /;
@@ -391,7 +389,7 @@ EOF
 		git update-index -q --refresh
 	    if test ! -z "$(git diff-index --name-only HEAD --)"
 	    then
-#		echo dirty
+		#		echo dirty
 		git status
 	    else
 		cd "$d"
@@ -442,14 +440,15 @@ EOF
 
 
 	;;
-##############################
+
+
     "Linux|FreeBSD")
-##############################
-    ip=$(/sbin/ip addr show dev eth0 | grep "inet " | cut -d\/ -f1 | awk '{print $2}')
-    if test ! -z "$ip"; then
-	PS1="[\d \t \u@${ip}:\w ]$ "
-    fi
-    ;;
+
+	ip=$(/sbin/ip addr show dev eth0 | grep "inet " | cut -d\/ -f1 | awk '{print $2}')
+	if test ! -z "$ip"; then
+	    PS1="[\d \t \u@${ip}:\w ]$ "
+	fi
+	;;
 
 esac
 
@@ -459,42 +458,39 @@ function parse_git_branch
 {
     ref=$(git symbolic-ref HEAD 2> /dev/null) || return
     echo "("${ref#refs/heads/}")"
-    }
+}
 
 
-    function bitgrep()
-    {
-	searchPattern="$1"
-	sed -e 's,.*/Production/Streambox/,/Volumes/Production/Streambox/,' \
-	    ~/pdev/production-find-ls/find-ls.txt | grep -iE "$searchPattern"
+function bitgrep()
+{
+    searchPattern="$1"
+    sed -e 's,.*/Production/Streambox/,/Volumes/Production/Streambox/,' \
+	~/pdev/production-find-ls/find-ls.txt | grep -iE "$searchPattern"
 
-    }
-
-
-
-    genpasswd()
-    {
-		# from here: http://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html
-	local l=$1
-	[ "$l" == "" ] && l=20
-	tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
-    }
+}
 
 
 
+genpasswd()
+{
+    # from here: http://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html
+    local l=$1
+    [ "$l" == "" ] && l=20
+    tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
+}
 
 
 
-    pack(){ find . -iname "*.packproj"; }
-    packo() { pack | sed -e 's,^,open ,'; }
-    dmg(){ find . -iname "*.dmg"; }
+pack(){ find . -iname "*.packproj"; }
+packo() { pack | sed -e 's,^,open ,'; }
+dmg(){ find . -iname "*.dmg"; }
 
 
 
 # http://www.delorie.com/gnu/docs/emacs/emacs_444.html
-    PS1="\u@\h \W$ "
-    PS1="[\d \t \u@\h:\w ]$ "
-    PS1="[\u@\h:\w\$(parse_git_branch)]$ "
+PS1="\u@\h \W$ "
+PS1="[\d \t \u@\h:\w ]$ "
+PS1="[\u@\h:\w\$(parse_git_branch)]$ "
 
 
 
@@ -507,26 +503,26 @@ function parse_git_branch
 
 
 
-    export ALTERNATE_EDITOR=””
+export ALTERNATE_EDITOR=””
 
 
 
 
-    drop()
-    {
-	if test ! -z "$1"; then
-	    find ~/Dropbox/Public | \
-		grep -iE "$1" | \
-		sed -e \
-		's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g'
+drop()
+{
+    if test ! -z "$1"; then
+	find ~/Dropbox/Public | \
+	    grep -iE "$1" | \
+	    sed -e \
+	    's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g'
+    else
 
-	else
-	    find ~/Dropbox/Public | \
-		sed -e \
-		's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g'| \
-		xargs ls -t
-	fi;
-    }
+	find ~/Dropbox/Public | \
+	    sed -e \
+	    's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g'| \
+	    xargs ls -t
+    fi;
+}
 
 ##############################
 # Git bash completion
