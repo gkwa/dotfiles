@@ -1414,19 +1414,6 @@ else do C-x 5 0 delete-frame"
 		 '("^git_jump:\\(.*\\):\\([0-9]+\\)" 1 2))
     ))
 
-;; https://www.google.com/search?client=emacs&q=emacs%20compilation-search-path
-;; http://stackoverflow.com/questions/1885205/pathname-translation-in-emacs-for-finding-local-source-file-path-from-remote-ss
-(defun my-compilation-hook ()
-  (progn
-    (if (not (get-buffer-window "*compilation*"))
-	(progn
-	  (setq (quote compilation-search-path
-		       (quote
-			(nil "~/" "")
-			)
-		       ))))))
-(add-hook 'compilation-mode-hook 'my-compilation-hook)
-
 ;; ------------------------------
 ;; applescript-mode actionscript mode osascript
 ;; ------------------------------
