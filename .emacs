@@ -756,15 +756,6 @@ else do C-x 5 0 delete-frame"
 ;; ;; (setq ffap-url-fetcher 'w3m-browse-url)
 
 ;; ------------------------------
-;; yasnippet
-;; ------------------------------
-(add-to-list 'load-path "~/.elisp/yasnippet")
-
-(require 'yasnippet)
-(setq yas/snippet-dirs '("~/.elisp/yasnippet/snippets" "~/.elisp/yasnippet-org-mode"))
-(yas/global-mode 1)
-
-;; ------------------------------
 ;; multi-term mode
 ;; ------------------------------
 ;; http://www.emacswiki.org/emacs/MultiTerm
