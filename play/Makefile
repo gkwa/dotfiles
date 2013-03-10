@@ -30,6 +30,14 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+bigcommerce-api-python \
+munki \
+wimboot \
+winvblock \
+grub4dos-chenall-read-only \
+wimlib \
+SugarSync-Python-Client \
+offlineimap \
 mu \
 wireshark \
 winsparkle \
@@ -162,10 +170,53 @@ Quicksilver \
 php-src-trunk \
 wanderlust
 
+
+# http://www.php.net/svn.php
+grub4dos-chenall-read-only:
+	test -d $@ || svn checkout http://grub4dos-chenall.googlecode.com/svn/trunk grub4dos-chenall-read-only $@
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: grub4dos-chenall-read-only
+
+wimboot:
+	-git clone git://git.ipxe.org/wimboot.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: wimboot
+
+bigcommerce-api-python:
+	-git clone git://github.com/bigcommerce/bigcommerce-api-python.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: bigcommerce-api-python
+
+munki:
+	-git clone https://code.google.com/p/munki $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: munki
+
+winvblock:
+	-git clone git://github.com/Sha0/winvblock.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: winvblock
+
+wimlib:
+	-git clone git://git.code.sf.net/p/wimlib/code $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: wimlib
+
+SugarSync-Python-Client:
+	-git clone git://github.com/monofox/SugarSync-Python-Client.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: SugarSync-Python-Client
+
 mu:
 	-git clone git://github.com/djcb/mu.git $@
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: mu
+
+offlineimap:
+	-git clone git://github.com/spaetz/offlineimap.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: offlineimap
 
 wireshark:
 	-git clone http://code.wireshark.org/git/wireshark  $@
