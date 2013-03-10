@@ -285,33 +285,19 @@ EOF
 	{
 	    project=$(basename `pwd`)
 
-	    echo git init '&&' \
-		git config remote.origin.url dev:~/proj/$project.git
-
+	    echo -n 'git init && '
+	    echo -n 'git remote add origin dev:~/proj/$project.git && '
+	    echo ssh dev '"cd /var/www/html/proj; sh setupproj.sh '$project'"'
+	    echo
+	    echo git push --set-upstream origin master
+	    echo
 	    echo git clone --reference ~/pdev/nsis-streambox2 \
 		--no-hardlinks \
-		ssh://boxstream@development.streambox.com:5979/var/www/html/proj/nsis-streambox2.git \
-		'&&' \
-		git sub add ssh://boxstream@development.streambox.com:5979/var/www/html/proj/nsis-streambox2.git
-
+		dev:~/proj/nsis-streambox2.git
 	    echo
-
-	    echo ssh dev '"cd /var/www/html/proj; sh setupproj.sh '$project'"'
-
-	    echo
-
 	    echo cp ~/pdev/nsis-baseline/{template.nsi,VERSION.mk,Makefile} .
 	    echo '# git add . && git commit -am blah'
-	    echo git push --set-upstream origin master
-
 	    echo
-
-	    echo git push --set-upstream origin master
-	    echo g remote rm origin
-	    echo git remote add -f -t master -m master origin dev:~/proj/$project.git
-
-	    echo
-
 	    echo '(cd ~/pdev/manifest && git commit -am "Adds project '$project'" && git push)'
 	    echo '<project name="'$project'" path="'$project'" />'
 	    echo ~/pdev/manifest/default.xml
