@@ -575,9 +575,6 @@ else do C-x 5 0 delete-frame"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-mode-case-fold t)
- '(compilation-error-regexp-alist (quote (("^?:[	]+at com.mycompany.+(\\([^()
-]+\\):\\([0-9]+\\))$" 2 3) ("^\\[ERROR\\].+
-\\(.*\\):.\\([0-9]+\\)" 1 2) ("^git_jump:\\(.*\\):\\([0-9]+\\):" 1 2))))
  '(delete-by-moving-to-trash t)
  '(diary-file (expand-file-name "~/.diary"))
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
@@ -1467,6 +1464,13 @@ else do C-x 5 0 delete-frame"
 
 
 
+
+; http://praveen.kumar.in/2011/03/09/making-gnu-emacs-detect-custom-error-messages-a-maven-example/
+(add-to-list 'compilation-error-regexp-alist 'maven)
+(add-to-list 'compilation-error-regexp-alist-alist
+       '(maven "\\[ERROR\\] \\(.+?\\):\\[\\([0-9]+\\),\\([0-9]+\\)\\].*"
+	   1 2 3))
+
 ;; ------------------------------
 ;; csharp-mode
 ;; ------------------------------
@@ -1494,16 +1498,6 @@ else do C-x 5 0 delete-frame"
 (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
 
 ;; ------------------------------
-
-
-; http://praveen.kumar.in/2011/03/09/making-gnu-emacs-detect-custom-error-messages-a-maven-example/
-(add-to-list 'compilation-error-regexp-alist 'maven)
-(add-to-list 'compilation-error-regexp-alist-alist
-       '(maven "\\[ERROR\\] \\(.+?\\):\\[\\([0-9]+\\),\\([0-9]+\\)\\].*"
-	   1 2 3))
-
-
-
 ;; ------------------------------
 ;; cmake-mode
 ;; ------------------------------
