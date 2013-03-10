@@ -189,23 +189,23 @@ case "$(uname)" in
 	export EDITOR=$HOME/bin/e
 	export PATH=~/play/gitster/contrib/git-jump:$PATH
 	export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
-	export PATH=/Applications/MacPorts/Emacs.app/Contents/MacOS/bin:$PATH # for emacsclient
-	export PATH=/Applications/MacPorts/Emacs.app/Contents/MacOS:$PATH
 	export PATH=/Applications/p4merge.app/Contents/MacOS:$PATH
 	export PATH=/usr/local/bin:$PATH
-	export PATH=/opt/local/sbin:$PATH
-	export PATH=/opt/local/bin:$PATH
-	export PATH=$PATH:/Developer/usr/bin
 	# for plistbuddy:
 	export PATH=$PATH:/usr/libexec
 	# for Apple /Developer/usr/bin/make since macports is broken now
 	export PATH=$PATH:/Developer/usr/bin
+	export PATH=$PATH:/usr/local/sbin
 	# for emacsclient when emacs is in daemon mode
 	export EMACS_SERVER_FILE=~/.emacs.d/server/emacs1000
 
 # gitk complains "Application initialization failed: couldn't connect to
 # display ":0.0"" on osx, commented out
 #	export DISPLAY=:0.0
+	#pandoc and haskell cabal defaults to ~/.cabal/bin
+	export PATH=~/.cabal/bin:$PATH
+	export MANPATH=~/.cabal/share/man:$MANPATH
+
 
 	#
 
@@ -266,7 +266,7 @@ EOF
 
 	function locatern()
 	{
-	    /opt/local/libexec/gnubin/locate \
+	    glocate \
 		--database=$HOME/Documents/locate.updatedb.readynas \
 		"$@" | sed -e 's,^/c,/Volumes,'
 

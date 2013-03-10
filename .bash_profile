@@ -45,6 +45,6 @@ case $(uname) in
 	;;
     "Dwarwin")
 	export \
-	    MANPATH=$MANPATH:/opt/local/share/man:/opt/local/man:/usr/share
+	    MANPATH=$MANPATH:/usr/share
 	;;
 esac
