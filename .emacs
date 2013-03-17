@@ -986,8 +986,8 @@ else do C-x 5 0 delete-frame"
   (anything-other-buffer
    '(
      anything-c-source-buffers
-     anything-c-source-recentf
      anything-c-source-bookmarks
+     anything-c-source-recentf
      anything-c-source-files-in-current-dir
      ;; anything-isearch???
      ;; it seems that anything mode is just too slow when using
