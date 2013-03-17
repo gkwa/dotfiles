@@ -1904,3 +1904,12 @@ if breakpoints are present in `python-mode' files"
 
 ;; end tramp configuration
 ;; ------------------------------
+
+;; ------------------------------
+;; pcmpl-git
+;; ------------------------------
+;; Setup puppet-mode for autoloading
+(add-to-list 'load-path "~/.elisp/pcmpl-git-el")
+
+;; end pcmpl-git configuration
+;; ------------------------------
