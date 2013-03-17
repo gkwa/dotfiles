@@ -94,6 +94,9 @@ sns = show --color --name-status
 # show the name of the files without a commit message
 sno = show --pretty="format:" --name-only
 
+# from http://gitster.livejournal.com/48015.html
+rst = "!sh -c 'git reset HEAD^ -- $(git show --pretty=\"format:\" --name-only | sed \"/^$/d\")'"
+
 gb = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
 wu = log --stat origin..@{0}  # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
 # good examples
