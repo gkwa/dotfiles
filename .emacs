@@ -843,25 +843,12 @@ else do C-x 5 0 delete-frame"
 (require 'epa-file)
 
 ;; ------------------------------
-;; dired-x
+;; dired-x, diredx
 ;; ------------------------------
-
-(add-hook 'dired-load-hook
-	  (lambda ()
-	    (load "dired-x")
-	    ;; Set dired-x global variables here.  For example:
-	    ;; (setq dired-guess-shell-gnutar "gtar")
-	    ;; (setq dired-x-hands-off-my-keys nil)
-	    (setq dired-omit-files
-		  (concat dired-omit-files "\\|^\\..+$"))
-	    ))
-
-(add-hook 'dired-mode-hook
-	  (lambda ()
-	    ;; Set dired-x buffer-local variables here.  For example:
-	    (setq dired-omit-files-p t)
-	    ))
-
+(require 'dired-x)
+(setq-default dired-omit-files-p t) ; this is buffer-local variable
+(setq dired-omit-files
+      (concat dired-omit-files "\\|^\\..+$"))
 
 ;; ------------------------------
 ;; org-mode
