@@ -849,6 +849,7 @@ else do C-x 5 0 delete-frame"
 (setq-default dired-omit-files-p t) ; this is buffer-local variable
 (setq dired-omit-files
       (concat dired-omit-files "\\|^\\..+$"))
+(setq dired-listing-switches "-alh")
 
 ;; ------------------------------
 ;; org-mode
