@@ -34,6 +34,3 @@
 [submodule ".elisp/el-get"]
 	path = .elisp/el-get
 	url = git://github.com/dimitri/el-get.git
-[submodule ".elisp/bookmark-plus"]
-	path = .elisp/bookmark-plus
-	url = git://github.com/emacsmirror/bookmark-plus.git
