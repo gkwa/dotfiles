@@ -34,6 +34,7 @@
 /.cups/
 /.dropbox/
 /.elisp/*.elc
+/.elisp/bookmark-plus/*.elc
 /.emacs.d/
 /.fontconfig
 /.gitk
@@ -83,3 +84,4 @@
 /p
 /tmp/
 /trash/
+
