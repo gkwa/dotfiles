@@ -220,6 +220,7 @@
 
 ;; C-c i calls insert-date-string
 (global-set-key (kbd "C-c i") 'insert-date-string)
+(global-set-key "y" (quote anything-do-grep))
 
 
 ;; resize man page to take up whole screen
@@ -575,6 +576,7 @@ else do C-x 5 0 delete-frame"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-mode-case-fold t)
+ '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(delete-by-moving-to-trash t)
  '(diary-file (expand-file-name "~/.diary"))
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
@@ -587,7 +589,7 @@ else do C-x 5 0 delete-frame"
  '(mode-line-inverse-video nil)
  '(nxml-slash-auto-complete-flag t)
  '(ring-bell-function (quote ignore) t)
- '(safe-local-variable-values (quote ((lexical-binding . t) (sgml-tag-region-if-active . t) (sgml-shorttag . t) (sgml-parent-document "Bugzilla-Guide.xml" "book" "chapter") (sgml-omittag . t) (sgml-namecase-general . t) (sgml-minimize-attributes) (sgml-local-ecat-files) (sgml-local-catalogs) (sgml-indent-step . 2) (sgml-indent-data . t) (sgml-general-insert-case . lower) (sgml-exposed-tags) (sgml-balanced-tag-edit . t) (sgml-auto-insert-required-elements . t) (sgml-always-quote-attributes . t) (TeX-master . t))))
+ '(safe-local-variable-values (quote ((eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (whitespace-line-column . 80) (whitespace-style face trailing lines-tail) (require-final-newline . t) (lexical-binding . t) (sgml-tag-region-if-active . t) (sgml-shorttag . t) (sgml-parent-document "Bugzilla-Guide.xml" "book" "chapter") (sgml-omittag . t) (sgml-namecase-general . t) (sgml-minimize-attributes) (sgml-local-ecat-files) (sgml-local-catalogs) (sgml-indent-step . 2) (sgml-indent-data . t) (sgml-general-insert-case . lower) (sgml-exposed-tags) (sgml-balanced-tag-edit . t) (sgml-auto-insert-required-elements . t) (sgml-always-quote-attributes . t) (TeX-master . t))))
  '(scroll-bar-mode nil)
  '(split-height-threshold nil)
  '(split-width-threshold 0)
@@ -653,6 +655,9 @@ else do C-x 5 0 delete-frame"
 (add-to-list 'auto-mode-alist '("\\.pm\\'" . perl-mode))
 (add-to-list 'auto-mode-alist '("\\.pl\\'" . perl-mode))
 (add-to-list 'auto-insert-alist '((perl-mode . "Perl Mode") . (concat comment-start "-*- perl -*-\n\n" )))
+(add-hook 'perl-mode-hook
+	  (lambda ()
+	    (setq tab-width 12)))
 
 ;; ------------------------------
 ;; wikipedia-mode
@@ -1093,7 +1098,7 @@ else do C-x 5 0 delete-frame"
   (save-excursion
     (if (get-buffer "tidy-html-errs") (kill-buffer "tidy-html-errs"))
     (let ((tmp (concat temporary-file-directory "tidy-html-errs"))
-	  (cmd "tidy --force-output true -asxhtml --tidy-mark no --doctype strict --indent-attributes true --wrap-attributes true --vertical-space true -q -i -wrap 60 -c -f "))
+	  (cmd "tidy --force-output true -asxhtml --tidy-mark no --doctype strict --indent-attributes true --wrap-attributes true --vertical-space true -q -i -wrap 60000 -c -f "))
       (shell-command-on-region (point-min) (point-max)
 			       (concat cmd tmp)
 			       t)
@@ -1116,7 +1121,7 @@ else do C-x 5 0 delete-frame"
   (save-excursion
     (if (get-buffer "tidy-xml-errs") (kill-buffer "tidy-xml-errs"))
     (let ((tmp (concat temporary-file-directory "tidy-xml-errs"))
-	  (cmd "tidy -xml --tidy-mark no --doctype strict --vertical-space true --indent-attributes true --wrap-attributes true -q -i -wrap 72 -c -f " ))
+	  (cmd "tidy -xml --tidy-mark no --doctype strict --vertical-space true --indent-attributes false --wrap-attributes false -q -i -wrap 72000 -c -f " ))
       (shell-command-on-region (point-min) (point-max)
 			       (concat cmd tmp)
 			       t)
@@ -1692,45 +1697,16 @@ if breakpoints are present in `python-mode' files"
 ;; ------------------------------
 ;; programmable completion pcomplete
 ;; ------------------------------
-
-;; http://www.masteringemacs.org/articles/2012/01/16/pcomplete-context-sensitive-completion-emacs/
-;; emacs pcomplete git branch
-
-(defconst pcmpl-git-commands
-  '("add" "bisect" "branch" "checkout" "clone"
-    "commit" "diff" "fetch" "grep"
-    "init" "log" "merge" "mv" "pull" "push" "rebase"
-    "reset" "rm" "show" "status" "tag" )
-  "List of `git' commands")
-
-(defvar pcmpl-git-ref-list-cmd "git for-each-ref refs/ --format='%(refname)'"
-  "The `git' command to run to get a list of refs")
-
-(defun pcmpl-git-get-refs (type)
-  "Return a list of `git' refs filtered by TYPE"
-  (with-temp-buffer
-    (insert (shell-command-to-string pcmpl-git-ref-list-cmd))
-    (goto-char (point-min))
-    (let ((ref-list))
-      (while (re-search-forward (concat "^refs/" type "/\\(.+\\)$") nil t)
-	(add-to-list 'ref-list (match-string 1)))
-      ref-list)))
-
-(defun pcomplete/git ()
-  "Completion for `git'"
-  ;; Completion for the command argument.
-  (pcomplete-here* pcmpl-git-commands)
-  ;; complete files/dirs forever if the command is `add' or `rm'
-  (cond
-   ((pcomplete-match (regexp-opt '("add" "rm")) 1)
-    (while (pcomplete-here (pcomplete-entries))))
-   ;; provide branch completion for the command `checkout'.
-   ((pcomplete-match "checkout" 1)
-    (pcomplete-here* (pcmpl-git-get-refs "heads")))))
-
+(add-to-list 'load-path "~/.elisp/pcmpl-git-el")
+(require 'pcmpl-git)
 
 ;; from $HOME/play/emacs/lisp/pcomplete.el
 (add-hook 'shell-mode-hook 'pcomplete-shell-setup)
+
+;; end pcmpl-git configuration
+;; ------------------------------
+
+
 
 ;; ends pcomplete mode setup
 ;; ------------------------------
@@ -1902,11 +1878,4 @@ if breakpoints are present in `python-mode' files"
 ;; end tramp configuration
 ;; ------------------------------
 
-;; ------------------------------
-;; pcmpl-git
-;; ------------------------------
-;; Setup puppet-mode for autoloading
-(add-to-list 'load-path "~/.elisp/pcmpl-git-el")
 
-;; end pcmpl-git configuration
-;; ------------------------------

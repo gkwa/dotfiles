@@ -6,6 +6,8 @@
 # killing daemon will kill all clients too.  Kill daemon by 'make kill'
 # usage: make kill
 
+# brew install emacs
+
 EMACS_BASEPATH=/usr/local/bin
 EMACS=$(EMACS_BASEPATH)/emacs
 EMACS_CLIENT=$(EMACS_BASEPATH)/emacsclient
@@ -17,7 +19,8 @@ emacs_daemon_pid=$(shell sh -c 'ps -ef|grep -v make| grep -v grep|grep -iE "emac
 ec1:emacsclient1
 emacsclient1:
 	if test -z "$(emacs_daemon_pid)"; then rm -f $(EMACS_SERVER_FILE); $(daemon); fi
-	$(EMACS_CLIENT) --server-file=emacs1000 -n -c &
+	$(EMACS_CLIENT) --server-file=emacs1000 --create-frame &
+#	$(EMACS_CLIENT) --server-file=emacs1000 -t &
 	ls $(EMACS_SERVER_FILE)
 
 emacsclient_debug_init:

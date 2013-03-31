@@ -3,15 +3,6 @@
 #
 
 ##############################
-[core]
-##############################
-
-; core variables
-
-; Don't trust file modes
-filemode = false
-
-##############################
 [user]
 ##############################
 name = taylor
@@ -58,6 +49,9 @@ wsadd = "!sh -c 'git diff -- \"$@\" | git apply --cached --whitespace=fix'"
 hold = "!sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && \
 	  git branch -D $1' -"
 
+brvv = branch -v -v
+brv = branch -v
+cmat = commit -am t
 rsm = reset --merge
 st = stash
 sta = stash apply
@@ -67,6 +61,7 @@ stk = stash --keep-index
 conf = diff --name-only --diff-filter=U # list conflicts:
 cmah = commit --amend -C head
 cma = commit --amend
+rb8 = rebase --interactive head~80
 rb5 = rebase --interactive head~50
 rb4 = rebase --interactive head~40
 rb3 = rebase --interactive head~30
@@ -120,6 +115,7 @@ lrn = log --reverse --name-status -m
 subup = submodule update
 s = status
 diffc = diff --cached --color
+diffcn = diff --cached --color --name-only
 diffcw = diff --word-diff --color
 diffw = diff --word-diff
 dc = diff --color
@@ -170,6 +166,7 @@ lola = !git --no-pager lolal
 lgns =  "!f_gitconfig() { [ ! -z \"$1\" ] && git log --abbrev-commit --stat --name-status -\"$1\" || git log --stat --name-status; }; f_gitconfig"
 
 rb = rebase
+rbs = rebase --skip
 rba = rebase --abort
 rbc = rebase --continue
 rso = remote show origin
@@ -224,7 +221,10 @@ t = tag -l
 ##############################
 [core]
 ##############################
- whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	; Don't trust file modes
+	filemode = false
+		
+	whitespace = cr-at-eol,space-before-tab,trailing-space
 
 ##############################
 [color]

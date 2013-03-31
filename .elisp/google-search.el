@@ -52,6 +52,4 @@ sending a five megabyte query string to Netscape.")
       (message "Region not active"))))
 
 (provide 'google-search)
-
-(provide 'google-search)
 ;;; google-search.el ends here

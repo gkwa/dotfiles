@@ -30,6 +30,10 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+iniparser \
+webloc_cleaner \
+chrome-app-samples \
+gitmarks_2.git \
 bigcommerce-api-python \
 munki \
 wimboot \
@@ -177,6 +181,26 @@ grub4dos-chenall-read-only:
 	cd $@ && svn cleanup
 	cd $@ && svn update
 .PHONY: grub4dos-chenall-read-only
+
+iniparser:
+	-git clone http://github.com/ndevilla/iniparser.git $@
+	(cd $@ && git pull)
+.PHONY: iniparser.git
+
+webloc_cleaner:
+	-git clone https://github.com/turingstudio/webloc_cleaner.git $@
+	(cd $@ && git pull)
+.PHONY: webloc_cleaner.git
+
+chrome-app-samples:
+	-git clone https://github.com/GoogleChrome/chrome-app-samples $@
+	(cd $@ && git pull)
+.PHONY: chrome-app-samples
+
+gitmarks_2:
+	-git clone git://github.com/FarMcKon/gitmarks_2.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: gitmarks_2
 
 wimboot:
 	-git clone git://git.ipxe.org/wimboot.git $@

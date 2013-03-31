@@ -1,6 +1,7 @@
 MAKEFLAGS=-j 5
 
 all: \
+	sls_decoder \
 	ds \
 	dashboard \
 	ls \
@@ -8,6 +9,12 @@ all: \
 	sbwww \
 	win_ed_webapi \
 	lstmptrash
+
+sls_decoder:
+	test -d $@ || (svn co http://vcs.streambox.com/rep/$@ && svn upgrade)
+	(cd $@ && svn cleanup)
+	(cd $@ && svn update)
+.PHONY: sls_decoder
 
 ds:
 	test -d $@ || (svn co http://vcs.streambox.com/rep/$@ && svn upgrade)

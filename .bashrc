@@ -112,6 +112,17 @@
 
 source ~/.alias
 
+
+##############################
+# http://nuclearsquid.com/writings/git-tricks-tips-workflows/
+# Now, you’ll probably also want to have the Git Autocompletion when
+# you’re using g as well. Add this to your .bashrc or .zshrc:
+
+# Autocomplete for 'g' as well
+complete -o default -o nospace -F _git g
+##############################
+
+
 hs()
 {
     if test ! -z "$1"; then
@@ -197,6 +208,11 @@ case "$(uname)" in
 	# for emacsclient when emacs is in daemon mode
 	export EMACS_SERVER_FILE=~/.emacs.d/server/emacs1000
 
+	# https://groups.google.com/forum/?fromgroups=#!topic/asciidoc/FC-eOwU8rYg
+	# brew install asciidoc; cd ~/play/gitster && make man "make
+	# man" relies on knowing where XML_CATALOG_FILES are:
+	export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
+
 	#pandoc and haskell cabal defaults to ~/.cabal/bin
 	export PATH=~/.cabal/bin:$PATH
 	export MANPATH=~/.cabal/share/man:$MANPATH
@@ -209,6 +225,8 @@ case "$(uname)" in
 
 	encoder_decoder_cleanup()
 	{
+	    set +x
+
 	    while [ $# -gt 0 ]; do
 		case "$1" in
 		    -d|--debug)
@@ -251,6 +269,7 @@ EOF
 	    if test ! -z "$SEARCH_ARGS"; then
 		glocate \
 		    --database=/tmp/ed.updatedb \
+		    -r \
 		    "$SEARCH_ARGS" | \
 		    sed -e 's,^/c,/Volumes,'
 	    fi
@@ -261,6 +280,23 @@ EOF
 	    #	    scp /tmp/encoder_decoder_cleanup_step2.txt rn:/tmp
 	    #	    ssh rn sh -x /tmp/encoder_decoder_cleanup_step2.txt
 	}
+
+	function gitblock()
+	{
+	    url="$1"
+	    project=$(echo $url | awk -F / '{print $(NF)}')
+	    echo <<EOF "
+$project \\
+
+$project:
+	-git clone $url \$@
+	(cd \$@ && git pull)
+.PHONY: $project
+"
+EOF
+	}
+
+
 
 	function locatern()
 	{
@@ -323,7 +359,15 @@ EOF
 		git push && git show
 	}
 
-	function rdp() { find ~/Documents/RDC\ Connections -iname "*rdp*" | grep -i "$1" | sed -e 's,^,open ",;s,$,",'; }
+	function rdp()
+	{
+	    octet="$1"
+	    if test ! -z "$octet"; then
+		(cd ~/pdev/rdp-connect
+		    python main.py $octet
+		    sh ${octet}_main.sh)
+	    fi
+	}
 
 	# installer functions
 	imgmountpoint() {
