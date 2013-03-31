@@ -1747,6 +1747,15 @@ if breakpoints are present in `python-mode' files"
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
 ;; ------------------------------
+;; icicles
+;; ------------------------------
+(add-to-list 'load-path "~/.elisp/icicles")
+(require 'icicles)
+
+;; end icicles configuration
+;;-------------------------------
+
+;; ------------------------------
 ;; mu configuration
 ;; ------------------------------
 
