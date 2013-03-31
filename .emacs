@@ -1700,15 +1700,7 @@ if breakpoints are present in `python-mode' files"
 (add-to-list 'load-path "~/.elisp/pcmpl-git-el")
 (require 'pcmpl-git)
 
-;; from $HOME/play/emacs/lisp/pcomplete.el
-(add-hook 'shell-mode-hook 'pcomplete-shell-setup)
-
 ;; end pcmpl-git configuration
-;; ------------------------------
-
-
-
-;; ends pcomplete mode setup
 ;; ------------------------------
 
 ;; http://snarfed.org/dotfiles/.emacs
