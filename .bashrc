@@ -322,7 +322,7 @@ EOF
 	    project=$(basename `pwd`)
 
 	    echo -n 'git init && '
-	    echo -n 'git remote add origin dev:~/proj/$project.git && '
+	    echo -n "git remote add origin dev:~/proj/$project.git && "
 	    echo ssh dev '"cd /var/www/html/proj; sh setupproj.sh '$project'"'
 	    echo
 	    echo git push --set-upstream origin master
