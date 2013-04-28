@@ -369,6 +369,15 @@ EOF
 	    fi
 	}
 
+	function r2()
+	{
+	    find ~/Documents/RDC\ Connections ~/pdev/rdp-connect | \
+		grep -iE "$1" | \
+		sed 's, ,\\ ,g' | \
+		sed 's,^,open ,'
+
+	}
+
 	# installer functions
 	imgmountpoint() {
 	    # echo disktuil eject \
