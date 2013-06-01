@@ -53,6 +53,10 @@ wsadd = "!sh -c 'git diff -- \"$@\" | git apply --cached --whitespace=fix'"
 hold = "!sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && \
 	  git branch -D $1' -"
 
+
+
+rfl = log --oneline --relative-date -g
+rbw = rebase --whitespace=fix
 brvv = branch -v -v
 brv = branch -v
 cmat = commit -am t
