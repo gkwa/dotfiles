@@ -177,7 +177,11 @@ case "$(uname)" in
 	export PATH="/cygdrive/c/cygwin/bin:$PATH"
 	# http://www.saltycrane.com/blog/2008/05/how-to-paste-in-cygwin-bash-using-ctrl/
 	# Add the following line to your ~/.bashrc:
-	stty lnext ^q stop undef start undef
+
+# this next stty line causes bash to report: stty: standard input:
+# Inappropriate ioctl for device, so I'm disabling it.
+#	stty lnext ^q stop undef start undef
+
 	# And add the following line to your ~/.inputrc:
 	# "\C-v": paste-from-clipboard
 	# stty lnext ^q stop undef start undef
