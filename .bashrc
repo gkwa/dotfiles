@@ -141,6 +141,23 @@ hs()
     fi;
 }
 
+echo_remote_add_commands()
+{
+    project="$1"
+    cat <<EOF
+git remote add -f ${project}_local ~/pdev/$project
+git remote add -f ${project}_remote dev:~/proj/$project.git
+git remote rm ${project}_local
+git checkout -b ${project}_branch ${project}_remote/master
+git checkout -
+git read-tree -u ${project}_branch --prefix=$project/
+#
+git remote rm ${project}_remote
+git branch -d ${project}_branch
+EOF
+
+}
+
 gitOrderBranchByDate()
 {
     git status 2>&1 | grep "fatal" && return 1
