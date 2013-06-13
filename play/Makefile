@@ -30,6 +30,8 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+webmin \
+boinc \
 iniparser \
 webloc_cleaner \
 chrome-app-samples \
@@ -160,6 +162,7 @@ monomac \
 rst2texinfo \
 mod_auth_openid \
 python-graph-read-only \
+gdata-python-client \
 gitster \
 mozilla-1.9.git \
 keepassx \
@@ -182,15 +185,25 @@ grub4dos-chenall-read-only:
 	cd $@ && svn update
 .PHONY: grub4dos-chenall-read-only
 
+webmin:
+	-git clone git://github.com/webmin/webmin.git $@
+	(cd $@ && git pull)
+.PHONY: webmin
+
+boinc:
+	-git clone git://boinc.berkeley.edu/boinc-v2.git $@
+	(cd $@ && git pull)
+.PHONY: boinc
+
 iniparser:
 	-git clone http://github.com/ndevilla/iniparser.git $@
 	(cd $@ && git pull)
-.PHONY: iniparser.git
+.PHONY: iniparser
 
 webloc_cleaner:
 	-git clone https://github.com/turingstudio/webloc_cleaner.git $@
 	(cd $@ && git pull)
-.PHONY: webloc_cleaner.git
+.PHONY: webloc_cleaner
 
 chrome-app-samples:
 	-git clone https://github.com/GoogleChrome/chrome-app-samples $@
@@ -505,8 +518,13 @@ git:
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: git
 
+gdata-python-client:
+	test -d $@ || hg clone https://code.google.com/p/gdata-python-client
+	cd $@ && hg update
+.PHONY: gdata-python-client
+
 theunarchiver:
-	test -d $@ || hg clone hg clone https://code.google.com/p/theunarchiver
+	test -d $@ || hg clone https://code.google.com/p/theunarchiver
 	cd $@ && hg update
 .PHONY: theunarchiver
 
