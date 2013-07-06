@@ -17,7 +17,7 @@ viewer = woman
 ##############################
 [merge]
 ##############################
-tool = p4merge
+tool = p4merge #git config --global merge.tool p4merge
 
 ##############################
 [mergetool "p4merge"]
