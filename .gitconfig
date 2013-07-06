@@ -55,6 +55,7 @@ hold = "!sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && \
 
 
 
+root = rev-list --abbrev-commit --max-parents=0 HEAD
 rfl = log --oneline --relative-date -g
 rbw = rebase --whitespace=fix
 brvv = branch -v -v
