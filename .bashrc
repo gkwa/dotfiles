@@ -153,7 +153,7 @@ git checkout -
 git read-tree -u ${project}_branch --prefix=$project/
 #
 git remote rm ${project}_remote
-git branch -d ${project}_branch
+git branch -D ${project}_branch
 EOF
 
 }
