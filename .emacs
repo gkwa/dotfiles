@@ -577,6 +577,12 @@ else do C-x 5 0 delete-frame"
  ;; If there is more than one, they won't work right.
  '(auto-mode-case-fold t)
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
+ '(comint-completion-addsuffix t)
+ '(comint-completion-autolist t)
+ '(comint-input-ignoredups t)
+ '(comint-move-point-for-output t)
+ '(comint-scroll-show-maximum-output t)
+ '(comint-scroll-to-bottom-on-input t)
  '(delete-by-moving-to-trash t)
  '(diary-file (expand-file-name "~/.diary"))
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
