@@ -168,15 +168,6 @@ gitOrderBranchByDate()
 
 locatesuffix() { test ! -z "$1" && { locate "$1" | grep -E "$1\$"; } }
 
-installerv()
-{
-    if test 0 -eq $(git status --porcelain | grep -cE "^(A|M) "); then
-	echo export installerv=$(git rev-list HEAD -1 --abbrev-commit)
-    else
-	echo export installerv=test-dont-use
-    fi
-}
-
 
 makerules()
 {
