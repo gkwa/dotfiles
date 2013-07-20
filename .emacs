@@ -580,7 +580,6 @@ else do C-x 5 0 delete-frame"
  '(comint-completion-addsuffix t)
  '(comint-completion-autolist t)
  '(comint-input-ignoredups t)
- '(comint-move-point-for-output t)
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
  '(delete-by-moving-to-trash t)
