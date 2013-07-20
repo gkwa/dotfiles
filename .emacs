@@ -1,3 +1,10 @@
+;; keep "/opt/local/share/info" as the last element of
+;; Info-default-directory-list because "/opt/local/share/info" has the
+;; newest stuff
+;; (setq Info-directory-list (cons (expand-file-name "/opt/local/share/info") Info-default-directory-list))
+
+
+
 ;; this changes the value of the default-directory variable so that
 ;; the next dired will point you here
 (add-to-list 'load-path "~/.elisp")
@@ -905,12 +912,6 @@ else do C-x 5 0 delete-frame"
 ;; ------------------------------
 ;; org-mode
 ;; ------------------------------
-;; keep "/opt/local/share/info" as the last element of
-;; Info-default-directory-list because "/opt/local/share/info" has the
-;; newest stuff
-;; (setq Info-directory-list (cons (expand-file-name "/opt/local/share/info") Info-default-directory-list))
-
-
 (add-to-list 'load-path "~/.elisp/org-mode")
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
