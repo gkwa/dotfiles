@@ -554,9 +554,7 @@ else do C-x 5 0 delete-frame"
 ;; I believe custom vars should appear last to overwrite factory default values...I think.
 ;; --------------------------------------------------
 (setq-default
- default-major-mode 'org-mode ;; set default mode
  ;; default-major-mode 'emacs-lisp-mode	;; Silly "Fundamental"
- initial-major-mode 'org-mode ;; set default mode
  default-fill-column 72
  compilation-scroll-output t ; scroll automatically to follow the output as it comes in.
  enable-recursive-minibuffers t
@@ -907,127 +905,18 @@ else do C-x 5 0 delete-frame"
 ;; ------------------------------
 ;; org-mode
 ;; ------------------------------
-(add-to-list 'load-path "~/.elisp/org-mode/lisp")
-(add-to-list 'load-path "~/.elisp/org-mode/lisp/babel")
-(add-to-list 'load-path "~/.elisp/org-mode/lisp/babel/langs")
-(add-to-list 'load-path "~/.elisp/org-mode/contrib/lisp")
-(add-to-list 'load-path "~/.elisp/org-mode/EXPERIMENTAL/") ; make use of .elisp/org-mode/EXPERIMENTAL/org-mediawiki.el
-(require 'org)
-;;(require 'ob-sh)
-;;(require 'ob-R)         ;; requires R and ess-mode
-;;(require 'ob-perl)      ;;
-;;(require 'ob-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
-;;(require 'ob-python)    ;; requires python, and python-mode
-;;(require 'ob-clojure)   ;; requires clojure, clojure-mode, swank-clojure and slime
-
-(setq-default
-;;; org-list-automatic-rules t ; don't do this it gives error: org-set-regexps-and-options: Wrong type argument: listp, t
- org-babel-library-of-babel t
- org-return-follows-link t
- org-agenda-files '("~/notes.txt")
- org-agenda-include-diary t
- org-agenda-ndays 31
- org-confirm-babel-evaluate nil
- org-deadline-warning-days 100)
-
-(require 'org-crypt)
-(require 'org-publish)
-(setq org-publish-project-alist
-      '(
-	;; ... add all the components here (see below)...
-	("org-notes"
-	 :base-directory "~/Documents/projects/git_proj/read-sb-changelog"
-	 :base-extension "txt"
-	 :publishing-directory "~/Documents/projects/git_proj/read-sb-changelog"
-	 :recursive t
-	 :publishing-function org-publish-org-to-html
-	 :headline-levels 4             ; Just the default for this project.
-	 :auto-preamble t
-	 )
-
-	("org" :components ("org-notes" "org-static"))
-
-	))
-
-
-(setq org-use-speed-commands t)
-(setq org-speed-commands-user (quote (("0" . delete-window)
-				      ("1" . delete-other-windows)
-				      ("2" . split-window-vertically)
-				      ("3" . split-window-horizontally)
-				      ("h" . hide-other)
-				      ("k" . org-kill-note-or-show-branches)
-				      ("r" . org-reveal))))
-
-
-(setq org-agenda-custom-commands '(("f" occur-tree "FIXME")))
-
-(add-hook 'org-mode-hook
-	  (lambda ()
-	    (local-set-key "c" (quote calendar))))
-
-;; Encrypt all entries before saving
-(org-crypt-use-before-save-magic)
-;; Which tag is used to mark headings to be encrypted
-(setq org-tags-exclude-from-inheritance (quote ("crypt")))
-;; GPG key to use for encryption
-(setq org-crypt-key "F0B66B40")
-
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c r") 'org-capture)
-
-
-(setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))
-
-;; (org-babel-do-load-languages
-;;  'org-babel-load-languages
-;;  '((emacs-lisp . t)
-;; ))
-
-
-;; Warning (initialization): An error occurred while loading `c:/cygwin/home/demo/.emacs':
-
-;; Symbol's function definition is void: org-find-library-dir
-
-;; To ensure normal operation, you should investigate and remove the
-;; cause of the error in your initialization file.  Start Emacs with
-;; the `--debug-init' option to view a complete error backtrace.
-
-
-
-
-;;http://orgmode.org/worg/org-contrib/babel/languages.html
-;;active Babel languages
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((R . t)
-   (ditaa . t)
-   (dot . t)
-   (emacs-lisp . t)
-   (gnuplot . t)
-   (haskell . nil)
-   (ocaml . nil)
-   (python . t)
-   (ruby . t)
-   (screen . nil)
-   (sh . t)
-   (sql . nil)
-   (sqlite . t)))
-
-
-(require 'ob-R)
-;; (org-babel-do-load-languages
-;;  'org-babel-load-languages
-;;  '((emacs-lisp . nil)
-;;    (R . t)))
-
 ;; keep "/opt/local/share/info" as the last element of
 ;; Info-default-directory-list because "/opt/local/share/info" has the
 ;; newest stuff
 ;; (setq Info-directory-list (cons (expand-file-name "/opt/local/share/info") Info-default-directory-list))
 
 
+(add-to-list 'load-path "~/.elisp/org-mode")
+(require 'org-install)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
 
 ;; ------------------------------
 ;; anything mode anything-mode
