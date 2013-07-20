@@ -30,6 +30,8 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+fdupes \
+xserver \
 webmin \
 boinc \
 iniparser \
@@ -177,6 +179,11 @@ Quicksilver \
 php-src-trunk \
 wanderlust
 
+fdupes:
+	test -d $@ || svn checkout http://fdupes.googlecode.com/svn/trunk $@
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: fdupes
 
 # http://www.php.net/svn.php
 grub4dos-chenall-read-only:
@@ -184,6 +191,11 @@ grub4dos-chenall-read-only:
 	cd $@ && svn cleanup
 	cd $@ && svn update
 .PHONY: grub4dos-chenall-read-only
+
+xserver: # this is xquartz: X11 for osx
+	-git clone git://people.freedesktop.org/~jeremyhu/xserver $@
+	(cd $@ && git pull)
+.PHONY: xserver
 
 webmin:
 	-git clone git://github.com/webmin/webmin.git $@
