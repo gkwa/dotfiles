@@ -780,6 +780,15 @@ else do C-x 5 0 delete-frame"
 		      nil t)))
 
 ;; ------------------------------
+;; PowerShell mode
+;; ------------------------------
+; https://github.com/fperrin/powershell-mode
+; http://thread.gmane.org/gmane.emacs.sources/3383
+; www.emacswiki.org/emacs/PowerShell
+(autoload 'powershell-mode "powershell-mode" "Mode PowerShell" t)
+(push '("\\.ps[12]?$" . powershell-mode) auto-mode-alist)
+
+;; ------------------------------
 ;; html-helper-mode
 ;; ------------------------------
 (add-to-list 'load-path "~/.elisp/html-helper-mode")
