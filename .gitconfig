@@ -243,3 +243,26 @@ t = tag -l
 	ui = auto
 [push]
 	default = simple
+##############################
+# increase memory for git annex
+##############################
+# # When using git-annex, I ran into memory problems when adding large files:
+# (Recording state in git...)
+# [streambox@imagepc:~/annex(master)]$ git commit -am added
+# [master (root-commit) fe5e280] added
+# fatal: Out of memory, malloc failed (tried to allocate 1436901077 bytes)
+# [streambox@imagepc:~/annex(master)]$ #
+# cd 'd:/'
+
+# This page recommends to increate amt memory git can use:
+# https://github.com/gitextensions/gitextensions/issues/1632
+
+[pack]
+threads = 1
+deltaCacheSize = 128m
+packSizeLimit = 128m
+windowMemory = 128m
+
+[core]
+packedGitLimit = 128m
+packedGitWindowSize = 128m
