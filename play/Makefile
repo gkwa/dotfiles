@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+AWSSDKforPHP \
 fdupes \
 xserver \
 webmin \
@@ -191,6 +192,11 @@ grub4dos-chenall-read-only:
 	cd $@ && svn cleanup
 	cd $@ && svn update
 .PHONY: grub4dos-chenall-read-only
+
+AWSSDKforPHP:
+	-git clone git://github.com/amazonwebservices/aws-sdk-for-php.git $@
+	(cd $@ && git pull)
+.PHONY: AWSSDKforPHP
 
 xserver: # this is xquartz: X11 for osx
 	-git clone git://people.freedesktop.org/~jeremyhu/xserver $@
