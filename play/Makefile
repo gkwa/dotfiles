@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+coreutils \
 AWSSDKforPHP \
 fdupes \
 xserver \
@@ -192,6 +193,11 @@ grub4dos-chenall-read-only:
 	cd $@ && svn cleanup
 	cd $@ && svn update
 .PHONY: grub4dos-chenall-read-only
+
+coreutils:
+	-git clone git://git.savannah.gnu.org/coreutils.git $@
+	(cd $@ && git pull)
+.PHONY: coreutils
 
 AWSSDKforPHP:
 	-git clone git://github.com/amazonwebservices/aws-sdk-for-php.git $@
