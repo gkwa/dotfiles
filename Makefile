@@ -7,7 +7,7 @@ ifeq ($(uname_S),Darwin)
 
 EMACS=/Applications/MacPorts/Emacs.app/Contents/MacOS/Emacs
 
-all: upgrade emacs ports
+all: upgrade emacs
 clean:
 	find ~/.local/share/Trash/files -print0 | xargs -n10 -0 sudo rm -rf
 	find ~/.Trash -print0 | xargs -n10 -0 sudo rm -rf
@@ -45,13 +45,6 @@ t:
 ##############################
 compile:
 	$(emacs)
-
-##############################
-# ports update
-ports:
-	sudo port selfupdate
-	sudo port -v sync
-	sudo port upgrade outdated
 
 ##############################
 zip: /tmp/o.zip
