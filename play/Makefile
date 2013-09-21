@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+emacspeak \
 coreutils \
 AWSSDKforPHP \
 fdupes \
@@ -665,6 +666,12 @@ kBuild:
 	cd $@ && svn cleanup
 	cd $@ && svn update
 .PHONY: kBuild
+
+emacspeak:
+	test -d $@ || svn checkout http://emacspeak.googlecode.com/svn/trunk $@
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: emacspeak
 
 slum:
 	test -d $@ || svn checkout http://slum.googlecode.com/svn/trunk $@
