@@ -70,14 +70,14 @@ stl = stash list
 stp = stash pop
 stk = stash --keep-index
 conf = diff --name-only --diff-filter=U # list conflicts:
-cmah = commit --amend -C head
+cmah = commit --amend -C HEAD
 cma = commit --amend
-rb8 = rebase --interactive head~80
-rb5 = rebase --interactive head~50
-rb4 = rebase --interactive head~40
-rb3 = rebase --interactive head~30
-rb2 = rebase --interactive head~20
-rb1 = rebase --interactive head~10
+rb8 = rebase --interactive HEAD~80
+rb5 = rebase --interactive HEAD~50
+rb4 = rebase --interactive HEAD~40
+rb3 = rebase --interactive HEAD~30
+rb2 = rebase --interactive HEAD~20
+rb1 = rebase --interactive HEAD~10
 mss = merge -s subtree --squash --no-commit
 amfix = am --ignore-space-change --reject --whitespace=fix
 ama = am --abort
