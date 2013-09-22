@@ -19,9 +19,6 @@
 [submodule ".elisp/sauron"]
 	path = .elisp/sauron
 	url = git://github.com/djcb/sauron.git
-[submodule ".elisp/magit"]
-	path = .elisp/magit
-	url = git://github.com/magit/magit.git
 [submodule ".elisp/puppet-syntax-emacs"]
 	path = .elisp/puppet-syntax-emacs
 	url = git://github.com/puppetlabs/puppet-syntax-emacs.git
