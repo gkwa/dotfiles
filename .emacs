@@ -1688,3 +1688,15 @@ if breakpoints are present in `python-mode' files"
 
 ;; end js2-mode configuration
 ;; ------------------------------
+
+;; ------------------------------
+;; MELPA
+;; Add additional 3rd party pacakge archives
+;; ------------------------------
+; http://melpa.milkbox.net/#/getting-started
+
+(add-to-list 'package-archives
+  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+;; End MELPA
+;; ------------------------------
