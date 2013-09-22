@@ -729,26 +729,6 @@ else do C-x 5 0 delete-frame"
 (define-key global-map "\C-cs" 'google-search-selection)
 
 ;; ------------------------------
-;; magit-mode
-;; ------------------------------
-;; http://psung.blogspot.com/2008/12/magit.html
-;; http://zagadka.vm.bytemark.co.uk/magit/magit.html
-(add-to-list 'load-path (expand-file-name "~/.elisp/magit"))
-(autoload 'magit-status "magit" nil t)
-(global-set-key "g" (quote magit-status))
-;; (global-set-key "\C-ci" 'magit-status)
-
-;; change magit diff colors
-;; http://readystate4.com/2011/02/22/emacs-changing-magits-default-diff-colors/
-(eval-after-load 'magit
-  '(progn
-     (set-face-foreground 'magit-diff-add "green3")
-     (set-face-foreground 'magit-diff-del "red3")
-     (when (not window-system)
-       (set-face-background 'magit-item-highlight "black"))))
-
-(set-variable (quote magit-log-auto-more) t nil); pull more logs when reach end of page
-;; ------------------------------
 ;; xquery-mode
 ;; ------------------------------
 (autoload 'xquery-mode "xquery-mode" "major mode for editing Xquery source." t)
