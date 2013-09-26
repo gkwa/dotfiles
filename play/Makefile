@@ -173,6 +173,7 @@ mozilla-1.9.git \
 keepassx \
 ndesk-options \
 selenium-grid \
+selenium \
 php-src \
 php-src-5.2 \
 gitlab \
@@ -948,6 +949,11 @@ Selenium2:
 	test -d $@ || git clone git://github.com/Selenium2/Selenium2.git
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: Selenium2
+
+selenium:
+	test -d $@ || git clone https://code.google.com/p/selenium $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: selenium
 
 Selenium2-Java-QuickStart-Archetype:
 	test -d $@ || git clone git://github.com/sebarmeli/Selenium2-Java-QuickStart-Archetype.git
