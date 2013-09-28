@@ -30,6 +30,7 @@ gitlog=\
 	$(gitlog3)
 
 update: \
+makefile2dot \
 emacspeak \
 coreutils \
 AWSSDKforPHP \
@@ -200,6 +201,11 @@ coreutils:
 	-git clone git://git.savannah.gnu.org/coreutils.git $@
 	(cd $@ && git pull)
 .PHONY: coreutils
+
+makefile2dot:
+	-git clone https://github.com/vak/makefile2dot.git $@
+	(cd $@ && git pull)
+.PHONY: makefile2dot
 
 AWSSDKforPHP:
 	-git clone git://github.com/amazonwebservices/aws-sdk-for-php.git $@
