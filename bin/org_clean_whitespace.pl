@@ -6,7 +6,7 @@
 
 while(<>)
 {
-    if(/^\*+\s/){
+    if(/^\*+\s$/){
         print;
         next;
     }
