@@ -29,6 +29,11 @@ gitlog=\
 	echo -------------------------------------------------------------------  >> ../$@.gitlog; \
 	$(gitlog3)
 
+projects: monodevelop
+projects: monomac
+projects: maccore
+projects: git-
+projects: git-bigfiles
 projects: pgina
 projects: makefile2dot
 projects: emacspeak
@@ -164,7 +169,6 @@ projects: gsl-shell
 projects: ns-3-dev
 projects: amarok
 projects: cmake
-projects: monomac
 projects: rst2texinfo
 projects: mod_auth_openid
 projects: python-graph-read-only
@@ -196,6 +200,31 @@ grub4dos-chenall-read-only:
 	cd $@ && svn cleanup
 	cd $@ && svn update
 .PHONY: grub4dos-chenall-read-only
+
+monodevelop:
+	-git clone git@github.com:mono/monodevelop.git $@
+	(cd $@ && git pull)
+.PHONY: monodevelop
+
+gtk+:
+	-git clone git://git.gnome.org/gtk+ $@
+	(cd $@ && git pull)
+.PHONY: gtk+
+
+monomac:
+	-git clone https://github.com/mono/monomac.git $@
+	(cd $@ && git pull)
+.PHONY: monomac
+
+maccore:
+	-git clone https://github.com/mono/maccore.git $@
+	(cd $@ && git pull)
+.PHONY: maccore
+
+git-bigfiles:
+	-git clone git://repo.or.cz/git/git-bigfiles.git $@
+	(cd $@ && git pull)
+.PHONY: git-bigfiles
 
 coreutils:
 	-git clone git://git.savannah.gnu.org/coreutils.git $@
