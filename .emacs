@@ -1626,3 +1626,36 @@ if breakpoints are present in `python-mode' files"
 
 ;; end winring configuration
 ;; ------------------------------
+
+;; ------------------------------
+;; helm
+;; ------------------------------
+
+; http://stackoverflow.com/questions/11403862/how-to-have-emacs-helm-list-offer-files-in-current-directory-as-options
+
+(add-to-list 'load-path "~/.elisp/helm")
+(require 'helm-config)
+
+(helm-mode 1)
+
+(defun helm-my-buffers ()
+  (interactive)
+  (helm-other-buffer '(
+		       helm-c-source-buffers-list
+                       helm-c-source-files-in-current-dir
+                       helm-c-source-recentf
+                       helm-c-source-bookmarks
+                       helm-c-source-buffer-not-found)
+                     "*helm-my-buffers*"))
+
+(global-set-key "," (quote helm-my-buffers))
+; (global-set-key (kbd "C-c h") 'helm-mini)
+
+(add-hook 'eshell-mode-hook
+          #'(lambda ()
+              (define-key eshell-mode-map
+                [remap eshell-pcomplete]
+                'helm-esh-pcomplete)))
+
+;; end helm configuration
+;; ------------------------------
