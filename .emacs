@@ -10,6 +10,15 @@
 (add-to-list 'load-path "~/.elisp")
 
 ;; ------------------------------
+;; bookmarkplus mode
+;; ------------------------------
+;;http://www.emacswiki.org/emacs/BookmarkPlus
+(add-to-list 'load-path "~/.elisp/bookmark-plus")
+(set-variable (quote bookmark-save-flag) 1 nil)
+(set-variable (quote bmkp-last-as-first-bookmark-file) "~/.emacs.d/bookmarks" nil)
+(require 'bookmark+)
+
+;; ------------------------------
 ;; http://flask.pocoo.org/docs/unicode/
 (prefer-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
