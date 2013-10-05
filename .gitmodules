@@ -31,3 +31,6 @@
 [submodule ".elisp/el-get"]
 	path = .elisp/el-get
 	url = git://github.com/dimitri/el-get.git
+[submodule ".elisp/helm"]
+	path = .elisp/helm
+	url = https://github.com/emacs-helm/helm.git
