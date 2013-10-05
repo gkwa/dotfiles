@@ -1674,9 +1674,26 @@ if breakpoints are present in `python-mode' files"
 ;; Add additional 3rd party pacakge archives
 ;; ------------------------------
 ; http://melpa.milkbox.net/#/getting-started
+; http://stackoverflow.com/questions/6506739/slime-mode-error
 
+(require 'package)
+;; Add the original Emacs Lisp Package Archive
 (add-to-list 'package-archives
-  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("elpa" . "http://tromey.com/elpa/"))
+;; Add the user-contributed repository
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
 
 ;; End MELPA
+;; ------------------------------
+
+;; ------------------------------
+;; winring
+;; ------------------------------
+(add-to-list 'load-path "~/.elisp")
+(require 'winring)
+(winring-initialize)
+
+;; end winring configuration
 ;; ------------------------------
