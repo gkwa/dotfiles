@@ -29,6 +29,18 @@ gitlog=\
 	echo -------------------------------------------------------------------  >> ../$@.gitlog; \
 	$(gitlog3)
 
+# Apache directory server related projects
+projects: directory-clients
+projects: directory-daemon
+projects: directory-installers
+projects: directory-project
+projects: directory-samples
+projects: directory-server
+projects: directory-shared
+projects: directory-skins
+projects: directory-studio-plugin
+projects: directory-studio
+
 projects: monodevelop
 projects: monomac
 projects: maccore
@@ -1123,6 +1135,75 @@ Quicksilver:
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: Quicksilver
 
+directory-clients:
+	-git clone git://git.apache.org/directory-clients.git $@
+#	(cd $@ && git fetch && $(gitlog) && git pull)
+# http://directory.apache.org/sources.html
+# svn mirror, but git clone svn doesn't work
+.PHONY: directory-clients
+
+directory-daemon:
+	-git clone git://git.apache.org/directory-daemon.git $@
+#	(cd $@ && git fetch && $(gitlog) && git pull)
+# http://directory.apache.org/sources.html
+# svn mirror, but git clone svn doesn't work
+.PHONY: directory-daemon
+
+directory-installers:
+	-git clone git://git.apache.org/directory-installers.git $@
+#	(cd $@ && git fetch && $(gitlog) && git pull)
+# http://directory.apache.org/sources.html
+# svn mirror, but git clone svn doesn't work
+.PHONY: directory-installers
+
+directory-project:
+	-git clone git://git.apache.org/directory-project.git $@
+#	(cd $@ && git fetch && $(gitlog) && git pull)
+# http://directory.apache.org/sources.html
+# svn mirror, but git clone svn doesn't work
+.PHONY: directory-project
+
+directory-samples:
+	-git clone git://git.apache.org/directory-samples.git $@
+#	(cd $@ && git fetch && $(gitlog) && git pull)
+# http://directory.apache.org/sources.html
+# svn mirror, but git clone svn doesn't work
+.PHONY: directory-samples
+
+directory-server:
+	-git clone git://git.apache.org/directory-server.git $@
+#	(cd $@ && git fetch && $(gitlog) && git pull)
+# http://directory.apache.org/sources.html
+# svn mirror, but git clone svn doesn't work
+.PHONY: directory-server
+
+directory-shared:
+	-git clone git://git.apache.org/directory-shared.git $@
+#	(cd $@ && git fetch && $(gitlog) && git pull)
+# http://directory.apache.org/sources.html
+# svn mirror, but git clone svn doesn't work
+.PHONY: directory-shared
+
+directory-skins:
+	-git clone git://git.apache.org/directory-skins.git $@
+#	(cd $@ && git fetch && $(gitlog) && git pull)
+# http://directory.apache.org/sources.html
+# svn mirror, but git clone svn doesn't work
+.PHONY: directory-skins
+
+directory-studio-plugin:
+	-git clone git://git.apache.org/directory-studio-plugin.git $@
+#	(cd $@ && git fetch && $(gitlog) && git pull)
+# http://directory.apache.org/sources.html
+# svn mirror, but git clone svn doesn't work
+.PHONY: directory-studio-plugin
+
+directory-studio:
+	-git clone git://git.apache.org/directory-studio.git $@
+#	(cd $@ && git fetch && $(gitlog) && git pull)
+# http://directory.apache.org/sources.html
+# svn mirror, but git clone svn doesn't work
+.PHONY: directory-studio
 
 # ##################################################
 # cleanup
