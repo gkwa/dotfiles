@@ -151,7 +151,6 @@ projects: python
 projects: virtualbox
 projects: sphinx-info
 projects: pyutils
-projects: monodevelop
 projects: JSONKit
 projects: polypkg
 projects: clicktoflash
@@ -212,11 +211,6 @@ grub4dos-chenall-read-only:
 	cd $@ && svn cleanup
 	cd $@ && svn update
 .PHONY: grub4dos-chenall-read-only
-
-monodevelop:
-	-git clone git@github.com:mono/monodevelop.git $@
-	(cd $@ && git pull)
-.PHONY: monodevelop
 
 gtk+:
 	-git clone git://git.gnome.org/gtk+ $@
@@ -821,11 +815,6 @@ pyutils:
 	test -d $@ || git clone git://github.com/kashifpk/pyutils.git
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: pyutils
-
-monomac:
-	test -d $@ || git clone git://github.com/mono/monomac.git
-	(cd $@ && git fetch && $(gitlog) && git pull)
-.PHONY: monomac
 
 monodevelop:
 	test -d $@ || git clone git://github.com/mono/monodevelop.git
