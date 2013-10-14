@@ -29,6 +29,8 @@ gitlog=\
 	echo -------------------------------------------------------------------  >> ../$@.gitlog; \
 	$(gitlog3)
 
+projects: parsecvs
+
 # Apache directory server related projects
 projects: directory-clients
 projects: directory-daemon
@@ -654,6 +656,10 @@ mozilla-1.9:
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: mozilla-1.9
 
+parsecvs:
+	-git clone https://github.com/BartMassey/parsecvs.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: parsecvs
 
 golang-on-cygwin:
 	test -d $@ || hg clone https://golang-on-cygwin.googlecode.com/hg/ golang-on-cygwin
