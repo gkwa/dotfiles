@@ -43,6 +43,7 @@ projects: directory-skins
 projects: directory-studio-plugin
 projects: directory-studio
 
+projects: cygwin
 projects: monodevelop
 projects: monomac
 projects: maccore
@@ -1199,6 +1200,12 @@ directory-studio:
 # http://directory.apache.org/sources.html
 # svn mirror, but git clone svn doesn't work
 .PHONY: directory-studio
+
+cygwin:
+	-git clone https://github.com/mirror/cygwin.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: cygwin
+
 
 # ##################################################
 # cleanup
