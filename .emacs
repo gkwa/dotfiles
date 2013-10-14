@@ -235,7 +235,9 @@
 
 (if (eq system-type 'windows-nt)
     (progn
-      (setq explicit-shell-file-name "c:/cygwin/bin/bash.exe")
+      (if (file-exists-p "c:/cygwin64/bin/bash.exe")
+	    (setq explicit-shell-file-name "c:/cygwin64/bin/bash.exe")
+	(setq explicit-shell-file-name "c:/cygwin/bin/bash.exe"))
       ;;      (add-to-list 'Info-directory-list "c:/cygwin/usr/share/info")
       (require 'cygwin-mount)
       (cygwin-mount-activate)
