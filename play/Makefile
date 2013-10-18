@@ -29,6 +29,9 @@ gitlog=\
 	echo -------------------------------------------------------------------  >> ../$@.gitlog; \
 	$(gitlog3)
 
+projects: rufus
+projects: tbdiff
+projects: bitmeteros
 projects: parsecvs
 
 # Apache directory server related projects
@@ -249,6 +252,11 @@ makefile2dot:
 	-git clone https://github.com/vak/makefile2dot.git $@
 	(cd $@ && git pull)
 .PHONY: makefile2dot
+
+tbdiff:
+	-git clone https://github.com/trast/tbdiff.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: tbdiff
 
 AWSSDKforPHP:
 	-git clone git://github.com/amazonwebservices/aws-sdk-for-php.git $@
@@ -1194,6 +1202,12 @@ directory-studio-plugin:
 # svn mirror, but git clone svn doesn't work
 .PHONY: directory-studio-plugin
 
+# The Reliable USB Formatting Utility
+rufus:
+	-git clone https://github.com/pbatard/rufus.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: rufus
+
 directory-studio:
 	-git clone git://git.apache.org/directory-studio.git $@
 #	(cd $@ && git fetch && $(gitlog) && git pull)
@@ -1206,6 +1220,10 @@ cygwin:
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: cygwin
 
+bitmeteros:
+	-git clone https://github.com/codebox/bitmeteros.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: bitmeteros
 
 # ##################################################
 # cleanup
