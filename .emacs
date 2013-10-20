@@ -986,9 +986,9 @@ else do C-x 5 0 delete-frame"
 ;;       (add-to-list 'load-path "~/.elisp/nsis-mode")
 ;;       (autoload 'nsis-mode "nsis-mode" "NSIS mode" t)
 ;;       (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
-;; 				       nsis-mode)) auto-mode-alist))
+;;				       nsis-mode)) auto-mode-alist))
 ;;       (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
-;; 				       nsis-mode)) auto-mode-alist))))
+;;				       nsis-mode)) auto-mode-alist))))
 ;; ;; ------------------------------
 
 ;; org-agenda-text-search-extra-files
@@ -1567,10 +1567,10 @@ if breakpoints are present in `python-mode' files"
 (require 'package)
 ;; Add the original Emacs Lisp Package Archive
 (add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/"))
+	     '("elpa" . "http://tromey.com/elpa/"))
 ;; Add the user-contributed repository
 (add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+	     '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 ;; End MELPA
@@ -1611,10 +1611,10 @@ if breakpoints are present in `python-mode' files"
 ; (global-set-key (kbd "C-c h") 'helm-mini)
 
 (add-hook 'eshell-mode-hook
-          #'(lambda ()
-              (define-key eshell-mode-map
-                [remap eshell-pcomplete]
-                'helm-esh-pcomplete)))
+	  #'(lambda ()
+	      (define-key eshell-mode-map
+		[remap eshell-pcomplete]
+		'helm-esh-pcomplete)))
 
 ;; end helm configuration
 ;; ------------------------------
