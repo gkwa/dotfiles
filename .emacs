@@ -866,6 +866,30 @@ else do C-x 5 0 delete-frame"
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 
+(setq org-publish-project-alist
+      '(("org-weblog"
+	 ;; Path to your org files.
+	 :base-directory "~/pdev/weblog/org/"
+	 :base-extension "org"
+
+	 ;; Path to your Jekyll project.
+	 :publishing-directory "~/pdev/weblog/jekyll/"
+	 :recursive t
+	 :publishing-function org-publish-org-to-html
+	 :headline-levels 4
+	 :html-extension "html"
+	 :body-only t)
+
+	("org-static-weblog"
+	  :base-directory "~/pdev/weblog/org/"
+	  :base-extension "png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+	  :publishing-directory "~/pdev/weblog/jekyll/attachments"
+	  :recursive t
+	  :publishing-function org-publish-attachment)
+
+	("weblog" :components ("org-weblog"
+			       "org-static-weblog"))))
+
 ;; ===========================
 ;; Custom Functions
 ;; ===========================
