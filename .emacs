@@ -1640,5 +1640,10 @@ if breakpoints are present in `python-mode' files"
 		[remap eshell-pcomplete]
 		'helm-esh-pcomplete)))
 
+
+; https://github.com/fengxiaolong/emacs.d-1/blob/master/init-helm.el
+(setq helm-completing-read-handlers-alist
+      '((dired-create-directory . nil)))
+
 ;; end helm configuration
 ;; ------------------------------
