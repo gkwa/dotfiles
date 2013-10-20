@@ -1625,11 +1625,12 @@ if breakpoints are present in `python-mode' files"
   (interactive)
   (helm-other-buffer '(
 		       helm-c-source-buffers-list
-                       helm-c-source-files-in-current-dir
-                       helm-c-source-recentf
-                       helm-c-source-bookmarks
-                       helm-c-source-buffer-not-found)
-                     "*helm-my-buffers*"))
+		       helm-c-source-mac-spotlight;; I believe this source is causing slowdown, its the one invoking mdfind
+		       helm-c-source-recentf
+		       helm-c-source-bookmarks
+		       helm-c-source-files-in-current-dir
+		       helm-c-source-buffer-not-found)
+		     "*helm-my-buffers*"))
 
 (global-set-key "," (quote helm-my-buffers))
 ; (global-set-key (kbd "C-c h") 'helm-mini)
