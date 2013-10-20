@@ -1644,7 +1644,11 @@ if breakpoints are present in `python-mode' files"
 
 ;; https://github.com/fengxiaolong/emacs.d-1/blob/master/init-helm.el
 (setq helm-completing-read-handlers-alist
-      '((dired-create-directory . nil)))
+      '((dired-create-directory . nil)
+	(dired-do-copy . nil)
+        (dired-do-rename . nil)
+	(execute-extended-command . nil)
+	))
 
 ;; end helm configuration
 ;; ------------------------------
