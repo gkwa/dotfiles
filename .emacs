@@ -1618,7 +1618,6 @@ if breakpoints are present in `python-mode' files"
 
 (add-to-list 'load-path "~/.elisp/helm")
 (require 'helm-config)
-
 (helm-mode 1)
 
 (defun helm-my-buffers ()
@@ -1640,6 +1639,7 @@ if breakpoints are present in `python-mode' files"
 	      (define-key eshell-mode-map
 		[remap eshell-pcomplete]
 		'helm-esh-pcomplete)))
+
 
 
 ;; https://github.com/fengxiaolong/emacs.d-1/blob/master/init-helm.el
