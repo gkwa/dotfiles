@@ -1631,8 +1631,8 @@ if breakpoints are present in `python-mode' files"
 		       helm-c-source-buffer-not-found)
 		     "*helm-my-buffers*"))
 
-(global-set-key "," (quote helm-my-buffers))
 ; (global-set-key (kbd "C-c h") 'helm-mini)
+(global-set-key (kbd "C-x ,") (quote helm-my-buffers))
 
 (add-hook 'eshell-mode-hook
 	  #'(lambda ()
