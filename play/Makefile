@@ -29,6 +29,11 @@ gitlog=\
 	echo -------------------------------------------------------------------  >> ../$@.gitlog; \
 	$(gitlog3)
 
+projects: mako
+projects: cookiecutter
+projects: msysgit
+projects: tracker
+projects: jekyll-template
 projects: rufus
 projects: tbdiff
 projects: bitmeteros
@@ -1224,6 +1229,32 @@ bitmeteros:
 	-git clone https://github.com/codebox/bitmeteros.git $@
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: bitmeteros
+
+jekyll-template:
+	-git clone https://github.com/christianhellsten/jekyll-template.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: jekyll-template
+
+tracker:
+	-git clone git://git.gnome.org/tracker.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: tracker
+
+msysgit:
+	-git clone https://github.com/msysgit/msysgit.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: msysgit
+
+
+cookiecutter:
+	-git clone https://github.com/audreyr/cookiecutter.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: cookiecutter
+
+mako:
+	-git clone http://git.makotemplates.org/mako.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: mako
 
 # ##################################################
 # cleanup
