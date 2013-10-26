@@ -141,7 +141,7 @@ hs()
     fi;
 }
 
-echo_remote_add_commands()
+echo_remote()
 {
     project="$1"
     cat <<EOF
