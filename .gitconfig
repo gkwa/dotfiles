@@ -93,7 +93,7 @@ fixperm = "!sh -c 'git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e 
 dcn = diff --color --name-only
 dcns = diff --color --name-status
 j = jump
-showc = show --color
+sc = show --color
 sns = show --color --name-status
 
 # show the name of the files without a commit message
