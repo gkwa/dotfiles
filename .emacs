@@ -1643,6 +1643,7 @@ if breakpoints are present in `python-mode' files"
 		       helm-c-source-recentf
 		       helm-c-source-bookmarks
 		       helm-c-source-files-in-current-dir
+		       helm-source-locate
 		       helm-c-source-buffer-not-found
 		       ) "*helm-my-buffers*"))
 
