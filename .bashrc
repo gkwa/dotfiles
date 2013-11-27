@@ -327,6 +327,7 @@ EOF
 		if [ $local -ot $remote ]
 		then
 		    echo updating $local
+		    chmod u+rw $local
 		    cp $remote $local &
 		fi
 	    fi
