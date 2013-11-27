@@ -29,6 +29,17 @@ gitlog=\
 	echo -------------------------------------------------------------------  >> ../$@.gitlog; \
 	$(gitlog3)
 
+
+
+projects: google-api-python-client
+projects: slate
+projects: boto
+projects: helm-cmd-t
+projects: nscp
+projects: cTemplate
+projects: c-template
+projects: cmakeqt
+projects: cpp-project-template-read-only
 projects: mako
 projects: cookiecutter
 projects: msysgit
@@ -209,6 +220,14 @@ projects: Selenium2
 projects: Quicksilver
 projects: php-src-trunk
 projects: wanderlust
+
+
+
+cpp-project-template-read-only:
+	test -d $@ || svn checkout http://cpp-project-template.googlecode.com/svn/trunk $@
+	cd $@ && svn cleanup
+	cd $@ && svn update
+.PHONY: cpp-project-template-read-only
 
 fdupes:
 	test -d $@ || svn checkout http://fdupes.googlecode.com/svn/trunk $@
@@ -610,6 +629,11 @@ gdata-python-client:
 	test -d $@ || hg clone https://code.google.com/p/gdata-python-client
 	cd $@ && hg update
 .PHONY: gdata-python-client
+
+google-api-python-client:
+	test -d $@ || hg clone https://code.google.com/p/google-api-python-client
+	cd $@ && hg update
+.PHONY: google-api-python-client
 
 theunarchiver:
 	test -d $@ || hg clone https://code.google.com/p/theunarchiver
@@ -1255,6 +1279,41 @@ mako:
 	-git clone http://git.makotemplates.org/mako.git $@
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: mako
+
+cmakeqt:
+	-git clone https://github.com/bhaisaab/cmakeqt.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: cmakeqt
+
+c-template:
+	-git clone https://github.com/redjack/c-template.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: c-template
+
+cTemplate:
+	-git clone https://github.com/enjoylife/cTemplate.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: cTemplate
+
+nscp:
+	-git clone https://github.com/mickem/nscp.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: nscp
+
+helm-cmd-t:
+	-git clone https://github.com/lewang/helm-cmd-t.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: helm-cmd-t
+
+boto:
+	-git clone https://github.com/boto/boto.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: boto
+
+slate:
+	-git clone https://github.com/jigish/slate.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: slate
 
 # ##################################################
 # cleanup
