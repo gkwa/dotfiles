@@ -80,6 +80,8 @@ rb1 = rebase --interactive HEAD~10
 mss = merge -s subtree --squash --no-commit
 amfix = am --ignore-space-change --reject --whitespace=fix
 ama = am --abort
+ams = am --skip
+amc = am --continue
 sra = show-ref --abbrev=7
 lcr = log --pretty=tformat:'%h %d %ar %s' --abbrev-commit --no-merges @{1}.. --reverse
 lcrs = log --abbrev-commit --no-merges --stat @{1}.. --reverse
@@ -155,6 +157,8 @@ l4 = log --pretty=tformat:'%h %d %ar %s' --reverse -40
 l4n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -40 -m
 l5 = log --pretty=tformat:'%h %d %ar %s' --reverse -50
 l5n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -50 -m
+l6 = log --pretty=tformat:'%h %d %ar %s' --reverse -60
+l6n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -60 -m
 l = log --pretty=tformat:'%h %d %ar %s' --reverse
 sb = show-branch
 lpo = log --pretty=tformat:'%h %d %ar %s'
