@@ -31,6 +31,7 @@ gitlog=\
 
 
 
+projects: serf
 projects: google-api-python-client
 projects: slate
 projects: boto
@@ -1118,6 +1119,11 @@ subversion:
 		--trust-server-cert --non-interactive
 	cd $@ && svn update
 .PHONY: subversion
+
+serf:
+	-svn checkout http://serf.googlecode.com/svn/trunk $@
+	cd $@ && svn update
+.PHONY: serf
 
 audacity-read-only:
 	-svn checkout http://audacity.googlecode.com/svn/audacity-src/trunk audacity-read-only
