@@ -31,6 +31,7 @@ gitlog=\
 
 
 
+projects: activemq
 projects: serf
 projects: google-api-python-client
 projects: slate
@@ -223,6 +224,11 @@ projects: php-src-trunk
 projects: wanderlust
 
 
+# this activemq git repo is a git clone of svn
+activemq:
+	-git clone https://github.com/apache/activemq.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: activemq
 
 cpp-project-template-read-only:
 	test -d $@ || svn checkout http://cpp-project-template.googlecode.com/svn/trunk $@
