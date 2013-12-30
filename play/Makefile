@@ -31,6 +31,13 @@ gitlog=\
 
 
 
+projects: devonaws-labs-csharp
+projects: iesd
+projects: FreeRDP
+projects: sprout
+projects: Create-a-Microsoft-Remote-Desktop-8-Connection
+projects: chocolatey
+projects: samba
 projects: activemq
 projects: serf
 projects: google-api-python-client
@@ -223,6 +230,10 @@ projects: Quicksilver
 projects: php-src-trunk
 projects: wanderlust
 
+samba:
+	-git clone git://git.samba.org/samba.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: samba
 
 # this activemq git repo is a git clone of svn
 activemq:
@@ -1326,6 +1337,35 @@ slate:
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: slate
 
+chocolatey:
+	-git clone https://github.com/chocolatey/chocolatey.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: chocolatey
+
+Create-a-Microsoft-Remote-Desktop-8-Connection:
+	-git clone https://github.com/macmule/Create-a-Microsoft-Remote-Desktop-8-Connection.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: Create-a-Microsoft-Remote-Desktop-8-Connection
+
+sprout:
+	-git clone https://github.com/pivotal-sprout/sprout.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: sprout
+
+FreeRDP:
+	-git clone https://github.com/FreeRDP/FreeRDP.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: FreeRDP
+
+iesd:
+	-git clone https://github.com/ntkme/iesd.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: iesd
+
+devonaws-labs-csharp:
+	-git clone https://github.com/awstrainingandcertification/devonaws-labs-csharp.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: devonaws-labs-csharp
 # ##################################################
 # cleanup
 # ##################################################
