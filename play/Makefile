@@ -1071,9 +1071,8 @@ gsl-shell:
 # http://code.google.com/p/waf/
 # http://waf.googlecode.com/svn/docs/wafbook/single.html
 waf:
-	test -d $@ || svn checkout http://waf.googlecode.com/svn/trunk/ $@
-	cd $@ && svn cleanup
-	cd $@ && svn update
+	test -d $@ || git clone https://code.google.com/p/waf $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: waf
 
 # The ns-3 Network Simulator http://nsnam.blogspot.com
