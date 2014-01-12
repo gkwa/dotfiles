@@ -31,6 +31,7 @@ gitlog=\
 
 
 
+projects: bup
 projects: devonaws-labs-csharp
 projects: iesd
 projects: FreeRDP
@@ -1366,6 +1367,12 @@ devonaws-labs-csharp:
 	-git clone https://github.com/awstrainingandcertification/devonaws-labs-csharp.git $@
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: devonaws-labs-csharp
+
+bup:
+	-git clone https://github.com/apenwarr/bup.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: bup
+
 # ##################################################
 # cleanup
 # ##################################################
