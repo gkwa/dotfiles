@@ -92,7 +92,7 @@ lbc = "!sh -c 'git check-ref-format --branch @{-1}; git check-ref-format --branc
 lb = check-ref-format --branch @{-1}
 fixperm = "!sh -c 'git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e \"s/^old/NEW/;s/^new/old/;s/^NEW/new/\" | git apply'"
 # show me the last branch I was on
-dcn = diff --color --name-only
+dcno = diff --color --name-only
 dcns = diff --color --name-status
 j = jump
 sc = show --color
