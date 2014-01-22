@@ -14,7 +14,6 @@
 
 # User dependent .bashrc file
 
-
 # Shell Options
 # #############
 
@@ -36,7 +35,6 @@
 # for example, cd /vr/lgo/apaache would find /var/log/apache
 # shopt -s cdspell
 
-
 # Completion options
 # ##################
 
@@ -57,7 +55,6 @@
 #   *i*) [[ -f /etc/bash_completion ]] && . /etc/bash_completion ;;
 # esac
 
-
 # History Options
 # ###############
 
@@ -69,7 +66,6 @@
 
 # Whenever displaying the prompt, write the previous line to disk
 # export PROMPT_COMMAND="history -a"
-
 
 # Aliases
 # #######
@@ -102,16 +98,13 @@
 # alias la='ls -A'                              # all but . and ..
 # alias l='ls -CF'                              #
 
-
 # Functions
 # #########
 
 # Some example functions
 # function settitle() { echo -ne "\e]2;$@\a\e]1;$@\a"; }
 
-
 source ~/.alias
-
 
 ##############################
 # http://nuclearsquid.com/writings/git-tricks-tips-workflows/
@@ -121,7 +114,6 @@ source ~/.alias
 # Autocomplete for 'g' as well
 complete -o default -o nospace -F _git g
 ##############################
-
 
 hs()
 {
@@ -168,7 +160,6 @@ gitOrderBranchByDate()
 
 locatesuffix() { test ! -z "$1" && { locate "$1" | grep -E "$1\$"; } }
 
-
 makerules()
 {
     if test -f Makefile; then
@@ -176,7 +167,6 @@ makerules()
 	make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}'
     fi
 }
-
 
 case "$(uname)" in
 
@@ -199,7 +189,6 @@ case "$(uname)" in
 	pbcopy(){ putclip; }
 	pbpaste(){ getclip; }
 	;;
-
 
     Darwin)
 
@@ -311,8 +300,6 @@ $project:
 EOF
 	}
 
-
-
 	function locatern()
 	{
 	    glocate \
@@ -422,7 +409,6 @@ EOF
 	    myumount2 "$1";
 	}
 
-
 	check_git_dirty()
 	{
 	    dir=$1
@@ -451,12 +437,10 @@ EOF
 	    fi
 	}
 
-
 	mfs()
 	{
 	    mdfind -onlyin ~/pdev "$1"
 	}
-
 
 	gg_replace() {
 	    if [[ "$#" == "0" ]]; then
@@ -491,11 +475,7 @@ EOF
 	    gg_replace $1 `echo $1 | sed -e 's/_/-/g'` $2
 	}
 
-
-
-
 	;;
-
 
     "Linux|FreeBSD")
 
@@ -515,7 +495,6 @@ function parse_git_branch
     echo "("${ref#refs/heads/}")"
 }
 
-
 function bitgrep()
 {
     searchPattern="$1"
@@ -523,8 +502,6 @@ function bitgrep()
 	~/pdev/production-find-ls/find-ls.txt | grep -iE "$searchPattern"
 
 }
-
-
 
 genpasswd()
 {
@@ -534,20 +511,14 @@ genpasswd()
     tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
 }
 
-
-
 pack(){ find . -iname "*.packproj"; }
 packo() { pack | sed -e 's,^,open ,'; }
 dmg(){ find . -iname "*.dmg"; }
-
-
 
 # http://www.delorie.com/gnu/docs/emacs/emacs_444.html
 PS1="\u@\h \W$ "
 PS1="[\d \t \u@\h:\w ]$ "
 PS1="[\u@\h:\w\$(parse_git_branch)]$ "
-
-
 
 # http://www.saltycrane.com/blog/2008/05/how-to-paste-in-cygwin-bash-using-ctrl/
 # Add the following line to your ~/.bashrc:
@@ -556,12 +527,7 @@ PS1="[\u@\h:\w\$(parse_git_branch)]$ "
 # "\C-v": paste-from-clipboard
 # stty lnext ^q stop undef start undef
 
-
-
 export ALTERNATE_EDITOR=””
-
-
-
 
 drop()
 {
@@ -589,3 +555,20 @@ drop()
 # # source ~/.git-completion.bash # this might cause bash to be really slow
 # source ~/play/git/contrib/completion/git-completion.bash
 # PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+
+f1()
+{
+    pushd /Users/demo/Documents/git_clone_svn_ls >/dev/null 2>&1
+    g dc --name-only bc9c183.. | sed 's,^,\(cd /Users/demo/Documents/git_clone_svn_ls \&\& git dc bc9c183.. ,;s,$,\),'
+    popd  >/dev/null 2>&1
+}
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# ------------------------------
+
+# http://nuclearsquid.com/writings/git-tricks-tips-workflows/
+# Autocomplete for 'g' as well
+complete -o default -o nospace -F _git g
+
+# ------------------------------

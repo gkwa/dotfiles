@@ -723,6 +723,7 @@ else do C-x 5 0 delete-frame"
 ; https://github.com/fperrin/powershell-mode
 ; http://thread.gmane.org/gmane.emacs.sources/3383
 ; www.emacswiki.org/emacs/PowerShell
+(add-to-list 'load-path "~/.elisp")
 (autoload 'powershell-mode "powershell-mode" "Mode PowerShell" t)
 (push '("\\.ps[12]?$" . powershell-mode) auto-mode-alist)
 
@@ -1639,11 +1640,11 @@ if breakpoints are present in `python-mode' files"
   (interactive)
   (helm-other-buffer '(
 		       helm-c-source-buffers-list
-		       helm-c-source-mac-spotlight;; I believe this source is causing slowdown, its the one invoking mdfind
 		       helm-c-source-recentf
+;;		       helm-c-source-mac-spotlight;; I believe this source is causing slowdown, its the one invoking mdfind
 		       helm-c-source-bookmarks
 		       helm-c-source-files-in-current-dir
-		       helm-source-locate
+;;		       helm-source-locate
 		       helm-c-source-buffer-not-found
 		       ) "*helm-my-buffers*"))
 
@@ -1664,6 +1665,11 @@ if breakpoints are present in `python-mode' files"
         (dired-do-rename . nil)
 	(execute-extended-command . nil)
 	))
+
+
+;; http://www.reddit.com/r/emacs/comments/1q6zx2/disable_helmfindfiles_path_autocompletion/
+;; helm auto-complete in dired sucks, disable it
+(setq helm-ff-auto-update-initial-value nil)
 
 ;; end helm configuration
 ;; ------------------------------

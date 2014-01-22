@@ -161,7 +161,7 @@ l6 = log --pretty=tformat:'%h %d %ar %s' --reverse -60
 l6n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -60 -m
 l = log --pretty=tformat:'%h %d %ar %s' --reverse
 sb = show-branch
-lpo = log --pretty=tformat:'%h %d %ar %s'
+lpo = log --decorate --pretty=tformat:'%h %d %ar %s'
 lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
 lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
 lga = log --pretty=tformat:'%h %ar - %s' --graph
@@ -214,7 +214,7 @@ t = tag -l
 ##############################
 [rerere]
 ##############################
-	enabled = true
+	enabled = false
 
 # [color]
 #   ui = true

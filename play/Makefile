@@ -31,6 +31,7 @@ gitlog=\
 
 
 
+projects: ember.js
 projects: bup
 projects: devonaws-labs-csharp
 projects: iesd
@@ -1372,6 +1373,11 @@ bup:
 	-git clone https://github.com/apenwarr/bup.git $@
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: bup
+
+ember.js:
+	-git clone https://github.com/emberjs/ember.js.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: ember.js
 
 # ##################################################
 # cleanup
