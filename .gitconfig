@@ -94,6 +94,8 @@ fixperm = "!sh -c 'git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e 
 # show me the last branch I was on
 dcno = diff --color --name-only
 dcns = diff --color --name-status
+scno = show --color --name-only
+scns = show --color --name-status
 j = jump
 sc = show --color
 sns = show --color --name-status
