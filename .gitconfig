@@ -57,6 +57,12 @@ hold = "!sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && \
 # http://www.commandlinefu.com/commands/view/2345/show-git-branches-by-date-useful-for-showing-active-branches
 brd = "! f() { for k in $(git branch -a $@ | sed 's/^..//; s/ .*//'); do echo "$(git log -1 --pretty='%Cgreen%ci %Cblue(%cr)%Creset ' $k) $k" ; done | sort -r; }; f"
 
+
+gpp = "!sh -c 'git pull --rebase && git push'"
+du = diff @{upstream}..HEAD
+dcu = diff --color @{upstream}..HEAD
+fh = "!sh -c 'git fetch && git reset --hard @{upstream}'"
+y = "!sh -c 'git commit -am yada-yada && git push'"
 rfl = log --oneline --relative-date -g
 rbw = rebase --whitespace=fix
 brvv = branch -v -v
@@ -79,6 +85,7 @@ rb2 = rebase --interactive HEAD~20
 rb1 = rebase --interactive HEAD~10
 mss = merge -s subtree --squash --no-commit
 amfix = am --ignore-space-change --reject --whitespace=fix
+amig = am --ignore-space-change --reject
 ama = am --abort
 ams = am --skip
 amc = am --continue
@@ -144,7 +151,9 @@ ls = ls-files
 un = ls-files -o --directory .
 ds = diff --stat
 changes = diff --name-status -r
+gy = 'git commit -am "yada-yada" && git pull --rebase && git push'
 
+purr = pull --rebase
 cl = config -l
 lsm = ls-files -m
 lsd = ls-files -d
@@ -163,6 +172,8 @@ l6 = log --pretty=tformat:'%h %d %ar %s' --reverse -60
 l6n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -60 -m
 l = log --pretty=tformat:'%h %d %ar %s' --reverse
 sb = show-branch
+lpcr = log --patch --color --reverse
+lpc = log --patch --color
 lpo = log --decorate --pretty=tformat:'%h %d %ar %s'
 lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
 lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m

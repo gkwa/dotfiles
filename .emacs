@@ -953,7 +953,7 @@ else do C-x 5 0 delete-frame"
   (save-excursion
     (if (get-buffer "tidy-html-errs") (kill-buffer "tidy-html-errs"))
     (let ((tmp (concat temporary-file-directory "tidy-html-errs"))
-	  (cmd "tidy --force-output true -asxhtml --tidy-mark no --doctype strict --indent-attributes true --wrap-attributes true --vertical-space true -q -i -wrap 60000 -c -f "))
+	  (cmd "tidy --force-output true -asxhtml --tidy-mark no --doctype strict --indent-attributes true --wrap-attributes true --vertical-space false -q -i -wrap 72 -c -f "))
       (shell-command-on-region (point-min) (point-max)
 			       (concat cmd tmp)
 			       t)
@@ -976,7 +976,7 @@ else do C-x 5 0 delete-frame"
   (save-excursion
     (if (get-buffer "tidy-xml-errs") (kill-buffer "tidy-xml-errs"))
     (let ((tmp (concat temporary-file-directory "tidy-xml-errs"))
-	  (cmd "tidy -xml --tidy-mark no --doctype strict --vertical-space true --indent-attributes false --wrap-attributes false -q -i -wrap 72000 -c -f " ))
+	  (cmd "tidy -xml --tidy-mark no --doctype strict --vertical-space true --indent-attributes false --wrap-attributes false -q -i -wrap 72 -c -f " ))
       (shell-command-on-region (point-min) (point-max)
 			       (concat cmd tmp)
 			       t)

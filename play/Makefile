@@ -31,6 +31,11 @@ gitlog=\
 
 
 
+projects: helm
+projects: kvm-guest-drivers-windows
+projects: gitignore
+projects: beanstalkd
+projects: libbeanstalkclient
 projects: ember.js
 projects: bup
 projects: devonaws-labs-csharp
@@ -1378,6 +1383,31 @@ ember.js:
 	-git clone https://github.com/emberjs/ember.js.git $@
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: ember.js
+
+beanstalkd:
+	-git clone https://github.com/kr/beanstalkd.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: beanstalkd
+
+libbeanstalkclient:
+	-git clone https://github.com/bergundy/libbeanstalkclient.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: libbeanstalkclient
+
+gitignore:
+	-git clone https://github.com/github/gitignore.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: gitignore
+
+kvm-guest-drivers-windows:
+	-git clone git://github.com/YanVugenfirer/kvm-guest-drivers-windows.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: kvm-guest-drivers-windows
+
+helm:
+	-git clone https://github.com/emacs-helm/helm.git $@
+	(cd $@ && git fetch && $(gitlog) && git pull)
+.PHONY: helm
 
 # ##################################################
 # cleanup
