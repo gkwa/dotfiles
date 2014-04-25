@@ -976,7 +976,7 @@ else do C-x 5 0 delete-frame"
   (save-excursion
     (if (get-buffer "tidy-xml-errs") (kill-buffer "tidy-xml-errs"))
     (let ((tmp (concat temporary-file-directory "tidy-xml-errs"))
-	  (cmd "tidy -xml --tidy-mark no --doctype strict --vertical-space true --indent-attributes false --wrap-attributes false -q -i -wrap 72 -c -f " ))
+	  (cmd "tidy -xml --tidy-mark no --doctype strict --vertical-space true --indent-attributes true --wrap-attributes false -wrap 60000 -q -i -c -f " ))
       (shell-command-on-region (point-min) (point-max)
 			       (concat cmd tmp)
 			       t)
@@ -1639,8 +1639,8 @@ if breakpoints are present in `python-mode' files"
 (defun helm-my-buffers ()
   (interactive)
   (helm-other-buffer '(
-		       helm-c-source-buffers-list
 		       helm-c-source-recentf
+		       helm-c-source-buffers-list
 ;;		       helm-c-source-mac-spotlight;; I believe this source is causing slowdown, its the one invoking mdfind
 		       helm-c-source-bookmarks
 		       helm-c-source-files-in-current-dir

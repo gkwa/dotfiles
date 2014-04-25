@@ -58,12 +58,15 @@ hold = "!sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && \
 brd = "! f() { for k in $(git branch -a $@ | sed 's/^..//; s/ .*//'); do echo "$(git log -1 --pretty='%Cgreen%ci %Cblue(%cr)%Creset ' $k) $k" ; done | sort -r; }; f"
 
 
+rs1 = reset HEAD~1
 gpp = "!sh -c 'git pull --rebase && git push'"
+sbu = show-branch @{upstream} HEAD
 du = diff @{upstream}..HEAD
-dcu = diff --color @{upstream}..HEAD
+duc = diff --color @{upstream}..HEAD
 fh = "!sh -c 'git fetch && git reset --hard @{upstream}'"
 y = "!sh -c 'git commit -am yada-yada && git push'"
 rfl = log --oneline --relative-date -g
+rbw1 = rebase --whitespace=fix HEAD~1
 rbw = rebase --whitespace=fix
 brvv = branch -v -v
 brv = branch -v
@@ -142,6 +145,7 @@ diffcn = diff --cached --color --name-only
 diffcw = diff --word-diff --color
 diffw = diff --word-diff
 dc = diff --color
+scw = show --color --word-diff
 dcw = diff --color --word-diff
 showm = show --color --diff-filter=M
 dmod = diff --name-only --diff-filter=M
@@ -152,6 +156,7 @@ un = ls-files -o --directory .
 ds = diff --stat
 changes = diff --name-status -r
 gy = 'git commit -am "yada-yada" && git pull --rebase && git push'
+wipe = reset --hard HEAD
 
 purr = pull --rebase
 cl = config -l
@@ -179,10 +184,13 @@ lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
 lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
 lga = log --pretty=tformat:'%h %ar - %s' --graph
 lg = log --pretty=tformat:'%h %ar - %s' --graph -40
+lgb = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 lg1 = log --pretty=tformat:'%h %ar - %s' --graph -10
 lg2 = log --pretty=tformat:'%h %ar - %s' --graph -20
 lg3 = log --pretty=tformat:'%h %ar - %s' --graph -30
 lg4 = log --pretty=tformat:'%h %ar - %s' --graph -40
+
+
 
 ##############################
 # http://wynnnetherland.com/journal/dotfiles-discovery
@@ -284,3 +292,5 @@ windowMemory = 128m
 [core]
 packedGitLimit = 128m
 packedGitWindowSize = 128m
+[branch]
+	autosetuprebase = always
