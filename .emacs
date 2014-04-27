@@ -1673,3 +1673,12 @@ if breakpoints are present in `python-mode' files"
 
 ;; end helm configuration
 ;; ------------------------------
+
+;; ------------------------------
+;; nxml-mode
+;; ------------------------------
+(add-hook 'nxml-mode-hook '(lambda ()
+                             (setq require-final-newline nil)
+                             (setq mode-require-final-newline nil)))
+;; end nxml-mode configuration
+;; ------------------------------
