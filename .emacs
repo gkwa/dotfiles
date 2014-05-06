@@ -119,9 +119,6 @@
 (put 'upcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 
-
-
-
 ;; http://sigquit.wordpress.com/2008/09/28/single-dot-emacs-file/
 (defun system-is-my-personal-laptop ()
   (interactive)
@@ -1632,7 +1629,7 @@ if breakpoints are present in `python-mode' files"
 
 ; http://stackoverflow.com/questions/11403862/how-to-have-emacs-helm-list-offer-files-in-current-directory-as-options
 
-(add-to-list 'load-path "~/.elisp/helm")
+;(add-to-list 'load-path "~/.elisp/helm")
 (require 'helm-config)
 (helm-mode 1)
 
@@ -1667,12 +1664,23 @@ if breakpoints are present in `python-mode' files"
 	))
 
 
+;; https://github.com/shishi/.emacs.d/blob/master/inits/10-helm.el
+(define-key global-map (kbd "M-x") 'helm-M-x)
+(define-key global-map (kbd "C-;") 'helm-for-files)
+(define-key global-map (kbd "C-x C-f") 'helm-find-files)
+(define-key global-map (kbd "M-y") 'helm-show-kill-ring)
+(define-key global-map (kbd "C-x b") 'helm-bookmarks)
+(define-key global-map (kbd "M-s-d") 'helm-apropos)
+(define-key global-map (kbd "C-<return>") 'helm-buffer-switch-other-window)
+
+
 ;; http://www.reddit.com/r/emacs/comments/1q6zx2/disable_helmfindfiles_path_autocompletion/
 ;; helm auto-complete in dired sucks, disable it
 (setq helm-ff-auto-update-initial-value nil)
 
 ;; end helm configuration
 ;; ------------------------------
+
 
 ;; ------------------------------
 ;; nxml-mode
@@ -1682,3 +1690,13 @@ if breakpoints are present in `python-mode' files"
                              (setq mode-require-final-newline nil)))
 ;; end nxml-mode configuration
 ;; ------------------------------
+
+;; ------------------------------
+;; Package System, ELPA, MELPA, Marmalade
+;; ------------------------------
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  )
+;; Package System, ELPA, MELPA, Marmalade configuration
