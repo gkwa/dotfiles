@@ -1375,7 +1375,7 @@ devonaws-labs-csharp:
 .PHONY: devonaws-labs-csharp
 
 bup:
-	-git clone https://github.com/apenwarr/bup.git $@
+	-git clone https://github.com/bup/bup.git $@
 	(cd $@ && git fetch && $(gitlog) && git pull)
 .PHONY: bup
 
