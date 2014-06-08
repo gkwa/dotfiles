@@ -9,28 +9,28 @@ set -o errexit
 
 bfgjar=/Users/demo/Downloads/bfg-1.11.6.jar
 
-rm -rf /tmp/emacs.git
-rm -rf /tmp/emacs
+rm -rf /tmp/dotfiles.git
+rm -rf /tmp/dotfiles
 
-if test -d /tmp/emacs.git
+if test -d /tmp/dotfiles.git
 then
-    echo didn\'t remove /tmp/emacs.git, quitting.
+    echo didn\'t remove /tmp/dotfiles.git, quitting.
     exit 1
 fi
 
-if test -d /tmp/emacs
+if test -d /tmp/dotfiles
 then
-    echo didn\'t remove /tmp/emacs.git, quitting.
+    echo didn\'t remove /tmp/dotfiles.git, quitting.
     exit 1
 fi
 
-git clone --reference /Users/demo --mirror dev:~/proj/emacs.git /tmp/emacs.git
-du -sh /tmp/emacs.git
-java -jar $bfgjar --delete-files '{notes.txt,kee.kbd,.alias}' --delete-folders '{notes}' /tmp/emacs.git
-java -jar $bfgjar --delete-folders '{emacs,unzip.exe}' /tmp/emacs.git
-cd /tmp/emacs.git
+git clone --reference /Users/demo --mirror dev:~/proj/emacs.git /tmp/dotfiles.git
+du -sh /tmp/dotfiles.git
+java -jar $bfgjar --delete-files '{notes.txt,kee.kbd,.alias}' --delete-folders '{notes}' /tmp/dotfiles.git
+java -jar $bfgjar --delete-folders '{emacs,unzip.exe}' /tmp/dotfiles.git
+cd /tmp/dotfiles.git
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
-du -sh /tmp/emacs.git
-git clone /tmp/emacs.git /tmp/emacs
-du -sh /tmp/emacs
+du -sh /tmp/dotfiles.git
+git clone /tmp/dotfiles.git /tmp/dotfiles
+du -sh /tmp/dotfiles
