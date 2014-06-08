@@ -9,7 +9,6 @@ set -o errexit
 
 bfgjar=/Users/demo/Downloads/bfg-1.11.6.jar
 
-cd /tmp
 rm -rf /tmp/emacs.git
 rm -rf /tmp/emacs
 
@@ -27,13 +26,11 @@ fi
 
 git clone --reference /Users/demo --mirror dev:~/proj/emacs.git /tmp/emacs.git
 du -sh /tmp/emacs.git
-cd /tmp/emacs.git
-java -jar $bfgjar --delete-files notes.txt
-java -jar $bfgjar --delete-files kee.kdb
+java -jar $bfgjar --delete-files notes.txt /tmp/emacs.git
+java -jar $bfgjar --delete-files kee.kdb /tmp/emacs.git
 cd /tmp/emacs.git
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
 du -sh /tmp/emacs.git
 git clone /tmp/emacs.git /tmp/emacs
-cd /tmp/emacs.git
 du -sh /tmp/emacs
