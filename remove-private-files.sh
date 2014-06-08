@@ -26,8 +26,8 @@ fi
 
 git clone --reference /Users/demo --mirror dev:~/proj/emacs.git /tmp/dotfiles.git
 du -sh /tmp/dotfiles.git
-java -jar $bfgjar --delete-files '{notes.txt,kee.kbd,.alias}' --delete-folders '{notes}' /tmp/dotfiles.git
-java -jar $bfgjar --delete-folders '{emacs,unzip.exe}' /tmp/dotfiles.git
+java -jar $bfgjar --delete-files '{notes.txt,kee.kbd,.alias,unzip.exe}' --delete-folders '{notes}' /tmp/dotfiles.git
+java -jar $bfgjar --delete-folders '{emacs}' /tmp/dotfiles.git
 cd /tmp/dotfiles.git
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
