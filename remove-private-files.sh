@@ -20,7 +20,7 @@ rm -rf /tmp/dotfiles.git.bfg-report
 
 git clone --mirror --reference /Users/demo ssh://boxstream@development.streambox.com:5979/var/www/html/proj/emacs.git /tmp/dotfiles.git
 du -sh /tmp/dotfiles.git
-java -jar $bfgjar --delete-files '{kee.kdb,notes.txt,.alias,unzip.exe,.ssh/config}' --delete-folders '{.info,emacs,notes}' /tmp/dotfiles.git
+java -jar $bfgjar --delete-files '{kee.kdb,notes.txt,.alias,unzip.exe}' --delete-folders '{.ssh,.info,emacs,notes}' /tmp/dotfiles.git
 cd /tmp/dotfiles.git
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
