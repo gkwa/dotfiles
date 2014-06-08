@@ -7,23 +7,16 @@
 
 set -o errexit
 
-bfgjar=/Users/demo/Downloads/bfg-1.11.6.jar
+# http://rtyley.github.io/bfg-repo-cleaner/
+# http://repo1.maven.org/maven2/com/madgag/bfg/1.11.6/bfg-1.11.6.jar
+
+bfgver=1.11.6
+bfgjar=bfg-$bfgver.jar
+wget --timestamping http://repo1.maven.org/maven2/com/madgag/bfg/$bfgver/$bfgjar
 
 rm -rf /tmp/dotfiles.git
 rm -rf /tmp/dotfiles
 rm -rf /tmp/dotfiles.git.bfg-report
-
-if test -d /tmp/dotfiles.git
-then
-    echo didn\'t remove /tmp/dotfiles.git, quitting.
-    exit 1
-fi
-
-if test -d /tmp/dotfiles
-then
-    echo didn\'t remove /tmp/dotfiles.git, quitting.
-    exit 1
-fi
 
 git clone --mirror --reference /Users/demo dev:~/proj/emacs.git /tmp/dotfiles.git
 du -sh /tmp/dotfiles.git
