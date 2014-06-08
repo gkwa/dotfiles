@@ -24,7 +24,7 @@ then
     exit 1
 fi
 
-git clone --reference /Users/demo --mirror dev:~/proj/emacs.git /tmp/dotfiles.git
+git clone --mirror --reference /Users/demo dev:~/proj/emacs.git /tmp/dotfiles.git
 du -sh /tmp/dotfiles.git
 java -jar $bfgjar --delete-files '{notes.txt,kee.kbd,.alias,unzip.exe}' --delete-folders '{notes}' /tmp/dotfiles.git
 java -jar $bfgjar --delete-folders '{emacs}' /tmp/dotfiles.git
