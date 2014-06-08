@@ -5,7 +5,7 @@
 ##############################
 [user]
 ##############################
-name = taylor
+name = taylormonacelli
 email = tailor@u.washington.edu
 
 ##############################
@@ -117,7 +117,7 @@ sno = show --pretty="format:" --name-only
 rst = "!sh -c 'git reset HEAD^ -- $(git show --pretty=\"format:\" --name-only | sed \"/^$/d\")'"
 
 root = rev-list --abbrev-commit --max-parents=0 HEAD
-gb = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
+b = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
 wu = log --stat origin..@{0}  # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
 # good examples
 # http://git.wiki.kernel.org/index.php/Aliases
@@ -189,6 +189,7 @@ lg1 = log --pretty=tformat:'%h %ar - %s' --graph -10
 lg2 = log --pretty=tformat:'%h %ar - %s' --graph -20
 lg3 = log --pretty=tformat:'%h %ar - %s' --graph -30
 lg4 = log --pretty=tformat:'%h %ar - %s' --graph -40
+lg5 = log --pretty=tformat:'%h %ar - %s' --graph -50
 
 
 
@@ -294,3 +295,5 @@ packedGitLimit = 128m
 packedGitWindowSize = 128m
 [branch]
 	autosetuprebase = always
+[credential]
+	helper = osxkeychain

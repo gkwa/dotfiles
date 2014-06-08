@@ -12,3 +12,6 @@ set bind-tty-special-characters off
 
 # Ignore case for the command-line-completion functionality
 set completion-ignore-case On
+
+
+

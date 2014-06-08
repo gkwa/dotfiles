@@ -48,6 +48,7 @@
 (show-paren-mode 1); http://www.netexpertise.eu/en/misc/emacs-configuration.html
 
 
+;; don't prompt to kill subshell
 ;; don't ask about killing subprocesses when killing emacs, just kill
 ;; off all children without question
 ;; http://stackoverflow.com/questions/2706527/make-emacs-stop-asking-active-processes-exist-kill-them-and-exit-anyway
@@ -570,7 +571,6 @@ else do C-x 5 0 delete-frame"
  delete-by-moving-to-trash t
  frame-title-format "emacs - %b"
  diary-file (expand-file-name "~/.diary"))
-
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
 (custom-set-variables
@@ -1136,6 +1136,7 @@ else do C-x 5 0 delete-frame"
 
 (setq-default
  compilation-always-kill t
+;; compilation-scroll-output 'first-error ;; scroll automatically to follow the output as it comes in.
  compilation-scroll-output t ;; scroll automatically to follow the output as it comes in.
  compilation-skip-threshold 0
  compilation-auto-jump-to-first-error t
@@ -1672,7 +1673,7 @@ if breakpoints are present in `python-mode' files"
 (define-key global-map (kbd "C-x b") 'helm-bookmarks)
 (define-key global-map (kbd "M-s-d") 'helm-apropos)
 (define-key global-map (kbd "C-<return>") 'helm-buffer-switch-other-window)
-
+ 
 
 ;; http://www.reddit.com/r/emacs/comments/1q6zx2/disable_helmfindfiles_path_autocompletion/
 ;; helm auto-complete in dired sucks, disable it
@@ -1700,3 +1701,9 @@ if breakpoints are present in `python-mode' files"
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   )
 ;; Package System, ELPA, MELPA, Marmalade configuration
+
+
+(global-set-key (kbd "C-[ [ a a") 'helm-for-files)
+
+
+(global-set-key (kbd "M-.")  'ctags-search)
