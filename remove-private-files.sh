@@ -36,4 +36,4 @@ du -sh /tmp/dotfiles
 
 
 cd /tmp/dotfiles
-git log --name-status >/tmp/dotfiles.history
+git log --name-status >/tmp/dotfiles/dotfiles.history
