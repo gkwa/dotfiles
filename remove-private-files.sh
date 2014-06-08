@@ -34,3 +34,7 @@ git gc --prune=now --aggressive
 du -sh /tmp/dotfiles.git
 git clone /tmp/dotfiles.git /tmp/dotfiles
 du -sh /tmp/dotfiles
+
+
+cd /tmp/dotfiles
+git log --name-status >/tmp/dotfiles.history
