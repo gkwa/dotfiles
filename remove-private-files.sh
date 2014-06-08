@@ -11,6 +11,7 @@ bfgjar=/Users/demo/Downloads/bfg-1.11.6.jar
 
 rm -rf /tmp/dotfiles.git
 rm -rf /tmp/dotfiles
+rm -rf /tmp/dotfiles.git.bfg-report
 
 if test -d /tmp/dotfiles.git
 then
