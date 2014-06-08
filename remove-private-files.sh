@@ -26,7 +26,7 @@ fi
 
 git clone --reference /Users/demo --mirror dev:~/proj/emacs.git /tmp/emacs.git
 du -sh /tmp/emacs.git
-java -jar $bfgjar --delete-files '{notes.txt,kee.kbd}' --delete-folders 'notes' /tmp/emacs.git
+java -jar $bfgjar --delete-files '{notes.txt,kee.kbd}' --delete-folders '{notes,emacs}' /tmp/emacs.git
 cd /tmp/emacs.git
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
