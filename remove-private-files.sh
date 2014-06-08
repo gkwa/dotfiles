@@ -18,7 +18,7 @@ rm -rf /tmp/dotfiles.git
 rm -rf /tmp/dotfiles
 rm -rf /tmp/dotfiles.git.bfg-report
 
-git clone --mirror --reference /Users/demo ssh://boxstream@development.streambox.com:5979/var/www/html/proj/emacs.git /tmp/dotfiles.git
+git clone --mirror --no-hardlinks --reference /Users/demo ssh://boxstream@development.streambox.com:5979/var/www/html/proj/emacs.git /tmp/dotfiles.git
 du -sh /tmp/dotfiles.git
 java -jar $bfgjar --delete-files '{kee.kdb,notes.txt,.alias,unzip.exe}' --delete-folders '{.ssh,.info,emacs,notes}' /tmp/dotfiles.git
 cd /tmp/dotfiles.git
