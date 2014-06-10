@@ -586,7 +586,7 @@ else do C-x 5 0 delete-frame"
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
  '(delete-by-moving-to-trash t)
- '(diary-file (expand-file-name "~/.diary"))
+ '(diary-file (expand-file-name "~/.diary") t)
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(ffap-machine-p-known (quote reject))
  '(frame-title-format "emacs - %b" t)
@@ -1032,7 +1032,14 @@ else do C-x 5 0 delete-frame"
 ;; http://orgmode.org/worg/org-tutorials/advanced-searching.html
 
 (setq org-agenda-files '("~/notes.txt"))
-(setq org-default-notes-file (concat org-directory "~/notes.txt"))
+
+;; Warning (initialization): An error occurred while loading `c:/cygwin/home/Administrator/.emacs':
+;; Symbol's value as variable is void: org-directory
+;; To ensure normal operation, you should investigate and remove the
+;; cause of the error in your initialization file.  Start Emacs with
+;; the `--debug-init' option to view a complete error backtrace.
+; (setq org-default-notes-file (concat org-directory "~/notes.txt"))
+
 ;; http://lists.gnu.org/archive/html/emacs-orgmode/2011-09/msg00267.html
 (setq org-agenda-text-search-extra-files
       (directory-files "~/notes" t "^[^.#].*\\.\\(org$\\|org_archive$\\)"))
@@ -1550,8 +1557,26 @@ if breakpoints are present in `python-mode' files"
 ;; ------------------------------
 ;; programmable completion pcomplete
 ;; ------------------------------
-(add-to-list 'load-path "~/.elisp/pcmpl-git-el")
-(require 'pcmpl-git)
+
+;; Debugger entered--Lisp error: (file-error "Spawning child process" "exec format error")
+;;   call-process("c:/cygwin/usr/local/bin/git.exe" nil t nil "help" "--all")
+;;   (progn (call-process pcmpl-git-executable nil t nil "help" "--all") (goto-char (point-min)) (if (or (re-search-forward "-+\n" nil t) (search-forward "\n\n" nil t 2)) (progn (setq beg (point)))) (if (search-forward "\n\n" nil t) (progn (setq end (point)))) (if (and beg end) (progn (setq commands (pcmpl-git-parse-region beg end "\\s-\\(\\S-+?\\)\\s-" (if internal nil (function (lambda nil ...))))) (delete-dups (append (pcmpl-git-porcelain-commands) (sort commands (quote pcmpl-git-string-lessp)))))))
+;;   (unwind-protect (progn (call-process pcmpl-git-executable nil t nil "help" "--all") (goto-char (point-min)) (if (or (re-search-forward "-+\n" nil t) (search-forward "\n\n" nil t 2)) (progn (setq beg (point)))) (if (search-forward "\n\n" nil t) (progn (setq end (point)))) (if (and beg end) (progn (setq commands (pcmpl-git-parse-region beg end "\\s-\\(\\S-+?\\)\\s-" (if internal nil (function ...)))) (delete-dups (append (pcmpl-git-porcelain-commands) (sort commands (quote pcmpl-git-string-lessp))))))) (and (buffer-name temp-buffer) (kill-buffer temp-buffer)))
+;;   (save-current-buffer (set-buffer temp-buffer) (unwind-protect (progn (call-process pcmpl-git-executable nil t nil "help" "--all") (goto-char (point-min)) (if (or (re-search-forward "-+\n" nil t) (search-forward "\n\n" nil t 2)) (progn (setq beg (point)))) (if (search-forward "\n\n" nil t) (progn (setq end (point)))) (if (and beg end) (progn (setq commands (pcmpl-git-parse-region beg end "\\s-\\(\\S-+?\\)\\s-" (if internal nil ...))) (delete-dups (append (pcmpl-git-porcelain-commands) (sort commands ...)))))) (and (buffer-name temp-buffer) (kill-buffer temp-buffer))))
+;;   (let ((temp-buffer (generate-new-buffer " *temp*"))) (save-current-buffer (set-buffer temp-buffer) (unwind-protect (progn (call-process pcmpl-git-executable nil t nil "help" "--all") (goto-char (point-min)) (if (or (re-search-forward "-+\n" nil t) (search-forward "\n\n" nil t 2)) (progn (setq beg (point)))) (if (search-forward "\n\n" nil t) (progn (setq end (point)))) (if (and beg end) (progn (setq commands (pcmpl-git-parse-region beg end "\\s-\\(\\S-+?\\)\\s-" ...)) (delete-dups (append ... ...))))) (and (buffer-name temp-buffer) (kill-buffer temp-buffer)))))
+;;   (let (beg end commands) (let ((temp-buffer (generate-new-buffer " *temp*"))) (save-current-buffer (set-buffer temp-buffer) (unwind-protect (progn (call-process pcmpl-git-executable nil t nil "help" "--all") (goto-char (point-min)) (if (or (re-search-forward "-+\n" nil t) (search-forward "\n\n" nil t 2)) (progn (setq beg ...))) (if (search-forward "\n\n" nil t) (progn (setq end ...))) (if (and beg end) (progn (setq commands ...) (delete-dups ...)))) (and (buffer-name temp-buffer) (kill-buffer temp-buffer))))))
+;;   pcmpl-git-commands()
+;;   (defvar pcmpl-git-commands (pcmpl-git-commands) "A collection of all 'git' commands.")
+;;   eval-buffer(#<buffer  *load*-660916> nil "c:/cygwin/home/Administrator/.elisp/pcmpl-git-el/pcmpl-git.el" nil t)  ; Reading at buffer position 5184
+;;   load-with-code-conversion("c:/cygwin/home/Administrator/.elisp/pcmpl-git-el/pcmpl-git.el" "c:/cygwin/home/Administrator/.elisp/pcmpl-git-el/pcmpl-git.el" nil t)
+;;   require(pcmpl-git)
+;;   eval-buffer(#<buffer  *load*> nil "c:/cygwin/home/Administrator/.emacs" nil t)  ; Reading at buffer position 60733
+;;   load-with-code-conversion("c:/cygwin/home/Administrator/.emacs" "c:/cygwin/home/Administrator/.emacs" t t)
+;;   load("~/.emacs" t t)
+;;   command-line()
+;;   normal-top-level()
+; (add-to-list 'load-path "~/.elisp/pcmpl-git-el")
+; (require 'pcmpl-git)
 
 ;; end pcmpl-git configuration
 ;; ------------------------------
@@ -1631,6 +1656,14 @@ if breakpoints are present in `python-mode' files"
 ; http://stackoverflow.com/questions/11403862/how-to-have-emacs-helm-list-offer-files-in-current-directory-as-options
 
 ;(add-to-list 'load-path "~/.elisp/helm")
+
+;; Debugger entered--Lisp error: (file-error "Cannot open load file" "helm-config")
+;;   require(helm-config)
+;;   eval-buffer(#<buffer  *load*> nil "c:/cygwin/home/Administrator/.emacs" nil t)  ; Reading at buffer position 67725
+;;   load-with-code-conversion("c:/cygwin/home/Administrator/.emacs" "c:/cygwin/home/Administrator/.emacs" t t)
+;;   load("~/.emacs" t t)
+;;   command-line()
+;;   normal-top-level()
 (require 'helm-config)
 (helm-mode 1)
 
@@ -1695,15 +1728,19 @@ if breakpoints are present in `python-mode' files"
 ;; ------------------------------
 ;; Package System, ELPA, MELPA, Marmalade
 ;; ------------------------------
+
 (when (>= emacs-major-version 24)
   (require 'package)
   (package-initialize)
+  (setq package-archives ())
+  (add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
+  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+  (add-to-list 'package-archives '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t) ;; http://emacsredux.com/blog/2014/05/16/melpa-stable
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   )
 ;; Package System, ELPA, MELPA, Marmalade configuration
 
-
 (global-set-key (kbd "C-[ [ a a") 'helm-for-files)
-
 
 (global-set-key (kbd "M-.")  'ctags-search)
