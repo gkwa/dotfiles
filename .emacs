@@ -1,3 +1,19 @@
+;; ------------------------------
+;; Package System, ELPA, MELPA, Marmalade
+;; ------------------------------
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (setq package-archives ())
+  (add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
+  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+  (add-to-list 'package-archives '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t) ;; http://emacsredux.com/blog/2014/05/16/melpa-stable
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  )
+;; Package System, ELPA, MELPA, Marmalade configuration
+
+
 ;; keep "/opt/local/share/info" as the last element of
 ;; Info-default-directory-list because "/opt/local/share/info" has the
 ;; newest stuff
@@ -1724,22 +1740,6 @@ if breakpoints are present in `python-mode' files"
                              (setq mode-require-final-newline nil)))
 ;; end nxml-mode configuration
 ;; ------------------------------
-
-;; ------------------------------
-;; Package System, ELPA, MELPA, Marmalade
-;; ------------------------------
-
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (setq package-archives ())
-  (add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
-  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-  (add-to-list 'package-archives '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t) ;; http://emacsredux.com/blog/2014/05/16/melpa-stable
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  )
-;; Package System, ELPA, MELPA, Marmalade configuration
 
 (global-set-key (kbd "C-[ [ a a") 'helm-for-files)
 
