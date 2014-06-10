@@ -236,7 +236,7 @@ t = tag -l
 ##############################
 [rerere]
 ##############################
-	enabled = false
+	enabled = true
 
 # [color]
 #   ui = true
