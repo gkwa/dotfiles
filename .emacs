@@ -40,8 +40,6 @@
 (setq default-buffer-file-coding-system 'utf-8)
 ;; ------------------------------
 
-(find-file "~/notes.txt" t)
-
 (cd "~/")
 ;; (setq Info-directory-list (cons (expand-file-name "~/.info") Info-default-directory-list))
 
@@ -1047,18 +1045,11 @@ else do C-x 5 0 delete-frame"
 ;; org-agenda-text-search-extra-files
 ;; http://orgmode.org/worg/org-tutorials/advanced-searching.html
 
-(setq org-agenda-files '("~/notes.txt"))
-
 ;; Warning (initialization): An error occurred while loading `c:/cygwin/home/Administrator/.emacs':
 ;; Symbol's value as variable is void: org-directory
 ;; To ensure normal operation, you should investigate and remove the
 ;; cause of the error in your initialization file.  Start Emacs with
 ;; the `--debug-init' option to view a complete error backtrace.
-; (setq org-default-notes-file (concat org-directory "~/notes.txt"))
-
-;; http://lists.gnu.org/archive/html/emacs-orgmode/2011-09/msg00267.html
-(setq org-agenda-text-search-extra-files
-      (directory-files "~/notes" t "^[^.#].*\\.\\(org$\\|org_archive$\\)"))
 
 ;; ------------------------------
 ;; browse-apropose-url
