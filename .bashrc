@@ -172,8 +172,12 @@ case "$(uname)" in
 
     CYGWIN_NT*)
 
-	export PATH="/bin:$PATH"
-	export PATH="/usr/local/bin:$PATH"
+	export PATH="c:/cygwin/bin:$PATH"
+	export PATH="c:/cygwin64/bin:$PATH"
+
+	export PATH="c:/cygwin/usr/local/bin:$PATH"
+	export PATH="c:/cygwin64/usr/local/bin:$PATH"
+
 	export PATH=".:$PATH"
 	# http://www.saltycrane.com/blog/2008/05/how-to-paste-in-cygwin-bash-using-ctrl/
 	# Add the following line to your ~/.bashrc:
