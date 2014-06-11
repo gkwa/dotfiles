@@ -63,6 +63,7 @@ gpp = "!sh -c 'git pull --rebase && git push'"
 sbu = show-branch @{upstream} HEAD
 du = diff @{upstream}..HEAD
 duc = diff --color @{upstream}..HEAD
+ducns = diff --name-status --color @{upstream}..HEAD
 fh = "!sh -c 'git fetch && git reset --hard @{upstream}'"
 y = "!sh -c 'git commit -am yada-yada && git push'"
 rfl = log --oneline --relative-date -g
