@@ -600,7 +600,7 @@ else do C-x 5 0 delete-frame"
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
  '(delete-by-moving-to-trash t)
- '(diary-file (expand-file-name "~/.diary") t)
+ '(diary-file (expand-file-name "~/.diary"))
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(ffap-machine-p-known (quote reject))
  '(frame-title-format "emacs - %b" t)
