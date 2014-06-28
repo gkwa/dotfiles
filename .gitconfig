@@ -117,6 +117,8 @@ sno = show --pretty="format:" --name-only
 # from http://gitster.livejournal.com/48015.html
 rst = "!sh -c 'git reset HEAD^ -- $(git show --pretty=\"format:\" --name-only | sed \"/^$/d\")'"
 
+dhnc = "!f(){ default=8; hours=$1; git diff 'HEAD@{'${hours:-$default}' hours ago}'..HEAD; }; f"
+dh = "!f(){ default=8; hours=$1; git diff --color 'HEAD@{'${hours:-$default}' hours ago}'..HEAD; }; f"
 root = rev-list --abbrev-commit --max-parents=0 HEAD
 b = !git for-each-ref --format='%(refname:short)' `git symbolic-ref HEAD`
 wu = log --stat origin..@{0}  # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
