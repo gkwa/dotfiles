@@ -605,6 +605,7 @@ else do C-x 5 0 delete-frame"
  '(ffap-machine-p-known (quote reject))
  '(frame-title-format "emacs - %b" t)
  '(global-font-lock-mode t)
+ '(helm-ff-newfile-prompt-p nil)
  '(ido-case-fold t)
  '(ispell-program-name "aspell")
  '(menu-bar-mode nil)
