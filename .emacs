@@ -737,6 +737,7 @@ else do C-x 5 0 delete-frame"
 ; www.emacswiki.org/emacs/PowerShell
 (add-to-list 'load-path "~/.elisp")
 (autoload 'powershell-mode "powershell-mode" "Mode PowerShell" t)
+(push '("\\.psm[12]?$" . powershell-mode) auto-mode-alist)
 (push '("\\.ps[12]?$" . powershell-mode) auto-mode-alist)
 
 ;; ------------------------------
