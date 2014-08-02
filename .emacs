@@ -1629,6 +1629,20 @@ if breakpoints are present in `python-mode' files"
 ;; end js2-mode configuration
 ;; ------------------------------
 
+
+;; ------------------------------
+;; java-mode customizations
+;; ------------------------------
+
+;; http://www.emacswiki.org/emacs/IndentingJava
+(add-hook 'java-mode-hook (lambda ()
+                                (setq c-basic-offset 4
+                                      tab-width 4
+                                      indent-tabs-mode t)))
+
+;; End java-mode
+;; ------------------------------
+
 ;; ------------------------------
 ;; MELPA
 ;; Add additional 3rd party pacakge archives
