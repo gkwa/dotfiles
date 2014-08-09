@@ -600,12 +600,14 @@ else do C-x 5 0 delete-frame"
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
  '(delete-by-moving-to-trash t)
- '(diary-file (expand-file-name "~/.diary"))
+ '(diary-file (expand-file-name "~/.diary") t)
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(ffap-machine-p-known (quote reject))
  '(frame-title-format "emacs - %b" t)
  '(global-font-lock-mode t)
  '(helm-ff-newfile-prompt-p nil)
+ '(helm-locate-command "glocate --existing %s %s")
+ '(helm-locate-create-db-command "LC_ALL='C' gupdatedb --output='%s' --localpaths='%s'")
  '(ido-case-fold t)
  '(ispell-program-name "aspell")
  '(menu-bar-mode nil)
@@ -1640,6 +1642,8 @@ if breakpoints are present in `python-mode' files"
                                       tab-width 4
                                       indent-tabs-mode t)))
 
+
+
 ;; End java-mode
 ;; ------------------------------
 
@@ -1724,12 +1728,19 @@ if breakpoints are present in `python-mode' files"
 ;; https://github.com/shishi/.emacs.d/blob/master/inits/10-helm.el
 (define-key global-map (kbd "M-x") 'helm-M-x)
 (define-key global-map (kbd "C-;") 'helm-for-files)
+(global-set-key (kbd "C-[ [ a a") 'helm-for-files)
 (define-key global-map (kbd "C-x C-f") 'helm-find-files)
 (define-key global-map (kbd "M-y") 'helm-show-kill-ring)
 (define-key global-map (kbd "C-x b") 'helm-bookmarks)
 (define-key global-map (kbd "M-s-d") 'helm-apropos)
 (define-key global-map (kbd "C-<return>") 'helm-buffer-switch-other-window)
- 
+
+(global-set-key (kbd "M-p") 'helm-resume)
+;;(global-set-key (kbd "C-x C-d") 'helm-browse-project) ; https://github.com/emacs-helm/helm-ls-git
+(global-set-key (kbd "C-x C-d") 'helm-ls-git-ls) ; https://github.com/emacs-helm/helm-ls-git
+
+;; end configuration
+;; ------------------------------
 
 ;; http://www.reddit.com/r/emacs/comments/1q6zx2/disable_helmfindfiles_path_autocompletion/
 ;; helm auto-complete in dired sucks, disable it
@@ -1747,7 +1758,3 @@ if breakpoints are present in `python-mode' files"
                              (setq mode-require-final-newline nil)))
 ;; end nxml-mode configuration
 ;; ------------------------------
-
-(global-set-key (kbd "C-[ [ a a") 'helm-for-files)
-
-(global-set-key (kbd "M-.")  'ctags-search)

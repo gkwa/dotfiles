@@ -214,6 +214,7 @@ case "$(uname)" in
 	export PATH=$PATH:/usr/local/sbin
 	# for emacsclient when emacs is in daemon mode
 	export EMACS_SERVER_FILE=~/.emacs.d/server/emacs1000
+	export PATH=/usr/local/bin:$PATH
 
 	# https://groups.google.com/forum/?fromgroups=#!topic/asciidoc/FC-eOwU8rYg
 	# brew install asciidoc; cd ~/play/gitster && make man "make
@@ -546,6 +547,15 @@ drop()
 	    's,.*/Public,http://dl.dropbox.com/u/9140609,;s, ,%20,g'| \
 	    xargs ls -t
     fi;
+}
+
+code_enscript()
+{
+    infile="$1"
+    outfilePS="$infile.ps"
+    outfilePDF="$infile.pdf"
+    enscript --columns=2 --fancy-header --pretty-print --landscape -q -B -C -Esh -G --color --word-wrap -f Courier6 -MA4 -T4 --header='$n %W Page $% of $=' -p - "$infile" >"$outfilePS"
+    pstopdf "$outfilePS" -o "$outfilePDF"
 }
 
 ##############################
