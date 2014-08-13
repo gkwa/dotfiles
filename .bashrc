@@ -196,6 +196,7 @@ case "$(uname)" in
     Darwin)
 
 	export INFOPATH=/usr/local/share/info:$INFOPATH
+	export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 
 	#homebrew uses this if its defined, otherwise homebrew will
 	#install its own which is fine, but I'm often more uptodate on
