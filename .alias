@@ -1,1 +1,82 @@
+alias lsc='(cd /Users/demo/Documents/git_clone_svn_ls && git svn fetch --all && git checkout master||: && git svn rebase && git co LS_Stable_v3.0 && git svn rebase && git co LS_Stable_v2.4.25 && git svn rebase && git co ES_Stable_v3.0 && git svn rebase)'
+
+alias vag=vagrant
+alias ofi=offlineimap
+alias kmu='pkill -2 -u $UID mu # send SIGINT; sleep 1; mu index'
+alias ka=killall
+alias dosu=dos2unix
+alias udos=unix2dos
+alias rn_fixperm='ssh rn "time chown -R admin:admin /Production/Streambox/Beta/{Encoder,Decoder}"'
+alias ec=emacsclient
+alias ecd='make -f ~/bin/emacs_daemon.mk emacsclient_debug_init'
+alias eck='make -f ~/bin/emacs_daemon.mk kill'
+alias m="make"
+alias gl="git config -l | grep -i "
+alias gu="git config -l | grep -i url"
+alias gj="git jump"
+alias gdc="git diff --check"
+alias myumount='mount | cut -d\( -f1 | grep // | sed -e "s,.* on ,," | sort|xargs umount'
+
+alias rdpk='killall "Remote Desktop Connection"'
+alias h='history| sed -e "s,^.....,,"'
+alias svncs="svn status | sed -e 's,^... *,\(,;s,$,\),'"
+alias gurl="git config -l | grep url | grep 'ssh://dev/' >/dev/null && gl url | sed -e 's,ssh://dev/,ssh://boxstream@development.streambox.com:5979/,;s,=, ,;s,^,git config ,'"
+alias mykill=~/Documents/mykill.sh
+alias allmount='prod;user;it;support;video;qa;dev;tay;marketing'
+alias e="emacs -nw"
+alias rsync='rsync -rltgoD --progress'
 alias g=git
+alias ct="((test -d ~/p/sbtunnel && pushd ~/p/sbtunnel && pwd && perl -w ct.pl|pbcopy) || (test -d ~/pdev/sbtunnel && pushd ~/pdev/sbtunnel && perl -w ct.pl|pbcopy))"
+alias gdate=gitOrderBranchByDate # see .bashrc
+alias gh="git head|sed -e 's,^,export\ installerv\=,'"
+alias crash="tail -100 /var/log/system.log | sed -ne 's,.*Saved crashreport to \(.*.crash\).*,\1,p'"
+alias git_reset_sub="git sub summary | grep '\*' | sed -ne 's,^\* \([^ ]*\) \([^\.]*\).*,(cd \1; git reset --hard \2),p'"
+alias findprod="cat /Volumes/Production/Streambox/find-ls.txt | sed -ne 's,.*/Production,/Volumes/Production,p'"
+
+alias vbox='cd $HOME/pdev/virtualbox-control && . control.sh && vlist'
+
+# du sort by size and make it human readable
+# http://www.earthinfo.org/linux-disk-usage-sorted-by-size-and-human-readable/
+alias duf='du -sk * | sort -n | perl -ne '\''($s,$f)=split(m{\t});for (qw(K M G)) {if($s<1024) {printf("%.1f",$s);print "$_\t$f"; last};$s=$s/1024}'\'
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en1"
+alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
+
+
+# Flush Directory Service cache
+alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+
+
+# View HTTP traffic
+alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+
+
+
+# git stuff
+alias gdw="git diff --src-prefix=c:/ --dst-prefix=c:/"
+alias GS="git status"
+alias gs="git status"
+if test -f /opt/local/bin/svn; then
+alias svn=/opt/local/bin/svn
+alias ip='pushd ~/p/sbtunnel>/dev/null;  perl -w ct.pl|pbcopy; perl -w ct.pl; popd>/dev/null'
+fi;
+
+if test -f /usr/local/bin/ctags; then
+alias ctags=/usr/local/bin/ctags
+fi;
+
+##############################
+# Streambox aliases
+##############################
+alias webdiff='cd ~/subversionprojects/win_ed_webapi; svn diff -x --ignore-eol-style -c $*'
+alias lsdiff='cd ~/subversionprojects/ls; svn diff -x --ignore-eol-style -c $*'
+
+# check subversion logs
+alias weblog='(cd ~/subversionprojects/win_ed_webapi; svn update; svn log -v -l 20)'
+alias lslog='(cd ~/subversionprojects/ls; svn update; svn log -v -l 20)'
+# cd into each project and do svn update (ie cd win_ed_webapi; svn update; cd ..)
+alias subup="cd ~/subversionprojects; make; svnsync sync file:///Users/demo/Documents/svnadmin_dump_ls/ls_reposvn; cd ~/Documents/svnadmin_dump_ls/ls_repogit && git svn rebase"
+alias bug='sh $HOME/bin/streambox_create_folder_for_bug_report.sh $*'
