@@ -1,5 +1,3 @@
-
-
 (add-hook 'after-init-hook
           (lambda () (setq debug-on-error t)))
 
