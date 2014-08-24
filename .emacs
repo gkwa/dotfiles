@@ -48,6 +48,7 @@ Return a list of installed packages or nil for every skipped package."
 ;; activate installed packages
 (package-initialize)
 
+(ensure-package-installed 'bookmark+)
 (ensure-package-installed 'java-file-create)
 (ensure-package-installed 'java-snippets)
 (ensure-package-installed 'javadoc-lookup)
@@ -95,7 +96,6 @@ Return a list of installed packages or nil for every skipped package."
 ;; bookmarkplus mode
 ;; ------------------------------
 ;;http://www.emacswiki.org/emacs/BookmarkPlus
-(add-to-list 'load-path "~/.elisp/bookmark-plus")
 (set-variable (quote bookmark-save-flag) 1 nil)
 (set-variable (quote bmkp-last-as-first-bookmark-file) "~/.emacs.d/bookmarks" nil)
 (require 'bookmark+)
