@@ -18,6 +18,67 @@
   )
 ;; Package System, ELPA, MELPA, Marmalade configuration
 
+(defun ensure-package-installed (&rest packages)
+  "Assure every package is installed, ask for installation if it’s not.
+
+Return a list of installed packages or nil for every skipped package."
+  (mapcar
+   (lambda (package)
+     ;; (package-installed-p 'evil)
+     (if (package-installed-p package)
+         nil
+       (if t
+           (package-install package)
+         package)))
+   packages))
+
+;; make sure to have downloaded archive description.
+;; Or use package-archive-contents as suggested by Nicolas Dudebout
+(or (file-exists-p package-user-dir)
+    (package-refresh-contents))
+
+
+
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+
+;; activate installed packages
+(package-initialize)
+
+(ensure-package-installed 'bookmark+)
+(ensure-package-installed 'java-file-create)
+(ensure-package-installed 'java-snippets)
+(ensure-package-installed 'javadoc-lookup)
+(ensure-package-installed 'jump-char)
+(ensure-package-installed 'jump)
+(ensure-package-installed 'json-mode)
+(ensure-package-installed 'javascript)
+(ensure-package-installed 'helm-chrome)
+(ensure-package-installed 'helm-chrome)
+(ensure-package-installed 'ac-helm)
+(ensure-package-installed 'helm-chrome)
+(ensure-package-installed 'magit-annex)
+(ensure-package-installed 'magit-filenotify)
+(ensure-package-installed 'magit-find-file)
+(ensure-package-installed 'magit-gerrit)
+(ensure-package-installed 'magit-gh-pulls)
+(ensure-package-installed 'magit-gitflow)
+(ensure-package-installed 'magit-log-edit)
+(ensure-package-installed 'magit-push-remote)
+(ensure-package-installed 'magit-simple-keys)
+(ensure-package-installed 'magit-stgit)
+(ensure-package-installed 'magit-svn)
+(ensure-package-installed 'magit-topgit)
+(ensure-package-installed 'magit-tramp)
+(ensure-package-installed 'magithub)
+(ensure-package-installed 'helm)
+(ensure-package-installed 'iedit)
+(ensure-package-installed 'magit)
+
+
+
+
 ;; keep "/opt/local/share/info" as the last element of
 ;; Info-default-directory-list because "/opt/local/share/info" has the
 ;; newest stuff
