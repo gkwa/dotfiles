@@ -196,7 +196,7 @@ case "$(uname)" in
     Darwin)
 
 	export INFOPATH=/usr/local/share/info:$INFOPATH
-	export PYTHONPATH=/usr/local/lib/python2.7/site-packages
+	export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 
 	#homebrew uses this if its defined, otherwise homebrew will
 	#install its own which is fine, but I'm often more uptodate on
@@ -205,7 +205,6 @@ case "$(uname)" in
 
 	export EDITOR=$HOME/bin/e
 	export PATH=~/play/gitster/contrib/git-jump:$PATH
-	export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
 	export PATH=/Applications/p4merge.app/Contents/MacOS:$PATH
 	export PATH=/usr/local/bin:$PATH
 	# for plistbuddy:
