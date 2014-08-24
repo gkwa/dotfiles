@@ -273,7 +273,8 @@ t = tag -l
 [color]
 ##############################
 	ui = auto
-
+[push]
+	default = simple
 ##############################
 # increase memory for git annex
 ##############################
