@@ -1,3 +1,10 @@
+
+
+(add-hook 'after-init-hook
+          (lambda () (setq debug-on-error t)))
+
+;; (set-variable (quote debug-on-error) t nil)
+
 ;; ------------------------------
 ;; Package System, ELPA, MELPA, Marmalade
 ;; ------------------------------
@@ -12,6 +19,65 @@
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   )
 ;; Package System, ELPA, MELPA, Marmalade configuration
+
+(defun ensure-package-installed (&rest packages)
+  "Assure every package is installed, ask for installation if it’s not.
+
+Return a list of installed packages or nil for every skipped package."
+  (mapcar
+   (lambda (package)
+     ;; (package-installed-p 'evil)
+     (if (package-installed-p package)
+         nil
+       (if t
+           (package-install package)
+         package)))
+   packages))
+
+;; make sure to have downloaded archive description.
+;; Or use package-archive-contents as suggested by Nicolas Dudebout
+(or (file-exists-p package-user-dir)
+    (package-refresh-contents))
+
+
+
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+
+;; activate installed packages
+(package-initialize)
+
+(ensure-package-installed 'java-file-create)
+(ensure-package-installed 'java-snippets)
+(ensure-package-installed 'javadoc-lookup)
+(ensure-package-installed 'jump-char)
+(ensure-package-installed 'jump)
+(ensure-package-installed 'json-mode)
+(ensure-package-installed 'javascript)
+(ensure-package-installed 'helm-chrome)
+(ensure-package-installed 'helm-chrome)
+(ensure-package-installed 'ac-helm)
+(ensure-package-installed 'helm-chrome)
+(ensure-package-installed 'magit-annex)
+(ensure-package-installed 'magit-filenotify)
+(ensure-package-installed 'magit-find-file)
+(ensure-package-installed 'magit-gerrit)
+(ensure-package-installed 'magit-gh-pulls)
+(ensure-package-installed 'magit-gitflow)
+(ensure-package-installed 'magit-log-edit)
+(ensure-package-installed 'magit-push-remote)
+(ensure-package-installed 'magit-simple-keys)
+(ensure-package-installed 'magit-stgit)
+(ensure-package-installed 'magit-svn)
+(ensure-package-installed 'magit-topgit)
+(ensure-package-installed 'magit-tramp)
+(ensure-package-installed 'magithub)
+(ensure-package-installed 'helm)
+(ensure-package-installed 'iedit)
+(ensure-package-installed 'magit)
+
+
 
 
 ;; keep "/opt/local/share/info" as the last element of
@@ -251,8 +317,6 @@
 	    (setq explicit-shell-file-name "c:/cygwin64/bin/bash.exe")
 	(setq explicit-shell-file-name "c:/cygwin/bin/bash.exe"))
       ;;      (add-to-list 'Info-directory-list "c:/cygwin/usr/share/info")
-      (require 'cygwin-mount)
-      (cygwin-mount-activate)
 
       ;; http://blogs.law.harvard.edu/hoanga/2008/04/10/fixing-that-really-irritating-perl-warning-setting-locale-failed-on/
       ;; this error happens in emacs subshells when using 'git commit' unless you have set LC_ALL and LC_CTYPE.
@@ -599,6 +663,7 @@ else do C-x 5 0 delete-frame"
  '(comint-input-ignoredups t)
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
+ '(debug-ignored-errors (quote ("^Invalid face:? " "^No window numbered .$" "^Eldoc needs an inferior Python process running." "^Completion needs an inferior Python process running." "^Can't shift all lines enough" beginning-of-line beginning-of-buffer end-of-line end-of-buffer end-of-file buffer-read-only file-supersession)))
  '(delete-by-moving-to-trash t)
  '(diary-file (expand-file-name "~/.diary") t)
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
@@ -1637,10 +1702,14 @@ if breakpoints are present in `python-mode' files"
 ;; ------------------------------
 
 ;; http://www.emacswiki.org/emacs/IndentingJava
+;; (add-hook 'java-mode-hook (lambda ()
+;;                                 (setq c-basic-offset 4
+;;                                       tab-width 4
+;;                                       indent-tabs-mode t)))
 (add-hook 'java-mode-hook (lambda ()
-                                (setq c-basic-offset 4
-                                      tab-width 4
-                                      indent-tabs-mode t)))
+                                (setq c-basic-offset 2
+                                      tab-width 2
+                                      indent-tabs-mode nil)))
 
 
 
@@ -1757,4 +1826,23 @@ if breakpoints are present in `python-mode' files"
                              (setq require-final-newline nil)
                              (setq mode-require-final-newline nil)))
 ;; end nxml-mode configuration
+;; ------------------------------
+
+;; ------------------------------
+;; groovy-mode
+;; ------------------------------
+;;; turn on syntax highlighting
+(global-font-lock-mode 1)
+
+;;; use groovy-mode when file ends in .groovy or has #!/bin/groovy at start
+(autoload 'groovy-mode "groovy-mode" "Major mode for editing Groovy code." t)
+(add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
+(add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
+
+;;; make Groovy mode electric by default.
+(add-hook 'groovy-mode-hook
+          '(lambda ()
+             (require 'groovy-electric)
+             (groovy-electric-mode)))
+;; end groovy-mode configuration
 ;; ------------------------------
