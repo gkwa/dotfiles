@@ -46,35 +46,40 @@ Return a list of installed packages or nil for every skipped package."
 ;; activate installed packages
 (package-initialize)
 
-(ensure-package-installed 'bookmark+)
-(ensure-package-installed 'java-file-create)
-(ensure-package-installed 'java-snippets)
-(ensure-package-installed 'javadoc-lookup)
-(ensure-package-installed 'jump-char)
-(ensure-package-installed 'jump)
-(ensure-package-installed 'json-mode)
-(ensure-package-installed 'javascript)
-(ensure-package-installed 'helm-chrome)
-(ensure-package-installed 'helm-chrome)
-(ensure-package-installed 'ac-helm)
-(ensure-package-installed 'helm-chrome)
-(ensure-package-installed 'magit-annex)
-(ensure-package-installed 'magit-filenotify)
-(ensure-package-installed 'magit-find-file)
-(ensure-package-installed 'magit-gerrit)
-(ensure-package-installed 'magit-gh-pulls)
-(ensure-package-installed 'magit-gitflow)
-(ensure-package-installed 'magit-log-edit)
-(ensure-package-installed 'magit-push-remote)
-(ensure-package-installed 'magit-simple-keys)
-(ensure-package-installed 'magit-stgit)
-(ensure-package-installed 'magit-svn)
-(ensure-package-installed 'magit-topgit)
-(ensure-package-installed 'magit-tramp)
-(ensure-package-installed 'magithub)
-(ensure-package-installed 'helm)
-(ensure-package-installed 'iedit)
-(ensure-package-installed 'magit)
+(ensure-package-installed
+ 'ggtags
+ 'helm-gtags
+ 'bookmark+
+ 'java-file-create
+ 'java-snippets
+ 'javadoc-lookup
+ 'jump-char
+ 'jump
+ 'json-mode
+ 'javascript
+ 'helm-chrome
+ 'helm-chrome
+ 'ac-helm
+ 'helm-chrome
+ 'magit-annex
+ 'magit-filenotify
+ 'magit-find-file
+ 'magit-gerrit
+ 'magit-gh-pulls
+ 'magit-gitflow
+ 'magit-log-edit
+ 'magit-push-remote
+ 'magit-simple-keys
+ 'magit-stgit
+ 'magit-svn
+ 'magit-topgit
+ 'magit-tramp
+ 'magithub
+ 'helm
+ 'iedit
+ 'magit
+)
+
 
 
 
