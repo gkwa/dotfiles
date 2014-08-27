@@ -301,4 +301,4 @@ packedGitWindowSize = 128m
 [branch]
 	autosetuprebase = always
 [credential]
-	helper = osxkeychain
+	helper = cache --timeout=28800
