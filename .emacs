@@ -277,19 +277,6 @@ Return a list of installed packages or nil for every skipped package."
 
 (add-hook 'find-file-hooks 'auto-insert)
 
-(add-hook 'autoinsert-load-hook
-	  '(lambda ()
-	     (add-to-list 'auto-insert-alist
-			  '(
-			    ;; the following need an interpreter
-			    ((sh-mode . "Script Mode") . (concat "#!/bin/sh\n" comment-start "-*- sh -*-\n\n\n" ))
-			    ((visual-basic-mode . "Visual Basic Mode") . (concat comment-start "-*- visual-basic -*-\n\n\n" ))
-			    ((sql-mode . "Sql Mode") . (concat comment-start " -*- sql -*-\n\n\n" ))
-			    ((javascript-mode . "Javascript Mode") . (concat comment-start "-*- javascript -*-\n\n\n" ))
-			    ((caml-mode . "Caml Mode") . (concat comment-start "-*- caml -*-\n\n\n" ))
-			    ((css-mode . "CSS Mode") . (concat comment-start " Last modified $Id$" comment-end "\n" comment-start " $HeadURL$" comment-end "\n\n\n" ))
-			    ))))
-
 ;; --------------------------------------------------
 
 ;; Mode specific key bindings
@@ -1440,7 +1427,6 @@ else do C-x 5 0 delete-frame"
 (autoload 'python-mode "python-mode" "Python editing mode." t)
 (setq interpreter-mode-alist (cons '("python" . python-mode) interpreter-mode-alist))
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'auto-insert-alist '((python-mode . "Python Mode") . (concat comment-start "-*- python -*-\n\n\n" )))
 (setq auto-mode-alist (cons '("SConstruct" . python-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("sconstruct" . python-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("SConscript" . python-mode) auto-mode-alist))
