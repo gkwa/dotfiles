@@ -1582,6 +1582,7 @@ if breakpoints are present in `python-mode' files"
 ;; ------------------------------
 ;; shell
 ;; ------------------------------
+(setq explicit-shell-file-name "/bin/bash")
 (shell)
 
 ;; ------------------------------
