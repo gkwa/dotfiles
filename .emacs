@@ -335,7 +335,9 @@ Return a list of installed packages or nil for every skipped package."
 	(shell-command (concat "explorer "
 			       (replace-regexp-in-string "/" "\\" (file-name-directory (buffer-file-name)) t t)
 			       )))
-      ))
+      )
+  (setq explicit-shell-file-name "/bin/bash"))
+
 
 ;; setup env path for subprocesses
 ;; http://us.generation-nt.com/answer/emacs-compilation-path-help-173905301.html
@@ -1582,7 +1584,6 @@ if breakpoints are present in `python-mode' files"
 ;; ------------------------------
 ;; shell
 ;; ------------------------------
-(setq explicit-shell-file-name "/bin/bash")
 (shell)
 
 ;; ------------------------------
