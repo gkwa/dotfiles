@@ -195,6 +195,7 @@ case "$(uname)" in
 
     Darwin)
 
+	export RBENV_ROOT=/usr/local/var/rbenv
 	export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
 	export INFOPATH=/usr/local/share/info:$INFOPATH
 	export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
@@ -231,6 +232,9 @@ case "$(uname)" in
 	#	export DISPLAY=:0.0
 
 	#
+
+	# rbenv: http://robots.thoughtbot.com/using-rbenv-to-manage-rubies-and-gems
+	eval "$(rbenv init -)"
 
 	encoder_decoder_cleanup()
 	{
