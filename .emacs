@@ -1,6 +1,4 @@
-(add-hook 'after-init-hook
-          (lambda () (setq debug-on-error t)))
-
+;; (add-hook 'after-init-hook (lambda () (setq debug-on-error t)))
 ;; (set-variable (quote debug-on-error) t nil)
 
 ;; ------------------------------
