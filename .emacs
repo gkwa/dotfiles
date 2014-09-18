@@ -49,8 +49,6 @@ Return a list of installed packages or nil for every skipped package."
  'ggtags
  'helm-gtags
  'bookmark+
- 'java-file-create
- 'java-snippets
  'javadoc-lookup
  'jump-char
  'jump
@@ -68,12 +66,10 @@ Return a list of installed packages or nil for every skipped package."
  'magit-gitflow
  'magit-log-edit
  'magit-push-remote
- 'magit-simple-keys
  'magit-stgit
  'magit-svn
  'magit-topgit
  'magit-tramp
- 'magithub
  'helm
  'iedit
  'magit
