@@ -597,5 +597,5 @@ function denter(){
 	while read container_id; do \
 	printf 'PID=$(sudo docker inspect --format "{{ .State.Pid }}" %s)\n' $container_id;
     done;
-    printf "sudo nsenter --target $PID --mount --uts --ipc --net --pid\n"
+    printf 'sudo nsenter --target $PID --mount --uts --ipc --net --pid\n'
 }
