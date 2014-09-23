@@ -593,7 +593,7 @@ complete -o default -o nospace -F _git g
 # Docker shortcuts
 # ------------------------------
 function denter(){
-    sudo docker ps -a -q | \
+    sudo docker ps -q | \
 	while read container_id; do \
 	printf 'PID=$(sudo docker inspect --format "{{ .State.Pid }}" %s)\n' $container_id;
     done;
