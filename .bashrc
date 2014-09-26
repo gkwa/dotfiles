@@ -592,10 +592,8 @@ complete -o default -o nospace -F _git g
 # ------------------------------
 # Docker shortcuts
 # ------------------------------
-function denter(){
-    sudo docker ps -q | \
-	while read container_id; do \
-	printf 'PID=$(sudo docker inspect --format "{{ .State.Pid }}" %s)\n' $container_id;
-    done;
+function denter()
+{
+    printf 'PID=$(sudo docker inspect --format "{{ .State.Pid }}" %s)\n' $(sudo docker ps -q)
     printf 'sudo nsenter --target $PID --mount --uts --ipc --net --pid\n'
 }
