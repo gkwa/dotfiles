@@ -597,3 +597,16 @@ function denter()
     printf 'PID=$(sudo docker inspect --format "{{ .State.Pid }}" %s)\n' $(sudo docker ps -q)
     printf 'sudo nsenter --target $PID --mount --uts --ipc --net --pid\n'
 }
+
+function drmi()
+{
+    imageid=$1
+    if test -z "$imageid"
+    then
+	echo usage drmi {image id}
+    else
+	sudo docker ps -a | grep $imageid | \
+	    perl -ane 'print qq/sudo docker rm $F[0]# @F\n/';
+	echo sudo docker rmi $imageid
+    fi
+}
