@@ -195,6 +195,8 @@ case "$(uname)" in
 
     Darwin)
 
+	export PAGER=cat
+	export COLUMNS=72 #man pages
 	export RBENV_ROOT=/usr/local/var/rbenv
 	export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
 	export INFOPATH=/usr/local/share/info:$INFOPATH
