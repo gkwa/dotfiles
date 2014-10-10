@@ -1,4 +1,4 @@
-alias lsc='(cd /Users/demo/Documents/git_clone_svn_ls && git svn fetch --all && git checkout master||: && git svn rebase && git co LS_Stable_v3.0 && git svn rebase && git co ES_Stable_v3.0 && git svn rebase)'
+alias lsc='(cd /Users/demo/Documents/git_clone_svn_ls && git svn fetch --all && git checkout master||: && git svn rebase && git co ES_Stable_v3.0 && git svn rebase && git co LS_Stable_v3.0 && git svn rebase )'
 
 alias sdc='sudo docker'
 alias vag=vagrant
