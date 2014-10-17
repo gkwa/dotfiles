@@ -828,17 +828,6 @@ else do C-x 5 0 delete-frame"
 ;; ;; browse urls at point via w3m
 ;; ;; (setq ffap-url-fetcher 'w3m-browse-url)
 
-;; ------------------------------
-;; multi-term mode
-;; ------------------------------
-;; http://www.emacswiki.org/emacs/MultiTerm
-(require 'multi-term)
-(setq multi-term-program "/bin/bash")
-
-;; http://www.emacswiki.org/emacs/WindMove
-(when (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
-
-;; this might work great, I just don't have time to play with this now
 ;; ;; ------------------------------
 ;; ;; org-crypt
 ;; ;; ------------------------------
