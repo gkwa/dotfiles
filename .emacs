@@ -457,7 +457,7 @@ Return a list of installed packages or nil for every skipped package."
 ;;	(server-start)
 ;; )))
 
-;; (server-start)
+(server-start)
 
 ;; So emacs won't try to start the server again.
 
