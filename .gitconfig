@@ -184,6 +184,8 @@ l = log --pretty=tformat:'%h %d %ar %s' --reverse
 sb = show-branch
 lpcr = log --patch --color --reverse
 lpc = log --patch --color
+logd = log --date=short --pretty=tformat:'%h %ad %s'
+auth = log --pretty=format:"%h%x09%an%x09%ad%x09%s"
 lpo = log --decorate --pretty=tformat:'%h %d %ar %s'
 lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
 lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
