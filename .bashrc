@@ -197,7 +197,7 @@ case "$(uname)" in
 
 	export PAGER=cat
 	export COLUMNS=72 #man pages
-	export RBENV_ROOT=/usr/local/var/rbenv
+	[ -f /usr/local/var/rbenv ] && export RBENV_ROOT=/usr/local/var/rbenv
 	export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
 	export INFOPATH=/usr/local/share/info:$INFOPATH
 	export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
@@ -235,8 +235,8 @@ case "$(uname)" in
 
 	#
 
-	# rbenv: http://robots.thoughtbot.com/using-rbenv-to-manage-rubies-and-gems
-	eval "$(rbenv init -)"
+	# # rbenv: http://robots.thoughtbot.com/using-rbenv-to-manage-rubies-and-gems
+	# eval "$(rbenv init -)"
 
 	encoder_decoder_cleanup()
 	{
@@ -486,6 +486,7 @@ EOF
 	    gg_replace $1 `echo $1 | sed -e 's/_/-/g'` $2
 	}
 
+        [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 	;;
 
     "Linux|FreeBSD")
