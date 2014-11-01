@@ -205,7 +205,7 @@ case "$(uname)" in
 	#homebrew uses this if its defined, otherwise homebrew will
 	#install its own which is fine, but I'm often more uptodate on
 	#git than brew is.
-	export GIT=/usr/local/bin/git
+	[ -f /usr/local/bin/git ] && export GIT=/usr/local/bin/git
 
 	export EDITOR=$HOME/bin/e
 	export PATH=~/play/gitster/contrib/git-jump:$PATH
