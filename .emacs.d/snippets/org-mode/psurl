@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: psurl
+# key: psurl
+# binding: direct-keybinding
+# --
+powershell -noprofile -executionpolicy unrestricted -command "(new-object System.Net.WebClient).DownloadFile('${1:enumerate}','${1:$(car (last (split-string yas/text "/")))}')" && cmd /c start ${1:$(car (last (split-string yas/text "/")))}$0
