@@ -614,3 +614,94 @@ function drmi()
 	echo sudo docker rmi $imageid
     fi
 }
+
+# Live deploy
+function livedep()
+{
+    # A POSIX variable
+    OPTIND=1         # Reset in case getopts has been used previously in the shell.
+
+    # Initialize our own variables:
+    dryrun=0
+    verbose=0
+
+    while getopts "h?vnf:" opt; do
+	case "$opt" in
+	    h|\?)
+		# show_help
+		exit 0
+		;;
+	    n)  dryrun=1
+		;;
+	    v)  verbose=1
+		;;
+	esac
+    done
+
+    shift $((OPTIND-1))
+
+    [ "$1" = "--" ] && shift
+
+    [ $verbose -eq 1 ] && echo "verbose=$verbose, dryrun=$dryrun, Leftovers: $@"
+
+    # End of file
+
+    set -o errexit #I don't want to push the wrong branch
+
+    GIT='git'
+    if test 'Darwin' != $(uname)
+    then
+	# Ubuntu
+	cd /home/ubuntu/repos-mirror/git_clone_svn_ls
+    else
+	# OSX
+	# GIT=/opt/boxen/homebrew/Cellar/git/2.1.3/bin/git
+	cd ~/Documents/git_clone_svn_ls
+    fi
+
+    head=$(git symbolic-ref --short HEAD)
+    if test 'LS_Stable_v3.0' != "$head"
+    then
+	git checkout 'LS_Stable_v3.0'
+    fi
+
+    head=$(git symbolic-ref --short HEAD)
+    if test 'LS_Stable_v3.0' != "$head"
+    then
+	echo "I couldn't checkout LS_Stable_v3.0, quitting prematurely..."
+	exit 1
+    fi
+
+    git_svn_arg="--quiet"
+    [ $verbose -eq 1 ] && git_svn_arg=""
+    $GIT svn $git_svn_arg fetch
+    $GIT svn $git_svn_arg rebase
+
+    cd /Users/demo/pdev/lstest
+
+    head=$(git symbolic-ref --short HEAD)
+    if test 'ins' != "$head"
+    then
+	git checkout 'ins'
+	exit 1
+    fi
+
+    head=$(git symbolic-ref --short HEAD)
+    if test 'ins' != "$head"
+    then
+	echo "I couldn't checkout 'ins', quitting prematurely..."
+	exit 1
+    fi
+
+    if test $dryrun -ne 1
+    then
+
+	cd /Users/demo/pdev/livemaint
+
+	make clean
+	./gens --production
+	./gens --createPHPDeploymentScript
+	sh create_deployment_script_autogen.sh
+	sh deploy_autogen_all.sh
+    fi
+}
