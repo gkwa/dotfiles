@@ -652,7 +652,7 @@ else do C-x 5 0 delete-frame"
  '(comint-scroll-to-bottom-on-input t)
  '(debug-ignored-errors (quote ("^Invalid face:? " "^No window numbered .$" "^Eldoc needs an inferior Python process running." "^Completion needs an inferior Python process running." "^Can't shift all lines enough" beginning-of-line beginning-of-buffer end-of-line end-of-buffer end-of-file buffer-read-only file-supersession)))
  '(delete-by-moving-to-trash t)
- '(diary-file (expand-file-name "~/.diary") t)
+ '(diary-file (expand-file-name "~/.diary"))
  '(eshell-prompt-function (lambda nil (let* ((prompt (eshell/pwd)) (tmp (string-match "/[^:/\\]*$" prompt))) (concat (substring prompt (+ tmp 1) (length prompt)) " "))) t)
  '(ffap-machine-p-known (quote reject))
  '(frame-title-format "emacs - %b" t)
