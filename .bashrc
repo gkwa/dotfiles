@@ -228,6 +228,7 @@ case "$(uname)" in
 	#pandoc and haskell cabal defaults to ~/.cabal/bin
 	export PATH=~/.cabal/bin:$PATH
 	export MANPATH=~/.cabal/share/man:$MANPATH
+	export PATH=.:$PATH
 
 	# gitk complains "Application initialization failed: couldn't connect to
 	# display ":0.0"" on osx, commented out
