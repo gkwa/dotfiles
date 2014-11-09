@@ -303,3 +303,6 @@ excludesfile = /opt/boxen/config/git/gitignore
 	autosetuprebase = always
 [credential]
 	helper = cache --timeout=28800
+
+[hub]
+protocol = https
