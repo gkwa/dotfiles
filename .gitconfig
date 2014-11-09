@@ -264,14 +264,6 @@ t = tag -l
 #   untracked = cyan
 
 ##############################
-[core]
-##############################
-	; Don't trust file modes
-	filemode = false
-		
-	whitespace = cr-at-eol,space-before-tab,trailing-space
-
-##############################
 [color]
 ##############################
 	ui = auto
@@ -300,6 +292,13 @@ windowMemory = 128m
 [core]
 packedGitLimit = 128m
 packedGitWindowSize = 128m
+; Dont trust file modes
+filemode = false
+whitespace = cr-at-eol,space-before-tab,trailing-space
+packedGitLimit = 128m
+packedGitWindowSize = 128m
+excludesfile = /opt/boxen/config/git/gitignore
+
 [branch]
 	autosetuprebase = always
 [credential]
