@@ -677,26 +677,16 @@ function livedep()
     $GIT svn $git_svn_arg fetch
     $GIT svn $git_svn_arg rebase
 
-    cd /Users/demo/pdev/lstest
+    cd /Users/demo/pdev/livemaint
 
     head=$(git symbolic-ref --short HEAD)
-    if test 'ins' != "$head"
-    then
-	git checkout 'ins'
+    [ 'master' != "$head" ] && {
+	echo "I couldn't checkout 'master', quitting prematurely..."
 	exit 1
-    fi
-
-    head=$(git symbolic-ref --short HEAD)
-    if test 'ins' != "$head"
-    then
-	echo "I couldn't checkout 'ins', quitting prematurely..."
-	exit 1
-    fi
+    }
 
     if test $dryrun -ne 1
     then
-
-	cd /Users/demo/pdev/livemaint
 
 	make clean
 	./gens --production
