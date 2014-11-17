@@ -53,6 +53,7 @@ Return a list of installed packages or nil for every skipped package."
  'jump-char
  'jump
  'json-mode
+ 'puppet-mode
  'javascript
  'helm-chrome
  'helm-chrome
