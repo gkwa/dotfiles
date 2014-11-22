@@ -695,3 +695,11 @@ function livedep()
 	sh deploy_autogen_all.sh
     fi
 }
+
+function restart(){
+    for server in "$@"
+    do
+	cygrunsrv -E "$server"
+	cygrunsrv -S "$server"
+    done
+}
