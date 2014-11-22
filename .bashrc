@@ -696,7 +696,8 @@ function livedep()
     fi
 }
 
-function restart(){
+function restart()
+{
     for server in "$@"
     do
 	cygrunsrv -E "$server"
