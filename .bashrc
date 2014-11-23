@@ -598,8 +598,8 @@ complete -o default -o nospace -F _git g
 # ------------------------------
 function denter()
 {
-    printf 'PID=$(sudo docker inspect --format "{{ .State.Pid }}" %s)\n' $(sudo docker ps -q)
-    printf 'sudo nsenter --target $PID --mount --uts --ipc --net --pid\n'
+    printf 'PID=$(docker inspect --format "{{ .State.Pid }}" %s)\n' $(docker ps -q)
+    printf 'nsenter --target $PID --mount --uts --ipc --net --pid\n'
 }
 
 function drmi()
@@ -609,9 +609,9 @@ function drmi()
     then
 	echo usage drmi {image id}
     else
-	sudo docker ps -a | grep $imageid | \
+	docker ps -a | grep $imageid | \
 	    perl -ane 'print qq/sudo docker rm $F[0]# \Q@F\E\n/';
-	echo sudo docker rmi $imageid
+	echo docker rmi $imageid
     fi
 }
 
