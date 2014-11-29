@@ -1,3 +1,5 @@
+(set-variable (quote shell-file-name) "/usr/bin/bash" nil)
+
 ;; (add-hook 'after-init-hook (lambda () (setq debug-on-error t)))
 ;; (set-variable (quote debug-on-error) t nil)
 
@@ -333,7 +335,7 @@ Return a list of installed packages or nil for every skipped package."
 			       (replace-regexp-in-string "/" "\\" (file-name-directory (buffer-file-name)) t t)
 			       )))
       )
-  (setq explicit-shell-file-name "/bin/bash"))
+  (setq explicit-shell-file-name "/usr/bin/bash"))
 
 
 ;; setup env path for subprocesses
