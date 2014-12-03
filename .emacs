@@ -45,20 +45,20 @@ Return a list of installed packages or nil for every skipped package."
 (package-initialize)
 
 (ensure-package-installed
- 'js2-mode
- 'ggtags
- 'helm-gtags
- 'bookmark+
- 'javadoc-lookup
- 'jump-char
- 'jump
- 'json-mode
- 'puppet-mode
- 'javascript
- 'helm-chrome
- 'helm-chrome
  'ac-helm
+ 'bookmark+
+ 'ggtags
+ 'helm
  'helm-chrome
+ 'helm-gtags
+ 'iedit
+ 'javadoc-lookup
+ 'javascript
+ 'js2-mode
+ 'json-mode
+ 'jump
+ 'jump-char
+ 'magit
  'magit-annex
  'magit-filenotify
  'magit-find-file
@@ -71,9 +71,9 @@ Return a list of installed packages or nil for every skipped package."
  'magit-svn
  'magit-topgit
  'magit-tramp
- 'helm
- 'iedit
- 'magit
+ 'org-trello
+ 'puppet-mode
+ 'yasnippet
 )
 
 
