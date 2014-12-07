@@ -610,7 +610,7 @@ function drmi()
 	echo usage drmi {image id}
     else
 	docker ps -a | grep $imageid | \
-	    perl -ane 'print qq/sudo docker rm $F[0]# \Q@F\E\n/';
+	    perl -ane 'print qq/docker rm $F[0]# \Q@F\E\n/';
 	echo docker rmi $imageid
     fi
 }
