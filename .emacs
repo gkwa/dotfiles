@@ -60,7 +60,6 @@ Return a list of installed packages or nil for every skipped package."
  'jump-char
  'magit
  'magit-annex
- 'magit-filenotify
  'magit-find-file
  'magit-gerrit
  'magit-gh-pulls
