@@ -632,6 +632,7 @@ else do C-x 5 0 delete-frame"
  display-buffer-reuse-frames t ; http://www.cs.cmu.edu/cgi-bin/info2www?%28emacs%29Select%20Buffer
  delete-by-moving-to-trash t
  frame-title-format "emacs - %b"
+ initial-scratch-message ""
  diary-file (expand-file-name "~/.diary"))
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; Make all "yes or no" prompts show "y or n" instead
