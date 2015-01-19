@@ -187,6 +187,7 @@ lpc = log --patch --color
 logd = log --date=short --pretty=tformat:'%h %ad %s'
 auth = log --pretty=format:"%h%x09%an%x09%ad%x09%s" # show author
 authr = log --pretty=format:"%h%x09%an%x09%ar%x09%ad%x09%s" # show author with relative dates
+context =  "!f_gitconfig() { span=10; [ ! -z \"$2\" ] && span=$2; git log --pretty=format:'%h%x09%an%x09%ar%x09%ad%x09%s' --reverse \"$1\"~$span.. | head -"$((2 * $span))"; }; f_gitconfig"
 lpo = log --decorate --pretty=tformat:'%h %d %ar %s'
 lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
 lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
