@@ -53,6 +53,7 @@ Return a list of installed packages or nil for every skipped package."
  'helm-gtags
  'iedit
  'javadoc-lookup
+ 'javascript
  'js2-mode
  'json-mode
  'jump
