@@ -70,6 +70,7 @@ Return a list of installed packages or nil for every skipped package."
  'magit-svn
  'magit-topgit
  'magit-tramp
+ 'org
  'puppet-mode
  'yaml-mode
 )
@@ -915,8 +916,6 @@ else do C-x 5 0 delete-frame"
 ;; ------------------------------
 ;; org-mode
 ;; ------------------------------
-(add-to-list 'load-path "~/.elisp/org-mode")
-(require 'org-install)
 (org-babel-do-load-languages
    'org-babel-load-languages
    '((python . t)))
