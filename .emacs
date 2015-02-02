@@ -917,6 +917,10 @@ else do C-x 5 0 delete-frame"
 ;; ------------------------------
 (add-to-list 'load-path "~/.elisp/org-mode")
 (require 'org-install)
+(org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)))
+
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
