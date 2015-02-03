@@ -64,7 +64,6 @@ Return a list of installed packages or nil for every skipped package."
  'magit-gerrit
  'magit-gh-pulls
  'magit-gitflow
- 'magit-log-edit
  'magit-push-remote
  'magit-stgit
  'magit-svn
