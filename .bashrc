@@ -567,24 +567,6 @@ code_enscript()
     pstopdf "$outfilePS" -o "$outfilePDF"
 }
 
-##############################
-# Git bash completion
-##############################
-# GIT_PS1_SHOWDIRTYSTATE=1
-# GIT_PS1_SHOWSTASHSTATE=1
-# GIT_PS1_SHOWUNTRACKEDFILES=1
-# GIT_PS1_SHOWUPSTREAM="auto"
-# # source ~/.git-completion.bash # this might cause bash to be really slow
-# source ~/play/git/contrib/completion/git-completion.bash
-# PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-
-f1()
-{
-    pushd /Users/demo/Documents/git_clone_svn_ls >/dev/null 2>&1
-    g dc --name-only bc9c183.. | sed 's,^,\(cd /Users/demo/Documents/git_clone_svn_ls \&\& git dc bc9c183.. ,;s,$,\),'
-    popd  >/dev/null 2>&1
-}
-
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # ------------------------------
