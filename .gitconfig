@@ -65,6 +65,7 @@ du = diff @{upstream}..HEAD
 duc = diff --color @{upstream}..HEAD
 ducns = diff --name-status --color @{upstream}..HEAD
 fh = "!sh -c 'git fetch && git reset --hard @{upstream}'"
+rh = reset --hard @{upstream}
 y = "!sh -c 'git commit -am yada-yada && git push'"
 rfl = log --oneline --relative-date -g
 rbw1 = rebase --whitespace=fix HEAD~1
