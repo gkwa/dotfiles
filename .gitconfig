@@ -216,6 +216,7 @@ lgns =  "!f_gitconfig() { [ ! -z \"$1\" ] && git log --abbrev-commit --stat --na
 rb = rebase
 rbs = rebase --skip
 rba = rebase --abort
+rva = revert --abort
 rbc = rebase --continue
 rso = remote show origin
 dns = diff --name-status
