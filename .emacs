@@ -89,6 +89,13 @@ Return a list of installed packages or nil for every skipped package."
 ;; the next dired will point you here
 (add-to-list 'load-path "~/.elisp")
 
+
+;; ------------------------------
+;; yaml, eyaml
+;; ------------------------------
+(add-to-list 'auto-mode-alist '("\\.eyaml\\'" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
+
 ;; ------------------------------
 ;; bookmarkplus mode
 ;; ------------------------------
