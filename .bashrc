@@ -500,6 +500,7 @@ EOF
 
 esac
 
+export HISTTIMEFORMAT=""
 export PATH=$HOME/bin:$PATH
 
 function parse_git_branch
