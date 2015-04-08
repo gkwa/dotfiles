@@ -100,6 +100,7 @@ sra = show-ref --abbrev=7
 lcr = log --pretty=tformat:'%h %d %ar %s' --abbrev-commit --no-merges @{1}.. --reverse
 lcrs = log --abbrev-commit --no-merges --stat @{1}.. --reverse
 lcrp = log --abbrev-commit --no-merges -p     @{1}.. --reverse
+lcrpc = log --abbrev-commit --no-merges -p     @{1}.. --reverse --color
 des = describe
 cbc = "!sh -c 'git rev-parse --abbrev-ref HEAD; git rev-parse --abbrev-ref HEAD |tr -d \"\\r\" | tr -d \"\\n\"|pbcopy'"
 lbc = "!sh -c 'git check-ref-format --branch @{-1}; git check-ref-format --branch @{-1}|tr -d \"\\r\" | tr -d \"\\n\"|pbcopy'"
