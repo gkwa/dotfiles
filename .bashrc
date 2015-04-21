@@ -688,7 +688,8 @@ function restart()
     done
 }
 
-function liveip()
+# liveip
+function lip()
 {
     python -c 'import socket; servers=["LiveAU", "LiveHK", "LiveHK3", "LiveDE", "LiveDB", "LiveEU", "LiveIN", "LiveJP", "LiveSA", "LiveSG", "LiveUS", "LiveUSEast", "t1", "t2", "t3", "t4"]; print "\n".join(["%s %s" % (server, socket.gethostbyname(server)) for server in servers])'
 }
