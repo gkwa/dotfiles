@@ -18,3 +18,24 @@ function apr()
 
     fi
 }
+
+# mysql restart
+function myr()
+{
+    d=$(date +%Y-%m-%d-%s)
+
+    if test ! -z "$(env | grep WINDIR)"
+    then
+	# Windows
+
+	net stop mysql
+	p=/d/MySQLData/mysql
+	[ -f $p.err ] && mv $p.err $p-$d.err
+
+	p=/d/MySQLData/mysql
+	[ -f $p.log ] && mv $p.log $p-$d.log
+
+	net start mysql
+
+    fi
+}
