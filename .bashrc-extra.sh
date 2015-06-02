@@ -35,6 +35,9 @@ function myr()
 	p=/d/MySQLData/mysql
 	[ -f $p.log ] && mv $p.log $p-$d.log
 
+	p=/d/MySQLData/mysql-slow
+	[ -f $p.log ] && mv $p.log $p-$d.log
+
 	net start mysql
 
     fi
