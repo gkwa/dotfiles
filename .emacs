@@ -677,7 +677,6 @@ else do C-x 5 0 delete-frame"
  '(scroll-bar-mode nil)
  '(split-height-threshold nil)
  '(split-width-threshold 0)
- '(tab-stop-list (quote (2 4 6 8 10 12 56 64 72 80 88 96 104 112 120)))
  '(truncate-lines t)
  '(use-file-dialog nil))
 
@@ -1358,6 +1357,25 @@ else do C-x 5 0 delete-frame"
 (global-set-key "i" (quote recompile))
 (global-set-key "u" (quote compile))
 
+(setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60
+						64 68 72 76 80 84 88 92 96 100 104 108 112
+						116 120))
+
+(add-hook 'php-mode-hook 'my-php-mode-hook)
+(defun my-php-mode-hook ()
+  (setq indent-tabs-mode t)
+  (let ((my-tab-width 4))
+    (setq tab-width my-tab-width)
+    (setq c-basic-indent my-tab-width)
+    (set (make-local-variable 'tab-stop-list)
+         (number-sequence my-tab-width 200 my-tab-width))))
+(setq-default c-basic-offset 4)
+
+;; 4 spaces rather than tabs
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 4)
+(setq c-basic-offset 4)
+(setq c-basic-indent 4)
 
 ;; (when (equal system-type 'darwin)
 ;;   (progn
