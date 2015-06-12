@@ -694,8 +694,9 @@ function lip()
     python -c 'import socket; servers=["LiveAU", "LiveHK", "LiveHK3", "LiveDE", "LiveDB", "LiveEU", "LiveIN", "LiveJP", "LiveSA", "LiveSG", "LiveUS", "LiveUSEast", "t1", "t2", "t3", "t4"]; print "\n".join(["%s %s" % (server, socket.gethostbyname(server)) for server in servers])'
 }
 
+[ -f .bashrc-extra.sh ] && source .bashrc-extra.sh
+
 
 PERL_MB_OPT="--install_base \"/Users/demo/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/demo/perl5"; export PERL_MM_OPT;
 
-[ -f .bashrc-extra.sh ] && source .bashrc-extra.sh
