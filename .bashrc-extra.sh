@@ -42,3 +42,15 @@ function myr()
 
     fi
 }
+
+
+function dst()
+{
+    rsync /d/pdev/ds/web/ /c/Apache/htdocs/DS
+}
+
+function dsb()
+{
+    rsync /c/Apache/htdocs/DS/ /d/pdev/ds/web
+    cd /d/pdev/ds/web
+}
