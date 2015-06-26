@@ -204,6 +204,7 @@ lg3 = log --pretty=tformat:'%h %ar - %s' --graph -30
 lg4 = log --pretty=tformat:'%h %ar - %s' --graph -40
 lg5 = log --pretty=tformat:'%h %ar - %s' --graph -50
 
+new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
 
 
 ##############################
