@@ -1406,9 +1406,7 @@ else do C-x 5 0 delete-frame"
 (global-set-key "i" (quote recompile))
 (global-set-key "u" (quote compile))
 
-(setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60
-						64 68 72 76 80 84 88 92 96 100 104 108 112
-						116 120))
+(setq tab-stop-list (number-sequence 4 120 4))
 
 (add-hook 'php-mode-hook 'my-php-mode-hook)
 (defun my-php-mode-hook ()
