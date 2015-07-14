@@ -2,315 +2,242 @@
 # A '#' or ';' character indicates a comment.
 #
 
-##############################
 [user]
-##############################
-name = taylormonacelli
-email = tailor@u.washington.edu
+	name = taylormonacelli
+	email = tailor@u.washington.edu
 
-##############################
 [man]
-##############################
-; viewer = konqueror
-viewer = woman
+	viewer = woman
 
-##############################
 [merge]
-##############################
-tool = p4merge #git config --global merge.tool p4merge
+	tool = p4merge #git config --global merge.tool p4merge
 
-##############################
 [mergetool "p4merge"]
-##############################
-# cmd = p4merge.exe \\\"$BASE\\\" \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$MERGED\\\"
 	cmd = p4merge $BASE $LOCAL $REMOTE $MERGED
 
-
-
-
-
-##############################
 [alias]
-##############################
+	wsadd = "!sh -c 'git diff -- \"$@\" | git apply --cached --whitespace=fix'"
 
-# ------------------------------
-# whitespace cleanup
-# ------------------------------
-# http://gitster.livejournal.com/45019.html
-# # http://gitster.livejournal.com/45019.html
-# wsadd = "!sh -c 'git diff -- \"$@\" | git apply --cached --whitespace=fix;\
-# git checkout -- ${1-.} \"$@\"' -"
+	; http://git-blame.blogspot.com/2012/08/leftover-bits.html
+	hold = "!sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && git branch -D $1' -"
 
-# I'd rather be safe and not run
-# git checkout -- ${1-.} \"$@\"' -"
-# since I can't always be sure that the whitespace should be discarded
-# http://gitster.livejournal.com/45019.html
-wsadd = "!sh -c 'git diff -- \"$@\" | git apply --cached --whitespace=fix'"
-# ------------------------------
+	; http://www.commandlinefu.com/commands/view/2345/show-git-branches-by-date-useful-for-showing-active-branches
+	brd = "! f() { for k in $(git branch -a $@ | sed 's/^..//; s/ .*//'); do echo "$(git log -1 --pretty='%Cgreen%ci %Cblue(%cr)%Creset ' $k) $k" ; done | sort -r; }; f"
 
+	mne = merge --no-edit
+	rs1 = reset HEAD~1
+	gpp = "!sh -c 'git pull --rebase && git push'"
+	sbu = show-branch @{upstream} HEAD
+	du = diff @{upstream}..HEAD
+	duc = diff --color @{upstream}..HEAD
+	ducns = diff --name-status --color @{upstream}..HEAD
+	fh = "!sh -c 'git fetch && git reset --hard @{upstream}'"
+	rh = reset --hard @{upstream}
+	y = "!sh -c 'git commit -am yada-yada && git push'"
+	rfl = log --oneline --relative-date -g
+	rbw1 = rebase --whitespace=fix HEAD~1
+	rbw = rebase --whitespace=fix
+	brvv = branch -v -v
+	brv = branch -v
+	cmat = commit -am t
+	rsm = reset --merge
+	brm = branch --merged
+	brnm = branch --no-merged
+	st = stash
+	sta = stash apply
+	stl = stash list
+	stp = stash pop
+	stk = stash --keep-index
+	conf = diff --name-only --diff-filter=U # list conflicts:
+	cmah = commit --amend -C HEAD
+	cma = commit --amend
+	rb8 = rebase --interactive HEAD~80
+	rb5 = rebase --interactive HEAD~50
+	rb4 = rebase --interactive HEAD~40
+	rb3 = rebase --interactive HEAD~30
+	rb2 = rebase --interactive HEAD~20
+	rb1 = rebase --interactive HEAD~10
+	mss = merge -s subtree --squash --no-commit
+	amfix = am --ignore-space-change --reject --whitespace=fix
+	amig = am --ignore-space-change --reject
+	ama = am --abort
+	ams = am --skip
+	amc = am --continue
+	sra = show-ref --abbrev=7
+	lcr = log --pretty=tformat:'%h %d %ar %s' --abbrev-commit --no-merges @{1}.. --reverse
+	lcrs = log --abbrev-commit --no-merges --stat @{1}.. --reverse
+	lcrp = log --abbrev-commit --no-merges -p     @{1}.. --reverse
+	lcrpc = log --abbrev-commit --no-merges -p     @{1}.. --reverse --color
+	des = describe
+	cbc = "!sh -c 'git rev-parse --abbrev-ref HEAD; git rev-parse --abbrev-ref HEAD |tr -d \"\\r\" | tr -d \"\\n\"|pbcopy'"
+	lbc = "!sh -c 'git check-ref-format --branch @{-1}; git check-ref-format --branch @{-1}|tr -d \"\\r\" | tr -d \"\\n\"|pbcopy'"
+	lb = check-ref-format --branch @{-1}
+	fixperm = "!sh -c 'git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e \"s/^old/NEW/;s/^new/old/;s/^NEW/new/\" | git apply'"
+	# show me the last branch I was on
+	dcno = diff --color --name-only
+	dcns = diff --color --name-status
+	scno = show --color --name-only
+	scns = show --color --name-status
+	j = jump
+	sc = show --color
+	sns = show --color --name-status
 
-# http://git-blame.blogspot.com/2012/08/leftover-bits.html
-hold = "!sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && \
-	  git branch -D $1' -"
+	; show the name of the files without a commit message
+	sno = show --pretty="format:" --name-only
 
+	; from http://gitster.livejournal.com/48015.html
+	rst = "!sh -c 'git reset HEAD^ -- $(git show --pretty=\"format:\" --name-only | sed \"/^$/d\")'"
 
-# http://www.commandlinefu.com/commands/view/2345/show-git-branches-by-date-useful-for-showing-active-branches
-brd = "! f() { for k in $(git branch -a $@ | sed 's/^..//; s/ .*//'); do echo "$(git log -1 --pretty='%Cgreen%ci %Cblue(%cr)%Creset ' $k) $k" ; done | sort -r; }; f"
+	brt = "!f(){ [ -z $2 ] && br=$(git symbolic-ref --short -q HEAD) || br=$2; git checkout -b $1 $br && git push -u origin $1; }; f"
+	dhnc = "!f(){ default=8; hours=$1; git diff 'HEAD@{'${hours:-$default}' hours ago}'..HEAD; }; f"
+	dh = "!f(){ default=8; hours=$1; git diff --color 'HEAD@{'${hours:-$default}' hours ago}'..HEAD; }; f"
+	root = rev-list --abbrev-commit --max-parents=0 HEAD
+	bs = symbolic-ref --short -q HEAD
+	wu = log --stat origin..@{0}  # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
+	# good examples
+	# http://git.wiki.kernel.org/index.php/Aliases
+	br = branch
+	fp = format-patch
+	bra = branch -a
+	head = !git rev-list HEAD -1 --abbrev-commit
+	# https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
+	rs = !sh -c 'git remote show $1' -
+	rso = remote show origin
+	cp = cherry-pick
+	cpa = cherry-pick --abort
+	cpc = cherry-pick --continue
+	co = checkout
+	sub = submodule
+	ap = add --patch
+	dno = diff --name-only
+	ci = commit
+	lc = log ORIG_HEAD.. --stat --no-merges
+	lrn = log --reverse --name-status -m
+	subup = submodule update
+	s = status
+	diffc = diff --cached --color
+	diffcn = diff --cached --color --name-only
+	diffcw = diff --word-diff --color
+	diffw = diff --word-diff
+	dc = diff --color
+	scw = show --color --word-diff
+	dcw = diff --color --word-diff
+	showm = show --color --diff-filter=M
+	dmod = diff --name-only --diff-filter=M
+	dd =   diff --name-only --diff-filter=D
+	lsr =  "!f_gitconfig() { [ ! -z \"$1\" ] && git ls-files \"*$1*\" || git ls-files; }; f_gitconfig"
+	ls = ls-files
+	un = ls-files -o --directory .
+	ds = diff --stat
+	changes = diff --name-status -r
+	gy = 'git commit -am "yada-yada" && git pull --rebase && git push'
+	wipe = reset --hard HEAD
 
+	purr = pull --rebase
+	cl = config -l
+	lsm = ls-files -m
+	lsd = ls-files -d
+	la = log --abbrev-commit
+	lfh = log --pretty=tformat:'%h %d %ar %s' --reverse ..FETCH_HEAD --name-status -m
+	ln = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
+	l2 = log --pretty=tformat:'%h %d %ar %s' --reverse -20
+	l2n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -20 -m
+	l3 = log --pretty=tformat:'%h %d %ar %s' --reverse -30
+	l3n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -30 -m
+	l4 = log --pretty=tformat:'%h %d %ar %s' --reverse -40
+	l4n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -40 -m
+	l5 = log --pretty=tformat:'%h %d %ar %s' --reverse -50
+	l5n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -50 -m
+	l6 = log --pretty=tformat:'%h %d %ar %s' --reverse -60
+	l6n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -60 -m
+	l = log --pretty=tformat:'%h %d %ar %s' --reverse
+	sb = show-branch
+	lpcr = log --patch --color --reverse
+	lpc = log --patch --color
+	logd = log --date=short --pretty=tformat:'%h %ad %s'
+	auth = log --pretty=format:"%h%x09%an%x09%ad%x09%s" # show author
+	authr = log --pretty=format:"%h%x09%an%x09%ar%x09%ad%x09%s" # show author with relative dates
+	context =  "!f_gitconfig() { span=10; [ ! -z \"$2\" ] && span=$2; git log --pretty=format:'%h%x09%an%x09%ar%x09%ad%x09%s' --reverse \"$1\"~$span.. | head -"$((2 * $span))"; }; f_gitconfig"
+	lpo = log --decorate --pretty=tformat:'%h %d %ar %s'
+	lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
+	lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
+	lga = log --pretty=tformat:'%h %ar - %s' --graph
+	lg = log --pretty=tformat:'%h %ar - %s' --graph -40
+	lgb = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	lg1 = log --pretty=tformat:'%h %ar - %s' --graph -10
+	lg2 = log --pretty=tformat:'%h %ar - %s' --graph -20
+	lg3 = log --pretty=tformat:'%h %ar - %s' --graph -30
+	lg4 = log --pretty=tformat:'%h %ar - %s' --graph -40
+	lg5 = log --pretty=tformat:'%h %ar - %s' --graph -50
+	
+	new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
 
-mne = merge --no-edit
-rs1 = reset HEAD~1
-gpp = "!sh -c 'git pull --rebase && git push'"
-sbu = show-branch @{upstream} HEAD
-du = diff @{upstream}..HEAD
-duc = diff --color @{upstream}..HEAD
-ducns = diff --name-status --color @{upstream}..HEAD
-fh = "!sh -c 'git fetch && git reset --hard @{upstream}'"
-rh = reset --hard @{upstream}
-y = "!sh -c 'git commit -am yada-yada && git push'"
-rfl = log --oneline --relative-date -g
-rbw1 = rebase --whitespace=fix HEAD~1
-rbw = rebase --whitespace=fix
-brvv = branch -v -v
-brv = branch -v
-cmat = commit -am t
-rsm = reset --merge
-brm = branch --merged
-brnm = branch --no-merged
-st = stash
-sta = stash apply
-stl = stash list
-stp = stash pop
-stk = stash --keep-index
-conf = diff --name-only --diff-filter=U # list conflicts:
-cmah = commit --amend -C HEAD
-cma = commit --amend
-rb8 = rebase --interactive HEAD~80
-rb5 = rebase --interactive HEAD~50
-rb4 = rebase --interactive HEAD~40
-rb3 = rebase --interactive HEAD~30
-rb2 = rebase --interactive HEAD~20
-rb1 = rebase --interactive HEAD~10
-mss = merge -s subtree --squash --no-commit
-amfix = am --ignore-space-change --reject --whitespace=fix
-amig = am --ignore-space-change --reject
-ama = am --abort
-ams = am --skip
-amc = am --continue
-sra = show-ref --abbrev=7
-lcr = log --pretty=tformat:'%h %d %ar %s' --abbrev-commit --no-merges @{1}.. --reverse
-lcrs = log --abbrev-commit --no-merges --stat @{1}.. --reverse
-lcrp = log --abbrev-commit --no-merges -p     @{1}.. --reverse
-lcrpc = log --abbrev-commit --no-merges -p     @{1}.. --reverse --color
-des = describe
-cbc = "!sh -c 'git rev-parse --abbrev-ref HEAD; git rev-parse --abbrev-ref HEAD |tr -d \"\\r\" | tr -d \"\\n\"|pbcopy'"
-lbc = "!sh -c 'git check-ref-format --branch @{-1}; git check-ref-format --branch @{-1}|tr -d \"\\r\" | tr -d \"\\n\"|pbcopy'"
-lb = check-ref-format --branch @{-1}
-fixperm = "!sh -c 'git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e \"s/^old/NEW/;s/^new/old/;s/^NEW/new/\" | git apply'"
-# show me the last branch I was on
-dcno = diff --color --name-only
-dcns = diff --color --name-status
-scno = show --color --name-only
-scns = show --color --name-status
-j = jump
-sc = show --color
-sns = show --color --name-status
+	; ;;;;;;;;;;;;;;;;;;;;
+	; http://wynnnetherland.com/journal/dotfiles-discovery
+	loll = log --graph --decorate --pretty=oneline --abbrev-commit
+	lol = !git --no-pager loll
+	lolal = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	lola = !git --no-pager lolal
+	; ;;;;;;;;;;;;;;;;;;;;
 
-# show the name of the files without a commit message
-sno = show --pretty="format:" --name-only
+	lgns =  "!f_gitconfig() { [ ! -z \"$1\" ] && git log --abbrev-commit --stat --name-status -\"$1\" || git log --stat --name-status; }; f_gitconfig"
 
-# from http://gitster.livejournal.com/48015.html
-rst = "!sh -c 'git reset HEAD^ -- $(git show --pretty=\"format:\" --name-only | sed \"/^$/d\")'"
+	rb = rebase
+	rbs = rebase --skip
+	rba = rebase --abort
+	rva = revert --abort
+	rbc = rebase --continue
+	rso = remote show origin
+	dns = diff --name-status
+	diffstat=diff --stat -r
+	gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
+	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+	bsu = branch --set-upstream-to
+	su = submodule update
+	sub = submodule
+	ss = submodule summary
+	sf = submodule foreach
+	sfr = submodule foreach --recursive
+	sfu = submodule update --init --recursive
+	mb = merge-base
+	# fetch remote tracking branches
+	frtb = fetch origin refs/heads/*:refs/remotes/origin/*
+	t = tag -l
 
-brt = "!f(){ [ -z $2 ] && br=$(git symbolic-ref --short -q HEAD) || br=$2; git checkout -b $1 $br && git push -u origin $1; }; f"
-dhnc = "!f(){ default=8; hours=$1; git diff 'HEAD@{'${hours:-$default}' hours ago}'..HEAD; }; f"
-dh = "!f(){ default=8; hours=$1; git diff --color 'HEAD@{'${hours:-$default}' hours ago}'..HEAD; }; f"
-root = rev-list --abbrev-commit --max-parents=0 HEAD
-bs = symbolic-ref --short -q HEAD
-wu = log --stat origin..@{0}  # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
-# good examples
-# http://git.wiki.kernel.org/index.php/Aliases
-br = branch
-fp = format-patch
-bra = branch -a
-head = !git rev-list HEAD -1 --abbrev-commit
-# https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
-rs = !sh -c 'git remote show $1' -
-rso = remote show origin
-cp = cherry-pick
-cpa = cherry-pick --abort
-cpc = cherry-pick --continue
-co = checkout
-sub = submodule
-ap = add --patch
-dno = diff --name-only
-ci = commit
-lc = log ORIG_HEAD.. --stat --no-merges
-lrn = log --reverse --name-status -m
-subup = submodule update
-s = status
-diffc = diff --cached --color
-diffcn = diff --cached --color --name-only
-diffcw = diff --word-diff --color
-diffw = diff --word-diff
-dc = diff --color
-scw = show --color --word-diff
-dcw = diff --color --word-diff
-showm = show --color --diff-filter=M
-dmod = diff --name-only --diff-filter=M
-dd =   diff --name-only --diff-filter=D
-lsr =  "!f_gitconfig() { [ ! -z \"$1\" ] && git ls-files \"*$1*\" || git ls-files; }; f_gitconfig"
-ls = ls-files
-un = ls-files -o --directory .
-ds = diff --stat
-changes = diff --name-status -r
-gy = 'git commit -am "yada-yada" && git pull --rebase && git push'
-wipe = reset --hard HEAD
-
-purr = pull --rebase
-cl = config -l
-lsm = ls-files -m
-lsd = ls-files -d
-la = log --abbrev-commit
-lfh = log --pretty=tformat:'%h %d %ar %s' --reverse ..FETCH_HEAD --name-status -m
-ln = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
-l2 = log --pretty=tformat:'%h %d %ar %s' --reverse -20
-l2n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -20 -m
-l3 = log --pretty=tformat:'%h %d %ar %s' --reverse -30
-l3n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -30 -m
-l4 = log --pretty=tformat:'%h %d %ar %s' --reverse -40
-l4n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -40 -m
-l5 = log --pretty=tformat:'%h %d %ar %s' --reverse -50
-l5n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -50 -m
-l6 = log --pretty=tformat:'%h %d %ar %s' --reverse -60
-l6n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -60 -m
-l = log --pretty=tformat:'%h %d %ar %s' --reverse
-sb = show-branch
-lpcr = log --patch --color --reverse
-lpc = log --patch --color
-logd = log --date=short --pretty=tformat:'%h %ad %s'
-auth = log --pretty=format:"%h%x09%an%x09%ad%x09%s" # show author
-authr = log --pretty=format:"%h%x09%an%x09%ar%x09%ad%x09%s" # show author with relative dates
-context =  "!f_gitconfig() { span=10; [ ! -z \"$2\" ] && span=$2; git log --pretty=format:'%h%x09%an%x09%ar%x09%ad%x09%s' --reverse \"$1\"~$span.. | head -"$((2 * $span))"; }; f_gitconfig"
-lpo = log --decorate --pretty=tformat:'%h %d %ar %s'
-lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
-lpon = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
-lga = log --pretty=tformat:'%h %ar - %s' --graph
-lg = log --pretty=tformat:'%h %ar - %s' --graph -40
-lgb = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-lg1 = log --pretty=tformat:'%h %ar - %s' --graph -10
-lg2 = log --pretty=tformat:'%h %ar - %s' --graph -20
-lg3 = log --pretty=tformat:'%h %ar - %s' --graph -30
-lg4 = log --pretty=tformat:'%h %ar - %s' --graph -40
-lg5 = log --pretty=tformat:'%h %ar - %s' --graph -50
-
-new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
-
-
-##############################
-# http://wynnnetherland.com/journal/dotfiles-discovery
-loll = log --graph --decorate --pretty=oneline --abbrev-commit
-lol = !git --no-pager loll
-lolal = log --graph --decorate --pretty=oneline --abbrev-commit --all
-lola = !git --no-pager lolal
-##############################
-
-lgns =  "!f_gitconfig() { [ ! -z \"$1\" ] && git log --abbrev-commit --stat --name-status -\"$1\" || git log --stat --name-status; }; f_gitconfig"
-
-rb = rebase
-rbs = rebase --skip
-rba = rebase --abort
-rva = revert --abort
-rbc = rebase --continue
-rso = remote show origin
-dns = diff --name-status
-diffstat=diff --stat -r
-gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
-whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
-whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
-bsu = branch --set-upstream-to
-su = submodule update
-sub = submodule
-ss = submodule summary
-sf = submodule foreach
-sfr = submodule foreach --recursive
-sfu = submodule update --init --recursive
-mb = merge-base
-# fetch remote tracking branches
-frtb = fetch origin refs/heads/*:refs/remotes/origin/*
-t = tag -l
-
-##############################
 [web]
-##############################
 	browser = firefox
-# [log]
-# # from: git config --global log.abbrevCommit 7
-#	abbrevCommit = 7
 
-##############################
 [rerere]
-##############################
 	enabled = true
 
-# [color]
-#   ui = true
-#   diff = auto
-# [color "branch"]
-#   current = yellow reverse
-#   local = yellow
-#   remote = green
-# [color "diff"]
-#   meta = yellow bold
-#   frag = magenta bold
-#   old = red bold
-#   new = green bold
-#   whitespace = red reverse
-# [color "status"]
-#   added = yellow
-#   changed = green
-#   untracked = cyan
-
-##############################
 [color]
-##############################
 	ui = auto
+
 [push]
 	default = simple
-##############################
-# increase memory for git annex
-##############################
-# # When using git-annex, I ran into memory problems when adding large files:
-# (Recording state in git...)
-# [streambox@imagepc:~/annex(master)]$ git commit -am added
-# [master (root-commit) fe5e280] added
-# fatal: Out of memory, malloc failed (tried to allocate 1436901077 bytes)
-# [streambox@imagepc:~/annex(master)]$ #
-# cd 'd:/'
-
-# This page recommends to increate amt memory git can use:
-# https://github.com/gitextensions/gitextensions/issues/1632
 
 [pack]
-threads = 1
-deltaCacheSize = 128m
-packSizeLimit = 128m
-windowMemory = 128m
+	threads = 1
+	deltaCacheSize = 128m
+	packSizeLimit = 128m
+	windowMemory = 128m
 
 [core]
-packedGitLimit = 128m
-packedGitWindowSize = 128m
-; Dont trust file modes
-filemode = false
-whitespace = cr-at-eol,space-before-tab,trailing-space
-packedGitLimit = 128m
-packedGitWindowSize = 128m
-excludesfile = /opt/boxen/config/git/gitignore
+	packedGitLimit = 128m
+	packedGitWindowSize = 128m
+	; Dont trust file modes
+	filemode = false
+	whitespace = cr-at-eol,space-before-tab,trailing-space
+	packedGitLimit = 128m
+	packedGitWindowSize = 128m
+	excludesfile = /opt/boxen/config/git/gitignore
 
 [branch]
 	autosetuprebase = always
+
 [credential]
 	helper = cache --timeout=28800
 
 [hub]
-protocol = https
+	protocol = https
