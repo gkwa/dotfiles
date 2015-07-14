@@ -108,8 +108,8 @@ source ~/.alias
 
 ##############################
 # http://nuclearsquid.com/writings/git-tricks-tips-workflows/
-# Now, you’ll probably also want to have the Git Autocompletion when
-# you’re using g as well. Add this to your .bashrc or .zshrc:
+# Now, you'll probably also want to have the Git Autocompletion when
+# you're using g as well. Add this to your .bashrc or .zshrc:
 
 # Autocomplete for 'g' as well
 complete -o default -o nospace -F _git g
@@ -541,7 +541,7 @@ PS1="[\u@\h:\w\$(parse_git_branch)]$ "
 # "\C-v": paste-from-clipboard
 # stty lnext ^q stop undef start undef
 
-export ALTERNATE_EDITOR=””
+export ALTERNATE_EDITOR=""
 
 drop()
 {
