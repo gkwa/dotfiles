@@ -1418,6 +1418,11 @@ else do C-x 5 0 delete-frame"
          (number-sequence my-tab-width 200 my-tab-width))))
 (setq-default c-basic-offset 4)
 
+;; 4 spaces rather than tabs
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 4)
+(setq c-basic-offset 4)
+(setq c-basic-indent 4)
 
 ;; (when (equal system-type 'darwin)
 ;;   (progn
@@ -1736,10 +1741,6 @@ if breakpoints are present in `python-mode' files"
 (add-to-list 'load-path "~/.elisp/js2-mode-read-only")
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
-(setq js2-mode-hook
-  '(lambda () (progn
-    (set-variable 'indent-tabs-mode t))))
 
 ;; end js2-mode configuration
 ;; ------------------------------
