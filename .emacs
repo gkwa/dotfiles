@@ -49,6 +49,7 @@ Return a list of installed packages or nil for every skipped package."
  'bookmark+
  'ggtags
  'helm
+ 'helm-ag
  'helm-chrome
  'helm-gtags
  'helm-rails
