@@ -1895,3 +1895,15 @@ if breakpoints are present in `python-mode' files"
              (groovy-electric-mode)))
 ;; end groovy-mode configuration
 ;; ------------------------------
+
+
+;; ------------------------------
+;; json-mode
+;; ------------------------------
+(add-hook 'json-mode-hook
+          (lambda ()
+            (make-local-variable 'js-indent-level)
+            (setq js-indent-level 2)))
+
+;; end json-mode configuration
+;; ------------------------------
