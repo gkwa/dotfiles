@@ -684,6 +684,7 @@ else do C-x 5 0 delete-frame"
  '(helm-locate-create-db-command "LC_ALL='C' gupdatedb --output='%s' --localpaths='%s'")
  '(ido-case-fold t)
  '(ispell-program-name "aspell")
+ '(js-indent-level 8)
  '(magit-last-seen-setup-instructions "1.4.0" t)
  '(menu-bar-mode nil)
  '(mode-line-inverse-video nil)
