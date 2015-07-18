@@ -181,6 +181,7 @@
 	rbs = rebase --skip
 	rba = rebase --abort
 	rva = revert --abort
+	rvne = revert --no-edit HEAD
 	rbc = rebase --continue
 	rso = remote show origin
 	dns = diff --name-status
