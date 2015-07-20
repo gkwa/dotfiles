@@ -172,7 +172,7 @@
 	; git branch status 1
 	brs1 = for-each-ref --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' 
 	; git branch status 1
-	brs2 = for-each-ref --sort=-committerdate --format='%(color:green)%(committerdate:iso) %(color:red)%(committerdate:relative) %(color:blue)%(authorname)%09%(color:reset)%(refname:short)'
+	brs2 = for-each-ref --sort=-committerdate --format='%(color:green)%(committerdate:short) %(color:red)%(committerdate:relative) %(color:blue)%(authorname)%09%(color:reset)%(refname:short)'
 
 	new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
 
