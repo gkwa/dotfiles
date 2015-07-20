@@ -17,7 +17,7 @@
 	brd = "! f() { for k in $(git branch -a $@ | sed 's/^..//; s/ .*//'); do echo "$(git log -1 --pretty='%Cgreen%ci %Cblue(%cr)%Creset ' $k) $k" ; done | sort -r; }; f"
 
 	; git squash N
-	squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
+	sq = "!f(){ git reset --soft HEAD~${1} && git commit --no-edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 
 	mne = merge --no-edit
 	rs1 = reset HEAD~1
@@ -27,7 +27,10 @@
 	duc = diff --color @{upstream}..HEAD
 	ducns = diff --name-status --color @{upstream}..HEAD
 	fh = "!sh -c 'git fetch && git reset --hard @{upstream}'"
-	rh = reset --hard @{upstream}
+	rhu = reset --hard @{upstream}
+	rh = reset --hard
+	rh1 = reset HEAD^ --hard
+	rh2 = reset HEAD^^ --hard
 	y = "!sh -c 'git commit -am yada-yada && git push'"
 	rfl = log --oneline --relative-date -g
 	rbw1 = rebase --whitespace=fix HEAD~1
@@ -146,12 +149,12 @@
 	l6 = log --pretty=tformat:'%h %d %ar %s' --reverse -60
 	l6n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -60 -m
 	l = log --pretty=tformat:'%h %d %ar %s' --reverse
+	lv = log --reverse --pretty=format:'%C(yellow)%h %C(blue)%ad(%ar)%C(red)%d %C(reset)%s%C(green) [%an/%cn]' --decorate --date=short --numstat
 	sb = show-branch
 	lpcr = log --patch --color --reverse
 	lpc = log --patch --color
 	logd = log --date=short --pretty=tformat:'%h %ad %s'
-	auth = log --pretty=format:"%h%x09%an%x09%ad%x09%s" # show author
-	authr = log --pretty=format:"%h%x09%an%x09%ar%x09%ad%x09%s" # show author with relative dates
+	auth = log --format='%h [%<(12,trunc)%aN] [%<(12,trunc)%cN] [%<(7,trunc)%ar] %<(70,trunc)%s' # author, committer, relative date, comment with truncation
 	context =  "!f_gitconfig() { span=10; [ ! -z \"$2\" ] && span=$2; git log --pretty=format:'%h%x09%an%x09%ar%x09%ad%x09%s' --reverse \"$1\"~$span.. | head -"$((2 * $span))"; }; f_gitconfig"
 	lpo = log --decorate --pretty=tformat:'%h %d %ar %s'
 	lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
