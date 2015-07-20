@@ -1866,6 +1866,15 @@ if breakpoints are present in `python-mode' files"
 ;; helm auto-complete in dired sucks, disable it
 (setq helm-ff-auto-update-initial-value nil)
 
+;; https://github.com/felix-d/dot-files/blob/e773f0ccbc39f6d858c09fa19735255d2317eec4/.emacs.d/init/helm-setup.el#L5
+(setq helm-locate-command
+        (case system-type
+          ('gnu/linux "locate -i -r %s")
+          ('berkeley-unix "locate -i %s")
+          ('windows-nt "es %s")
+          ('darwin "mdfind -name %s %s")
+          (t "locate %s")))
+
 ;; end helm configuration
 ;; ------------------------------
 
