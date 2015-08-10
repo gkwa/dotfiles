@@ -19,6 +19,7 @@
 	; git squash N
 	sq = "!f(){ git reset --soft HEAD~${1} && git commit --no-edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 
+	mnf = merge --no-edit --no-ff
 	mne = merge --no-edit
 	rs1 = reset HEAD~1
 	gpp = "!sh -c 'git pull --rebase && git push'"
