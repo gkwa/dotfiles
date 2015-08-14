@@ -207,7 +207,7 @@
 	sfr = submodule foreach --recursive
 	sfu = submodule update --init --recursive
 	mb = merge-base
-	fp = fetch --prune
+	fep = fetch --prune
 	# fetch remote tracking branches
 	frtb = fetch origin refs/heads/*:refs/remotes/origin/*
 	t = tag -l
