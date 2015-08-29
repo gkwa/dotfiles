@@ -70,6 +70,7 @@ Return a list of installed packages or nil for every skipped package."
  'magit-svn
  'magit-topgit
  'magit-tramp
+ 'markdown-mode
  'org
  'php-mode
  'puppet-mode
