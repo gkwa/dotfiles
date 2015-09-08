@@ -78,7 +78,7 @@
 	scno = show --color --name-only
 	scns = show --color --name-status
 	j = jump
-	sc = show --color
+	sc = show --color --abbrev-commit
 	sns = show --color --name-status
 
 	; show the name of the files without a commit message
