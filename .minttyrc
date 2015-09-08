@@ -2,6 +2,7 @@ AllowBlinking=yes
 BackgroundColour=0,0,0
 ClickTargetMod=shift
 Columns=106
+ConfirmExit=no
 CopyOnSelect=yes
 CursorBlinks=no
 CursorColour=0,255,0
