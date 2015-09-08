@@ -74,6 +74,7 @@ Return a list of installed packages or nil for every skipped package."
  'org
  'php-mode
  'puppet-mode
+ 'tidy
  'unbound
  'yaml-mode
  'yasnippet
