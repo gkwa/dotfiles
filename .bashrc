@@ -484,7 +484,7 @@ function restart()
 # liveip
 function lip()
 {
-    python -c 'import socket; servers=["LiveJP","LiveSG","LiveAU","LiveUS","LiveUSEast","LiveSA","LiveEU","LiveDE","LiveIN","LiveNI","tl1","tl2","tl3","tl4"]; print "\n".join(["%s %s" % (server, socket.gethostbyname(server)) for server in servers])' #
+    python -c 'import socket; servers=["LiveChicago","LiveJP","LiveSG","LiveAU","LiveUS","LiveUSEast","LiveSA","LiveEU","LiveDE","LiveIN","LiveNI","tl1","tl2","tl3","tl4"]; print "\n".join(["%s %s" % (server, socket.gethostbyname(server)) for server in servers])' #
 }
 
 [ -f .bashrc-extra.sh ] && source .bashrc-extra.sh
