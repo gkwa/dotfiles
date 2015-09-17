@@ -93,7 +93,7 @@
 	dh = "!f(){ default=8; hours=$1; git diff --color 'HEAD@{'${hours:-$default}' hours ago}'..HEAD; }; f"
 	root = rev-list --abbrev-commit --max-parents=0 HEAD
 	bs = symbolic-ref --short -q HEAD
-	wu = log --stat origin..@{0}  # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
+	wu = log --stat origin..@{0} --abbrev-commit # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
 	# good examples
 	# http://git.wiki.kernel.org/index.php/Aliases
 	br = branch
@@ -111,8 +111,8 @@
 	ap = add --patch
 	dno = diff --name-only
 	ci = commit
-	lc = log ORIG_HEAD.. --stat --no-merges
-	lrn = log --reverse --name-status -m
+	lc = log ORIG_HEAD.. --stat --no-merges --abbrev-commit
+	lrn = log --reverse --name-status -m --abbrev-commit
 	subup = submodule update
 	s = status
 	diffc = diff --cached --color
@@ -153,8 +153,8 @@
 	l = log --pretty=tformat:'%h %d %ar %s' --reverse
 	lv = log --reverse --pretty=format:'%C(yellow)%h %C(blue)%ad(%ar)%C(red)%d %C(reset)%s%C(green) [%an/%cn]' --decorate --date=short --numstat
 	sb = show-branch
-	lpcr = log --patch --color --reverse
-	lpc = log --patch --color
+	lpcr = log --patch --color --reverse --abbrev-commit
+	lpc = log --patch --color --abbrev-commit
 	logd = log --date=short --pretty=tformat:'%h %ad %s'
 	auth = log --format='%h [%<(12,trunc)%aN] [%<(12,trunc)%cN] [%<(7,trunc)%ar] %<(70,trunc)%s' # author, committer, relative date, comment with truncation
 	context =  "!f_gitconfig() { span=10; [ ! -z \"$2\" ] && span=$2; git log --pretty=format:'%h%x09%an%x09%ar%x09%ad%x09%s' --reverse \"$1\"~$span.. | head -"$((2 * $span))"; }; f_gitconfig"
