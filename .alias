@@ -9,6 +9,7 @@ alias dosu=dos2unix
 alias udos=unix2dos
 alias rn_fixperm='ssh rn "time chown -R admin:admin /Production/Streambox/Beta/{Encoder,Decoder}"'
 alias ec=emacsclient
+alias ect='emacsclient -c -t'
 alias ecd='make -f ~/bin/emacs_daemon.mk emacsclient_debug_init'
 alias eck='make -f ~/bin/emacs_daemon.mk kill'
 alias m="make"
