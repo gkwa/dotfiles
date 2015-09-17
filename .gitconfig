@@ -35,6 +35,7 @@
 	rh2 = reset HEAD^^ --hard
 	y = "!sh -c 'git commit -am yada-yada && git push'"
 	rfl = log --oneline --relative-date -g
+	rfl4 = log --oneline --relative-date -g -40
 	rbw1 = rebase --whitespace=fix HEAD~1
 	rbw = rebase --whitespace=fix
 	brvv = branch -v -v
