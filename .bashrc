@@ -493,3 +493,8 @@ function lip()
 # PERL_MB_OPT="--install_base \"/Users/demo/perl5\""; export PERL_MB_OPT;
 # PERL_MM_OPT="INSTALL_BASE=/Users/demo/perl5"; export PERL_MM_OPT;
 
+
+# https://github.com/docker/machine#docker-machine
+# bring in environment variables for docker (so that 'docker ps' works
+# for example)
+docker-machine --version >/dev/null 2>&1 && eval "$(docker-machine env default)"
