@@ -81,8 +81,6 @@ case "$(uname)" in
 
     Darwin)
 
-	export PAGER=cat
-	export COLUMNS=72 #man pages
 	[ -f /usr/local/var/rbenv ] && export RBENV_ROOT=/usr/local/var/rbenv
 	export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
 	export INFOPATH=/usr/local/share/info:$INFOPATH
@@ -96,7 +94,6 @@ case "$(uname)" in
 	export EDITOR=$HOME/bin/e
 	export PATH=~/play/gitster/contrib/git-jump:$PATH
 	export PATH=/Applications/p4merge.app/Contents/MacOS:$PATH
-	export PATH=/usr/local/bin:$PATH
 	# for plistbuddy:
 	export PATH=$PATH:/usr/libexec
 	# for Apple /Developer/usr/bin/make since macports is broken now
@@ -104,7 +101,6 @@ case "$(uname)" in
 	export PATH=$PATH:/usr/local/sbin
 	# for emacsclient when emacs is in daemon mode
 	export EMACS_SERVER_FILE=~/.emacs.d/server/emacs1000
-	export PATH=/usr/local/bin:$PATH
 
 	# https://groups.google.com/forum/?fromgroups=#!topic/asciidoc/FC-eOwU8rYg
 	# brew install asciidoc; cd ~/play/gitster && make man "make
@@ -114,7 +110,6 @@ case "$(uname)" in
 	#pandoc and haskell cabal defaults to ~/.cabal/bin
 	export PATH=~/.cabal/bin:$PATH
 	export MANPATH=~/.cabal/share/man:$MANPATH
-	export PATH=.:$PATH
 
 	# gitk complains "Application initialization failed: couldn't connect to
 	# display ":0.0"" on osx, commented out
@@ -284,8 +279,6 @@ case "$(uname)" in
 	;;
 
     Linux|FreeBSD)
-
-	export PATH=/usr/local/bin:$PATH
 
 	ip=$(/sbin/ip addr show dev eth0 | grep "inet " | cut -d\/ -f1 | awk '{print $2}')
 	if test ! -z "$ip"; then
@@ -500,3 +493,9 @@ function lip()
 # bring in environment variables for docker (so that 'docker ps' works
 # for example)
 docker-machine --version >/dev/null 2>&1 && eval "$(docker-machine env default)"
+
+export PAGER=cat
+export COLUMNS=72 #man pages
+
+export PATH=/usr/local/bin:$PATH
+export PATH=.:$PATH
