@@ -283,7 +283,7 @@ case "$(uname)" in
         [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 	;;
 
-    "Linux|FreeBSD")
+    Linux|FreeBSD)
 
 	export PATH=/usr/local/bin:$PATH
 
