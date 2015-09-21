@@ -285,6 +285,8 @@ case "$(uname)" in
 
     "Linux|FreeBSD")
 
+	export PATH=/usr/local/bin:$PATH
+
 	ip=$(/sbin/ip addr show dev eth0 | grep "inet " | cut -d\/ -f1 | awk '{print $2}')
 	if test ! -z "$ip"; then
 	    PS1="[\d \t \u@${ip}:\w ]$ "
