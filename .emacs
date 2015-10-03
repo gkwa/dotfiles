@@ -55,7 +55,6 @@ Return a list of installed packages or nil for every skipped package."
  'helm-rails
  'iedit
  'javadoc-lookup
- 'javascript
  'js2-mode
  'json-mode
  'jump
