@@ -6,28 +6,14 @@ alias vag=vagrant
 alias ofi=offlineimap
 alias kmu='pkill -2 -u $UID mu # send SIGINT; sleep 1; mu index'
 alias ka=killall
-alias dosu=dos2unix
-alias udos=unix2dos
-alias rn_fixperm='ssh rn "time chown -R admin:admin /Production/Streambox/Beta/{Encoder,Decoder}"'
 alias ec=emacsclient
 alias ect='emacsclient -c -t'
 alias ects='emacsclient -c -t --server=emacs1000'
-alias ecd='make -f ~/bin/emacs_daemon.mk emacsclient_debug_init'
-alias eck='make -f ~/bin/emacs_daemon.mk kill'
-alias m="make"
-alias gl="git config -l | grep -i "
-alias gu="git config -l | grep -i url"
 alias gj="git jump"
 alias gdc="git diff --check"
 alias myumount='mount | cut -d\( -f1 | grep // | sed -e "s,.* on ,," | sort|xargs umount'
 
-alias rdpk='killall "Remote Desktop Connection"'
-alias h='history| sed -e "s,^.....,,"'
-alias svncs="svn status | sed -e 's,^... *,\(,;s,$,\),'"
 alias gurl="git config -l | grep url | grep 'ssh://dev/' >/dev/null && gl url | sed -e 's,ssh://dev/,ssh://boxstream@development.streambox.com:5979/,;s,=, ,;s,^,git config ,'"
-alias mykill=~/Documents/mykill.sh
-alias allmount='prod;user;it;support;video;qa;dev;tay;marketing'
-alias e="emacs -nw"
 alias rsync='rsync -rltgoD --progress'
 alias g=git
 alias ct="((test -d ~/p/sbtunnel && pushd ~/p/sbtunnel && pwd && perl -w ct.pl|pbcopy) || (test -d ~/pdev/sbtunnel && pushd ~/pdev/sbtunnel && perl -w ct.pl|pbcopy))"
