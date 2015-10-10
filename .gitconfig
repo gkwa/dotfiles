@@ -150,7 +150,7 @@
 	l5n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -50 -m
 	l6 = log --pretty=tformat:'%h %d %ar %s' --reverse -60
 	l6n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -60 -m
-	l = log --pretty=tformat:'%h %d %ar %s' --reverse
+	l = log --pretty=tformat:'%h %d %ar %s' --reverse -200
 	lv = log --reverse --pretty=format:'%C(yellow)%h %C(blue)%ad(%ar)%C(red)%d %C(reset)%s%C(green) [%an/%cn]' --decorate --date=short --numstat
 	sb = show-branch
 	lpcr = log --patch --color --reverse --abbrev-commit
