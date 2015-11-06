@@ -172,6 +172,7 @@
 	lg4 = log --pretty=tformat:'%h %ar - %s' --graph -40
 	lg5 = log --pretty=tformat:'%h %ar - %s' --graph -50
 	
+	lac = log --reverse --pretty=tformat:'%h %d %C(blue)%an%C(reset) %ar %s' --first-parent --decorate --all --since=yesterday
 
 	; git branch status 1
 	brs1 = for-each-ref --sort=committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' 
