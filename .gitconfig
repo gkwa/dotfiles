@@ -101,7 +101,7 @@
 	br = branch
 	fp = format-patch
 	bra = branch -a
-	head = !git rev-list HEAD -1 --abbrev-commit
+	head = rev-parse --short HEAD
 	# https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
 	rs = !sh -c 'git remote show $1' -
 	rso = remote show origin
