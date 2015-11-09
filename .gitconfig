@@ -198,6 +198,7 @@
 	rbs = rebase --skip
 	rba = rebase --abort
 	rva = revert --abort
+	rvc = revert --continue
 	rvne = revert --no-edit
 	rbc = rebase --continue
 	rso = remote show origin
