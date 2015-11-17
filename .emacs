@@ -49,6 +49,7 @@ Return a list of installed packages or nil for every skipped package."
  'bookmark+
  'ggtags
  'editorconfig
+ 'go-mode
  'helm
  'helm-ag
  'helm-chrome
