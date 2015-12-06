@@ -163,7 +163,7 @@
 	lpo = log --decorate --pretty=tformat:'%h %d %ar %s'
 	lfp = log --decorate --pretty=tformat:'%h %d %ar %s' --first-parent --reverse -30
 	lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
-	lpon = log --pretty=format:'%h %d %ar %s' --reverse --name-status
+	lpon = log --pretty=format:'%h%d %ar %s' --reverse --name-status
 	lga = log --pretty=tformat:'%h %ar - %s' --graph
 	lg = log --pretty=tformat:'%h %ar - %s' --graph -40
 	lgb = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
