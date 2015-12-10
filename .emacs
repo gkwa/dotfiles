@@ -977,7 +977,9 @@ else do C-x 5 0 delete-frame"
 ;; ------------------------------
 (org-babel-do-load-languages
    'org-babel-load-languages
-   '((python . t)))
+   '(
+	 (python . t)
+	 ))
 
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
