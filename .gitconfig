@@ -115,6 +115,7 @@
 	ap = add --patch
 	dno = diff --name-only
 	ci = commit
+	cim = commit -m
 	lc = log ORIG_HEAD.. --stat --no-merges --abbrev-commit
 	lrn = log --reverse --name-status -m --abbrev-commit
 	subup = submodule update
