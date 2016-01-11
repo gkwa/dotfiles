@@ -98,6 +98,14 @@ Return a list of installed packages or nil for every skipped package."
 (add-to-list 'load-path "~/.elisp")
 
 
+
+;; ------------------------------
+;; Terraform
+;; ------------------------------
+(add-to-list 'auto-mode-alist '("\\.tf\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.tfvars\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.tfstate\\'" . json-mode))
+
 ;; ------------------------------
 ;; yaml, eyaml
 ;; ------------------------------
