@@ -165,7 +165,7 @@
 	logd = log --date=short --pretty=tformat:'%h %ad %s'
 	auth = log --format='%h [%<(12,trunc)%aN] [%<(12,trunc)%cN] [%<(7,trunc)%ar] %<(70,trunc)%s' -30 # author, committer, relative date, comment with truncation
 	context =  "!f_gitconfig() { span=10; [ ! -z \"$2\" ] && span=$2; git log --pretty=format:'%h%x09%an%x09%ar%x09%ad%x09%s' --reverse \"$1\"~$span.. | head -"$((2 * $span))"; }; f_gitconfig"
-	lpo = log --decorate --pretty=tformat:'%h %d %ar %s'
+	lpo = log --decorate --pretty=tformat:'%h %d %an %ar %s' -100
 	lfp = log --decorate --pretty=tformat:'%h %C(yellow)%d%C(reset) %ar %s' --first-parent --reverse -30
 	lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
 	lpon = log --pretty=format:'%h%d %ad (%ar) %s' --reverse --name-status
