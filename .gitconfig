@@ -92,7 +92,7 @@
 	; from http://gitster.livejournal.com/48015.html
 	rst = "!sh -c 'git reset HEAD^ -- $(git show --pretty=\"format:\" --name-only | sed \"/^$/d\")'"
 
-	rmbr = "!f(){ git branch --quiet -D ${1}; git push origin --quiet --delete ${1} & };f" # Adapted from http://stackoverflow.com/a/14345010/1495086
+	brrm = "!f(){ [[ $1 = $(git symbolic-ref --short -q HEAD) ]] && git checkout @{-1} || git branch --quiet -D ${1}; git push origin --quiet --delete ${1} & };f" # Adapted from http://stackoverflow.com/a/14345010/1495086
 	brt = "!f(){ [ -z $2 ] && br=$(git symbolic-ref --short -q HEAD) || br=$2; git checkout --quiet -b $1 $br && git push --quiet origin $1 && git branch --quiet --set-upstream-to=origin/$1 &}; f"
 	dhnc = "!f(){ default=8; hours=$1; git diff 'HEAD@{'${hours:-$default}' hours ago}'..HEAD; }; f"
 	dh = "!f(){ default=8; hours=$1; git diff --color 'HEAD@{'${hours:-$default}' hours ago}'..HEAD; }; f"
