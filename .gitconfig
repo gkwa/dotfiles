@@ -46,6 +46,7 @@
 	cmat = commit -am t
 	rsm = reset --merge
 	brm = branch --merged
+	bram = branch --all --merged
 	brnm = branch --no-merged
 	st = stash
 	sta = stash apply
