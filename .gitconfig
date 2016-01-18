@@ -200,6 +200,7 @@
 	crd = config --global rerere.enabled 0 # crd short for config rerere disabled
 	cre = config --global rerere.enabled 1 # cre short for config rerere enabled
 	rb = rebase
+	rbp = rebase --preserve-merge
 	rbs = rebase --skip
 	rba = rebase --abort
 	rva = revert --abort
