@@ -170,13 +170,13 @@
 	lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
 	lpon = log --pretty=format:'%h%d %ad (%ar) %s' --reverse --name-status
 	lgb = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-	lga = log --oneline --decorate --date=relative --graph --all -100
-	lg = log --oneline --decorate --date=relative --graph -40
-	lg1 = log --oneline --decorate --date=relative --graph --all -10
-	lg2 = log --oneline --decorate --date=relative --graph --all -20
-	lg3 = log --oneline --decorate --date=relative --graph --all -30
-	lg4 = log --oneline --decorate --date=relative --graph --all -40
-	lg5 = log --oneline --decorate --date=relative --graph --all -50
+	lga = log --color=always --oneline --decorate --date=relative --graph --all -100
+	lg = log --color=always --oneline --decorate --date=relative --graph -40
+	lg1 = log --color=always --oneline --decorate --date=relative --graph --all -10
+	lg2 = log --color=always --oneline --decorate --date=relative --graph --all -20
+	lg3 = log --color=always --oneline --decorate --date=relative --graph --all -30
+	lg4 = log --color=always --oneline --decorate --date=relative --graph --all -40
+	lg5 = log --color=always --oneline --decorate --date=relative --graph --all -50
 	
 	lac = log --reverse --pretty=tformat:'%h %C(yellow)%d %C(blue)%an%C(reset) %ar %s' --first-parent --decorate --all --since=yesterday
 
@@ -189,9 +189,9 @@
 
 	; ;;;;;;;;;;;;;;;;;;;;
 	; http://wynnnetherland.com/journal/dotfiles-discovery
-	loll = log --graph --decorate --pretty=oneline --abbrev-commit
+	loll = log --color=always --graph --decorate --pretty=oneline --abbrev-commit
 	lol = !git --no-pager loll
-	lolal = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	lolal = log --color=always --graph --decorate --pretty=oneline --abbrev-commit --all
 	lola = !git --no-pager lolal
 	; ;;;;;;;;;;;;;;;;;;;;
 
