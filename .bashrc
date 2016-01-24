@@ -58,6 +58,7 @@ case "$(uname)" in
 
     CYGWIN_NT*)
 
+	export PATH="/usr/sbin:$PATH"
 	export PATH="/c/cygwin/bin:$PATH"
 	export PATH="/c/cygwin64/bin:$PATH"
 
