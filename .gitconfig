@@ -185,6 +185,7 @@
 	brs2 = "!f(){ git for-each-ref --sort=committerdate --format='%(color:green)%(committerdate:short) %(color:red)%(committerdate:relative) %(color:blue)%(authorname) %(color:reset)%(refname:short)' refs/$@; }; f"
 	brs3 = "!f(){ git for-each-ref --sort=committerdate --format='%(refname:short)' refs/$@; }; f"
 	brs4 = "!f(){ git for-each-ref --sort=committerdate --format='%(color:red)%(committerdate:relative) %(color:green)%(committerdate:short) %(color:blue)%(authorname)%(color:reset) %(refname:short)%0a%(refname:short)' refs/$@; }; f"
+	b4 = brs4
 
 	new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
 
