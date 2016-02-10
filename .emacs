@@ -76,6 +76,7 @@ Return a list of installed packages or nil for every skipped package."
  'php-mode
  'powershell
  'puppet-mode
+ 'request
  'tidy
  'unbound
  'yaml-mode
