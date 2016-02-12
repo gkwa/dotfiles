@@ -145,19 +145,20 @@
 	lsm = ls-files -m
 	lsd = ls-files -d
 	la = log --abbrev-commit
-	lfh = log --pretty=tformat:'%h %d %ar %s' --reverse ..FETCH_HEAD --name-status -m
-	ln = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -m
-	l2 = log --pretty=tformat:'%h %d %ar %s' --reverse -20
-	l2n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -20 -m
-	l3 = log --pretty=tformat:'%h %d %ar %s' --reverse -30
-	l3n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -30 -m
-	l4 = log --pretty=tformat:'%h %d %ar %s' --reverse -40
-	l4n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -40 -m
-	l5 = log --pretty=tformat:'%h %d %ar %s' --reverse -50
-	l5n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -50 -m
-	l6 = log --pretty=tformat:'%h %d %ar %s' --reverse -60
-	l6n = log --pretty=tformat:'%h %d %ar %s' --reverse --name-status -60 -m
-	l = log --pretty=tformat:'%h %d %ar %s' --reverse -200
+	log1 = log --pretty=tformat:'%Creset%h%C(yellow)%d%Creset %ar %s' --reverse -40
+	l = log1
+	lfh = log1 ..FETCH_HEAD --name-status -m
+	ln = log1 --name-status -m
+	l2 = log1 -20
+	l2n = log1 --name-status -20 -m
+	l3 = log1 -30
+	l3n = log1 --name-status -30 -m
+	l4 = log1 -40
+	l4n = log1 --name-status -40 -m
+	l5 = log1 -50
+	l5n = log1 --name-status -50 -m
+	l6 = log1 -60
+	l6n = log1 --name-status -60 -m
 	lv = log --reverse --pretty=format:'%C(yellow)%h %C(blue)%ad(%ar)%C(red)%d %C(reset)%s%C(green) [%an/%cn]' --decorate --date=short --numstat
 	sb = show-branch
 	lpcr = log --patch --color --reverse --abbrev-commit
@@ -165,9 +166,8 @@
 	logd = log --date=short --pretty=tformat:'%h %ad %s'
 	auth = log --format='%h [%<(12,trunc)%aN] [%<(12,trunc)%cN] [%<(7,trunc)%ar] %<(70,trunc)%s' -30 # author, committer, relative date, comment with truncation
 	context =  "!f_gitconfig() { span=10; [ ! -z \"$2\" ] && span=$2; git log --pretty=format:'%h%x09%an%x09%ar%x09%ad%x09%s' --reverse \"$1\"~$span.. | head -"$((2 * $span))"; }; f_gitconfig"
-	lpo = log --decorate --pretty=tformat:'%h %d %an %ar %s' -100
-	lfp = log --decorate --pretty=tformat:'%h %C(yellow)%d%C(reset) %ar %s' --first-parent --reverse -30
 	lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
+	lfp = log1 --first-parent -30
 	lpon = log --pretty=format:'%h%d %ad (%ar) %s' --reverse --name-status
 	lgb = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	lga = log --color=always --oneline --decorate --date=relative --graph --all -100
