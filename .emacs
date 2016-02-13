@@ -54,6 +54,7 @@ Return a list of installed packages or nil for every skipped package."
  'helm-ag
  'helm-chrome
  'helm-gtags
+ 'helm-ls-git
  'helm-rails
  'iedit
  'javadoc-lookup
