@@ -48,6 +48,7 @@ Return a list of installed packages or nil for every skipped package."
  'apache-mode
  'bookmark+
  'editorconfig
+ 'folding
  'ggtags
  'go-mode
  'helm
