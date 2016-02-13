@@ -1814,7 +1814,7 @@ if breakpoints are present in `python-mode' files"
 ;; ------------------------------
 
 ;; ------------------------------
-;; helm
+;; helm mode
 ;; ------------------------------
 
 ; http://stackoverflow.com/questions/11403862/how-to-have-emacs-helm-list-offer-files-in-current-directory-as-options
@@ -1877,8 +1877,6 @@ if breakpoints are present in `python-mode' files"
 ;;(global-set-key (kbd "C-x C-d") 'helm-browse-project) ; https://github.com/emacs-helm/helm-ls-git
 (global-set-key (kbd "C-x C-d") 'helm-ls-git-ls) ; https://github.com/emacs-helm/helm-ls-git
 
-;; end configuration
-;; ------------------------------
 ;; Open helm window in fewer lines https://goo.gl/ZTzUub
 (advice-add 'helm-split-window-default-fn :filter-return
 			(defun my-helm-split-window-default-fn-set-window-height (new-win)
