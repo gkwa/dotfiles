@@ -79,6 +79,7 @@ Return a list of installed packages or nil for every skipped package."
  'powershell
  'puppet-mode
  'request
+ 'terraform-mode
  'tidy
  'unbound
  'yaml-mode
