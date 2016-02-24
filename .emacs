@@ -968,14 +968,6 @@ else do C-x 5 0 delete-frame"
 
 
 ;; ------------------------------
-;; easypg
-;; ------------------------------
-;; http://www.emacswiki.org/emacs/EasyPG
-;; wget -P ~/.elisp http://git.savannah.gnu.org/cgit/emacs.git/plain/lisp/epa-file.el
-(add-to-list 'load-path "~/.elisp")
-(require 'epa-file)
-
-;; ------------------------------
 ;; dired-x, diredx
 ;; ------------------------------
 (require 'dired-x)
