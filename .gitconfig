@@ -21,6 +21,7 @@
 	; git squash N
 	sq = "!f(){ git reset --soft HEAD~${1} && git commit --no-edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 
+	pq = "!sh -c 'git push --quiet &'"
 	cne = commit -a --no-edit
 	apr = apply --ignore-space-change --reject
 	mnf = merge --no-edit --no-ff
