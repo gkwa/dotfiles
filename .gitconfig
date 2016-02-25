@@ -147,19 +147,19 @@
 	lsd = ls-files -d
 	la = log --abbrev-commit
 	log1 = log --pretty=tformat:'%Creset%h%C(yellow)%d%Creset %ar %s' --reverse -40
-	l = log1
-	lfh = log1 ..FETCH_HEAD --name-status -m
-	ln = log1 --name-status -m
-	l2 = log1 -20
-	l2n = log1 --name-status -20 -m
-	l3 = log1 -30
-	l3n = log1 --name-status -30 -m
-	l4 = log1 -40
-	l4n = log1 --name-status -40 -m
-	l5 = log1 -50
-	l5n = log1 --name-status -50 -m
-	l6 = log1 -60
-	l6n = log1 --name-status -60 -m
+	l = !git log1
+	lfh = !git log1 ..FETCH_HEAD --name-status -m
+	ln = !git log1 --name-status -m
+	l2 = !git log1 -20
+	l2n = !git log1 --name-status -20 -m
+	l3 = !git log1 -30
+	l3n = !git log1 --name-status -30 -m
+	l4 = !git log1 -40
+	l4n = !git log1 --name-status -40 -m
+	l5 = !git log1 -50
+	l5n = !git log1 --name-status -50 -m
+	l6 = !git log1 -60
+	l6n = !git log1 --name-status -60 -m
 	lv = log --reverse --pretty=format:'%C(yellow)%h %C(blue)%ad(%ar)%C(red)%d %C(reset)%s%C(green) [%an/%cn]' --decorate --date=short --numstat
 	sb = show-branch
 	lpcr = log --patch --color --reverse --abbrev-commit
@@ -167,8 +167,8 @@
 	logd = log --date=short --pretty=tformat:'%h %ad %s'
 	auth = log --format='%h [%<(12,trunc)%aN] [%<(12,trunc)%cN] [%<(7,trunc)%ar] %<(70,trunc)%s' -30 # author, committer, relative date, comment with truncation
 	context =  "!f_gitconfig() { span=10; [ ! -z \"$2\" ] && span=$2; git log --pretty=format:'%h%x09%an%x09%ar%x09%ad%x09%s' --reverse \"$1\"~$span.. | head -"$((2 * $span))"; }; f_gitconfig"
-	lpor = log --pretty=tformat:'%h %d %ar %s' --reverse
-	lfp = log1 --first-parent -30
+	lps = log --decorate --pretty=tformat:'%Creset%h%C(yellow)%d%Creset %aD %an %s' -100 # git log pretty on sterioids
+	lfp = !git log1 --first-parent -30
 	lpon = log --pretty=format:'%h%d %ad (%ar) %s' --reverse --name-status
 	lgb = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	lga = log --color=always --oneline --decorate --date=relative --graph --all -100
@@ -186,7 +186,7 @@
 	brs2 = "!f(){ git for-each-ref --sort=committerdate --format='%(color:green)%(committerdate:short) %(color:red)%(committerdate:relative) %(color:blue)%(authorname) %(color:reset)%(refname:short)' refs/$@; }; f"
 	brs3 = "!f(){ git for-each-ref --sort=committerdate --format='%(refname:short)' refs/$@; }; f"
 	brs4 = "!f(){ git for-each-ref --sort=committerdate --format='%(color:red)%(committerdate:relative) %(color:green)%(committerdate:short) %(color:blue)%(authorname)%(color:reset) %(refname:short)%0a%(refname:short)' refs/$@; }; f"
-	b4 = brs4
+	b4 = !git brs4
 
 	new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
 
