@@ -22,6 +22,7 @@
 	sq = "!f(){ git reset --soft HEAD~${1} && git commit --no-edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 
 	pq = "!sh -c 'git push --quiet &'"
+	pqf = "!sh -c 'git push --quiet --force &'"
 	cne = commit -a --no-edit
 	apr = apply --ignore-space-change --reject
 	mnf = merge --no-edit --no-ff
