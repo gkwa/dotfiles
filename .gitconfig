@@ -13,9 +13,6 @@
 	; http://git-blame.blogspot.com/2012/08/leftover-bits.html
 	hold = "!sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && git branch -D $1' -"
 
-	; http://www.commandlinefu.com/commands/view/2345/show-git-branches-by-date-useful-for-showing-active-branches
-	brd = "! f() { for k in $(git branch -a $@ | sed 's/^..//; s/ .*//'); do echo "$(git log -1 --pretty='%Cgreen%ci %Cblue(%cr)%Creset ' $k) $k" ; done | sort -r; }; f"
-
 	rmb = "!f(){ git branch -d ${1} && git push origin --delete ${1}; };f" #delete branch
 
 	; git squash N
