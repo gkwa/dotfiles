@@ -651,6 +651,7 @@ else do C-x 5 0 delete-frame"
 ;; --------------------------------------------------
 (setq-default
  ;; default-major-mode 'emacs-lisp-mode	;; Silly "Fundamental"
+ sentence-end-double-space nil
  default-fill-column 72
  epa-file-cache-passphrase-for-symmetric-encryption t
  compilation-scroll-output t ; scroll automatically to follow the output as it comes in.
