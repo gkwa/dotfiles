@@ -1873,11 +1873,6 @@ if breakpoints are present in `python-mode' files"
 ;;(global-set-key (kbd "C-x C-d") 'helm-browse-project) ; https://github.com/emacs-helm/helm-ls-git
 (global-set-key (kbd "C-x C-d") 'helm-ls-git-ls) ; https://github.com/emacs-helm/helm-ls-git
 
-;; Open helm window in fewer lines https://goo.gl/ZTzUub
-(advice-add 'helm-split-window-default-fn :filter-return
-			(defun my-helm-split-window-default-fn-set-window-height (new-win)
-			  (set-window-text-height new-win 11)
-			  new-win))
 
 ;; http://www.reddit.com/r/emacs/comments/1q6zx2/disable_helmfindfiles_path_autocompletion/
 ;; helm auto-complete in dired sucks, disable it
