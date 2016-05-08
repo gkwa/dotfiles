@@ -708,7 +708,10 @@ else do C-x 5 0 delete-frame"
  '(menu-bar-mode nil)
  '(mode-line-inverse-video nil)
  '(nxml-slash-auto-complete-flag t)
- '(ring-bell-function (quote ignore) t)
+ '(package-selected-packages
+   (quote
+	(yasnippet yaml-mode unbound tidy terraform-mode request puppet-mode powershell php-mode markdown-mode magit-tramp magit-topgit magit-svn magit-stgit magit-gitflow magit-gh-pulls magit-gerrit magit-find-file magit-annex magit jump-char jump json-mode js2-mode javadoc-lookup iedit helm-rails helm-ls-git helm-gtags helm-chrome helm-ag go-mode ggtags folding editorconfig bookmark+ apache-mode ac-helm)))
+ '(ring-bell-function (quote ignore))
  '(safe-local-variable-values
    (quote
 	((eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
@@ -1104,7 +1107,7 @@ else do C-x 5 0 delete-frame"
   (save-excursion
     (if (get-buffer "tidy-xml-errs") (kill-buffer "tidy-xml-errs"))
     (let ((tmp (concat temporary-file-directory "tidy-xml-errs"))
-	  (cmd "tidy -xml --tidy-mark no --doctype strict --vertical-space true --indent-attributes true --wrap-attributes false -wrap 60000 -q -i -c -f " ))
+	  (cmd "tidy -xml --tidy-mark no --doctype strict --vertical-space true --indent-attributes true --wrap-attributes true --indent-attributes true --wrap-attributes true --vertical-space true -q -i -wrap 72 -c -f " ))
       (shell-command-on-region (point-min) (point-max)
 			       (concat cmd tmp)
 			       t)

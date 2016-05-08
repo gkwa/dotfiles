@@ -230,7 +230,7 @@
 [web]
 	browser = firefox
 [rerere]
-	enabled = true
+	enabled = 0
 [color]
 	ui = auto
 [push]
@@ -252,6 +252,6 @@
 [branch]
 	autosetuprebase = always
 [credential]
-	helper = cache --timeout=28800
+	helper = /opt/boxen/bin/boxen-git-credential
 [hub]
 	protocol = https
