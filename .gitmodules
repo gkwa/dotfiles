@@ -31,3 +31,6 @@
 [submodule ".elisp/helm"]
 	path = .elisp/helm
 	url = https://github.com/emacs-helm/helm.git
+[submodule ".vagrant.d"]
+	path = .vagrant.d
+	url = git@github.com:taylormonacelli/.vagrant.d.git
