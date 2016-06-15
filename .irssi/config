@@ -130,7 +130,10 @@ channels = (
   { name = "#ircsource"; chatnet = "IRCSource"; autojoin = "No"; },
   { name = "#netfuze"; chatnet = "NetFuze"; autojoin = "No"; },
   { name = "#oftc"; chatnet = "OFTC"; autojoin = "No"; },
-  { name = "silc"; chatnet = "SILC"; autojoin = "No"; }
+  { name = "silc"; chatnet = "SILC"; autojoin = "No"; },
+  { name = "#ubuntu"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#github"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#git"; chatnet = "freenode"; autojoin = "yes"; }
 );
 
 aliases = {
