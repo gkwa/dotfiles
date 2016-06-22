@@ -97,6 +97,7 @@
 	dhnc = "!f(){ default=8; hours=$1; git diff 'HEAD@{'${hours:-$default}' hours ago}'..HEAD; }; f"
 	dh = "!f(){ default=8; hours=$1; git diff --color 'HEAD@{'${hours:-$default}' hours ago}'..HEAD; }; f"
 	root = rev-list --abbrev-commit --max-parents=0 HEAD
+	rootdir = rev-parse --show-toplevel
 	wu = log --stat origin..@{0} --abbrev-commit # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
 	# good examples
 	# http://git.wiki.kernel.org/index.php/Aliases
