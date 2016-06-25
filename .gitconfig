@@ -101,7 +101,7 @@
 	wu = log --stat origin..@{0} --abbrev-commit # if you want to see what you are about to "git push", http://wiki.videolan.org/Git#Setting_up_.22git_up.22_.28Tip.29
 	# good examples
 	# http://git.wiki.kernel.org/index.php/Aliases
-	bc = rev-parse --abbrev-ref HEAD # show my current bran name
+	bc = rev-parse --abbrev-ref HEAD # show my current branch name
 	br = branch
 	fp = format-patch
 	fps = format-patch --stdout
