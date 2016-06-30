@@ -200,6 +200,7 @@
 
 	lgns =  "!f_gitconfig() { [ ! -z \"$1\" ] && git log --abbrev-commit --stat --name-status -\"$1\" || git log --stat --name-status; }; f_gitconfig"
 
+	re = rerere
 	crd = config --global rerere.enabled 0 # crd short for config rerere disabled
 	cre = config --global rerere.enabled 1 # cre short for config rerere enabled
 	rb = rebase
