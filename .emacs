@@ -1845,6 +1845,7 @@ if breakpoints are present in `python-mode' files"
 (global-set-key (kbd "C-x ,") (quote helm-my-buffers))
 (global-set-key (kbd "C-x c g") 'helm-do-ag)
 (global-set-key (kbd "C-x c d") 'helm-do-ag-buffers)
+(global-set-key (kbd "C-x c k") 'helm-do-ag-this-file)
 
 (add-hook 'eshell-mode-hook
 	  #'(lambda ()
