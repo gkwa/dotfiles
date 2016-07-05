@@ -704,6 +704,7 @@ else do C-x 5 0 delete-frame"
  '(ido-case-fold t)
  '(ispell-program-name "aspell")
  '(js-indent-level 8)
+ '(large-file-warning-threshold 20000000)
  '(magit-last-seen-setup-instructions "1.4.0" t)
  '(menu-bar-mode nil)
  '(mode-line-inverse-video nil)
@@ -1846,6 +1847,7 @@ if breakpoints are present in `python-mode' files"
 (global-set-key (kbd "C-x c g") 'helm-do-ag)
 (global-set-key (kbd "C-x c d") 'helm-do-ag-buffers)
 (global-set-key (kbd "C-x c k") 'helm-do-ag-this-file)
+(global-set-key (kbd "C-x c j") 'helm-do-ag-project-root)
 
 (add-hook 'eshell-mode-hook
 	  #'(lambda ()
