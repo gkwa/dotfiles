@@ -990,6 +990,7 @@ else do C-x 5 0 delete-frame"
    '(
 	 (sh . t)
 	 (python . t)
+	 (java . t)
 	 ))
 
 (setq org-confirm-babel-evaluate nil)
