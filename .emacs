@@ -1088,7 +1088,7 @@ else do C-x 5 0 delete-frame"
 	  (cmd "tidy --force-output true -asxhtml --tidy-mark no --doctype strict --indent-attributes true --wrap-attributes true --vertical-space false -q -i -wrap 72 -c -f "))
       (shell-command-on-region (point-min) (point-max)
 			       (concat cmd tmp)
-			       t)
+			       nil 'replace)
 					;(shell-command-on-region (point-min) (point-max) "tidyClean"
 					;t)
       (find-file-other-window tmp)
@@ -1111,7 +1111,7 @@ else do C-x 5 0 delete-frame"
 	  (cmd "tidy -xml --tidy-mark no --doctype strict --vertical-space true --indent-attributes true --wrap-attributes true --indent-attributes true --wrap-attributes true --vertical-space true -q -i -wrap 72 -c -f " ))
       (shell-command-on-region (point-min) (point-max)
 			       (concat cmd tmp)
-			       t)
+			       nil 'replace)
       (find-file-other-window tmp)
       (other-window 1)
       (enlarge-window (- (- (frame-height) +8) (window-height)))
