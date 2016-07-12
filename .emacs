@@ -1938,3 +1938,11 @@ if breakpoints are present in `python-mode' files"
 
 ;; end json-mode configuration
 ;; ------------------------------
+
+;; ------------------------------
+;; yasnippet-mode
+;; ------------------------------
+(require 'yasnippet)
+(yas-global-mode 1)
+;; end yasnippet-mode configuration
+;; ------------------------------
