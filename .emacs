@@ -987,6 +987,7 @@ else do C-x 5 0 delete-frame"
 (org-babel-do-load-languages
    'org-babel-load-languages
    '(
+	 (bash . t)
 	 (sh . t)
 	 (python . t)
 	 (java . t)
