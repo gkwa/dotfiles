@@ -79,6 +79,7 @@ Return a list of installed packages or nil for every skipped package."
  'org
  'php-mode
  'powershell
+ 'projectile
  'puppet-mode
  'request
  'terraform-mode
