@@ -4,7 +4,7 @@
 # -*- sh-mode -*-
 
 . ~/.alias
-export EDITOR=emacsclient
+export EDITOR='emacsclient --server=emacs1000'
 export GIT_PAGER=
 
 # .bash_profile
