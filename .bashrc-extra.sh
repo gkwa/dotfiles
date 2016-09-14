@@ -54,3 +54,10 @@ function dsb()
     rsync /c/Apache/htdocs/DS/ /d/pdev/ds/web
     cd /d/pdev/ds/web
 }
+
+
+# liveip
+function lip()
+{
+    python -c 'import socket; servers=["LiveChicago","LiveHK","LiveDB","LiveJP","LiveSG","LiveAU","LiveUS","LiveUSEast","LiveSA","LiveEU","LiveDE","LiveIN","LiveNI","tl1","te1","tl2","tl3","tl4"]; print "\n".join(["%s %s" % (server, socket.gethostbyname(server)) for server in servers])' #
+}
