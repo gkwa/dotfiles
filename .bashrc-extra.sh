@@ -59,5 +59,5 @@ function dsb()
 # liveip
 function lip()
 {
-    python -c 'import socket; servers=["LiveChicago","LiveHK","LiveDB","LiveJP","LiveSG","LiveAU","LiveUS","LiveUSEast","LiveSA","LiveEU","LiveDE","LiveIN","LiveNI","tl1","te1","tl2","tl3","tl4"]; print "\n".join(["%s %s" % (server, socket.gethostbyname(server)) for server in servers])' #
+    python -c 'import socket; servers=["LiveChicago.streambox.com","LiveHK.streambox.com","LiveDB.streambox.com","LiveJP.streambox.com","LiveSG.streambox.com","LiveAU.streambox.com","LiveUS.streambox.com","LiveUSEast.streambox.com","LiveSA.streambox.com","LiveEU.streambox.com","LiveDE.streambox.com","LiveIN.streambox.com","LiveNI.streambox.com","tl1.streambox.com","te1.streambox.com","tl2.streambox.com","tl3.streambox.com","tl4.streambox.com"]; print "\n".join(["%s %s" % (server, socket.gethostbyname(server)) for server in servers])' #
 }
