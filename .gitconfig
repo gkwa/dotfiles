@@ -13,7 +13,7 @@
 	; http://git-blame.blogspot.com/2012/08/leftover-bits.html
 	hold = "!sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && git branch -D $1' -"
 
-	rmb = "!f(){ git branch -d ${1} && git push origin --delete ${1}; };f" #delete branch
+	brd = "!f(){ git branch -D ${1} && git push origin --delete ${1}; };f" #delete branch
 
 	; git squash N
 	sq = "!f(){ git reset --soft HEAD~${1} && git commit --no-edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
