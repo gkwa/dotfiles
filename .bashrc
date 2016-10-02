@@ -83,7 +83,6 @@ case "$(uname)" in
     Darwin)
 
 	[ -f /usr/local/var/rbenv ] && export RBENV_ROOT=/usr/local/var/rbenv
-	export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
 	export INFOPATH=/usr/local/share/info:$INFOPATH
 	export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 
@@ -361,28 +360,6 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # Autocomplete for 'g' as well
 complete -o default -o nospace -F _git g
 
-# ------------------------------
-# Docker shortcuts
-# ------------------------------
-function denter()
-{
-    printf 'PID=$(docker inspect --format "{{ .State.Pid }}" %s)\n' $(docker ps -q)
-    printf 'nsenter --target $PID --mount --uts --ipc --net --pid\n'
-}
-
-function drmi()
-{
-    imageid=$1
-    if test -z "$imageid"
-    then
-	echo usage drmi {image id}
-    else
-	docker ps -a | grep $imageid | \
-	    perl -ane 'print qq/docker rm $F[0]# \Q@F\E\n/';
-	echo docker rmi $imageid
-    fi
-}
-
 # Live deploy
 function livedep()
 {
@@ -485,11 +462,6 @@ function lip()
 # PERL_MB_OPT="--install_base \"/Users/demo/perl5\""; export PERL_MB_OPT;
 # PERL_MM_OPT="INSTALL_BASE=/Users/demo/perl5"; export PERL_MM_OPT;
 
-
-# https://github.com/docker/machine#docker-machine
-# bring in environment variables for docker (so that 'docker ps' works
-# for example)
-docker-machine --version >/dev/null 2>&1 && eval "$(docker-machine env default)"
 
 export PAGER=cat
 export COLUMNS=72 #man pages
