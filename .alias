@@ -4,5 +4,4 @@ alias ka=killall
 alias ect='emacsclient -c -t'
 alias ects='emacsclient -c -t --server=emacs1000'
 
-alias rsync='rsync -rltgoD --progress'
 alias g=git
