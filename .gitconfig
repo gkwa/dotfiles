@@ -168,7 +168,7 @@
 	auth = log --format='%h [%<(12,trunc)%aN] [%<(12,trunc)%cN] [%<(7,trunc)%ar] %<(70,trunc)%s' -30 # author, committer, relative date, comment with truncation
 	context =  "!f_gitconfig() { span=10; [ ! -z \"$2\" ] && span=$2; git log --pretty=format:'%h%x09%an%x09%ar%x09%ad%x09%s' --reverse \"$1\"~$span.. | head -"$((2 * $span))"; }; f_gitconfig"
 	lps = log --decorate --pretty=tformat:'%Creset%h%C(yellow)%d%Creset %aD %an %s' -100 # git log pretty on sterioids
-	lfp = !git log1 --first-parent -30
+	lfp = !git log1 --first-parent -50
 	lpon = log --pretty=format:'%h%d %ad (%ar) %s' --reverse --name-status
 	lgb = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	lga = log --color=always --oneline --decorate --date=relative --graph --all -100
