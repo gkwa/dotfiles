@@ -5,16 +5,16 @@ function apr()
 
     if test ! -z "$(env | grep WINDIR)"
     then
-	# Windows
+		# Windows
 
-	net stop apache2.4
-	p=/c/Apache/logs/error
-	[ -f $p.log ] && mv $p.log $p-$d.log
+		net stop apache2.4
+		p=/c/Apache/logs/error
+		[ -f $p.log ] && mv $p.log $p-$d.log
 
-	p=/c/Apache/logs/access
-	[ -f $p.log ] && mv $p.log $p-$d.log
+		p=/c/Apache/logs/access
+		[ -f $p.log ] && mv $p.log $p-$d.log
 
-	net start apache2.4
+		net start apache2.4
 
     fi
 }
@@ -26,19 +26,19 @@ function myr()
 
     if test ! -z "$(env | grep WINDIR)"
     then
-	# Windows
+		# Windows
 
-	net stop mysql
-	p=/d/MySQLData/mysql
-	[ -f $p.err ] && mv $p.err $p-$d.err
+		net stop mysql
+		p=/d/MySQLData/mysql
+		[ -f $p.err ] && mv $p.err $p-$d.err
 
-	p=/d/MySQLData/mysql
-	[ -f $p.log ] && mv $p.log $p-$d.log
+		p=/d/MySQLData/mysql
+		[ -f $p.log ] && mv $p.log $p-$d.log
 
-	p=/d/MySQLData/mysql-slow
-	[ -f $p.log ] && mv $p.log $p-$d.log
+		p=/d/MySQLData/mysql-slow
+		[ -f $p.log ] && mv $p.log $p-$d.log
 
-	net start mysql
+		net start mysql
 
     fi
 }
