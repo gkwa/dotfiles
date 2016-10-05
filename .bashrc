@@ -316,7 +316,7 @@ dmg(){ find . -iname "*.dmg"; }
 # http://www.delorie.com/gnu/docs/emacs/emacs_444.html
 PS1="\u@\h \W$ "
 PS1="[\d \t \u@\h:\w ]$ "
-PS1="[\u@\h:\w\$(parse_git_branch)]$ "
+PS1="[\u@\h:\W\$(parse_git_branch)]$ "
 
 # http://www.saltycrane.com/blog/2008/05/how-to-paste-in-cygwin-bash-using-ctrl/
 # Add the following line to your ~/.bashrc:
