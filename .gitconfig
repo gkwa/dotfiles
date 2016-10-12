@@ -109,6 +109,7 @@
 	head = rev-parse --short HEAD
 	# https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
 	rs = !sh -c 'git remote show $1' -
+	rt = reset
 	rso = remote show origin
 	cp = cherry-pick
 	cpa = cherry-pick --abort
