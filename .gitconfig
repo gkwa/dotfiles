@@ -149,6 +149,10 @@
 	la = log --abbrev-commit
 	log1 = log --pretty=tformat:'%Creset%h%C(yellow)%d%Creset %ar %s' --reverse -40
 	l = !git log1
+	dlo = log -p ORIG_HEAD..
+	dloc = log -p ORIG_HEAD.. --color
+	do = diff ORIG_HEAD..
+	doc = diff ORIG_HEAD.. --color
 	lfh = !git log1 ..FETCH_HEAD --name-status -m
 	ln = !git log1 --name-status -m
 	l2 = !git log1 -20
