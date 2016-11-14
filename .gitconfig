@@ -37,7 +37,7 @@
 	rh2 = reset HEAD^^ --hard
 	rho = reset --hard ORIG_HEAD
 	y = "!sh -c 'git commit -am yada-yada && git push --quiet &'"
-	rfl = log --oneline --relative-date -g -200 --abbrev-commit
+	rfl = log --oneline --relative-date --walk-reflogs -200 --abbrev-commit
 	rbw1 = rebase --whitespace=fix HEAD~1
 	rbw = rebase --whitespace=fix
 	brvv = branch -v -v
@@ -234,6 +234,7 @@
 	# fetch remote tracking branches
 	frtb = fetch origin refs/heads/*:refs/remotes/origin/*
 	t = tag -l
+	sdiff = !git diff && git submodule foreach 'git diff'
 [web]
 	browser = firefox
 [rerere]
@@ -252,13 +253,23 @@
 	packedGitWindowSize = 128m
 	; Dont trust file modes
 	filemode = false
-	whitespace = cr-at-eol,space-before-tab,trailing-space
+	whitespace = indent-with-non-tab
 	packedGitLimit = 128m
 	packedGitWindowSize = 128m
 	excludesfile = /opt/boxen/config/git/gitignore
+	autocrlf = false
 [branch]
 	autosetuprebase = always
 [credential]
 	helper = /opt/boxen/bin/boxen-git-credential
 [hub]
 	protocol = https
+[diff]
+	tool = p4mergetool
+	submodule = log
+[difftool "p4mergetool"]
+	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
+[color "diff"]
+	whitespace = red reverse
+[status]
+	submodulesummary = 1

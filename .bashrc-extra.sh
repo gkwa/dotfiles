@@ -1,3 +1,23 @@
+# notes cleanup
+function notec()
+{
+	(cd ~/pdev/emacs
+	 if ! git diff --no-ext-diff --quiet --exit-code
+	 then
+		 git add --update
+	 fi
+	 git commit -m "Notes backup"
+	 ls -1 notes.txt notes/* |
+		 xargs -I% echo 'perl -w -i.bak ~/bin/org_clean_whitespace.pl % && rm %.bak' |
+		 sh -
+	if ! git diff --no-ext-diff --quiet --exit-code
+	then
+		git add --update
+	fi
+	git commit -m "Cleanup whitespace"
+	)
+}
+
 # apache restart
 function apr()
 {

@@ -1,6 +1,18 @@
 ;; (add-hook 'after-init-hook (lambda () (setq debug-on-error t)))
 ;; (set-variable (quote debug-on-error) t nil)
 
+(defun xsteve-remove-control-M ()
+	   "Remove ^M at end of line in the whole buffer."
+	   (interactive)
+	   (save-match-data
+		(save-excursion
+		 (let ((remove-count 0))
+			  (goto-char (point-min))
+			  (while (re-search-forward (concat (char-to-string 13) "$") (point-max) t)
+					 (setq remove-count (+ remove-count 1))
+					 (replace-match "" nil nil))
+					 (message (format "%d ^M removed from buffer." remove-count))))))
+
 ;; ------------------------------
 ;; Package System, ELPA, MELPA, Marmalade
 ;; ------------------------------
@@ -716,7 +728,8 @@ else do C-x 5 0 delete-frame"
  '(ring-bell-function (quote ignore))
  '(safe-local-variable-values
    (quote
-	((eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
+	((encoding . utf-8)
+	 (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook"
 		   (add-hook
 			(quote write-contents-functions)
 			(lambda nil
@@ -1000,6 +1013,7 @@ else do C-x 5 0 delete-frame"
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-cr" 'org-mark-ring-goto)
 (setq org-log-done t)
 
 (setq org-publish-project-alist
@@ -1111,7 +1125,7 @@ else do C-x 5 0 delete-frame"
   (save-excursion
     (if (get-buffer "tidy-xml-errs") (kill-buffer "tidy-xml-errs"))
     (let ((tmp (concat temporary-file-directory "tidy-xml-errs"))
-	  (cmd "tidy -xml --tidy-mark no --doctype strict --vertical-space true --indent-attributes true --wrap-attributes true --indent-attributes true --wrap-attributes true --vertical-space true -q -i -wrap 72 -c -f " ))
+	  (cmd "tidy -xml --indent-attributes true --tidy-mark no --doctype strict --wrap-attributes false -q -i -wrap 1000 -c -f " ))
       (shell-command-on-region (point-min) (point-max)
 			       (concat cmd tmp)
 			       nil 'replace)
@@ -1948,4 +1962,20 @@ if breakpoints are present in `python-mode' files"
 (require 'yasnippet)
 (yas-global-mode 1)
 ;; end yasnippet-mode configuration
+;; ------------------------------
+
+;; ------------------------------
+;; auto-complete-mode
+;; ------------------------------
+;; http://crypt.codemancers.com/posts/2013-09-26-setting-up-emacs-as-development-environment-on-osx/
+(require 'auto-complete-config)
+;; (add-to-list 'ac-dictionary-directories
+;; 			 "~/.emacs.d/.cask/24.3.50.1/elpa/auto-complete-20130724.1750/dict")
+
+(ac-config-default)
+(setq ac-ignore-case nil)
+(add-to-list 'ac-modes 'enh-ruby-mode)
+(add-to-list 'ac-modes 'web-mode)
+
+;; end auto-complete-mode configuration
 ;; ------------------------------

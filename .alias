@@ -5,3 +5,6 @@ alias ect='emacsclient -c -t'
 alias ects='emacsclient -c -t --server=emacs1000'
 
 alias g=git
+
+# https://goo.gl/yXF9Vm
+alias dmr='docker-machine rm --force default; docker-machine create --driver virtualbox default; docker-machine regenerate-certs --force default'
