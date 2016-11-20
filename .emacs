@@ -94,6 +94,7 @@ Return a list of installed packages or nil for every skipped package."
  'projectile
  'puppet-mode
  'request
+ 'shell-here
  'terraform-mode
  'unbound
  'yaml-mode
