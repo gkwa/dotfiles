@@ -58,6 +58,7 @@ case "$(uname)" in
 
     CYGWIN_NT*)
 
+		export PATH="/c/Program Files/Rust stable GNU 1.13:$PATH"
 		export PATH="/usr/sbin:$PATH"
 		export PATH="/c/cygwin/bin:$PATH"
 		export PATH="/c/cygwin64/bin:$PATH"
