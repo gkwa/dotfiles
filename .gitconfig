@@ -253,7 +253,6 @@
 	packedGitWindowSize = 128m
 	; Dont trust file modes
 	filemode = false
-	whitespace = indent-with-non-tab
 	packedGitLimit = 128m
 	packedGitWindowSize = 128m
 	excludesfile = /opt/boxen/config/git/gitignore
