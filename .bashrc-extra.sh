@@ -10,6 +10,32 @@ squidcheck()
 	esac
 }
 
+function connect_to_local_encoder()
+{
+	IFS='
+' find_local_encoder |
+		while read mstsc_cmd
+		do
+			echo $mstsc_cmd | sh -x -
+		done
+}
+
+function find_local_encoder()
+{
+	filter="T:80-81,443,1770-1771,3389,22,U:1770-1771,2051,2060,5926"
+	log=/tmp/nmap_filter.log
+	(
+		cd /tmp #just in case we dont rm useful stuff
+		[ -f $log ] &&
+			find ${log-/tmp} -mmin +$((25*60)) -exec rm {} \;
+	)
+	[ ! -f $log ] &&
+		"/c/Program Files/Nmap/nmap.exe" \
+			--open -oG - -sU -sT -p $filter 10.0.2.0/23 | tee $log
+	grep -E "3389" $log | awk '{print $2}' | grep -F 10.0.2 |
+		xargs -r -I% -n1 echo mstsc -v:% | sort -ut. -k4n
+}
+
 # notes cleanup
 function notec()
 {
