@@ -1,3 +1,15 @@
+squidcheck()
+{
+	case "$(uname)" in
+		CYGWIN_NT*)
+			~/pdev/TaylorMonacelli/squid_proxy/tmux-test-squid-cygwin.sh
+			;;
+		Darwin)
+			~/pdev/TaylorMonacelli/squid_proxy/tmux-test-squid-osx.sh
+			;;
+	esac
+}
+
 # notes cleanup
 function notec()
 {
