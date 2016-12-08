@@ -272,6 +272,13 @@ case "$(uname)" in
 				GLOBIGNORE=$ORIG_GLOBIGNORE
 			fi
 		}
+
+		if command -v brew >/dev/null 2>&1; then
+			if [ -f $(brew --prefix)/etc/bash_completion ]; then
+				. $(brew --prefix)/etc/bash_completion
+			fi
+		fi
+
 		gg_dasherize() {
 			gg_replace $1 `echo $1 | sed -e 's/_/-/g'` $2
 		}
