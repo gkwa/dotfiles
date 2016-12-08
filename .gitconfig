@@ -235,6 +235,18 @@
 	frtb = fetch origin refs/heads/*:refs/remotes/origin/*
 	t = tag -l
 	sdiff = !git diff && git submodule foreach 'git diff'
+
+attic="!f() { \
+	branch=$1; \
+	remote=$2; \
+	remote=${remote:-origin}; \
+	branch=${branch#remotes/}; \
+	branch=${branch#origin/}; \
+	git push $remote $branch:refs/heads/attic/$branch; \
+	git push $remote --delete $branch; \
+	git branch -D $branch; \
+}; f"
+
 [web]
 	browser = firefox
 [rerere]
