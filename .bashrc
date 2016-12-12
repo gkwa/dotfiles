@@ -112,6 +112,10 @@ case "$(uname)" in
 		export PATH=~/.cabal/bin:$PATH
 		export MANPATH=~/.cabal/share/man:$MANPATH
 
+		if command -v brew >/dev/null 2>&1; then
+			export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+		fi
+
 		# gitk complains "Application initialization failed: couldn't connect to
 		# display ":0.0"" on osx, commented out
 		#	export DISPLAY=:0.0
