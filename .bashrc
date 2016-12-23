@@ -395,7 +395,6 @@ function lip()
 # PERL_MM_OPT="INSTALL_BASE=/Users/demo/perl5"; export PERL_MM_OPT;
 
 
-export PAGER=cat
 export COLUMNS=72 #man pages
 
 export PATH=/usr/local/bin:$PATH

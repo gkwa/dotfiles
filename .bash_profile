@@ -5,7 +5,6 @@
 
 . ~/.alias
 export EDITOR='emacsclient --server=emacs1000'
-export GIT_PAGER=
 
 # .bash_profile
 
@@ -65,7 +64,6 @@ fi
 case $(uname) in
     "FreeBSD"|"Linux")
 	unset MANPATH
-	export PAGER=cat
 	;;
     "Dwarwin")
 	export \
