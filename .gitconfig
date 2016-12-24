@@ -250,7 +250,8 @@ attic="!f() { \
 [web]
 	browser = firefox
 [rerere]
-	enabled = 0
+	enabled = 1
+	autoupdate = true
 [color]
 	ui = auto
 [push]
