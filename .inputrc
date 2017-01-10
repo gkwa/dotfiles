@@ -1,7 +1,5 @@
 # http://www.gigascale.org/softdevel/faq/24.html
 # "\e[2~"	: paste-from-clipboard
-# http://www.saltycrane.com/blog/2008/05/how-to-paste-in-cygwin-bash-using-ctrl
-set bind-tty-special-characters off
 "\C-v": paste-from-clipboard
 
 # more refs
