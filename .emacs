@@ -1007,6 +1007,7 @@ else do C-x 5 0 delete-frame"
 	 (java . t)
 	 ))
 
+(setq org-src-preserve-indentation t)
 (setq org-confirm-babel-evaluate nil)
 
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
