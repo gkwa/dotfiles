@@ -30,8 +30,7 @@ function find_local_encoder()
 			find ${log-/tmp} -mmin +$((25*60)) -exec rm {} \;
 	)
 	[ ! -f $log ] &&
-		"/c/Program Files/Nmap/nmap.exe" \
-			--open -oG - -sU -sT -p $filter 10.0.2.0/23 | tee $log
+		nmap --open -oG - -sU -sT -p $filter 10.0.2.0/23 | tee $log
 	grep -E "3389" $log | awk '{print $2}' | grep -F 10.0.2 |
 		xargs -r -I% -n1 echo mstsc -v:% | sort -ut. -k4n
 }
