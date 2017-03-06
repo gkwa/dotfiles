@@ -47,6 +47,9 @@ function notec()
 	 ls -1 notes.txt notes/* |
 		 xargs -I% echo 'perl -w -i.bak ~/bin/org_clean_whitespace.pl % && rm %.bak' |
 		 sh -
+	 ls -1 notes.txt notes/* |
+		 xargs -I% echo 'perl -wi ~/bin/replace_unicode_with_ascii.pl %' |
+		 sh -
 	if ! git diff --no-ext-diff --quiet --exit-code
 	then
 		git add --update
