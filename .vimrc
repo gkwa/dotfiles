@@ -1,3 +1,4 @@
+set nobackup
 set nowrap
 set ic
 set incsearch
