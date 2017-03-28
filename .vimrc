@@ -4,4 +4,6 @@ set nowrap
 set ic
 set incsearch
 set hlsearch
+set wildmenu
+
 filetype plugin indent on
