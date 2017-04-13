@@ -7,5 +7,6 @@ set ic " ignore case
 set incsearch " search as characters are entered
 set hlsearch " highlight matches
 set wildmenu
+set hidden
 
 filetype plugin indent on
