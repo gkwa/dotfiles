@@ -8,5 +8,6 @@ set incsearch " search as characters are entered
 set hlsearch " highlight matches
 set wildmenu
 set hidden
+syntax on
 
 filetype plugin indent on
