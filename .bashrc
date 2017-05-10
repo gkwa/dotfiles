@@ -368,11 +368,6 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # ------------------------------
 
-# http://nuclearsquid.com/writings/git-tricks-tips-workflows/
-# Autocomplete for 'g' as well
-complete -o default -o nospace -F _git g
-
-
 function restart()
 {
     for server in "$@"
