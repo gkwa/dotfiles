@@ -394,3 +394,6 @@ export COLUMNS=72 #man pages
 
 export PATH=/usr/local/bin:$PATH
 export PATH=.:$PATH
+
+# added by travis gem
+[ -f /Users/demo/.travis/travis.sh ] && source /Users/demo/.travis/travis.sh
