@@ -397,3 +397,8 @@ export PATH=.:$PATH
 
 # added by travis gem
 [ -f /Users/demo/.travis/travis.sh ] && source /Users/demo/.travis/travis.sh
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export HISTFILESIZE=5000
+export HISTSIZE=5000
