@@ -114,3 +114,19 @@ function dsb()
     rsync /c/Apache/htdocs/DS/ /d/pdev/ds/web
     cd /d/pdev/ds/web
 }
+
+function osxbackup(){ 
+	if ! mount | grep /Volumes/Backup >/dev/null; then
+		echo Aborting.  /Volumes/Backup is not available
+	else
+		rsync \
+			--delete-excluded \
+			--delete \
+			--exclude /Users/demo/Library/Caches/ \
+			--exclude Library/Logs/ \
+			--exclude Library/Containers/com.docker.docker/ \
+			--exclude 'Library/Application Support/' \
+			-vaz --progress \
+			/Users /Volumes/Backup
+	fi
+}
