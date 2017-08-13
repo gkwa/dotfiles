@@ -38,7 +38,7 @@ function find_local_encoder()
 # notes cleanup
 function notec()
 {
-	(cd ~/pdev/emacs
+	(cd ~/pdev/mtm/emacs
 	 if ! git diff --no-ext-diff --quiet --exit-code
 	 then
 		 git add --update
