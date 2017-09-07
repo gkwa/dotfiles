@@ -402,3 +402,8 @@ export PATH=.:$PATH
 
 export HISTFILESIZE=5000
 export HISTSIZE=5000
+
+# https://goo.gl/UuCBHy
+# I'm a big fan of Ctrl+r, but sometimes eschew it for the limited
+# duplicate ups afforded by export HISTCONTROL=erasedups
+export HISTCONTROL=erasedups
