@@ -37,6 +37,7 @@
 	rh2 = reset HEAD^^ --hard
 	rho = reset --hard ORIG_HEAD
 	y = "!sh -c 'git commit -am yada-yada && git push --quiet &'"
+	ys = "!sh -c 'git commit -am \"[skip ci] yada-yada\" && git push --quiet &'"
 	rfl = log --oneline --relative-date --walk-reflogs -200 --abbrev-commit
 	rbw1 = rebase --whitespace=fix HEAD~1
 	rbw = rebase --whitespace=fix
