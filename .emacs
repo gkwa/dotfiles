@@ -76,6 +76,7 @@ Return a list of installed packages or nil for every skipped package."
  'json-mode
  'jump
  'jump-char
+ 'magit
  'markdown-mode
  'org
  'php-mode
