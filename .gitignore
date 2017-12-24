@@ -4,7 +4,6 @@
 /.chef/
 /.cisco/
 /.config/
-/.emacs.d/auto-save-list/
 /.midway/
 /.repo_.gitconfig.json
 /.ssh/
@@ -14,6 +13,8 @@
 /.emacs.d/backups/
 /.emacs.d/elpa/
 /.emacs.d/server/
+/.emacs.d/auto-save-list/
+/.emacs.d/ac-comphist.dat
 
 /.mu/
 /play/*
