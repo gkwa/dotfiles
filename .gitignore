@@ -1,3 +1,16 @@
+/.account
+/.anyconnect
+/.bash_sessions/
+/.chef/
+/.cisco/
+/.config/
+/.emacs.d/auto-save-list/
+/.midway/
+/.repo_.gitconfig.json
+/.ssh/
+/.vim/
+/Applications/
+
 /.emacs.d/backups/
 /.emacs.d/elpa/
 /.emacs.d/server/
