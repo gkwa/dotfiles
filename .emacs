@@ -76,15 +76,6 @@ Return a list of installed packages or nil for every skipped package."
  'json-mode
  'jump
  'jump-char
- 'magit
- 'magit-annex
- 'magit-find-file
- 'magit-gerrit
- 'magit-gh-pulls
- 'magit-gitflow
- 'magit-stgit
- 'magit-svn
- 'magit-topgit
  'markdown-mode
  'org
  'php-mode
