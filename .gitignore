@@ -2,6 +2,7 @@
 /.anyconnect
 /.bash_sessions/
 /.chef/
+/.local/
 /.cisco/
 /.config/
 /.midway/
