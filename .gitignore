@@ -1,3 +1,5 @@
+/.parallel/
+/.tig_history
 /.berkshelf/
 /.emacs.d/recentf
 /.gnupg/
