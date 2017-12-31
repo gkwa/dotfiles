@@ -1,3 +1,13 @@
+/.berkshelf/
+/.emacs.d/recentf
+/.gnupg/
+/.httpie/
+/.kube/
+/.minikube/
+/.oracle_jre_usage/
+/.yarnrc
+/brazil-pkg-cache/
+
 /.account
 /.anyconnect
 /.bash_sessions/
