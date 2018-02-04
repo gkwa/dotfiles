@@ -286,4 +286,4 @@ attic="!f() { \
 [color "diff"]
 	whitespace = red reverse
 [status]
-	submodulesummary = 1
+	submoduleSummary = -1
