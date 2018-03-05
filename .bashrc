@@ -1,4 +1,5 @@
 source ~/.alias
+[ -f /usr/local/etc/profile.d/z.sh ] && . /usr/local/etc/profile.d/z.sh
 
 ##############################
 # http://nuclearsquid.com/writings/git-tricks-tips-workflows/
@@ -85,7 +86,6 @@ case "$(uname)" in
 
 		[ -f /usr/local/var/rbenv ] && export RBENV_ROOT=/usr/local/var/rbenv
 		export INFOPATH=/usr/local/share/info:$INFOPATH
-		export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 
 		#homebrew uses this if its defined, otherwise homebrew will
 		#install its own which is fine, but I'm often more uptodate on
@@ -407,3 +407,5 @@ export HISTSIZE=5000
 # I'm a big fan of Ctrl+r, but sometimes eschew it for the limited
 # duplicate ups afforded by export HISTCONTROL=erasedups
 export HISTCONTROL=erasedups
+
+complete -C /usr/local/bin/vault vault

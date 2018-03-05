@@ -72,3 +72,5 @@ case $(uname) in
 esac
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+export SSH_AUTH_SOCK=$MSSH_AUTH_SOCK    # MIDWAY SSH-AGENT: set as default
+export PATH=$PATH:/usr/local/bin  # MIDWAY PATH: Path changed for ssh
