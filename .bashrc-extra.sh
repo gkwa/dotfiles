@@ -1,3 +1,9 @@
+# myd: my date
+myd()
+{
+	date '+%A %m/%d/%Y' | tr -d '\n' | pbcopy
+}
+
 function hstat(){
 	pushd ~/pdev/tmp/ssh_check_hosts
 	cat tysonl*quilt*csv | sort -u |
