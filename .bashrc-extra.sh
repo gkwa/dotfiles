@@ -1,3 +1,19 @@
+function myowners()
+{
+    perl -ne'
+		@owners = qw(
+			amolmah
+			mesahil
+			revendrk
+			saryadav
+			yaxcheng
+		);
+		$re = join("|", @owners);
+	    m{$re} && print;
+    '
+}
+export -f myowners
+
 # myd: my date
 myd()
 {
