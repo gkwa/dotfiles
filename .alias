@@ -1,3 +1,4 @@
+alias scrape=~/bin/scrape_apollo.sh
 alias docenv='eval "$(docker-machine env default)"'
 alias doc=docker
 alias ka=killall
