@@ -1,64 +1,7 @@
-function myowners()
-{
-    perl -ne'
-		@owners = qw(
-			amolmah
-			mesahil
-			revendrk
-			saryadav
-			yaxcheng
-		);
-		$re = join("|", @owners);
-	    m{$re} && print;
-    '
-}
-export -f myowners
-
 # myd: my date
 myd()
 {
 	date '+%A %m/%d/%Y' | tr -d '\n' | pbcopy
-}
-
-function hstat(){
-	pushd ~/pdev/tmp/ssh_check_hosts
-	cat tysonl*quilt*csv | sort -u |
-		perl -ne'
-sub inc { my $color=shift; my $var=shift; m{\b($color)\b}i && $$var++; };
-BEGIN{ $a=0; $r=0; $y=0; $g=0; $ra=0; $ya=0; $ga=0; $rn=0; $yn=0; $gn=0; $ninq=0;}
-if(m{\b(amolmah|juahaley|mjharkin|saryadav|thmpcha|yaxcheng)\b}ix) {
- ( inc("RED",\$r) && print || inc("YELLOW",\$y) || inc("GREEN",\$g) );
- !m{\b(True)\b}i && $ninq++; # not in quilt pipeline
- if(m{\b(addis|hercules)\b}i && $a++ ){ ( inc("RED",\$ra) || inc("YELLOW",\$ya) || inc("GREEN",\$ga) || 1 );}
- if(m{\b(neteng)\b}i && $n++ ){ ( inc("RED",\$rn) || inc("YELLOW",\$yn) || inc("GREEN",\$gn));}
-}
-END{
-    print STDERR qq{red: $r, yellow: $y, green: $g overall\n};
-    print STDERR qq{red: $ra, yellow: $ya, green: $ga hercules/addis\n};
-    print STDERR qq{red: $rn, yellow: $yn, green: $gn neteng\n};
-    print STDERR qq{missing quilt pipeline: $ninq\n};
-}
-'
-	popd
-}
-
-function subs {
-	perl -le '
-		my $host = shift;
-		$host =~ s/\.\w+\.ec2\.border\.?$//;
-		my ($hostname, $az) = $host =~ m/^(.*)-(\w+\d+-\d+|z-\d+)$/;
-		$hostname = $hostname . ".$az.";
-		if($az   =~ /^z-/){
-		    $hostname .= "aes0.internal"
-		}else{
-		    $hostname .= "ec2.substrate"
-		}
-		print $hostname;
-    ' $1;
-}
-
-function border {
-    perl -le 'my $host = shift;if ($host =~ /^(.+)\.(.+)\.aes0\.internal$/){print "$1-$2.iad.ec2.border";}elsif($host =~ /^(.+)\.(.+)\.ec2\.substrate$/){my $hostname   = $1;my $az = $2;my $region = $2; $region =~ s/[^a-z]//g;print "$hostname-$az.$region.ec2.border";}else{print "Not a substrate name";}' $1;
 }
 
 squidcheck()
