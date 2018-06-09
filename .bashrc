@@ -409,3 +409,11 @@ export HISTSIZE=5000
 export HISTCONTROL=erasedups
 
 complete -C /usr/local/bin/vault vault
+
+##############################
+# Google cloud SDK
+##############################
+file=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
+[ -f $file ] && source $file
+file=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
+[ -f $file ] && source $file
