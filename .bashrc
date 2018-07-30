@@ -100,8 +100,6 @@ case "$(uname)" in
 		# for Apple /Developer/usr/bin/make since macports is broken now
 		export PATH=$PATH:/Developer/usr/bin
 		export PATH=$PATH:/usr/local/sbin
-		# for emacsclient when emacs is in daemon mode
-		export EMACS_SERVER_FILE=~/.emacs.d/server/emacs1000
 
 		# https://groups.google.com/forum/?fromgroups=#!topic/asciidoc/FC-eOwU8rYg
 		# brew install asciidoc; cd ~/play/gitster && make man "make

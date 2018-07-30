@@ -544,10 +544,6 @@ else do C-x 5 0 delete-frame"
 	  (maximize-frame (quote both))))))
 
 
-(setq server-mode t)
-(setq server-name "emacs1000")
-(setq server-use-tcp t)
-
 (require 'server)
 (defadvice server-create-window-system-frame
   (after set-window-system-frame-colours ())
