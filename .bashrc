@@ -418,3 +418,10 @@ file=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
 [ -f $file ] && source $file
 file=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
 [ -f $file ] && source $file
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
