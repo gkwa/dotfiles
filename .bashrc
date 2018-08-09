@@ -110,6 +110,9 @@ case "$(uname)" in
 		export PATH=~/.cabal/bin:$PATH
 		export MANPATH=~/.cabal/share/man:$MANPATH
 
+		[ -d ~/Downloads/mongodb-osx-x86_64-enterprise-4.0.1 ] &&
+		export PATH=~/Downloads/mongodb-osx-x86_64-enterprise-4.0.1/bin:$PATH
+
 		if command -v brew >/dev/null 2>&1; then
 			export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
 		fi
