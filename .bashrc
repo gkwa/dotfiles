@@ -1,5 +1,4 @@
 source ~/.alias
-[ -f /usr/local/etc/profile.d/z.sh ] && . /usr/local/etc/profile.d/z.sh
 
 ##############################
 # http://nuclearsquid.com/writings/git-tricks-tips-workflows/
@@ -425,3 +424,4 @@ file=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bas
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
+[ -f /usr/local/etc/profile.d/z.sh ] && . /usr/local/etc/profile.d/z.sh
