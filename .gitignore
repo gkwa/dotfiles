@@ -1,3 +1,11 @@
+/.3T/
+/.dbshell
+/.docker/
+/.helm/
+/.mongorc.js
+/.z
+/PhpstormProjects/
+/RubymineProjects/
 /.parallel/
 /.tig_history
 /.berkshelf/
