@@ -1,3 +1,4 @@
 alias ects='emacsclient -c -t -a ""'
+alias kb=kubectl
 
 alias g=git
