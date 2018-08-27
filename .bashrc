@@ -83,6 +83,11 @@ case "$(uname)" in
 
     Darwin)
 
+		export GOPATH=$HOME/go
+		export GOROOT=/usr/local/opt/go/libexec
+		export PATH=$PATH:$GOPATH/bin
+		export PATH=$PATH:$GOROOT/bin
+		        		        
 		[ -f /usr/local/var/rbenv ] && export RBENV_ROOT=/usr/local/var/rbenv
 		export INFOPATH=/usr/local/share/info:$INFOPATH
 
