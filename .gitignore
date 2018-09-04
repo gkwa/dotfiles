@@ -1,3 +1,26 @@
+/.atom/
+/.aws/
+/.bundle/
+/.dlv/
+/.fluentd/
+/.gemrc
+/.kubeadm-dind-cluster/
+/.mkshrc
+/.npm/
+/.pylint.d/
+/.python_history
+/.rvm/
+/.serverless/
+/.serverlessrc
+/.vault-token
+/.vscode-react-native/
+/.vscode.1/
+/.vscode/
+/.wget-hsts
+/.zlogin
+/.zshrc
+/VirtualBox VMs/
+/go/
 /.zoomus/
 /.3T/
 /.dbshell
