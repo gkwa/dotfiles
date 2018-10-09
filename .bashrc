@@ -130,95 +130,6 @@ case "$(uname)" in
 		# # rbenv: http://robots.thoughtbot.com/using-rbenv-to-manage-rubies-and-gems
 		# eval "$(rbenv init -)"
 
-		function repo_setup()
-		{
-			project=$(basename `pwd`)
-
-			echo -n 'git init && '
-			echo -n "git remote add origin dev:~/proj/$project.git && "
-			echo ssh dev '"cd /var/www/html/proj; sh setupproj.sh '$project'"'
-			echo
-			echo git push --set-upstream origin master
-			echo
-			echo git clone --reference ~/pdev/nsis-streambox2 \
-				 --no-hardlinks \
-				 dev:~/proj/nsis-streambox2.git
-			echo
-			echo cp ~/pdev/nsis-baseline/{template.nsi,VERSION.mk,Makefile} .
-			echo '# git add . && git commit -am blah'
-			echo
-			echo '(cd ~/pdev/manifest && git commit -am "Adds project '$project'" && git push)'
-			echo '<project name="'$project'" path="'$project'" />'
-			echo ~/pdev/manifest/default.xml
-		}
-		function psearch()
-		{
-			mdfind "$1" -onlyin ~/pdev
-		}
-
-		function gn()
-		{
-			grep -i "$1" ~/notes.txt
-		}
-
-		function bitgrepupdate()
-		{
-			cd ~/pdev/production-find-ls && git pull
-			test -f /Volumes/Production/Streambox/find-ls.txt && \
-				cp /Volumes/Production/Streambox/find-ls.txt \
-				   ~/pdev/production-find-ls && \
-				dos2unix find-ls.txt && \
-				cd ~/pdev/production-find-ls && git commit -am bitgrepupdate && \
-				git push && git show
-		}
-
-		function rdp()
-		{
-			octet="$1"
-			if test ! -z "$octet"; then
-				(cd ~/pdev/rdp-connect
-				 python main.py $octet
-				 sh ${octet}_main.sh)
-			fi
-		}
-
-		function r2()
-		{
-			find ~/Documents/RDC\ Connections ~/pdev/rdp-connect | \
-				grep -iE "$1" | \
-				sed 's, ,\\ ,g' | \
-				sed 's,^,open ,'
-
-		}
-
-		# installer functions
-		imgmountpoint() {
-			# echo disktuil eject \
-				#	$(hdid -plist $1 | grep dev-entry -A1 | \
-				#	grep string | cut -d\> -f2 | cut -d\< -f1 | \
-				#	sed -e 's,/dev/,,')
-
-			hdid -plist $1 | grep mount-point -A1 | \
-				grep string | cut -d\> -f2 | cut -d\< -f1;
-		}
-		myumount2() {
-			diskutil eject "$(imgmountpoint $1)";
-
-		}
-		nasumount(){
-			mount | grep 10.0.2.10 | awk '{print $1}' | xargs -n1 umount
-		}
-		myinstall() {
-			#			set -x;
-			hdid $1;
-			pushd "$(imgmountpoint $1)";
-			sudo installer -pkg "$(ls -1 | grep -i pkg | head -1)" -target /;
-			popd;
-			echo sleeping for 4 secs to allow stuff to catchup
-			sleep 4;
-			myumount2 "$1";
-		}
-
 		check_git_dirty()
 		{
 			dir=$1
@@ -247,10 +158,6 @@ case "$(uname)" in
 			fi
 		}
 
-		mfs()
-		{
-			mdfind -onlyin ~/pdev "$1"
-		}
 
 		gg_replace() {
 			if [[ "$#" == "0" ]]; then
