@@ -714,7 +714,7 @@ else do C-x 5 0 delete-frame"
  '(ido-case-fold t)
  '(ispell-program-name "aspell")
  '(js-indent-level 8)
- '(large-file-warning-threshold 20000000)
+ '(large-file-warning-threshold 40000000)
  '(magit-last-seen-setup-instructions "1.4.0" t)
  '(menu-bar-mode nil)
  '(mode-line-inverse-video nil)
