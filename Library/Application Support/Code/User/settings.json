@@ -33,5 +33,7 @@
   "explorer.confirmDragAndDrop": false,
   "workbench.colorTheme": "Visual Studio Dark",
   "go.autocompleteUnimportedPackages": true,
-    "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "python.venvFolders": ["${env:HOME}/.venv", "envs", ".pyenv", ".direnv"],
+  "python.pythonPath": "${env:HOME}/.venv/bin/python"
 }
