@@ -1,5 +1,3 @@
-alias ansible='ansible --extra-vars=@/etc/ansible/group_vars/all_taylor.yml --extra-vars=@/etc/ansible/group_vars/vault_taylor.yml'
-alias ansible-playbook='ansible-playbook --extra-vars=@/etc/ansible/group_vars/all_taylor.yml --extra-vars=@/etc/ansible/group_vars/vault_taylor.yml'
 alias ects='emacsclient -c -t -a ""'
 alias kb=kubectl
 
