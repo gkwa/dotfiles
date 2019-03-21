@@ -1,6 +1,3 @@
-# Last modified $Id$
-# $HeadURL$
-# -*- sh-mode -*-
-
-. ~/.alias
-. ~/.bash_profile
+export MANPAGER=cat
+export GIT_PAGER=cat
+export MANWIDTH=80

@@ -1,0 +1,21 @@
+;; Debugger entered--Lisp error: (file-error "Spawning child process" "exec format error")
+;;   call-process("c:/cygwin/usr/local/bin/git.exe" nil t nil "help" "--all")
+;;   (progn (call-process pcmpl-git-executable nil t nil "help" "--all") (goto-char (point-min)) (if (or (re-search-forward "-+\n" nil t) (search-forward "\n\n" nil t 2)) (progn (setq beg (point)))) (if (search-forward "\n\n" nil t) (progn (setq end (point)))) (if (and beg end) (progn (setq commands (pcmpl-git-parse-region beg end "\\s-\\(\\S-+?\\)\\s-" (if internal nil (function (lambda nil ...))))) (delete-dups (append (pcmpl-git-porcelain-commands) (sort commands (quote pcmpl-git-string-lessp)))))))
+;;   (unwind-protect (progn (call-process pcmpl-git-executable nil t nil "help" "--all") (goto-char (point-min)) (if (or (re-search-forward "-+\n" nil t) (search-forward "\n\n" nil t 2)) (progn (setq beg (point)))) (if (search-forward "\n\n" nil t) (progn (setq end (point)))) (if (and beg end) (progn (setq commands (pcmpl-git-parse-region beg end "\\s-\\(\\S-+?\\)\\s-" (if internal nil (function ...)))) (delete-dups (append (pcmpl-git-porcelain-commands) (sort commands (quote pcmpl-git-string-lessp))))))) (and (buffer-name temp-buffer) (kill-buffer temp-buffer)))
+;;   (save-current-buffer (set-buffer temp-buffer) (unwind-protect (progn (call-process pcmpl-git-executable nil t nil "help" "--all") (goto-char (point-min)) (if (or (re-search-forward "-+\n" nil t) (search-forward "\n\n" nil t 2)) (progn (setq beg (point)))) (if (search-forward "\n\n" nil t) (progn (setq end (point)))) (if (and beg end) (progn (setq commands (pcmpl-git-parse-region beg end "\\s-\\(\\S-+?\\)\\s-" (if internal nil ...))) (delete-dups (append (pcmpl-git-porcelain-commands) (sort commands ...)))))) (and (buffer-name temp-buffer) (kill-buffer temp-buffer))))
+;;   (let ((temp-buffer (generate-new-buffer " *temp*"))) (save-current-buffer (set-buffer temp-buffer) (unwind-protect (progn (call-process pcmpl-git-executable nil t nil "help" "--all") (goto-char (point-min)) (if (or (re-search-forward "-+\n" nil t) (search-forward "\n\n" nil t 2)) (progn (setq beg (point)))) (if (search-forward "\n\n" nil t) (progn (setq end (point)))) (if (and beg end) (progn (setq commands (pcmpl-git-parse-region beg end "\\s-\\(\\S-+?\\)\\s-" ...)) (delete-dups (append ... ...))))) (and (buffer-name temp-buffer) (kill-buffer temp-buffer)))))
+;;   (let (beg end commands) (let ((temp-buffer (generate-new-buffer " *temp*"))) (save-current-buffer (set-buffer temp-buffer) (unwind-protect (progn (call-process pcmpl-git-executable nil t nil "help" "--all") (goto-char (point-min)) (if (or (re-search-forward "-+\n" nil t) (search-forward "\n\n" nil t 2)) (progn (setq beg ...))) (if (search-forward "\n\n" nil t) (progn (setq end ...))) (if (and beg end) (progn (setq commands ...) (delete-dups ...)))) (and (buffer-name temp-buffer) (kill-buffer temp-buffer))))))
+;;   pcmpl-git-commands()
+;;   (defvar pcmpl-git-commands (pcmpl-git-commands) "A collection of all 'git' commands.")
+;;   eval-buffer(#<buffer  *load*-660916> nil "c:/cygwin/home/Administrator/.elisp/pcmpl-git-el/pcmpl-git.el" nil t)  ; Reading at buffer position 5184
+;;   load-with-code-conversion("c:/cygwin/home/Administrator/.elisp/pcmpl-git-el/pcmpl-git.el" "c:/cygwin/home/Administrator/.elisp/pcmpl-git-el/pcmpl-git.el" nil t)
+;;   require(pcmpl-git)
+;;   eval-buffer(#<buffer  *load*> nil "c:/cygwin/home/Administrator/.emacs" nil t)  ; Reading at buffer position 60733
+;;   load-with-code-conversion("c:/cygwin/home/Administrator/.emacs" "c:/cygwin/home/Administrator/.emacs" t t)
+;;   load("~/.emacs" t t)
+;;   command-line()
+;;   normal-top-level()
+; (add-to-list 'load-path "~/.emacs.d/elisp/pcmpl-git-el")
+; (require 'pcmpl-git)
+
+(provide 'user-init-pcomplete)
