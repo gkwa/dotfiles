@@ -24,10 +24,10 @@ pbcopy() { putclip; }
 pbpaste() { getclip; }
 
 function restart() {
-	for server in "$@"; do
-		cygrunsrv -E "$server"
-		cygrunsrv -S "$server"
-	done
+    for server in "$@"; do
+        cygrunsrv -E "$server"
+        cygrunsrv -S "$server"
+    done
 }
 
 export PATH="/usr/sbin:$PATH"

@@ -4,11 +4,11 @@
 
 # You should create NVM's working directory if it doesn't exist:
 if [[ ! -d ~/.nvm ]]; then
-	mkdir ~/.nvm
+    mkdir ~/.nvm
 
-	# Add the following to ~/.bash_profile or your desired shell
-	# configuration file:
-	export NVM_DIR="$HOME/.nvm"
+    # Add the following to ~/.bash_profile or your desired shell
+    # configuration file:
+    export NVM_DIR="$HOME/.nvm"
 
 fi
 

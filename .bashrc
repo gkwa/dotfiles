@@ -29,10 +29,10 @@
 
 case "$(uname)" in
 CYGWIN_NT*)
-	. ~/.bash.d/cygwin.sh
-	;;
+    . ~/.bash.d/cygwin.sh
+    ;;
 
 Darwin)
-	. ~/.bash.d/macos.sh
-	;;
+    . ~/.bash.d/macos.sh
+    ;;
 esac
