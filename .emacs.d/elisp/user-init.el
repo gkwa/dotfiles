@@ -84,6 +84,7 @@
 (setq-default split-width-threshold 0)
 (setq-default truncate-lines t)
 (setq-default visible-bell t)
+(setq-default indent-tabs-mode nil)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
