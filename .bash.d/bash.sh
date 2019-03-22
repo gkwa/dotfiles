@@ -38,3 +38,5 @@ mkcdr() {
 	mkdir -p -v $1
 	cd $1
 }
+
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
