@@ -1,3 +1,4 @@
+(require 'user-init-ag)
 (require 'user-init-applescript)
 (require 'user-init-autocomplete)
 (require 'user-init-backup)
