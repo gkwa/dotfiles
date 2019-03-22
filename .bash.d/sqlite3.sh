@@ -1,1 +1,1 @@
-[[ -d /usr/local/opt/sqlite/bin ]] && PATH="/usr/local/opt/sqlite/bin:$PATH"
+[[ -d /usr/local/opt/sqlite/bin ]] && export PATH="/usr/local/opt/sqlite/bin:$PATH"

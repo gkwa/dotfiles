@@ -20,16 +20,6 @@
 # stty lnext ^Q stop undef
 # stty lnext undef
 
-export PATH="/c/Program Files/Rust stable GNU 1.13:$PATH"
-export PATH="/usr/sbin:$PATH"
-export PATH="/c/cygwin/bin:$PATH"
-export PATH="/c/cygwin64/bin:$PATH"
-
-export PATH="/c/cygwin/usr/local/bin:$PATH"
-export PATH="/c/cygwin64/usr/local/bin:$PATH"
-
-export PATH=".:$PATH"
-
 pbcopy() { putclip; }
 pbpaste() { getclip; }
 
@@ -39,3 +29,10 @@ function restart() {
 		cygrunsrv -S "$server"
 	done
 }
+
+export PATH="/usr/sbin:$PATH"
+export PATH="/c/cygwin/bin:$PATH"
+export PATH="/c/cygwin64/bin:$PATH"
+export PATH="/c/cygwin/usr/local/bin:$PATH"
+export PATH="/c/cygwin64/usr/local/bin:$PATH"
+export PATH=".:$PATH"
