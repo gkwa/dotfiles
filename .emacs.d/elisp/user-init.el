@@ -4,7 +4,6 @@
 (require 'user-init-backup)
 (require 'user-init-bat)
 (require 'user-init-bind-key)
-(require 'user-init-bookmark)
 (require 'user-init-browse-apropose-url)
 (require 'user-init-calc)
 (require 'user-init-client-server)
