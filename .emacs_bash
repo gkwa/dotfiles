@@ -1,3 +1,5 @@
 export MANPAGER=cat
 export GIT_PAGER=cat
 export MANWIDTH=80
+export EDITOR=emacsclient
+export PATH=".:$PATH"
