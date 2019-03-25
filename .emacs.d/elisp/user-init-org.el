@@ -3,7 +3,7 @@
 (setq org-adapt-indentation nil)
 (setq org-src-preserve-indentation t)
 (setq org-confirm-babel-evaluate nil)
-(setq org-special-ctrl-a/e t)
+(setq org-special-ctrl-a/e nil)
 (setq org-log-done t)
 
 (org-babel-do-load-languages

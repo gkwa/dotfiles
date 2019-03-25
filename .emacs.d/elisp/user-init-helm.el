@@ -61,8 +61,6 @@
         ('darwin "mdfind -name %s %s")
         (t "locate %s")))
 
-(setq-default helm-locate-command "locate --existing %s %s")
-(setq-default helm-locate-create-db-command "LC_ALL='C' gupdatedb --output='%s' --localpaths='%s'")
 (setq-default helm-ff-newfile-prompt-p nil)
 
 (provide 'user-init-helm)
