@@ -26,6 +26,7 @@
 . ~/.bash.d/.alias
 . ~/.bash.d/gnu.sh
 . ~/.bash.d/openssl.sh
+. ~/.bash.d/rust.sh
 
 case "$(uname)" in
 CYGWIN_NT*)
