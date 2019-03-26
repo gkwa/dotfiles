@@ -5,4 +5,3 @@
 (require 'user-init-package-init)
 (require 'user-init)
 (provide 'init)
-(put 'upcase-region 'disabled nil)

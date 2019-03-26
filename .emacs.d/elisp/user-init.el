@@ -86,6 +86,8 @@
 (setq-default visible-bell t)
 (setq-default indent-tabs-mode nil)
 
+(put 'upcase-region 'disabled nil)
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (provide 'user-init)
