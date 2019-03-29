@@ -1,7 +1,4 @@
 (ensure-package-installed 'elpy)
-(ensure-package-installed 'jedi)
-
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
+(elpy-enable)
 
 (provide 'user-init-python)
