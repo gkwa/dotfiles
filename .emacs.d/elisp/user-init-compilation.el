@@ -18,18 +18,18 @@
     (require 'compile))
   ;; Close STDIN to keep ack from going into filter mode
   (let ((null-device (format "< %s" null-device))
-	(grep-command ack-command)
-	(grep-history ack-history)
-	(grep-host-defaults-alist ack-host-defaults-alist))
+	    (grep-command ack-command)
+	    (grep-history ack-history)
+	    (grep-host-defaults-alist ack-host-defaults-alist))
     (call-interactively 'grep)
     (setq ack-history             grep-history
-	  ack-host-defaults-alist grep-host-defaults-alist)))
+	      ack-host-defaults-alist grep-host-defaults-alist)))
 
 ;; http://stackoverflow.com/questions/683425/globally-override-key-binding-in-emacs
 (add-hook 'makefile-mode-hook
-	  (lambda ()
-	    (define-key makefile-mode-map (kbd "C-c u") 'compile)
-	    (define-key makefile-mode-map (kbd "C-c i") 'recompile)))
+	      (lambda ()
+	        (define-key makefile-mode-map (kbd "C-c u") 'compile)
+	        (define-key makefile-mode-map (kbd "C-c i") 'recompile)))
 
 ;; compilation-scroll-output 'first-error ;; scroll automatically to follow the output as it comes in.
 (setq-default compilation-always-kill t)
@@ -68,59 +68,59 @@
 ;; workaround see notes.txt for "messagebox"
 (setq compilation-error-regexp-alist
       '(absoft
-	ada
-	aix
-	ant
-	bash
-	borland
-	caml
-	comma
-	edg-1
-	edg-2
-	epc
-	ftnchek
-	iar
-	ibm
-	irix
-	java
-	jikes-file
-	jikes-line
-	;; gnu
-	gcc-include
-	lcc
-	makepp
-	mips-1
-	mips-2
-	msft
-	omake
-	oracle
-	perl
-	php
-	rxp
-	sparc-pascal-file
-	sparc-pascal-line
-	sparc-pascal-example
-	sun
-	sun-ada
-	watcom
-	4bsd
-	gcov-file
-	gcov-header
-	gcov-nomark
-	gcov-called-line
-	gcov-never-called
-	perl--Pod::Checker
-	perl--Test
-	perl--Test2
-	perl--Test::Harness
-	weblint))
+	    ada
+	    aix
+	    ant
+	    bash
+	    borland
+	    caml
+	    comma
+	    edg-1
+	    edg-2
+	    epc
+	    ftnchek
+	    iar
+	    ibm
+	    irix
+	    java
+	    jikes-file
+	    jikes-line
+	    ;; gnu
+	    gcc-include
+	    lcc
+	    makepp
+	    mips-1
+	    mips-2
+	    msft
+	    omake
+	    oracle
+	    perl
+	    php
+	    rxp
+	    sparc-pascal-file
+	    sparc-pascal-line
+	    sparc-pascal-example
+	    sun
+	    sun-ada
+	    watcom
+	    4bsd
+	    gcov-file
+	    gcov-header
+	    gcov-nomark
+	    gcov-called-line
+	    gcov-never-called
+	    perl--Pod::Checker
+	    perl--Test
+	    perl--Test2
+	    perl--Test::Harness
+	    weblint))
 
 ;; nsis
 (add-to-list 'compilation-error-regexp-alist
-	     '("^Error in script \"\\([^\"]*\\)\" on line \\([0-9]+\\)" 1 2))
+	         '("^Error in script \"\\([^\"]*\\)\" on line \\([0-9]+\\)" 1 2))
 ;; unknown variable/constant "regname" detected, ignoring (PortableEncoder.nsi:201)
 (add-to-list 'compilation-error-regexp-alist
-	     '("unknown variable/constant.*\(\\([^:]*\\):\\([0-9]+\\)" 1 2))
+	         '("unknown variable/constant.*\(\\([^:]*\\):\\([0-9]+\\)" 1 2))
 
 ;; this means hitting the compile button always saves the buffer
 ;; having to separately hit C-x C-s is a waste of time
@@ -145,7 +145,7 @@
 (when (equal system-type 'darwin)
   (progn
     (add-to-list 'compilation-error-regexp-alist
-		 '("^git_jump:\\(.*\\):\\([0-9]+\\)" 1 2))
+		         '("^git_jump:\\(.*\\):\\([0-9]+\\)" 1 2))
     ))
 
 
@@ -166,32 +166,32 @@
 
 ;; liveEncoderAutomate.scpt:1338:1339: script error: Expected "else", etc. but found unknown token. (-2741)
 (add-to-list 'compilation-error-regexp-alist
-	     '("^\\([^:]*\\):\\([0-9]+\\).* script error:" 1 2))
+	         '("^\\([^:]*\\):\\([0-9]+\\).* script error:" 1 2))
 
 ;; # PHP Fatal error:  Uncaught exception 'DOMException' with message 'Wrong Document Error' in /Users/demo/pdev/sfs/setup-sfssettings.php:22
 (add-to-list 'compilation-error-regexp-alist
-	     '("^PHP Fatal error: .* in \\(.*\\):\\([0-9]+\\)" 1 2))
+	         '("^PHP Fatal error: .* in \\(.*\\):\\([0-9]+\\)" 1 2))
 (add-to-list 'compilation-error-regexp-alist
-	     '("^Warning: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
+	         '("^Warning: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
 (add-to-list 'compilation-error-regexp-alist
-	     '(".* fatal error: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
+	         '(".* fatal error: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
 (add-to-list 'compilation-error-regexp-alist
-	     '("^PHP Notice: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
+	         '("^PHP Notice: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
 (add-to-list 'compilation-error-regexp-alist
-	     '("^PHP Warning: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
+	         '("^PHP Warning: .* in \\(.*\\) on line \\([0-9]+\\)" 1 2))
 
 ;; http://praveen.kumar.in/2011/03/09/making-gnu-emacs-detect-custom-error-messages-a-maven-example/
 (add-to-list 'compilation-error-regexp-alist 'maven)
 (add-to-list 'compilation-error-regexp-alist-alist
-	     '(maven "\\[ERROR\\] \\(.+?\\):\\[\\([0-9]+\\),\\([0-9]+\\)\\].*"
-		     1 2 3))
+	         '(maven "\\[ERROR\\] \\(.+?\\):\\[\\([0-9]+\\),\\([0-9]+\\)\\].*"
+		             1 2 3))
 
 ;;  File "/Users/demo/pdev/check2000/SConstruct", line 30:
 (add-to-list 'compilation-error-regexp-alist
-	     '("^ +File .\\(.*\\)., line \\([0-9]+\\):" 1 2))
+	         '("^ +File .\\(.*\\)., line \\([0-9]+\\):" 1 2))
 
 (add-to-list 'compilation-error-regexp-alist
-	     '("^git_jump:\\(.*\\):\\([0-9]+\\)" 1 2))
+	         '("^git_jump:\\(.*\\):\\([0-9]+\\)" 1 2))
 
 (setq-default compilation-scroll-output t)
 
