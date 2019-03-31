@@ -15,7 +15,6 @@
 . ~/.bash.d/ncurses.sh
 . ~/.bash.d/nginx.sh
 . ~/.bash.d/node.sh
-. ~/.bash.d/python3.sh
 . ~/.bash.d/selenium.sh
 . ~/.bash.d/serverless.sh
 . ~/.bash.d/sphinx-doc.sh
@@ -27,13 +26,6 @@
 . ~/.bash.d/gnu.sh
 . ~/.bash.d/openssl.sh
 . ~/.bash.d/rust.sh
-
-case "$(uname)" in
-CYGWIN_NT*)
-    . ~/.bash.d/cygwin.sh
-    ;;
-
-Darwin)
-    . ~/.bash.d/macos.sh
-    ;;
-esac
+[[ "$OSTYPE" =~ ^cygwin ]] && . ~/.bash.d/cygwin.sh
+[[ "$OSTYPE" =~ ^darwin ]] && . ~/.bash.d/macos.sh
+. ~/.bash.d/python3.sh
