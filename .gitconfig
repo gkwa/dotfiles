@@ -55,6 +55,7 @@
 	stk = stash --keep-index
 	conf = diff --name-only --diff-filter=U # list conflicts:
 	cmah = commit --amend -C HEAD
+	cmu = commit --amend -C HEAD .
 	cma = commit --amend
 	rb8 = rebase --interactive HEAD~80
 	rb5 = rebase --interactive HEAD~50
