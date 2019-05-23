@@ -5,6 +5,7 @@
 (setq org-confirm-babel-evaluate nil)
 (setq org-special-ctrl-a/e nil)
 (setq org-log-done t)
+(setq org-babel-python-command "/usr/local/bin/python3")
 
 (org-babel-do-load-languages
  'org-babel-load-languages
