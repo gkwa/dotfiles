@@ -1,16 +1,11 @@
 function notec() {
     (
-        cd ~/pdev/mtm/emacs
+        cd ~/pdev/taylormonacelli/notes
         if ! git diff --no-ext-diff --quiet --exit-code; then
             git add --update
         fi
         git commit -m "Notes backup"
-        ls -1 notes.txt notes/* |
-            xargs -I% echo 'perl -w -i.bak ~/bin/org_clean_whitespace.pl % && rm %.bak' |
-            sh -
-        ls -1 notes.txt notes/* |
-            xargs -I% echo 'perl -wi ~/bin/replace_unicode_with_ascii.pl %' |
-            sh -
+        perl -wi ~/bin/org_clean_whitespace.pl *.txt *.org
         if ! git diff --no-ext-diff --quiet --exit-code; then
             git add --update
         fi
