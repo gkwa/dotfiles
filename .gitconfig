@@ -3,10 +3,6 @@
 	email = taylormonacelli@gmail.com
 [man]
 	viewer = woman
-[merge]
-	tool = p4merge #git config --global merge.tool p4merge
-[mergetool "p4merge"]
-	cmd = p4merge $BASE $LOCAL $REMOTE $MERGED
 [alias]
 	wsadd = "!sh -c 'git diff -- \"$@\" | git apply --cached --whitespace=fix'"
 
