@@ -18,4 +18,34 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cr" 'org-mark-ring-goto)
 
+(defun reformat-paragraph-with-line-spacing()
+  "do mything"
+  (interactive)
+  (progn
+    (org-beginning-of-line)
+    (open-line 1)
+    (forward-char)
+    (fill-paragraph)
+    (forward-line -1)
+    (org-backward-sentence)
+    (org-forward-sentence)
+    (delete-blank-lines)
+    (delete-blank-lines)
+    (open-line 1)
+    (org-forward-sentence)
+    (delete-horizontal-space)
+    (open-line 2)
+    (forward-char)
+    (forward-char)
+    (fill-paragraph)
+    (forward-line -1)
+    (delete-blank-lines)
+    (delete-blank-lines)
+    (open-line 1)
+    (org-forward-element)
+    (recenter)))
+
+(with-eval-after-load 'org
+  (bind-key "C-^" #'reformat-paragraph-with-line-spacing org-mode-map))
+
 (provide 'user-init-org)
