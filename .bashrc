@@ -26,6 +26,6 @@
 . ~/.bash.d/gnu.sh
 . ~/.bash.d/openssl.sh
 . ~/.bash.d/rust.sh
-[[ "$OSTYPE" =~ ^cygwin ]] && . ~/.bash.d/cygwin.sh
-[[ "$OSTYPE" =~ ^darwin ]] && . ~/.bash.d/macos.sh
+[[ $OSTYPE =~ ^cygwin ]] && . ~/.bash.d/cygwin.sh
+[[ $OSTYPE =~ ^darwin ]] && . ~/.bash.d/macos.sh
 . ~/.bash.d/python3.sh
