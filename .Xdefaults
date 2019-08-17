@@ -1,8 +1,0 @@
-! http://stackoverflow.com/questions/92971/how-do-i-set-the-size-of-emacs-window
-Emacs.geometry: 180x70
-
-! http://www.hypexr.org/linux_ruboff.php
-*ttyModes: erase ^?
-*VT100.Translations: \
-	#override <Key>BackSpace: string(0x7f) \n\
-	<Key>Delete: string(0x1b) string("[3~")
