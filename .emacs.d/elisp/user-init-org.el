@@ -26,8 +26,25 @@
   (interactive)
   (progn
     (org-beginning-of-line)
+    (if (looking-at "#")
+        (progn
+          (org-forward-element)))
     (if (looking-at "\\*")
-        (forward-line))
+        (progn
+          (next-line)
+          (org-beginning-of-line)
+          (delete-blank-lines)
+          (delete-blank-lines)
+          (open-line 1)
+          (next-line)))
+    (if
+        (looking-at "[[:space:]\n]*-")
+        (progn
+          (forward-char)
+          (delete-horizontal-space)
+          (insert " ")
+          (org-fill-paragraph)
+          (org-beginning-of-line)))
     (delete-horizontal-space)
     (open-line 1)
     (forward-char)
@@ -46,9 +63,32 @@
     (delete-blank-lines)
     (delete-blank-lines)
     (open-line 1)
-    (org-forward-element)))
+    (if
+        (not
+          (looking-at "[:blank:]*\\*"))
+        (org-forward-element))))
 
 (with-eval-after-load 'org
   (bind-key "C-^" #'reformat-paragraph-with-line-spacing org-mode-map))
+
+(defun taylor-org-mode-wrap-block-in-example-markdown()
+  "taylor-org-mode-wrap-block-in-example-markdown"
+  (interactive)
+  (progn
+    (kill-region)
+    (open-line)
+    (self-insert-command)
+    (indent-for-tab-command)
+    (yank)
+    (delete-blank-lines)
+    (delete-blank-lines)
+    (next-line)
+    (open-line)
+    (next-line)
+    (previous-line)
+    (delete-blank-lines)
+    (delete-blank-lines)
+    (open-line)
+    (next-line)))
 
 (provide 'user-init-org)
