@@ -1,5 +1,6 @@
 (ensure-package-installed 'org)
 
+(setq js-indent-level 2)
 (setq org-adapt-indentation nil)
 (setq org-src-preserve-indentation t)
 (setq org-confirm-babel-evaluate nil)
@@ -12,6 +13,7 @@
  '((ruby . t)
    (shell . t)
    (python . t)
+   (js . t)
    (java . t)))
 
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
