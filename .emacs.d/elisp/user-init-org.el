@@ -26,12 +26,11 @@
   (interactive)
   (progn
     (org-beginning-of-line)
+    (delete-horizontal-space)
     (open-line 1)
     (forward-char)
     (fill-paragraph)
     (forward-line -1)
-    (org-backward-sentence)
-    (org-forward-sentence)
     (delete-blank-lines)
     (delete-blank-lines)
     (open-line 1)
@@ -45,8 +44,7 @@
     (delete-blank-lines)
     (delete-blank-lines)
     (open-line 1)
-    (org-forward-element)
-    (recenter)))
+    (org-forward-element)))
 
 (with-eval-after-load 'org
   (bind-key "C-^" #'reformat-paragraph-with-line-spacing org-mode-map))
