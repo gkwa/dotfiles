@@ -1,19 +1,3 @@
-#!/bin/env bash
-
-set -e
-
-tmp=$(mktemp -d /tmp/restic.XXXXX)
-
-export B2_ACCOUNT_ID="$(security find-generic-password -a ${USER} -s B2_ACCOUNT_ID -w)"
-export B2_ACCOUNT_KEY="$(security find-generic-password -a ${USER} -s B2_ACCOUNT_KEY -w)"
-export macos_laptop_restic_pass="$(security find-generic-password -a ${USER} -s macos_laptop_restic_pass -w)"
-export RESTIC_REPOSITORY="b2:macos-laptop"
-export RESTIC_PASSWORD_FILE="$tmp/restic-pw.txt"
-touch $RESTIC_PASSWORD_FILE
-chmod go-rwx $RESTIC_PASSWORD_FILE
-echo "$macos_laptop_restic_pass" >$RESTIC_PASSWORD_FILE
-
-cat <<'__eot__' >$tmp/excludes.txt
 $HOME/.511976.padl
 $HOME/.CFUserTextEncoding
 $HOME/.IdentityService
@@ -57,6 +41,7 @@ $HOME/.gitconfig
 $HOME/.gitflow_export
 $HOME/.gitignore_global
 $HOME/.gitkraken
+$HOME/.vscode
 $HOME/.glide
 $HOME/.gnupg
 $HOME/.hammerspoon
@@ -110,7 +95,6 @@ $HOME/.templateengine
 $HOME/.terraform.d
 $HOME/.thumbnails
 $HOME/.tooling
-$HOME/.v8flags.7.5.288.22-node.16.09321b8d5a296ad4613d6618091ed098.json
 $HOME/.vagrant.d
 $HOME/.vim
 $HOME/.viminfo
@@ -130,6 +114,10 @@ $HOME/.dbeaver-drivers
 .DS_Store
 Downloads/pluralsight
 .Trash
-__eot__
-
-time restic backup /Users --exclude-file=$tmp/excludes.txt
+VirtualBox VMs/.git/lfs
+Containers/com.docker.docker/Data/vms
+node_modules
+emacs.d/elpa
+Trash
+Library/Application Support
+cache
