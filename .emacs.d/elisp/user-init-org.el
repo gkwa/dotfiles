@@ -26,6 +26,8 @@
   (interactive)
   (progn
     (org-beginning-of-line)
+    (if (looking-at "\\*")
+        (forward-line))
     (delete-horizontal-space)
     (open-line 1)
     (forward-char)
