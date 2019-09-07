@@ -48,3 +48,5 @@ if type brew &>/dev/null; then
         source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
     fi
 fi
+
+source $HOME/.bash.d/url-to-orgmode.sh
