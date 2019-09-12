@@ -1,3 +1,6 @@
+alias kb=kubectl
+alias python=python3
+
 export HISTCONTROL=ignoredups:ignorespace
 export HISTSIZE=100000
 export HISTFILESIZE=200000
