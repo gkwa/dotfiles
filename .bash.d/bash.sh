@@ -36,12 +36,6 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Makes directory then moves into it
-mkcdr() {
-    mkdir -p -v $1
-    cd $1
-}
-
 # bash completion
 if type brew &>/dev/null; then
     for COMPLETION in $(brew --prefix)/etc/bash_completion.d/*; do
