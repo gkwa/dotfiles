@@ -24,49 +24,53 @@
 (defun reformat-paragraph-with-line-spacing()
   "do mything"
   (interactive)
-  (progn
-    (org-beginning-of-line)
-    (if (looking-at "#")
-        (progn
-          (org-forward-element)))
-    (if (looking-at "\\*")
-        (progn
-          (next-line)
-          (org-beginning-of-line)
-          (delete-blank-lines)
-          (delete-blank-lines)
-          (open-line 1)
-          (next-line)))
-    (if
-        (looking-at "[[:space:]\n]*-")
-        (progn
-          (forward-char)
-          (delete-horizontal-space)
-          (insert " ")
-          (org-fill-paragraph)
-          (org-beginning-of-line)))
-    (delete-horizontal-space)
-    (open-line 1)
-    (forward-char)
-    (fill-paragraph)
-    (forward-line -1)
-    (delete-blank-lines)
-    (delete-blank-lines)
-    (open-line 1)
-    (org-forward-sentence)
-    (delete-horizontal-space)
-    (open-line 2)
-    (forward-char)
-    (forward-char)
-    (fill-paragraph)
-    (forward-line -1)
-    (delete-blank-lines)
-    (delete-blank-lines)
-    (open-line 1)
-    (if
-        (not
-          (looking-at "[:blank:]*\\*"))
-        (org-forward-element))))
+  (catch 'mytag
+    (progn
+      (show-all)
+      (org-beginning-of-line)
+      (if (looking-at "\\*+[[:space:]]+")
+          ;; dealing with lists
+          (progn
+            (next-line)
+            (throw 'mytag "non-local exit value")))
+      (if (looking-at "[[:space:]]*\n\\*+[[:space:]]+")
+          ;; dealing with lists
+          (progn
+            (re-search-forward "^\\*")
+            (next-line)
+            (throw 'mytag "non-local exit value")))
+      (if (looking-at "[[:space:]]*\\(-\\|[[:digit:]]\\)")
+          ;; dealing with lists
+          (progn
+            (org-mark-element)
+            (org-forward-element)
+            (throw 'mytag "non-local exit value")))
+      (if (looking-at "\\*+[[:space:]]")
+          (progn
+            (next-line)
+            (throw 'mytag "non-local exit value")))
+      (if (looking-at "#")
+          (progn
+            (org-forward-element)))
+      (progn
+        (delete-horizontal-space)
+        (open-line 1)
+        (forward-char)
+        (fill-paragraph)
+        (forward-line -1)
+        (delete-blank-lines)
+        (delete-blank-lines)
+        (open-line 1)
+        (org-forward-sentence)
+        (delete-horizontal-space)
+        (open-line 2)
+        (forward-char)
+        (forward-char)
+        (fill-paragraph)
+        (forward-line -1)
+        (delete-blank-lines)
+        (delete-blank-lines)
+        (open-line 1)))))
 
 (with-eval-after-load 'org
   (bind-key "C-^" #'reformat-paragraph-with-line-spacing org-mode-map))
