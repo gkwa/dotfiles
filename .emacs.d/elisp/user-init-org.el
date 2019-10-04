@@ -21,56 +21,62 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cr" 'org-mark-ring-goto)
 
-(defun reformat-paragraph-with-line-spacing()
+(defun reformat-paragraph-with-line-spacing ()
   "do mything"
   (interactive)
-  (catch 'mytag
-    (progn
-      (show-all)
-      (org-beginning-of-line)
-      (if (looking-at "\\*+[[:space:]]+")
-          ;; dealing with lists
-          (progn
-            (next-line)
-            (throw 'mytag "non-local exit value")))
-      (if (looking-at "[[:space:]]*\n\\*+[[:space:]]+")
-          ;; dealing with lists
-          (progn
-            (re-search-forward "^\\*")
-            (next-line)
-            (throw 'mytag "non-local exit value")))
-      (if (looking-at "[[:space:]]*\\(-\\|[[:digit:]]\\)")
-          ;; dealing with lists
-          (progn
-            (org-mark-element)
-            (org-forward-element)
-            (throw 'mytag "non-local exit value")))
-      (if (looking-at "\\*+[[:space:]]")
-          (progn
-            (next-line)
-            (throw 'mytag "non-local exit value")))
-      (if (looking-at "#")
-          (progn
-            (org-forward-element)))
+    (catch 'mytag
       (progn
-        (delete-horizontal-space)
-        (open-line 1)
-        (forward-char)
-        (fill-paragraph)
-        (forward-line -1)
-        (delete-blank-lines)
-        (delete-blank-lines)
-        (open-line 1)
-        (org-forward-sentence)
-        (delete-horizontal-space)
-        (open-line 2)
-        (forward-char)
-        (forward-char)
-        (fill-paragraph)
-        (forward-line -1)
-        (delete-blank-lines)
-        (delete-blank-lines)
-        (open-line 1)))))
+        (show-all)
+        (recenter)
+        (org-beginning-of-line)
+        ;; jump past tables
+        (if (looking-at "[[:space:]]*\|")
+            (progn
+              (re-search-forward "^[^\|]")
+              (throw 'mytag "non-local exit value")))
+        (if (looking-at "\\*+[[:space:]]+")
+            ;; dealing with lists
+            (progn
+              (next-line)
+              (throw 'mytag "non-local exit value")))
+        (if (looking-at "[[:space:]]*\n\\*+[[:space:]]+")
+            ;; dealing with lists
+            (progn
+              (re-search-forward "^\\*")
+              (next-line)
+              (throw 'mytag "non-local exit value")))
+        (if (looking-at "[[:space:]]*\\(-\\|\\*?[[:digit:]]+\\.\\)")
+            ;; dealing with lists
+            (progn
+              (org-mark-element)
+              (org-forward-element)
+              (throw 'mytag "non-local exit value")))
+        (if (looking-at "\\*+[[:space:]]")
+            (progn
+              (next-line)
+              (throw 'mytag "non-local exit value")))
+        (if (looking-at "#")
+            (progn
+              (org-forward-element)))
+        (progn
+          (delete-horizontal-space)
+          (open-line 1)
+          (forward-char)
+          (fill-paragraph)
+          (forward-line -1)
+          (delete-blank-lines)
+          (delete-blank-lines)
+          (open-line 1)
+          (org-forward-sentence)
+          (delete-horizontal-space)
+          (open-line 2)
+          (forward-char)
+          (forward-char)
+          (fill-paragraph)
+          (forward-line -1)
+          (delete-blank-lines)
+          (delete-blank-lines)
+          (open-line 1)))))
 
 (with-eval-after-load 'org
   (bind-key "C-^" #'reformat-paragraph-with-line-spacing org-mode-map))
