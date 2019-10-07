@@ -29,26 +29,41 @@
         (show-all)
         (recenter)
         (org-beginning-of-line)
-        ;; jump past tables
-        (if (looking-at "[[:space:]]*\|")
+        (if (looking-at "[[:space:]]*#\\+BEGIN_")
+            ;; pre
             (progn
+              (re-search-forward "[[:space:]]*#\\+END_")
+              (next-line)
+              (throw 'mytag "non-local exit value")))
+        (if (looking-at "[[:space:]]*\\*+\n")
+            (progn
+              (re-search-forward "\\*+")
+              (insert " ")
+              (throw 'mytag "non-local exit value")))
+        (if (looking-at "[[:space:]]*\|")
+            ;; table
+            (progn
+              (search-forward "|")
+              (org-fill-paragraph)
               (re-search-forward "^[^\|]")
               (throw 'mytag "non-local exit value")))
         (if (looking-at "\\*+[[:space:]]+")
-            ;; dealing with lists
+            ;; list
             (progn
               (next-line)
               (throw 'mytag "non-local exit value")))
         (if (looking-at "[[:space:]]*\n\\*+[[:space:]]+")
-            ;; dealing with lists
+            ;; list
             (progn
               (re-search-forward "^\\*")
               (next-line)
               (throw 'mytag "non-local exit value")))
         (if (looking-at "[[:space:]]*\\(-\\|\\*?[[:digit:]]+\\.\\)")
-            ;; dealing with lists
+            ;; list
             (progn
+              (re-search-forward "[[:space:]]*")
               (org-mark-element)
+              (org-fill-paragraph)
               (org-forward-element)
               (throw 'mytag "non-local exit value")))
         (if (looking-at "\\*+[[:space:]]")
