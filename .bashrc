@@ -11,6 +11,7 @@
 . ~/.bash.d/git.sh
 . ~/.bash.d/golang.sh
 . ~/.bash.d/google-cloud-sdk.sh
+. ~/.bash.d/kubectl.sh
 . ~/.bash.d/mutt.sh
 . ~/.bash.d/ncurses.sh
 . ~/.bash.d/nginx.sh
@@ -24,6 +25,7 @@
 . ~/.bash.d/vault.sh
 . ~/.bash.d/.alias
 . ~/.bash.d/gnu.sh
+. ~/.bash.d/kubectl.sh
 . ~/.bash.d/openssl.sh
 . ~/.bash.d/rust.sh
 [[ $OSTYPE =~ ^cygwin ]] && . ~/.bash.d/cygwin.sh
