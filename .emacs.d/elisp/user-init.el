@@ -37,6 +37,7 @@
 (require 'user-init-nsis)
 (require 'user-init-nxml)
 (require 'user-init-org)
+(require 'user-init-org-mtmonacelli-utils)
 (require 'user-init-org-crypt)
 (require 'user-init-pbcopy)
 (require 'user-init-pcomplete)
