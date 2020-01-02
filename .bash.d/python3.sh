@@ -1,1 +1,1 @@
-[[ -d ~/.virtualenvs/.py37 ]] && source ~/.virtualenvs/.py37/bin/activate
+[[ -d ~/.virtualenvs/.py38 ]] && source ~/.virtualenvs/.py38/bin/activate
