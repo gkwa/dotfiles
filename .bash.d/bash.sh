@@ -35,13 +35,3 @@ shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# bash completion
-if type brew &>/dev/null; then
-    for COMPLETION in $(brew --prefix)/etc/bash_completion.d/*; do
-        [[ -f $COMPLETION ]] && source "$COMPLETION"
-    done
-    if [[ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]]; then
-        source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-    fi
-fi
