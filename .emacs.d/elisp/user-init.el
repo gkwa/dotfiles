@@ -62,6 +62,7 @@
 (require 'user-init-xquery)
 (require 'user-init-yaml)
 (require 'user-init-yasnippet)
+(require 'user-init-magit)
 
 ;(require 'user-init-window-numbering)
 ;(require 'user-init-winring)
