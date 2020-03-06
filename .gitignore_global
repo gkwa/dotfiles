@@ -1,5 +1,11 @@
+#*#
+.#*
+.scrapy/
+*.sqlite3
 .virtualenvs/
 node_modules/
+*.log
+*.code-workspace
 __pycache__/
 .vscode/
 .idea/
