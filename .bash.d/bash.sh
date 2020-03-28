@@ -1,13 +1,3 @@
-alias kb=kubectl
-alias python=python3
-
-export HISTCONTROL=ignoredups:ignorespace
-export HISTSIZE=100000
-export HISTFILESIZE=200000
-export HISTTIMEFORMAT=""
-export HISTSIZE=5000
-export ALTERNATE_EDITOR=""
-
 # for man pages
 export COLUMNS=72
 
@@ -16,9 +6,10 @@ hs() {
         history | awk '{$1="";print substr($0,2)}'
     else
         # if first arg is number, then tail -number
-        if test $(expr "$1" : "[0-9]*$") -gt 0; then
-            history | tail -$1 |
-                awk '{$1="";print substr($0,2)}' | grep -v "hs $1"
+        if test $(expr "$1" : "[0-9]*$") -gt 0
+        then
+            history | tail -$1 | awk '{$1="";print substr($0,2)}' |
+                grep -v "hs $1"
         else
             history | awk '{$1="";print substr($0,2)}' | grep -i "$1" |
                 grep -v "hs $1"
@@ -26,8 +17,19 @@ hs() {
     fi
 }
 
+alias kb=kubectl
+alias python=python3
+
+unset ALTERNATE_EDITOR
+
+export HISTSIZE=100000
+export HISTFILESIZE=200000
+unset HISTTIMEFORMAT
+
 # append to the history file, don't overwrite it
+export HISTCONTROL=ignoredups:erasedups:ignorespace
 shopt -s histappend
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
 # check the window size after each command and, if necessary, update the
 # values of LINES and COLUMNS.

@@ -1,7 +1,6 @@
-# http://www.gigascale.org/softdevel/faq/24.html
-# "\e[2~"	: paste-from-clipboard
 "\C-v": paste-from-clipboard
 
-set completion-ignore-case On
+set completion-ignore-case on
 set completion-query-items -1
 set page-completions on
+set show-all-if-ambiguous on
