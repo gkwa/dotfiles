@@ -1,3 +1,4 @@
+. ~/.bash.d/less.sh
 . ~/.bash.d/ruby.sh
 . ~/.bash.d/asciidoc.sh
 . ~/.bash.d/bash.sh
