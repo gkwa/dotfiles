@@ -1,12 +1,13 @@
+Music/iTunes/iTunes Media/Podcasts/
 $HOME/.511976.padl
 $HOME/.CFUserTextEncoding
 $HOME/.IdentityService
+$HOME/.rvm
 $HOME/.ServiceHub
 $HOME/.android
 $HOME/.ansible
 $HOME/.aspnet
 $HOME/.atom
-$HOME/.aws
 $HOME/.babel.7.5.5.development.json
 $HOME/.babel.json
 $HOME/.bash.d
@@ -114,10 +115,24 @@ $HOME/.dbeaver-drivers
 .DS_Store
 Downloads/pluralsight
 .Trash
-VirtualBox VMs/.git/lfs
+box/virtualbox
+packer_cache
 Containers/com.docker.docker/Data/vms
+python/site-packages
 node_modules
 emacs.d/elpa
 Trash
+.cargo/registry
+.terraform/plugins
 Library/Application Support
 cache
+VirtualBox VMs/.git/lfs
+__pycache__
+.pyenv
+.virtualenvs
+.venv
+Library/Logs/CrashReporter
+Library/Logs/net.taylorm
+.venv/
+*.vmdk
+.tox
