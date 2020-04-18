@@ -2,6 +2,5 @@ source ~/.bashrc
 
 # overrides specific to within emacs bash subshell
 export MANPAGER=cat
-export GIT_PAGER=cat
 export MANWIDTH=80
 export EDITOR=emacsclient
