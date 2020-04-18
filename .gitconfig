@@ -149,6 +149,7 @@
 	la = log --abbrev-commit
 	log1 = log --pretty=tformat:'%Creset%h%C(yellow)%d%Creset %ar %s' --reverse -40
 	l = !git log1
+	lm = l --merges
 	dlo = log -p ORIG_HEAD..
 	dloc = log -p ORIG_HEAD.. --color
 	do = diff ORIG_HEAD..
