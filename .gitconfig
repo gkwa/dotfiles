@@ -1,39 +1,39 @@
 [user]
-	name = Taylor Monacelli
+	name = mtmonacelli
 	email = taylormonacelli@gmail.com
 [man]
 	viewer = woman
 [alias]
-	wsadd = "!sh -c 'git diff -- \"$@\" | git apply --cached --whitespace=fix'"
+	wsadd = !sh -c 'git diff -- \"$@\" | git apply --cached --whitespace=fix'
 
 	; http://git-blame.blogspot.com/2012/08/leftover-bits.html
-	hold = "!sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && git branch -D $1' -"
+	hold = !sh -c 'git update-ref refs/hold/$1 refs/heads/$1 && git branch -D $1' -
 
 	brd = "!f(){ git branch -D ${1} && git push origin --delete ${1}; };f" #delete branch
 
 	; git squash N
 	sq = "!f(){ git reset --soft HEAD~${1} && git commit --no-edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 
-	pq = "!sh -c 'git push --quiet &'"
-	pqf = "!sh -c 'git push --quiet --force &'"
+	pq = !sh -c 'git push --quiet &'
+	pqf = !sh -c 'git push --quiet --force &'
 	cne = commit -a --no-edit
 	apr = apply --ignore-space-change --reject
 	mnf = merge --no-edit --no-ff
 	mne = merge --no-edit
 	rs1 = reset HEAD~1
-	gpp = "!sh -c 'git pull --rebase && git push'"
+	gpp = !sh -c 'git pull --rebase && git push'
 	sbu = show-branch @{upstream} HEAD
 	du = diff @{upstream}..HEAD
 	duc = diff --color @{upstream}..HEAD
 	ducns = diff --name-status --color @{upstream}..HEAD
-	fh = "!sh -c 'git fetch && git reset --hard @{upstream}'"
+	fh = !sh -c 'git fetch && git reset --hard @{upstream}'
 	rhu = reset --hard @{upstream}
 	rh = reset --hard
 	rh1 = reset HEAD^ --hard
 	rh2 = reset HEAD^^ --hard
 	rho = reset --hard ORIG_HEAD
-	y = "!sh -c 'git commit -am \"yada-yada will rebase when working\" && git push --quiet &'"
-	ys = "!sh -c 'git commit -am \"[skip ci] yada-yada will rebase when working\" && git push --quiet &'"
+	y = !sh -c 'git commit -am \"yada-yada will rebase when working\" && git push --quiet &'
+	ys = !sh -c 'git commit -am \"[skip ci] yada-yada will rebase when working\" && git push --quiet &'
 	rfl = log --oneline --relative-date --walk-reflogs -200 --abbrev-commit
 	rbw1 = rebase --whitespace=fix HEAD~1
 	rbw = rebase --whitespace=fix
@@ -85,10 +85,10 @@
 	sns = show --color --name-status --abbrev-commit
 
 	; show the name of the files without a commit message
-	sno = show --pretty="format:" --name-only
+	sno = show --pretty=format: --name-only
 
 	; from http://gitster.livejournal.com/48015.html
-	rst = "!sh -c 'git reset HEAD^ -- $(git show --pretty=\"format:\" --name-only | sed \"/^$/d\")'"
+	rst = !sh -c 'git reset HEAD^ -- $(git show --pretty=\"format:\" --name-only | sed \"/^$/d\")'
 
 	brrm = "!f(){ [[ $1 = $(git symbolic-ref --short -q HEAD) ]] && git checkout @{-1} || git branch --quiet -D ${1}; git push origin --quiet --delete ${1} & };f" # Adapted from http://stackoverflow.com/a/14345010/1495086
 	brt = "!f(){ [ -z $2 ] && br=$(git symbolic-ref --short -q HEAD) || br=$2; git checkout --quiet -b $1 $br && git push --quiet origin $1 && git branch --quiet --set-upstream-to=origin/$1 &}; f"
@@ -133,13 +133,13 @@
 	dcw = diff --color --word-diff
 	showm = show --color --diff-filter=M
 	dmod = diff --name-only --diff-filter=M
-	dd =   diff --name-only --diff-filter=D
-	lsr =  "!f_gitconfig() { [ ! -z \"$1\" ] && git ls-files \"*$1*\" || git ls-files; }; f_gitconfig"
+	dd = diff --name-only --diff-filter=D
+	lsr = "!f_gitconfig() { [ ! -z \"$1\" ] && git ls-files \"*$1*\" || git ls-files; }; f_gitconfig"
 	ls = ls-files
 	un = ls-files -o --directory .
 	ds = diff --stat
 	changes = diff --name-status -r
-	gy = 'git commit -am "yada-yada" && git pull --rebase && git push'
+	gy = 'git commit -am yada-yada && git pull --rebase && git push'
 	wipe = reset --hard HEAD
 
 	purr = pull --rebase
@@ -149,6 +149,7 @@
 	la = log --abbrev-commit
 	log1 = log --pretty=tformat:'%Creset%h%C(yellow)%d%Creset %ar %s' --reverse -40
 	l = !git log1
+    lm = l --merges
 	dlo = log -p ORIG_HEAD..
 	dloc = log -p ORIG_HEAD.. --color
 	do = diff ORIG_HEAD..
@@ -165,6 +166,8 @@
 	l5n = !git log1 --name-status -50 -m
 	l6 = !git log1 -60
 	l6n = !git log1 --name-status -60 -m
+	l9 = !git log1 -9999999
+	l9n = !git log1 --name-status -9999999 -m
 	lv = log --reverse --pretty=format:'%C(yellow)%h %C(blue)%ad(%ar)%C(red)%d %C(reset)%s%C(green) [%an/%cn]' --decorate --date=short --numstat
 	sb = show-branch
 	lpcr = log --patch --color --reverse --abbrev-commit
@@ -172,7 +175,7 @@
 	logd = log --date=short --pretty=tformat:'%h %ad %s'
 	auth = log --format='%h [%<(12,trunc)%aN] [%<(12,trunc)%cN] [%<(7,trunc)%ar] %<(70,trunc)%s' -30 # author, committer, relative date, comment with truncation
 	authcheck = log --oneline --format='%cn %ce %an %ae'
-	context =  "!f_gitconfig() { span=10; [ ! -z \"$2\" ] && span=$2; git log --pretty=format:'%h%x09%an%x09%ar%x09%ad%x09%s' --reverse \"$1\"~$span.. | head -"$((2 * $span))"; }; f_gitconfig"
+	context = "!f_gitconfig() { span=10; [ ! -z \"$2\" ] && span=$2; git log --pretty=format:'%h%x09%an%x09%ar%x09%ad%x09%s' --reverse \"$1\"~$span.. | head -$((2 * $span)); }; f_gitconfig"
 	lps = log --decorate --pretty=tformat:'%Creset%h%C(yellow)%d%Creset %aD %an %s' -100 # git log pretty on sterioids
 	lfp = !git log1 --first-parent -50
 	lpon = log --pretty=format:'%h%d %ad (%ar) %s' --reverse --name-status
@@ -194,7 +197,7 @@
 	brs4 = "!f(){ git for-each-ref --sort=committerdate --format='%(color:red)%(committerdate:relative) %(color:green)%(committerdate:short) %(color:blue)%(authorname)%(color:reset) %(refname:short)%0a%(refname:short)' refs/$@; }; f"
 	b4 = !git brs4
 
-	new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
+	new = !sh -c 'git log $1@{1}..$1@{0} $@'
 
 	; ;;;;;;;;;;;;;;;;;;;;
 	; http://wynnnetherland.com/journal/dotfiles-discovery
@@ -204,7 +207,7 @@
 	lola = !git --no-pager lolal
 	; ;;;;;;;;;;;;;;;;;;;;
 
-	lgns =  "!f_gitconfig() { [ ! -z \"$1\" ] && git log --abbrev-commit --stat --name-status -\"$1\" || git log --stat --name-status; }; f_gitconfig"
+	lgns = "!f_gitconfig() { [ ! -z \"$1\" ] && git log --abbrev-commit --stat --name-status -\"$1\" || git log --stat --name-status; }; f_gitconfig"
 
 	re = rerere
 	crd = config --global rerere.enabled 0 # crd short for config rerere disabled
@@ -219,9 +222,9 @@
 	rbc = rebase --continue
 	rso = remote show origin
 	dns = diff --name-status
-	diffstat=diff --stat -r
+	diffstat = diff --stat -r
 	gitkconflict = !gitk --left-right HEAD...MERGE_HEAD
-	whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+	whois = !sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -
 	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
 	bsu = branch --set-upstream-to
 	su = submodule update
@@ -237,16 +240,7 @@
 	t = tag -l
 	sdiff = !git diff && git submodule foreach 'git diff'
 
-attic="!f() { \
-	branch=$1; \
-	remote=$2; \
-	remote=${remote:-origin}; \
-	branch=${branch#remotes/}; \
-	branch=${branch#origin/}; \
-	git push $remote $branch:refs/heads/attic/$branch; \
-	git push $remote --delete $branch; \
-	git branch -D $branch; \
-}; f"
+	attic = "!f() { \tbranch=$1; \tremote=$2; \tremote=${remote:-origin}; \tbranch=${branch#remotes/}; \tbranch=${branch#origin/}; \tgit push $remote $branch:refs/heads/attic/$branch; \tgit push $remote --delete $branch; \tgit branch -D $branch; }; f"
 
 [web]
 	browser = firefox
@@ -289,3 +283,15 @@ attic="!f() { \
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[gc]
+	autoDetach = false
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/mtm/.stCommitMsg
+[diff "sopsdiffer"]
+	textconv = sops -d

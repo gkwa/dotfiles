@@ -25,7 +25,6 @@
 . ~/.bash.d/travis.sh
 . ~/.bash.d/vault.sh
 . ~/.bash.d/gnu.sh
-. ~/.bash.d/kubectl.sh
 . ~/.bash.d/openssl.sh
 . ~/.bash.d/rust.sh
 . ~/.bash.d/.alias
@@ -33,3 +32,6 @@
 [[ $OSTYPE =~ ^cygwin ]] && . ~/.bash.d/cygwin.sh
 [[ $OSTYPE =~ ^darwin ]] && . ~/.bash.d/bash-darwin.sh
 . ~/.bash.d/python3.sh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

@@ -39,10 +39,10 @@ alias la='ls -A'
 #alias lt='ls -ltr'        # sort by date
 #alias lm='ls -al |more'        # pipe through 'more'
 #alias tree='tree -Cs'        # nice alternative to 'ls'
-alias ll='ls -l'              # long listing
+alias ll='ls -l' # long listing
 #alias l='ls -hF --color'    # quick listing
 #alias lsize='ls --sort=size -lhr' # list by size
 
 alias lsd='ls -l | grep "^d"' #list only directories
 alias dn='OPTIONS=$(\ls -F | grep /$); select s in $OPTIONS; do cd $PWD/$s; break;done'
-alias cdr='cd $(git rev-parse --show-toplevel)'
+alias gpr="pushd $(git rev-parse --show-toplevel)"

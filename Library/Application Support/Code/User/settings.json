@@ -1,39 +1,93 @@
 {
+  "terminal.integrated.env.osx": {
+    "PAGER": "cat"
+  },
   // Controls if quick suggestions should show up while typing
   "editor.quickSuggestions": {
     "other": true,
     "comments": false,
     "strings": false
   },
-
   // Controls if suggestions should be accepted on 'Enter' - in addition to 'Tab'. Helps to avoid ambiguity between inserting new lines or accepting suggestions. The value 'smart' means only accept a suggestion with Enter when it makes a textual change
   "editor.acceptSuggestionOnEnter": "on",
-
   // Controls the delay in ms after which quick suggestions will show up.
   "editor.quickSuggestionsDelay": 10,
-
   // Controls if suggestions should automatically show up when typing trigger characters
   "editor.suggestOnTriggerCharacters": true,
-
   // Enable word based suggestions
   "editor.wordBasedSuggestions": true,
-
-  // Enable parameter hints
-  "editor.parameterHints": true,
-
   "workbench.startupEditor": "none",
-  "python.jediEnabled": false,
-  "breadcrumbs.enabled": false,
-    "window.zoomLevel": -1,
+  "breadcrumbs.enabled": true,
+  "window.zoomLevel": 1,
   "go.useLanguageServer": true,
   "[go]": {},
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 100,
-  "workbench.iconTheme": "vscode-icons",
+  "files.autoSaveDelay": 500,
+  "python.formatting.provider": "black",
+  "python.formatting.autopep8Args": [
+    "--aggressive",
+    "--aggressive",
+    "--max-line-length",
+    "100"
+  ],
   "explorer.confirmDragAndDrop": false,
-  "workbench.colorTheme": "Visual Studio Dark",
   "go.autocompleteUnimportedPackages": true,
+  "python.venvFolders": [
+    "${env:HOME}/.venv",
+    "envs",
+    ".pyenv",
+    ".direnv",
+    "${workspaceFolder}/.env"
+  ],
+  "explorer.confirmDelete": false,
+  "extensions.ignoreRecommendations": true,
   "editor.formatOnSave": true,
-  "python.venvFolders": ["${env:HOME}/.venv", "envs", ".pyenv", ".direnv"],
-  "python.pythonPath": "${env:HOME}/.venv/bin/python"
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.idea/": true,
+    "**/.pytest_cache": true,
+    "**/.vscode/": true,
+    "**/#*#": true
+  },
+  "vs-kubernetes": {
+    "vs-kubernetes.minikube-path": "/Users/mtm/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
+    "vs-kubernetes.minikube-path.mac": "/Users/mtm/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
+  },
+  "python.linting.pylintArgs": [
+    "--disable",
+    "C0330,C0103,C0111,W1203"
+  ],
+  "python.linting.pylintUseMinimalCheckers": false,
+  "python.sortImports.args": [
+    "-rc",
+    "--atomic"
+  ],
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.autofetch": true,
+  "python.venvPath": "${workspaceFolder}/.env/bin/python",
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "editor.tabSize": 2,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "aws.samcli.location": "/usr/local/bin/sam",
+  "aws.profile": "profile:default",
+  "liveServer.settings.donotVerifyTags": true,
+  "files.associations": {
+    "*.ts": "typescript"
+  },
+  "tslint.jsEnable": true,
+  "ruby.useLanguageServer": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "editor.formatOnType": true,
+  "files.autoSave": "afterDelay",
+  "workbench.sideBar.location": "right",
+  "python.envFile": "${workspaceFolder}/.venv",
+  "python.pythonPath": "${env:HOME}/.virtualenvs/.py38/bin/python"
 }
