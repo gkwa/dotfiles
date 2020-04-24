@@ -21,7 +21,6 @@
 . ~/.bash.d/serverless.sh
 . ~/.bash.d/sphinx-doc.sh
 . ~/.bash.d/sqlite3.sh
-. ~/.bash.d/ssh.sh
 . ~/.bash.d/travis.sh
 . ~/.bash.d/vault.sh
 . ~/.bash.d/gnu.sh
