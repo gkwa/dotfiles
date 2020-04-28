@@ -185,7 +185,7 @@
 	lg3 = log --color=always --oneline --decorate --date=relative --graph --all -30
 	lg4 = log --color=always --oneline --decorate --date=relative --graph --all -40
 	lg5 = log --color=always --oneline --decorate --date=relative --graph --all -50
-	
+
 	lac = log --reverse --pretty=tformat:'%h%C(yellow)%d %C(blue)%an%C(reset) %ar %s' --first-parent --decorate --all --since=yesterday
 
 	; git branch status
