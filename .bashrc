@@ -26,7 +26,6 @@
 . ~/.bash.d/openssl.sh
 . ~/.bash.d/rust.sh
 . ~/.bash.d/.alias
-. ~/.bash.d/.alias-terraform.sh
 [[ $OSTYPE =~ ^cygwin ]] && . ~/.bash.d/cygwin.sh
 [[ $OSTYPE =~ ^darwin ]] && . ~/.bash.d/bash-darwin.sh
 . ~/.bash.d/python3.sh
