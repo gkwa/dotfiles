@@ -16,10 +16,6 @@ hs() {
     fi
 }
 
-alias kb=kubectl
-alias python=python3
-alias shfmt1='shfmt -w -s -i 4'
-
 unset ALTERNATE_EDITOR
 
 export HISTSIZE=100000
@@ -32,3 +28,10 @@ shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+[[ -d /usr/local/share/info ]] && INFOPATH=/usr/local/share/info:$INFOPATH
+[[ -d /Developer/usr/bin ]] && PATH=$PATH:/Developer/usr/bin
+[[ -d /usr/local/sbin ]] && PATH=/usr/local/sbin:$PATH
+[[ -d /usr/local/bin ]] && PATH=/usr/local/bin:$PATH
+[[ -d /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion
+[[ -d /usr/libexec ]] && PATH=$PATH:/usr/libexec # for plistbuddy

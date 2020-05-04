@@ -1,7 +1,8 @@
+. ~/.bash.d/bash.sh
+. ~/.bash.d/bash-completion.sh
 . ~/.bash.d/less.sh
 . ~/.bash.d/ruby.sh
 . ~/.bash.d/asciidoc.sh
-. ~/.bash.d/bash.sh
 . ~/.bash.d/cabal.sh
 . ~/.bash.d/chef.sh
 . ~/.bash.d/common.sh
@@ -26,9 +27,7 @@
 . ~/.bash.d/openssl.sh
 . ~/.bash.d/rust.sh
 . ~/.bash.d/.alias
-[[ $OSTYPE =~ ^cygwin ]] && . ~/.bash.d/cygwin.sh
-[[ $OSTYPE =~ ^darwin ]] && . ~/.bash.d/bash-darwin.sh
+. ~/.bash.d/cygwin.sh
+. ~/.bash.d/bash-darwin.sh
 . ~/.bash.d/python3.sh
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+. ~/.bash.d/rvm.sh
