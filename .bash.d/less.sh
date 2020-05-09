@@ -1,1 +1,1 @@
-export LESS=-NRSi
+export LESS=-RSi
