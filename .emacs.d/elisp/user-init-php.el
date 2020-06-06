@@ -16,7 +16,6 @@
          (number-sequence my-tab-width 200 my-tab-width))))
 (setq-default c-basic-offset 4)
 
-;; 4 spaces rather than tabs
 (setq-default indent-tabs-mode t)
 (setq-default tab-width 4)
 (setq c-basic-offset 4)
