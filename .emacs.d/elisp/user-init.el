@@ -42,7 +42,7 @@
 (require 'user-init-pbcopy)
 (require 'user-init-pcomplete)
 (require 'user-init-perl)
-(require 'user-init-php)
+;(require 'user-init-php)
 (require 'user-init-powershell)
 (require 'user-init-projectile)
 (require 'user-init-puppet)
