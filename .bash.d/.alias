@@ -1,17 +1,7 @@
 alias ects='emacsclient --create-frame --tty --alternate-editor=""'
 alias kb=kubectl
 alias g=git
-alias ll='ls -alF'
-alias la='ls -a'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
-alias vew='vi `ls -t * | head -1 `'
-alias vp='vi `ls -t *.@(pl|cgi)| head -1 `'
-alias vc='vi `ls -t *.@(c|cpp|h|py)| head -1 `'
-alias la='ls -A'
-alias ll='ls -l'              # long listing
-alias lsd='ls -l | grep "^d"' #list only directories
-alias dn='OPTIONS=$(\ls -F | grep /$); select s in $OPTIONS; do cd $PWD/$s; break;done'
-alias gpr="pushd $(git rev-parse --show-toplevel)"
 alias shfmt1='shfmt -w -s -i 4'
