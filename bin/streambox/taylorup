@@ -1,0 +1,37 @@
+#!/bin/bash
+
+id=i-0b55c3ccbca0b10c1
+dns=taylor-workstation.streambox.com
+region=us-east-2
+dns_zone=ZYM2WVE2N8MU5
+
+export PAGER=cat
+
+aws ec2 stop-instances --region $region --instance-ids $id
+aws ec2 wait instance-stopped --region $region --instance-ids $id
+aws ec2 start-instances --region $region --instance-ids $id
+aws ec2 wait instance-running --region $region --instance-ids $id
+aws ec2 describe-instances --region $region --instance-ids $id >/tmp/$id.json
+jq -r '.Reservations[0].Instances[0].PublicIpAddress' /tmp/$id.json
+cat <<__eot__ >/tmp/$id.json
+{
+  "Comment": "CREATE/DELETE/UPSERT a record ",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "${dns}",
+        "Type": "A",
+        "TTL": 60,
+        "ResourceRecords": [
+          {
+            "Value": "$(jq -r '.Reservations[0].Instances[0].PublicIpAddress' /tmp/${id}.json)"
+          }
+        ]
+      }
+    }
+  ]
+}
+__eot__
+cat /tmp/$id.json
+aws route53 change-resource-record-sets --hosted-zone-id $dns_zone --change-batch file:///tmp/$id.json

@@ -21,3 +21,4 @@ genpasswd() {
 }
 
 [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
+[[ -d $HOME/bin/streambox ]] && export PATH=$HOME/bin/streambox:$PATH
