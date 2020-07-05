@@ -32,3 +32,4 @@
 . ~/.bash.d/python3.sh
 . ~/.bash.d/rvm.sh
 . ~/.bash.d/ytt.sh
+. ~/.bash.d/shfmt.sh
