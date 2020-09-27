@@ -1,5 +1,11 @@
 (ensure-package-installed 'org)
 
+; With just a few keystrokes, it is possible to insert empty
+; structural blocks, such as ‘#+BEGIN_SRC’ … ‘#+END_SRC’, or to wrap
+; existing text in such a block. Enable it by customizing org-modules
+; or add ‘(require 'org-tempo)’ to your Emacs init file.
+(require 'org-tempo)
+
 (setq js-indent-level 2)
 (setq org-adapt-indentation nil)
 (setq org-src-preserve-indentation t)
