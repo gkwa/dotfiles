@@ -13,10 +13,10 @@
     (progn
       (show-all)
       (org-beginning-of-line)
-      (if (looking-at "[[:space:]]*#\\+BEGIN_")
+      (if (looking-at "[[:space:]]*#\\+begin_")
           ;; pre
           (progn
-            (re-search-forward "[[:space:]]*#\\+END_")
+            (re-search-forward "[[:space:]]*#\\+end_")
             (next-line)
             (throw 'mytag "non-local exit value")))
       (if (looking-at "[[:space:]]*\\*+\n")
