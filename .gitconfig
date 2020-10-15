@@ -258,8 +258,6 @@ attic="!f() { \
 	autoupdate = true
 [color]
 	ui = auto
-[push]
-	default = upstream
 [pack]
 	threads = 1
 	deltaCacheSize = 128m
