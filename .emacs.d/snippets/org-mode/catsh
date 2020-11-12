@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+#name : catsh
+#key : catsh
+#contributor : taylor
+# --
+#+BEGIN_SRC sh :results output raw
+tmp=$(mktemp -d /tmp/mytest.XXXXX)
+cat <<'__eot__' >$tmp/test.sh
+__eot__
+bash -x $tmp/test.sh
+#+END_SRC

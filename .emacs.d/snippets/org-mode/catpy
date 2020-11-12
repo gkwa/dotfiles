@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+#name : catpy
+#key : catpy
+#contributor : taylor
+# --
+#+BEGIN_SRC sh :results output raw
+tmp=$(mktemp -d /tmp/mytest.XXXXX)
+cat <<'__eot__' >$tmp/test.py
+__eot__
+python $tmp/test.py
+#+END_SRC
