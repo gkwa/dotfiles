@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+#name : py
+#key : py
+#contributor : taylor
+# --
+#+BEGIN_SRC python :results output replace
+$0
+#+END_SRC

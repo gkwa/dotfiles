@@ -3,9 +3,10 @@
 #key : catpy
 #contributor : taylor
 # --
-#+BEGIN_SRC sh :results output raw
+#+BEGIN_SRC sh :results output replace
 tmp=$(mktemp -d /tmp/mytest.XXXXX)
 cat <<'__eot__' >$tmp/test.py
+$0
 __eot__
 python $tmp/test.py
 #+END_SRC

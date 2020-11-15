@@ -3,9 +3,10 @@
 #key : catsh
 #contributor : taylor
 # --
-#+BEGIN_SRC sh :results output raw
+#+BEGIN_SRC sh :results output replace
 tmp=$(mktemp -d /tmp/mytest.XXXXX)
 cat <<'__eot__' >$tmp/test.sh
+$0
 __eot__
 bash -x $tmp/test.sh
 #+END_SRC
