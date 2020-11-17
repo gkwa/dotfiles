@@ -3,4 +3,4 @@
 # git grep, but only show absolute path to file, not grep match
 
 root=$(git rev-parse --show-toplevel)
-git grep --ignore-case --files-with-matches --extended-regexp "${1}" | sed "s#^#${root}/#"
+git grep --full-name --ignore-case --files-with-matches --extended-regexp "${1}" | sed "s#^#${root}/#"
