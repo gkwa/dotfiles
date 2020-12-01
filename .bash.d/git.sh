@@ -1,3 +1,6 @@
+alias g=git
+alias ...='cd $(git rev-parse --show-toplevel)'
+
 gg_dasherize() {
     gg_replace $1 $(echo $1 | sed -e 's/_/-/g') $2
 }
@@ -56,6 +59,12 @@ gg_replace() {
 
         GLOBIGNORE=$ORIG_GLOBIGNORE
     fi
+}
+
+abspath() {
+    # show full path to files matching
+    # example: git grep -il bc_api_key | abspath
+    sed 's,^,'$(git rev-parse --show-toplevel)'/,'
 }
 
 gg_dasherize() {

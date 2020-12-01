@@ -1,7 +1,0 @@
-alias ects='emacsclient --create-frame --tty --alternate-editor=""'
-alias kb=kubectl
-alias g=git
-alias ..='cd $(git rev-parse --show-toplevel)'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias shfmt1='shfmt -w -s -i 4'

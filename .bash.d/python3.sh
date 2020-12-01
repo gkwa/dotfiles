@@ -1,4 +1,4 @@
-[[ -d ~/.virtualenvs/.py38 ]] && source ~/.virtualenvs/.py38/bin/activate
+[[ -d ~/.virtualenvs/.py39 ]] && source ~/.virtualenvs/.py39/bin/activate
 
 cuppy() {
     path="$*"

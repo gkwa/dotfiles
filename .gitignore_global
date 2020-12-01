@@ -1,3 +1,4 @@
+scratch/
 .venv/
 .terragrunt-cache/
 terraform.tfvars
