@@ -266,12 +266,8 @@ attic="!f() { \
 	packSizeLimit = 128m
 	windowMemory = 128m
 [core]
-	packedGitLimit = 128m
-	packedGitWindowSize = 128m
 	; Dont trust file modes
 	filemode = false
-	packedGitLimit = 128m
-	packedGitWindowSize = 128m
 	autocrlf = false
 [branch]
 	autosetuprebase = always
