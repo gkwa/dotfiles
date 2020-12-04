@@ -272,7 +272,7 @@ attic="!f() { \
 	filemode = false
 	packedGitLimit = 128m
 	packedGitWindowSize = 128m
-	excludesfile = /Users/mtm/.gitignore_global
+	excludesfile = /Users/mtm/.config/git/ignore
 	autocrlf = false
 [branch]
 	autosetuprebase = always
