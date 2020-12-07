@@ -6,6 +6,7 @@
 ; or add ‘(require 'org-tempo)’ to your Emacs init file.
 (require 'org-tempo)
 
+(setq initial-major-mode 'org-mode)
 (setq js-indent-level 2)
 (setq org-adapt-indentation nil)
 (setq org-src-preserve-indentation t)
