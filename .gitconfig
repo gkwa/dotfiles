@@ -183,7 +183,7 @@
 	lpon = log --pretty=format:'%h%d %ad (%ar) %s' --reverse --name-status
 	lgb = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	lga = log --color=always --oneline --decorate --date=relative --graph --all -100
-	lg = log --color=always --oneline --decorate --date=relative --graph -40
+	lg = log --color=always --oneline --decorate --date=relative --graph
 	lg1 = log --color=always --oneline --decorate --date=relative --graph --all -10
 	lg2 = log --color=always --oneline --decorate --date=relative --graph --all -20
 	lg3 = log --color=always --oneline --decorate --date=relative --graph --all -30
