@@ -85,4 +85,4 @@ complete -o default -o nospace -F _git g
 [[ -x ~/play/gitster/contrib/git-jump ]] && PATH=$PATH:~/play/gitster/contrib/git-jump
 
 PS1="[\u@\h:\W\$(parse_git_branch)]$ "
-export GIT_PAGER=LESS
+export GIT_PAGER=cat
