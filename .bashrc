@@ -1,3 +1,5 @@
+# order is important here because for example newer PS1 variables will trump older ones
+
 . ~/.bash.d/asciidoc.sh
 . ~/.bash.d/bash-completion.sh
 . ~/.bash.d/bash-darwin.sh
@@ -34,3 +36,4 @@
 . ~/.bash.d/travis.sh
 . ~/.bash.d/vault.sh
 . ~/.bash.d/ytt.sh
+. ~/.bash.d/direnv.sh
