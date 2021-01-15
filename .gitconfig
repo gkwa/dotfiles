@@ -239,7 +239,7 @@
 	fep = fetch --prune
 	# fetch remote tracking branches
 	frtb = fetch origin refs/heads/*:refs/remotes/origin/*
-	t = tag -l
+	tl = tag -l
 	sdiff = !git diff && git submodule foreach 'git diff'
 
 attic="!f() { \
