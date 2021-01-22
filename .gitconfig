@@ -32,10 +32,10 @@
 	rh1 = reset HEAD^ --hard
 	rh2 = reset HEAD^^ --hard
 	rho = reset --hard ORIG_HEAD
-	y = "!sh -c 'git commit -am \"yada-yada will rebase when working\" && git push --quiet &'"
-	ys = "!sh -c 'git commit -am \"[skip ci] yada-yada will rebase when working\" && git push --quiet &'"
-	ysa = "!sh -c 'git commit -am \"[skip appveyor] yada-yada will rebase when working\" && git push --quiet &'"
-	ysg = "!sh -c 'git commit -am \"[skip gitlab] yada-yada will rebase when working\" && git push --quiet &'"
+	y = "!sh -c 'git commit -am \"real men don't make git commit comments\" && git push --quiet &'"
+	ys = "!sh -c 'git commit -am \"[skip ci] this should work on a machine somewhere\" && git push --quiet &'"
+	ysa = "!sh -c 'git commit -am \"[skip appveyor] this should work on a machine somewhere\" && git push --quiet &'"
+	ysg = "!sh -c 'git commit -am \"[skip gitlab] this should work on a machine somewhere\" && git push --quiet &'"
 	rfl = log --oneline --relative-date --walk-reflogs --abbrev-commit -200
 	rfla = log --oneline --relative-date --walk-reflogs --abbrev-commit
 	rbw1 = rebase --whitespace=fix HEAD~1
