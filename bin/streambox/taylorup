@@ -1,6 +1,6 @@
 #!/bin/bash
 
-id=i-02e3480ac034c43b6
+id=i-05aa945f0d3688e74
 dns=taylor-workstation.streambox.com
 region=us-east-2
 dns_zone=ZYM2WVE2N8MU5
