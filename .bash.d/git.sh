@@ -76,8 +76,13 @@ function parse_git_branch() {
     echo "("${ref#refs/heads/}")"
 }
 
-# [[ -x ~/play/gitster/contrib/git-jump ]] && PATH=$PATH:~/play/gitster/contrib/git-jump
+# http://nuclearsquid.com/writings/git-tricks-tips-workflows/
+# Now, you'll probably also want to have the Git Autocompletion when
+# you're using g as well. Add this to your .bashrc or .zshrc:
+# Autocomplete for 'g' as well
+complete -o default -o nospace -F _git g
+
+[[ -x ~/play/gitster/contrib/git-jump ]] && PATH=$PATH:~/play/gitster/contrib/git-jump
 
 PS1="[\u@\h:\W\$(parse_git_branch)]$ "
-
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+export GIT_PAGER=cat
