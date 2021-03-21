@@ -39,7 +39,3 @@ shopt -s checkwinsize
 [[ -d /usr/libexec ]] && PATH=$PATH:/usr/libexec # for plistbuddy
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-
-pushd() { command pushd "$@" >/dev/null; }
-popd() { command popd "$@" >/dev/null; }
-export pushd popd
