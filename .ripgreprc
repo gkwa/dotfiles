@@ -1,3 +1,8 @@
+# pipe go less -RSi keeps color
+--pretty
+
+--no-ignore-messages
+
 # Don't let ripgrep vomit really long lines to my terminal, and show a preview.
 --max-columns=150
 --max-columns-preview

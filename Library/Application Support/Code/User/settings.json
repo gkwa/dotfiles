@@ -18,7 +18,6 @@
   "editor.wordBasedSuggestions": true,
   "workbench.startupEditor": "none",
   "breadcrumbs.enabled": true,
-  "window.zoomLevel": 1,
   "go.useLanguageServer": true,
   "[go]": {},
   "files.autoSaveDelay": 500,
@@ -50,7 +49,8 @@
   },
   "vs-kubernetes": {
     "vs-kubernetes.minikube-path": "/Users/mtm/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
-    "vs-kubernetes.minikube-path.mac": "/Users/mtm/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
+    "vs-kubernetes.minikube-path.mac": "/Users/mtm/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
+    "vscode-kubernetes.minikube-path.mac": "/Users/mtm/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
   },
   "python.linting.pylintArgs": [
     "--disable",
@@ -72,7 +72,6 @@
   "editor.tabSize": 2,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "aws.samcli.location": "/usr/local/bin/sam",
-  "aws.profile": "profile:default",
   "liveServer.settings.donotVerifyTags": true,
   "files.associations": {
     "*.ts": "typescript"
@@ -89,5 +88,20 @@
   "files.autoSave": "afterDelay",
   "workbench.sideBar.location": "right",
   "python.envFile": "${workspaceFolder}/.venv",
-  "python.pythonPath": "${env:HOME}/.virtualenvs/.py38/bin/python"
+  "python.pythonPath": "${env:HOME}/.virtualenvs/.py38/bin/python",
+  "editor.minimap.enabled": false,
+  "python.showStartPage": false,
+  "powershell.promptToUpdatePowerShell": false,
+  "workbench.editor.showTabs": true,
+  "python.languageServer": "Pylance",
+  "workbench.editorAssociations": [
+    {
+      "viewType": "jupyter.notebook.ipynb",
+      "filenamePattern": "*.ipynb"
+    }
+  ],
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "go.toolsManagement.autoUpdate": true,
+  "window.zoomLevel": 1,
 }
