@@ -79,5 +79,6 @@ function parse_git_branch() {
 # [[ -x ~/play/gitster/contrib/git-jump ]] && PATH=$PATH:~/play/gitster/contrib/git-jump
 
 PS1="[\u@\h:\W\$(parse_git_branch)]$ "
+export GIT_PAGER=less
 
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
