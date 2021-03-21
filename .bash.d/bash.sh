@@ -22,8 +22,7 @@ hs() {
 unset ALTERNATE_EDITOR
 
 export HISTSIZE=10000
-export HISTFILESIZE=200000
-export HISTCONTROL=erasedups
+export HISTCONTROL=ignoredups:erasedups
 unset HISTTIMEFORMAT
 
 # check the window size after each command and, if necessary, update the
