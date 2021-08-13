@@ -35,3 +35,4 @@
 . ~/.bash.d/vault.sh
 . ~/.bash.d/ytt.sh
 . ~/.bash.d/direnv.sh
+. ~/.bash.d/pyenv.sh
