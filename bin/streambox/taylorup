@@ -1,7 +1,7 @@
 #!/bin/bash
 
-id=i-05aa945f0d3688e74
-dns=taylor-workstation.streambox.com
+id=i-09301f896088a5b7c
+dns=taylor-win-us-east-2.streambox.com
 region=us-east-2
 dns_zone=ZYM2WVE2N8MU5
 

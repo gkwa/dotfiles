@@ -62,7 +62,7 @@
     "--atomic"
   ],
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "git.autofetch": true,
   "python.venvPath": "${workspaceFolder}/.env/bin/python",
@@ -94,14 +94,47 @@
   "powershell.promptToUpdatePowerShell": false,
   "workbench.editor.showTabs": true,
   "python.languageServer": "Pylance",
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "go.toolsManagement.autoUpdate": true,
+  "redhat.telemetry.enabled": false,
+  "python.defaultInterpreterPath": "${env:HOME}/.virtualenvs/.py38/bin/python",
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "yaml.schemas": {},
   "window.zoomLevel": 1,
+  "yaml.customTags": [
+    "!And",
+    "!And sequence",
+    "!If",
+    "!If sequence",
+    "!Not",
+    "!Not sequence",
+    "!Equals",
+    "!Equals sequence",
+    "!Or",
+    "!Or sequence",
+    "!FindInMap",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Join",
+    "!Join sequence",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!Sub sequence",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!ImportValue sequence",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Split sequence"
+  ],
 }

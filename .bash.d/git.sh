@@ -1,6 +1,10 @@
 alias g=git
 alias ...='cd $(git rev-parse --show-toplevel)'
 
+unset GIT_PAGER
+
+PS1="[\u@\h:\W\$(parse_git_branch)]$ "
+
 gg_dasherize() {
     gg_replace $1 $(echo $1 | sed -e 's/_/-/g') $2
 }
@@ -77,8 +81,5 @@ function parse_git_branch() {
 }
 
 # [[ -x ~/play/gitster/contrib/git-jump ]] && PATH=$PATH:~/play/gitster/contrib/git-jump
-
-PS1="[\u@\h:\W\$(parse_git_branch)]$ "
-export GIT_PAGER=less
 
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"

@@ -5,7 +5,7 @@
   (save-excursion
     (if (get-buffer "tidy-html-errs") (kill-buffer "tidy-html-errs"))
     (let ((tmp (concat temporary-file-directory "tidy-html-errs"))
-	  (cmd "tidy --force-output true -asxhtml --tidy-mark no --doctype strict --indent-attributes true --wrap-attributes true --vertical-space false -q -i -wrap 72 -c -f "))
+	  (cmd "tidy --force-output true -asxhtml --tidy-mark no --doctype strict --indent-attributes false --wrap-attributes false --vertical-space false -q -i -wrap 100000 -c -f "))
       (shell-command-on-region (point-min) (point-max)
 			       (concat cmd tmp)
 			       nil 'replace)

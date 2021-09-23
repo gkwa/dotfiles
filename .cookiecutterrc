@@ -1,20 +1,22 @@
 default_context:
-    full_name: "Taylor Monacelli"
-    email: "taylormonacelli@gmail.com"
-    github_username: "taylormonacelli"
-    pypi_username: "mtmonacelli"
-    docker_hub_username: "taylorm"
-    docker_image: "taylorm/alpine-base-image:latest"
-    docker_build_image: "taylorm/alpine-golang-buildimage"
-    docker_build_image_version: ["1.11", "1.10.3", "1.9.7"]
-    go_mod_or_dep: ["mod"]
-    use_docker: "y"
-    add_pyup_badge: "y"
-    use_pytest: "y"
-    use_git: "y"
-    use_logrus_logging: "y"
-    use_viper_config: "y"
-    use_cobra_cmd: "y"
-    use_ci: ["travis", "circle", "none"]
+  full_name: "Taylor Monacelli"
+  author_name: "Taylor Monacelli"
+  email: "taylormonacelli@gmail.com"
+  author_email: "taylormonacelli@gmail.com"
+  github_username: "taylormonacelli"
+  pypi_username: "mtmonacelli"
+  docker_hub_username: "taylorm"
+  docker_image: "taylorm/alpine-base-image:latest"
+  docker_build_image: "taylorm/alpine-golang-buildimage"
+  docker_build_image_version: ["1.11", "1.10.3", "1.9.7"]
+  go_mod_or_dep: ["mod"]
+  use_docker: "y"
+  add_pyup_badge: "y"
+  use_pytest: "y"
+  use_git: "y"
+  use_logrus_logging: "y"
+  use_viper_config: "y"
+  use_cobra_cmd: "y"
+  use_ci: ["travis", "circle", "none"]
 
 cookiecutters_dir: "~/.cookiecutters/"
