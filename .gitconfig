@@ -1,6 +1,6 @@
 [user]
-	name = Taylor Monacelli
-	email = taylormonacelli@gmail.com
+	name = Your Name
+	email = you@example.com
 [man]
 	viewer = woman
 [alias]
@@ -257,7 +257,7 @@ attic="!f() { \
 [web]
 	browser = firefox
 [rerere]
-	enabled = 1
+	enabled = false
 	autoupdate = true
 [color]
 	ui = auto

@@ -1,4 +1,7 @@
 {
+"editor.codeActionsOnSave": {
+  "source.organizeImports": true
+},
   "terminal.integrated.env.osx": {
     "PAGER": "cat"
   },
@@ -107,7 +110,6 @@
     "jupyter-notebook": "left"
   },
   "yaml.schemas": {},
-  "window.zoomLevel": 1,
   "yaml.customTags": [
     "!And",
     "!And sequence",
@@ -137,4 +139,6 @@
     "!Split",
     "!Split sequence"
   ],
+  "json.schemas": [],
+  "security.workspace.trust.untrustedFiles": "newWindow",
 }
