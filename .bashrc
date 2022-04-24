@@ -7,6 +7,7 @@
 . ~/.bash.d/common.sh
 . ~/.bash.d/cygwin.sh
 . ~/.bash.d/docker.sh
+. ~/.bash.d/eksctl.sh
 . ~/.bash.d/emacs.sh
 . ~/.bash.d/enscript.sh
 . ~/.bash.d/fzf.sh
