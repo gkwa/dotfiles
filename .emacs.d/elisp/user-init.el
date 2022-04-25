@@ -41,7 +41,7 @@
 (require 'user-init-org)
 (require 'user-init-org-mtmonacelli-utils)
 (require 'user-init-org-crypt)
-(require 'user-init-pbcopy)
+;(require 'user-init-pbcopy)
 ;(require 'user-init-pcomplete)
 (require 'user-init-perl)
 ;(require 'user-init-php)
