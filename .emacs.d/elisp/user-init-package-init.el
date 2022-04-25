@@ -32,6 +32,8 @@ There are two things you can do about this warning:
   (require 'package)
   (add-to-list 'package-archives
                '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+  (add-to-list 'package-archives
+               '("melpa" . "https://melpa.org/packages/") t)
 
   (add-to-list 'load-path "~/.emacs.d/site-lisp/use-package")
   (require 'use-package)
@@ -43,6 +45,8 @@ There are two things you can do about this warning:
   (setq package-archives ())
   (add-to-list 'package-archives
                '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
+  (add-to-list 'package-archives
+               '("melpa" . "http://melpa.milkbox.net/packages/") t)
   (add-to-list 'package-archives
                '("marmalade" . "http://marmalade-repo.org/packages/") t)
   (add-to-list 'package-archives
