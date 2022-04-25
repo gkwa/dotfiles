@@ -1,3 +1,4 @@
+(ensure-package-installed 'helm)
 (require 'helm)
 
 (defun helm-my-buffers ()

@@ -1,8 +1,10 @@
+(source melpa)
 (source melpa-stable)
 (source gnu)
 
 (depends-on "pallet")
 (depends-on "req-package")
+(depends-on "helm")
 (depends-on "editorconfig")
 (depends-on "request")
 (depends-on "terraform-mode")

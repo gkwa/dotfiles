@@ -3,3 +3,4 @@
 (require 'user-init-package-init)
 (require 'user-init)
 (provide 'init)
+(put 'downcase-region 'disabled nil)
