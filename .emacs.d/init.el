@@ -15,3 +15,4 @@
                "~/.emacs.d/site-lisp/use-package/"))
 (require 'user-init)
 (require 'user-init-package-init)
+(provide 'init)
