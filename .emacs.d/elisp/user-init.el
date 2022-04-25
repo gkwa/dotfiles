@@ -78,7 +78,7 @@
 (setq-default global-font-lock-mode t)
 (setq-default inhibit-startup-message t)
 (setq-default initial-scratch-message "")
-(setq-default large-file-warning-threshold 50000000)
+(setq-default large-file-warning-threshold 100000000)
 (setq-default lexical-binding t)
 (setq-default menu-bar-mode nil)
 (setq-default require-final-newline t)
