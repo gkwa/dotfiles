@@ -1,38 +1,3 @@
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list 'package-archives
-               '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-  (add-to-list 'package-archives
-               '("melpa" . "https://melpa.org/packages/") t)
-
-  (add-to-list 'load-path "~/.emacs.d/site-lisp/use-package")
-  (require 'use-package)
-
-  (with-eval-after-load 'info
-    (info-initialize)
-    (add-to-list 'Info-directory-list
-                 "~/.emacs.d/site-lisp/use-package/"))
-  (setq package-archives ())
-  (add-to-list 'package-archives
-               '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
-  (add-to-list 'package-archives
-               '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  (add-to-list 'package-archives
-               '("marmalade" . "http://marmalade-repo.org/packages/") t)
-  (add-to-list 'package-archives
-               '("elpa" . "http://tromey.com/elpa/") t)
-  )
-
-(or (file-exists-p package-user-dir)
-    (package-refresh-contents))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(when (file-exists-p custom-file)
-  (load custom-file))
-
-
-
-
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it’s not.
 
@@ -63,8 +28,21 @@ There are two things you can do about this warning:
     ;; For important compatibility libraries like cl-lib
     (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (setq package-archives ())
+  (add-to-list 'package-archives '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+  (add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/") t)
+)
 
+(or (file-exists-p package-user-dir)
+    (package-refresh-contents))
 
-
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+   (when (file-exists-p custom-file)
+       (load custom-file))
 
 (provide 'user-init-package-init)

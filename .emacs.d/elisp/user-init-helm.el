@@ -1,5 +1,7 @@
 (ensure-package-installed 'helm)
 (require 'helm)
+(require 'helm-config)
+(require 'cl)
 
 (defun helm-my-buffers ()
   (interactive)
@@ -30,6 +32,15 @@
 (define-key global-map (kbd "M-y") 'helm-show-kill-ring)
 (define-key global-map (kbd "M-p") 'helm-resume)
 (define-key global-map (kbd "M-p") 'helm-resume)
+
+;; https://github.com/felix-d/dot-files/blob/e773f0ccbc39f6d858c09fa19735255d2317eec4/.emacs.d/init/helm-setup.el#L5
+(setq helm-locate-command
+      (ecase system-type
+        ('gnu/linux "locate -i -r %s")
+        ('berkeley-unix "locate -i %s")
+        ('windows-nt "es %s")
+        ('darwin "mdfind -name %s %s")
+        (t "locate %s")))
 
 (setq-default helm-ff-newfile-prompt-p nil)
 
