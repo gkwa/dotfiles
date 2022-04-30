@@ -6,6 +6,7 @@
 (depends-on "ag")
 (depends-on "bind-key")
 (depends-on "editorconfig")
+(depends-on "ledger-mode")
 (depends-on "terraform-mode")
 (depends-on "yaml-mode")
 (depends-on "es-mode")

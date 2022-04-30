@@ -28,7 +28,7 @@
 ;(require 'user-init-java)
 ;;(require 'user-init-json)
 ;(require 'user-init-json-snatcher)
-;;(require 'user-init-ledger)
+(require 'user-init-ledger)
 ;(require 'user-init-logview)
 ;(require 'user-init-longlines)
 ;(require 'user-init-malabar)

@@ -1,4 +1,3 @@
-(require 'ledger-mode)
 (if (eq system-type 'darwin)
     (progn (require 'ledger-mode)))
 
