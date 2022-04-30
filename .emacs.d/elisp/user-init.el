@@ -47,7 +47,7 @@
 ;(require 'user-init-projectile)
 ;(require 'user-init-puppet)
 ;(require 'user-init-python)
-;(require 'user-init-random)
+(require 'user-init-random)
 ;(require 'user-init-recentf)
 ;(require 'user-init-request)
 ;(require 'user-init-shell)
