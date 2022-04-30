@@ -16,7 +16,7 @@
 ;(require 'user-init-dired-x)
 ;(require 'user-init-editorconfig)
 ;(require 'user-init-es-mode)
-;(require 'user-init-ffap)
+(require 'user-init-ffap)
 ;(require 'user-init-free-keys)
 ;(require 'user-init-git-jump)
 ;(require 'user-init-go)

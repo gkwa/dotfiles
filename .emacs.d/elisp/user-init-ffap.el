@@ -1,6 +1,7 @@
 (require 'ffap)
 
-;;http://ergoemacs.org/emacs/emacs_open_file_path_fast.html
+
+;;http://xahlee.info/emacs/emacs/emacs_open_file_path_fast.html
 (defun xah-open-file-at-cursor ()
   "Open the file path under cursor.
 If there is text selection, uses the text selection for path.
@@ -10,7 +11,7 @@ Path may have a trailing  : n   that indicates line number. If so, jump to that 
 If path does not have a file extension, automatically try with  .el  for elisp files.
 This command is similar to `find-file-at-point' but without prompting for confirmation.
 
-URL `http://ergoemacs.org/emacs/emacs_open_file_path_fast.html'
+URL `http://xahlee.info/emacs/emacs/emacs_open_file_path_fast.html'
 Version 2019-01-16"
   (interactive)
   (let* (($inputStr (if (use-region-p)
