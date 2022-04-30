@@ -52,7 +52,7 @@
 ;(require 'user-init-request)
 ;(require 'user-init-shell)
 ;(require 'user-init-streambox)
-;(require 'user-init-terraform)
+(require 'user-init-terraform)
 ;(require 'user-init-tidy-xml)
 ;(require 'user-init-typescript)
 ;;(require 'user-init-vlc)
