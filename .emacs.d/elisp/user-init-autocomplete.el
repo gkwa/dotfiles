@@ -1,7 +1,5 @@
 ;; http://crypt.codemancers.com/posts/2013-09-26-setting-up-emacs-as-development-environment-on-osx/
 
-(ensure-package-installed 'auto-complete)
-
 (require 'auto-complete-config)
 
 (ac-config-default)

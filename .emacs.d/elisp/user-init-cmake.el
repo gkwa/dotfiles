@@ -1,5 +1,3 @@
-(ensure-package-installed 'cmake-mode)
-
 (require 'cmake-mode)
 
 (setq auto-mode-alist

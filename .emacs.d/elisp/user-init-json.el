@@ -1,5 +1,3 @@
-(ensure-package-installed 'json-mode)
-
 (add-hook 'json-mode-hook
           (lambda ()
             (make-local-variable 'js-indent-level)

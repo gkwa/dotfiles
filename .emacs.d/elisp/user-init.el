@@ -60,7 +60,7 @@
 ;;(require 'user-init-wikipedia)
 ;;(require 'user-init-winner)
 ;;(require 'user-init-xquery)
-;(require 'user-init-yaml)
+(require 'user-init-yaml)
 (require 'user-init-yasnippet)
 (require 'user-init-magit)
 ;

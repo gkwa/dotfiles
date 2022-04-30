@@ -1,5 +1,3 @@
-(ensure-package-installed 'json-snatcher)
-
 (defun js-mode-bindings ()
 "Sets a hotkey for using the json-snatcher plugin"
 	 (when (string-match  "\\.json$" (buffer-name))

@@ -1,5 +1,3 @@
-(ensure-package-installed 'ag)
-
 (custom-set-variables
  '(helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
  '(helm-ag-command-option "--all-text")

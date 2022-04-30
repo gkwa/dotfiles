@@ -1,5 +1,3 @@
-(ensure-package-installed 'php-mode)
-
 (add-to-list 'load-path "~/.emacs.d/elisp/php-mode-1.5.0")
 (add-to-list 'auto-mode-alist '("\\.php?\\'" . php-mode))
 (autoload 'php-mode "php-mode" "Enter PHP mode." t)
