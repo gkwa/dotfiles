@@ -1,5 +1,3 @@
-(require 'user-init-cask)
-
 ;(require 'user-init-ag)
 ;(require 'user-init-applescript)
 ;(require 'user-init-autocomplete)
