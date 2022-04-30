@@ -1,5 +1,3 @@
-(ensure-package-installed 'magit)
-
 (custom-set-faces
  ;; other faces
  '(magit-diff-added ((((type tty)) (:foreground "green"))))
