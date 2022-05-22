@@ -2,6 +2,7 @@
 . ~/.bash.d/bash-completion.sh
 . ~/.bash.d/bash-darwin.sh
 . ~/.bash.d/bash.sh
+. ~/.bash.d/kind.sh
 . ~/.bash.d/cabal.sh
 . ~/.bash.d/chef.sh
 . ~/.bash.d/common.sh
