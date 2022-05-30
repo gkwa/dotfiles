@@ -79,7 +79,3 @@ function parse_git_branch() {
     ref=$(git symbolic-ref HEAD 2>/dev/null) || return
     echo "("${ref#refs/heads/}")"
 }
-
-# [[ -x ~/play/gitster/contrib/git-jump ]] && PATH=$PATH:~/play/gitster/contrib/git-jump
-
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"

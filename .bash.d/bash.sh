@@ -37,5 +37,3 @@ shopt -s checkwinsize
 [[ -d /usr/local/sbin ]] && PATH=/usr/local/sbin:$PATH
 [[ -d /usr/local/bin ]] && PATH=/usr/local/bin:$PATH
 [[ -d /usr/libexec ]] && PATH=$PATH:/usr/libexec # for plistbuddy
-
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion

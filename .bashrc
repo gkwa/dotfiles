@@ -1,5 +1,4 @@
 . ~/.bash.d/asciidoc.sh
-. ~/.bash.d/bash-completion.sh
 . ~/.bash.d/bash-darwin.sh
 . ~/.bash.d/bash.sh
 . ~/.bash.d/kind.sh
