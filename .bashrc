@@ -37,6 +37,7 @@
 . ~/.bash.d/ytt.sh
 . ~/.bash.d/direnv.sh
 . ~/.bash.d/pyenv.sh
+. ~/.bash.d/pack.sh
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/mtm/.rd/bin:$PATH"
