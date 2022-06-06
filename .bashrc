@@ -16,6 +16,7 @@
 . ~/.bash.d/golang.sh
 . ~/.bash.d/google-cloud-sdk.sh
 . ~/.bash.d/kubectl.sh
+. ~/.bash.d/helm.sh
 . ~/.bash.d/less.sh
 . ~/.bash.d/mutt.sh
 . ~/.bash.d/ncurses.sh
