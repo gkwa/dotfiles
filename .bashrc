@@ -10,7 +10,6 @@
 . ~/.bash.d/eksctl.sh
 . ~/.bash.d/emacs.sh
 . ~/.bash.d/enscript.sh
-. ~/.bash.d/flux.sh
 . ~/.bash.d/fzf.sh
 . ~/.bash.d/git.sh
 . ~/.bash.d/gnu.sh
@@ -39,8 +38,6 @@
 . ~/.bash.d/ytt.sh
 . ~/.bash.d/direnv.sh
 . ~/.bash.d/pyenv.sh
-. ~/.bash.d/krew.sh
-. ~/.bash.d/pack.sh
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/mtm/.rd/bin:$PATH"
