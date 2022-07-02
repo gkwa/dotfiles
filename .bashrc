@@ -1,3 +1,5 @@
+export PATH="/opt/homebrew/bin:$PATH"
+
 . ~/.bash.d/asciidoc.sh
 . ~/.bash.d/bash-darwin.sh
 . ~/.bash.d/bash.sh
