@@ -26,6 +26,10 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cr" 'org-mark-ring-goto)
 
+(with-eval-after-load 'org
+  (bind-key "C-^" #'reformat-paragraph-with-line-spacing org-mode-map)
+  (bind-key "M-C-^" #'reformat-paragraph-with-line-spacing-to-end-of-file org-mode-map))
+
 (defun taylor-org-mode-wrap-block-in-example-markdown()
   "taylor-org-mode-wrap-block-in-example-markdown"
   (interactive)
