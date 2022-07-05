@@ -1,16 +1,14 @@
 function notec() {
-    (
-        cd ~/pdev/taylormonacelli/notes
-        if ! git diff --no-ext-diff --quiet --exit-code; then
-            git add --update
-        fi
-        git commit -m "Notes backup"
-        perl -wi ~/bin/org_clean_whitespace.pl *.txt *.org
-        if ! git diff --no-ext-diff --quiet --exit-code; then
-            git add --update
-        fi
-        git commit -m "Cleanup whitespace"
-    )
+    cd ~/pdev/taylormonacelli/notes
+    if ! git diff --no-ext-diff --quiet --exit-code; then
+        git add --update
+    fi
+    git commit -m "Notes backup"
+    perl -wi ~/bin/org_clean_whitespace.pl *.txt *.org
+    if ! git diff --no-ext-diff --quiet --exit-code; then
+        git add --update
+    fi
+    git commit -m "Cleanup whitespace"
 }
 
 genpasswd() {
