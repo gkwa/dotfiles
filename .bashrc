@@ -41,6 +41,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 . ~/.bash.d/direnv.sh
 . ~/.bash.d/pyenv.sh
 . ~/.bash.d/krew.sh
+. ~/.bash.d/z.sh
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/mtm/.rd/bin:$PATH"
