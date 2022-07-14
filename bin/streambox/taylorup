@@ -1,14 +1,14 @@
 #!/bin/bash
 
-id=i-09301f896088a5b7c
-dns=taylor-win-us-east-2.streambox.com
+id=i-059fe041465c1c70a
+dns=taylor-linux-ubuntu-us-east-2.streambox.com
 region=us-east-2
 dns_zone=ZYM2WVE2N8MU5
 
 export PAGER=cat
 
-aws ec2 stop-instances --region $region --instance-ids $id
-aws ec2 wait instance-stopped --region $region --instance-ids $id
+# aws ec2 stop-instances --region $region --instance-ids $id
+# aws ec2 wait instance-stopped --region $region --instance-ids $id
 aws ec2 start-instances --region $region --instance-ids $id
 aws ec2 wait instance-running --region $region --instance-ids $id
 aws ec2 describe-instances --region $region --instance-ids $id >/tmp/$id.json

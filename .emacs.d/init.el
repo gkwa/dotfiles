@@ -32,3 +32,4 @@
  '(magit-diff-removed ((((type tty)) (:foreground "red"))))
  '(magit-diff-removed-highlight ((((type tty)) (:foreground "IndianRed"))))
  '(magit-section-highlight ((((type tty)) nil))))
+(put 'downcase-region 'disabled nil)
