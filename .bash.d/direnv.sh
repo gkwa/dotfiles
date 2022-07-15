@@ -1,15 +1,12 @@
-#!/bin/bash
-
-if command direnv 2>&1 >/dev/null; then
+if command -v direnv &>/dev/null; then
     eval "$(direnv hook bash)"
+    show_virtual_env() {
+        if [[ -n $VIRTUAL_ENV && -n $DIRENV_DIR ]]; then
+            echo "($(basename $VIRTUAL_ENV))"
+        fi
+    }
+
+    export -f show_virtual_env
+
+    PS1='$(show_virtual_env)'$PS1
 fi
-
-show_virtual_env() {
-    if [[ -n $VIRTUAL_ENV && -n $DIRENV_DIR ]]; then
-        echo "($(basename $VIRTUAL_ENV))"
-    fi
-}
-
-export -f show_virtual_env
-
-PS1='$(show_virtual_env)'$PS1

@@ -1,3 +1,3 @@
-if type helm >/dev/null; then
+if command -v helm &>/dev/null; then
     source <(helm completion bash)
 fi

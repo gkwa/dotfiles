@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! command pack 2>&1 >/dev/null; then
+if ! command pack &>/dev/null; then
     exit
 fi
 

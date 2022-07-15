@@ -1,2 +1,1 @@
-[[ -d /usr/local/opt/sphinx-doc/bin ]] &&
-    export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"
+[[ -d /usr/local/opt/sphinx-doc/bin ]] && export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"

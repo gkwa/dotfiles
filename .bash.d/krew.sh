@@ -1,7 +1,6 @@
 # https://krew.sigs.k8s.io/docs/user-guide/setup/install/
 
-if ! command -v kubectl krew &>/dev/null
-then
+if ! command -v kubectl krew &>/dev/null; then
     echo "kubectl krew could not be found"
     exit
 fi
