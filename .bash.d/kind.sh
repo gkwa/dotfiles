@@ -1,7 +1,5 @@
 #!/bin/bash
 
-if ! command kind 2>&1 >/dev/null; then
-    exit
+if command -v kind &>/dev/null; then
+    source <(kind completion bash)
 fi
-
-source <(kind completion bash)
