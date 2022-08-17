@@ -42,3 +42,4 @@
 . ~/.bash.d/pyenv.sh
 #. ~/.bash.d/krew.sh
 . ~/.bash.d/z.sh
+. ~/.bash.d/edgedb.sh
