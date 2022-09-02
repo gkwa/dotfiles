@@ -1,7 +1,1 @@
-#!/bin/bash
-
-if ! command pack &>/dev/null; then
-    exit
-fi
-
-. $(pack completion)
+[ -f ~/.pack/completion.sh ] && . ~/.pack/completion.sh

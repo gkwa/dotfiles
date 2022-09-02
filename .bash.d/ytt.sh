@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ -f /usr/local/etc/bash_completion.d/ytt ] && source /usr/local/etc/bash_completion.d/ytt
+
 cupyml() {
     all="$*"
     for path in $all; do
