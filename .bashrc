@@ -38,6 +38,7 @@
 . ~/.bash.d/travis.sh
 . ~/.bash.d/vault.sh
 . ~/.bash.d/ytt.sh
+. ~/.bash.d/skaffold.sh
 . ~/.bash.d/direnv.sh
 . ~/.bash.d/pyenv.sh
 #. ~/.bash.d/krew.sh
