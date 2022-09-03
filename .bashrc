@@ -35,6 +35,7 @@
 . ~/.bash.d/sphinx-doc.sh
 . ~/.bash.d/sqlite3.sh
 . ~/.bash.d/terraform.sh
+. ~/.bash.d/deno.sh
 . ~/.bash.d/travis.sh
 . ~/.bash.d/vault.sh
 . ~/.bash.d/ytt.sh
