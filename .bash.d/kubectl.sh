@@ -1,6 +1,6 @@
 alias k=kubectl
-complete -F __start_kubectl k
+complete -o default -F __start_kubectl k
 
-if command -v kubectl &>/dev/null; then
+if [ -f ~/.kube/config ] && [ "$(wc -c <~/.kube/config)" -ge 1000 ] && command -v kubectl &>/dev/null; then
     source <(kubectl completion bash)
 fi
