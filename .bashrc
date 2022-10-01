@@ -37,6 +37,7 @@
 . ~/.bash.d/terraform.sh
 . ~/.bash.d/deno.sh
 . ~/.bash.d/travis.sh
+. ~/.bash.d/acorn.sh
 . ~/.bash.d/vault.sh
 . ~/.bash.d/ytt.sh
 . ~/.bash.d/skaffold.sh
