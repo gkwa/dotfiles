@@ -5,8 +5,11 @@
 # --
 #+BEGIN_SRC sh :results output replace
 tmp=$(mktemp -d /tmp/mytest.XXXXX)
-cat <<'__eot__' >$tmp/test.sh
+cat >$tmp/test.sh <<EOF
+#!/bin/bash
 $0
-__eot__
-bash -x $tmp/test.sh
+EOF
+chmod +x $tmp/test.sh
+cd $tmp
+./test.sh
 #+END_SRC
