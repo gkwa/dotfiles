@@ -48,3 +48,6 @@
 . ~/.bash.d/z.sh
 . ~/.bash.d/edgedb.sh
 . ~/.bash.d/mysql-client.sh
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/mtm/.rd/bin:$PATH"
