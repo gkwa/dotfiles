@@ -10,7 +10,7 @@
 . ~/.bash.d/eksctl.sh
 . ~/.bash.d/emacs.sh
 . ~/.bash.d/enscript.sh
-. ~/.bash.d/rancher_desktop.sh
+#. ~/.bash.d/rancher_desktop.sh
 . ~/.bash.d/fzf.sh
 . ~/.bash.d/git.sh
 . ~/.bash.d/gnu.sh
