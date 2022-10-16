@@ -18,6 +18,7 @@
 . ~/.bash.d/google-cloud-sdk.sh
 . ~/.bash.d/kubectl.sh
 . ~/.bash.d/krew.sh
+. ~/.bash.d/kpt.sh
 . ~/.bash.d/helm.sh
 . ~/.bash.d/less.sh
 . ~/.bash.d/mutt.sh
