@@ -17,6 +17,7 @@
 . ~/.bash.d/golang.sh
 . ~/.bash.d/google-cloud-sdk.sh
 . ~/.bash.d/kubectl.sh
+. ~/.bash.d/krew.sh
 . ~/.bash.d/helm.sh
 . ~/.bash.d/less.sh
 . ~/.bash.d/mutt.sh
@@ -44,7 +45,6 @@
 . ~/.bash.d/pack.sh
 . ~/.bash.d/direnv.sh
 . ~/.bash.d/pyenv.sh
-#. ~/.bash.d/krew.sh
 . ~/.bash.d/z.sh
 . ~/.bash.d/edgedb.sh
 . ~/.bash.d/mysql-client.sh
