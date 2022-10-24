@@ -13,7 +13,7 @@
 ;(require 'user-init-ctags)
 ;(require 'user-init-darwin)
 ;(require 'user-init-diary)
-;(require 'user-init-dired-x)
+(require 'user-init-dired-x)
 ;(require 'user-init-editorconfig)
 ;(require 'user-init-es-mode)
 (require 'user-init-ffap)
