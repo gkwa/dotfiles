@@ -2,6 +2,6 @@ if [[ $OSTYPE =~ ^darwin ]]; then
     book() {
         mdfind -onlyin ~/Documents/books -name "$*"
     }
+    . ~/bin/keychain
 fi
 
-export BASH_SILENCE_DEPRECATION_WARNING=1 # https://apple.stackexchange.com/a/371998

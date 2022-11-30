@@ -1,0 +1,5 @@
+GITHUB_TOKEN=$(security find-internet-password -a GITHUB_TOKEN -s GITHUB_TOKEN -w)
+export GITHUB_TOKEN
+
+GITHUB_USER=$(security find-internet-password -a GITHUB_USER -s GITHUB_USER -w)
+export GITHUB_USER
