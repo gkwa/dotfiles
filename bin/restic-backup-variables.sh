@@ -1,10 +1,13 @@
 #!/bin/env bash
 
-set -e
+B2_ACCOUNT_ID="$(security find-generic-password -a ${USER} -s B2_ACCOUNT_ID -w)"
+export B2_ACCOUNT_ID
 
-export B2_ACCOUNT_ID="$(security find-generic-password -a ${USER} -s B2_ACCOUNT_ID -w)"
-export B2_ACCOUNT_KEY="$(security find-generic-password -a ${USER} -s B2_ACCOUNT_KEY -w)"
-export macos_laptop_restic_pass="$(security find-generic-password -a ${USER} -s macos_laptop_restic_pass -w)"
+B2_ACCOUNT_KEY="$(security find-generic-password -a ${USER} -s B2_ACCOUNT_KEY -w)"
+export B2_ACCOUNT_KEY
+
+macos_laptop_restic_pass="$(security find-generic-password -a ${USER} -s macos_laptop_restic_pass -w)"
+export macos_laptop_restic_pass
 
 export RESTIC_PASSWORD_FILE=/tmp/restic-pw.txt
 touch $RESTIC_PASSWORD_FILE
