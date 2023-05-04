@@ -112,27 +112,27 @@ $HOME/Library/Caches
 $HOME/.dropbox
 $HOME/.cargo
 $HOME/.dbeaver-drivers
+*.vmdk
 .DS_Store
-Downloads/pluralsight
 .Trash
-box/virtualbox
-packer_cache
-Containers/com.docker.docker/Data/vms
-python/site-packages
-node_modules
-emacs.d/elpa
-Trash
 .cargo/registry
-.terraform/plugins
-Library/Application Support
-cache
-VirtualBox VMs/.git/lfs
-__pycache__
 .pyenv
-.virtualenvs
+.terraform/plugins
+.tox
 .venv
+.venv/
+.virtualenvs
+Containers/com.docker.docker/Data/vms
+Downloads/pluralsight
+Library/Application Support
 Library/Logs/CrashReporter
 Library/Logs/net.taylorm
-.venv/
-*.vmdk
-.tox
+Trash
+VirtualBox VMs/.git/lfs
+__pycache__
+box/virtualbox
+cache
+emacs.d/elpa
+node_modules
+packer_cache
+python/site-packages
