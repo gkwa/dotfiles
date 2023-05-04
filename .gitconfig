@@ -20,7 +20,7 @@
 	apr = apply --ignore-space-change --reject
 	mnf = merge --no-edit --no-ff
 	mne = merge --no-edit
-	rs1 = reset HEAD~1
+	rs = reset --soft HEAD~1
 	gpp = "!sh -c 'git pull --rebase && git push'"
 	sbu = show-branch @{upstream} HEAD
 	du = diff @{upstream}..HEAD
@@ -111,7 +111,6 @@
 	bra = branch -a
 	head = rev-parse --short HEAD
 	# https://git.wiki.kernel.org/index.php/Aliases#Advanced_aliases_with_arguments
-	rs = !sh -c 'git remote show $1' -
 	rt = reset
 	rso = remote show origin
 	cp = cherry-pick
