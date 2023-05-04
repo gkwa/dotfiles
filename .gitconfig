@@ -16,6 +16,7 @@
 
 	pq = "!sh -c 'git push --quiet &'"
 	pqf = "!sh -c 'git push --quiet --force &'"
+	pft = push --follow-tags
 	cne = commit -a --no-edit
 	apr = apply --ignore-space-change --reject
 	mnf = merge --no-edit --no-ff
