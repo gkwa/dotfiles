@@ -21,7 +21,8 @@
 	apr = apply --ignore-space-change --reject
 	mnf = merge --no-edit --no-ff
 	mne = merge --no-edit
-	rs = reset --soft HEAD~1
+	rs = reset HEAD~1
+	rss = reset --soft HEAD~1
 	gpp = "!sh -c 'git pull --rebase && git push'"
 	sbu = show-branch @{upstream} HEAD
 	du = diff @{upstream}..HEAD
@@ -33,7 +34,7 @@
 	rh1 = reset HEAD^ --hard
 	rh2 = reset HEAD^^ --hard
 	rho = reset --hard ORIG_HEAD
-	y = "!sh -c 'git commit -am \"real men dont make git commit comments\" && git push --quiet &'"
+	y = "!sh -c 'git commit -am \"real men dont make git commit comments\" && git push --quiet'"
 	ys = "!sh -c 'git commit -am \"[skip ci] this should work on a machine somewhere\" && git push --quiet &'"
 	ysa = "!sh -c 'git commit -am \"[skip appveyor] this should work on a machine somewhere\" && git push --quiet &'"
 	ysg = "!sh -c 'git commit -am \"[skip gitlab] this should work on a machine somewhere\" && git push --quiet &'"
