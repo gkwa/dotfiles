@@ -128,6 +128,7 @@
 	subup = submodule update
 	s = status --untracked=no
 	sa = status --untracked=normal
+	sar = "!sh -c 'git status --untracked=normal --porcelain | sed -n \"s/^?? //p\" | xargs realpath'"
 	diffc = diff --cached --color
 	diffcn = diff --cached --color --name-only
 	diffcw = diff --word-diff --color
