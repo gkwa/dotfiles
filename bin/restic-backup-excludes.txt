@@ -1,4 +1,5 @@
 Music/iTunes/iTunes Media/Podcasts/
+$HOME/.orbstack/data
 $HOME/.511976.padl
 $HOME/.CFUserTextEncoding
 $HOME/.IdentityService
