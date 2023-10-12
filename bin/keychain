@@ -1,14 +1,11 @@
+PUSHBULLET_API_KEY=$(security find-internet-password -a PUSHBULLET_API_KEY -s PUSHBULLET_API_KEY -w)
+export PUSHBULLET_API_KEY
+
 GITHUB_TOKEN=$(security find-internet-password -a GITHUB_TOKEN -s GITHUB_TOKEN -w)
 export GITHUB_TOKEN
 
 GITHUB_USER=$(security find-internet-password -a GITHUB_USER -s GITHUB_USER -w)
 export GITHUB_USER
-
-TWINE_USERNAME=$(security find-internet-password -a TWINE_USERNAME -s TWINE_USERNAME -w)
-export TWINE_USERNAME
-
-TWINE_PASSWORD=$(security find-internet-password -a TWINE_PASSWORD -s TWINE_PASSWORD -w)
-export TWINE_PASSWORD
 
 DOCKER_USERNAME=$(security find-internet-password -a DOCKER_USERNAME -s DOCKER_USERNAME -w)
 export DOCKER_USERNAME
@@ -21,3 +18,9 @@ export AWS_ACCESS_KEY_ID
 
 AWS_SECRET_ACCESS_KEY=$(security find-internet-password -a AWS_SECRET_ACCESS_KEY -s AWS_SECRET_ACCESS_KEY -w)
 export AWS_SECRET_ACCESS_KEY
+
+TWINE_USERNAME=$(security find-internet-password -a TWINE_USERNAME -s TWINE_USERNAME -w)
+export TWINE_USERNAME
+
+TWINE_PASSWORD=$(security find-internet-password -a TWINE_PASSWORD -s TWINE_PASSWORD -w)
+export TWINE_PASSWORD
