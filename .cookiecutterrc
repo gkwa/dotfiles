@@ -3,8 +3,8 @@ default_context:
   author_name: "Taylor Monacelli"
   email: "taylormonacelli@gmail.com"
   author_email: "taylormonacelli@gmail.com"
-  github_username: "TaylorMonacelli"
-  repo_username: "TaylorMonacelli"
+  github_username: "taylormonacelli"
+  repo_username: "taylormonacelli"
   pypi_username: "mtmonacelli"
   docker_hub_username: "taylorm"
   go_mod_or_dep: ["mod"]
