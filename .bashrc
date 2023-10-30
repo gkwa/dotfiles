@@ -1,5 +1,6 @@
 . ~/.bash.d/asciidoc.sh
 . ~/.bash.d/flashbiter.sh
+. ~/.bash.d/aqualove.sh
 . ~/.bash.d/bash-darwin.sh
 . ~/.bash.d/bash.sh
 . ~/.bash.d/kind.sh
