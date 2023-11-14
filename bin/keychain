@@ -1,3 +1,6 @@
+OPENAI_API_KEY=$(security find-internet-password -a OPENAI_API_KEY -s OPENAI_API_KEY -w)
+export OPENAI_API_KEY
+
 PUSHBULLET_API_KEY=$(security find-internet-password -a PUSHBULLET_API_KEY -s PUSHBULLET_API_KEY -w)
 export PUSHBULLET_API_KEY
 
