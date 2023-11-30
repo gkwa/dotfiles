@@ -4,6 +4,9 @@ export OPENAI_API_KEY
 PUSHBULLET_API_KEY=$(security find-internet-password -a PUSHBULLET_API_KEY -s PUSHBULLET_API_KEY -w)
 export PUSHBULLET_API_KEY
 
+GITLAB_TOKEN=$(security find-internet-password -a GITLAB_TOKEN -s GITLAB_TOKEN -w)
+export GITLAB_TOKEN
+
 GITHUB_TOKEN=$(security find-internet-password -a GITHUB_TOKEN -s GITHUB_TOKEN -w)
 export GITHUB_TOKEN
 
