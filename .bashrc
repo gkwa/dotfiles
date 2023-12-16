@@ -29,6 +29,7 @@
 . ~/.bash.d/nvm.sh
 . ~/.bash.d/node.sh
 . ~/.bash.d/openssl.sh
+. ~/.bash.d/poetry.sh
 . ~/.bash.d/python3.sh
 . ~/.bash.d/ruby.sh
 . ~/.bash.d/rust.sh
