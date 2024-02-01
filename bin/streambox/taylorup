@@ -1,7 +1,6 @@
 #!/bin/bash
 
-id=i-05961e3e8d99420c6
-id=i-007bdb30ebd18e34c
+id=i-0cb84664c60517556
 dns=taylor-linux-ubuntu-us-east-2.streambox.com
 region=us-east-2
 dns_zone=ZYM2WVE2N8MU5

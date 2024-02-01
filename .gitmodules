@@ -1,0 +1,3 @@
+[submodule "github.com/excoriate/daggerverse/iac-terragrunt"]
+	path = github.com/excoriate/daggerverse/iac-terragrunt
+	url = https://github.com/excoriate/daggerverse
