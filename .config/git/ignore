@@ -1,3 +1,5 @@
+.project_rsync.sh
+.project_watchexec.sh
 make_txtar.sh
 .DS_Store
 scratch/
