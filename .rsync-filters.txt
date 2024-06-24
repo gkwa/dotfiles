@@ -1,0 +1,13 @@
+# .rsync-filter
+- *.code-workspace
+- *.whl
+- .git/
+- .project_rsync.sh
+- .project_watchexec.sh
+- .ruff_cache/
+- .terraform/providers/
+- .venv/
+- README.md
+- dist/
+- make_txtar.sh
+- node_modules/
