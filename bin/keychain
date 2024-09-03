@@ -1,3 +1,6 @@
+ANTHROPIC_API_KEY=$(security find-internet-password -a ANTHROPIC_API_KEY -s ANTHROPIC_API_KEY -w)
+export ANTHROPIC_API_KEY
+
 OPENAI_API_KEY=$(security find-internet-password -a OPENAI_API_KEY -s OPENAI_API_KEY -w)
 export OPENAI_API_KEY
 
