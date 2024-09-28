@@ -1,3 +1,6 @@
+UV_PUBLISH_TOKEN=$(security find-internet-password -a UV_PUBLISH_TOKEN -s UV_PUBLISH_TOKEN -w)
+export UV_PUBLISH_TOKEN
+
 ANTHROPIC_API_KEY=$(security find-internet-password -a ANTHROPIC_API_KEY -s ANTHROPIC_API_KEY -w)
 export ANTHROPIC_API_KEY
 
