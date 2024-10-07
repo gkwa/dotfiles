@@ -1,3 +1,4 @@
+.env
 .terraform.lock.hcl
 .nearwait.yml
 .nearwait.txtar
