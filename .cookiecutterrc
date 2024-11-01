@@ -1,13 +1,14 @@
 default_context:
-  full_name: "Taylor Monacelli"
-  author_name: "Taylor Monacelli"
-  email: "taylormonacelli@gmail.com"
-  author_email: "taylormonacelli@gmail.com"
-  github_username: "taylormonacelli"
-  repo_username: "taylormonacelli"
-  pypi_username: "mtmonacelli"
-  docker_hub_username: "taylorm"
-  go_mod_or_dep: ["mod"]
+  full_name: Taylor Monacelli
+  author_name: Taylor Monacelli
+  email: taylormonacelli@gmail.com
+  author_email: taylormonacelli@gmail.com
+  github_username: gkwa
+  repo_username: gkwa
+  pypi_username: mtmonacelli
+  docker_hub_username: taylorm
+  go_mod_or_dep:
+  - mod
   use_docker: "y"
   add_pyup_badge: "y"
   use_pytest: "y"
@@ -15,6 +16,8 @@ default_context:
   use_logrus_logging: "y"
   use_viper_config: "y"
   use_cobra_cmd: "y"
-  use_ci: ["travis", "circle", "none"]
-
-cookiecutters_dir: "~/.cookiecutters/"
+  use_ci:
+  - travis
+  - circle
+  - none
+cookiecutters_dir: ~/.cookiecutters/
