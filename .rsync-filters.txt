@@ -4,6 +4,7 @@
 - .git/
 - .project_rsync.sh
 - .project_watchexec.sh
+- .timestamps/
 - .ruff_cache/
 - .terraform/providers/
 - .venv/
