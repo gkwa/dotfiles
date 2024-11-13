@@ -14,10 +14,17 @@
 	; git squash N
 	sq = "!f(){ git reset --soft HEAD~${1} && git commit --no-edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 
+	; git squash-to 'origin/astound' (for example)
+    squash-to = "!f() { local branch=${1:-origin/$(git branch --show-current)}; git reset --soft $branch && git commit -m\"$(git log --format=%B --reverse $branch..HEAD@{1})\"; }; f"
+	;squash-to = "!f() { git reset --soft ${1:-origin/$(git branch --show-current)} && git commit --no-edit; }; f"
+
 	pq = "!sh -c 'git push --quiet &'"
 	pqf = "!sh -c 'git push --quiet --force &'"
 	pft = push --follow-tags
 	cne = commit -a --no-edit
+	# Quick commit all changes with space-separated message
+    cm = "!f() { local message=\"$*\"; git commit -m \"$message\"; }; f"
+    cam = "!f() { local message=\"$*\"; git commit -am \"$message\"; }; f"
 	apr = apply --ignore-space-change --reject
 	mnf = merge --no-edit --no-ff
 	mne = merge --no-edit
