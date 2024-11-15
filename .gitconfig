@@ -16,7 +16,7 @@
   ; git squash N
   sq = "!f(){ git reset --soft HEAD~${1} && git commit --no-edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 
-    ; eg: git squash to remote/test
+  ; eg: git squash to remote/test
   sqt = "!f() { local branch=${1:-origin/$(git branch --show-current)}; git reset --soft $branch && git commit -m\"$(git log --format=%B --reverse $branch..HEAD@{1})\"; }; f"
 
   pq = "!sh -c 'git push --quiet &'"
