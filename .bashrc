@@ -1,3 +1,4 @@
+. ~/.bash.d/just.sh
 . ~/.bash.d/asciidoc.sh
 . ~/.bash.d/flashbiter.sh
 . ~/.bash.d/aqualove.sh
