@@ -161,7 +161,7 @@
   lsd = ls-files -d
   la = log --abbrev-commit
   log1 = log --pretty=tformat:'%Creset%h%C(yellow)%d%Creset %ar %s' --reverse
-  l = !git log1
+  l = log --pretty=tformat:'%Creset%h%C(yellow)%d%Creset %ad (%ar) %s' --date=format:'%b %d %H:%M' --reverse
   lm = l --merges
   dlo = log -p ORIG_HEAD..
   dloc = log -p ORIG_HEAD.. --color
