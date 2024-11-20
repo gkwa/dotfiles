@@ -24,7 +24,9 @@
   pft = push --follow-tags
   cne = commit -a --no-edit
   cm = "!f() { local message=\"$*\"; git commit -m \"$message\"; }; f"
+  cmp = "!f() { local message=\"$*\"; git commit -m \"$message\" && git push; }; f"
   cam = "!f() { local message=\"$*\"; git commit -am \"$message\"; }; f"
+  camp = "!f() { local message=\"$*\"; git commit -am \"$message\" && git push; }; f"
   apr = apply --ignore-space-change --reject
   mnf = merge --no-edit --no-ff
   mne = merge --no-edit
