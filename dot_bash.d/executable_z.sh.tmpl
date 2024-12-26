@@ -1,0 +1,11 @@
+command -v z >/dev/null 2>&1 || return
+
+{{ if eq .chezmoi.os "linux" -}}
+[[ -s /home/linuxbrew/.linuxbrew/etc/profile.d/z.sh ]] || return
+. /home/linuxbrew/.linuxbrew/etc/profile.d/z.sh
+
+{{- else if eq .chezmoi.os "darwin" -}}
+[[ -s /usr/local/etc/profile.d/z.sh ]] || return
+. /usr/local/etc/profile.d/z.sh
+
+{{- end }}
