@@ -1,6 +1,3 @@
-alias ..='cd ..'
-alias ....='cd ../../..'
-
 # for man pages
 export COLUMNS=72
 
@@ -41,3 +38,21 @@ shopt -s checkwinsize
 if [[ $OSTYPE == 'darwin'* ]]; then
     [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 fi
+
+
+if [[ $OSTYPE =~ ^darwin ]]; then
+    book() {
+        mdfind -onlyin ~/Documents/books -name "$*"
+    }
+
+    # https://apple.stackexchange.com/a/371998
+    export BASH_SILENCE_DEPRECATION_WARNING=1
+
+    . ~/bin/keychain
+fi
+
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+

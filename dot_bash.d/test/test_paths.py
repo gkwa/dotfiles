@@ -1,5 +1,5 @@
 import subprocess
-from subprocess import PIPE, Popen
+
 
 def test_bash_version():
     cmd = "bash --version"

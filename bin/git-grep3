@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# list repo files whose path matches search
-
-git ls-tree -r HEAD | grep --ignore-case "${1}" | awk -v P="$(pwd)" -F'\t' '{print P"/"$2}'

@@ -1,8 +1,10 @@
+. ~/.bash.d/brew.sh
+
 . ~/.bash.d/just.sh
+. ~/.bash.d/task.sh
 . ~/.bash.d/asciidoc.sh
 . ~/.bash.d/flashbiter.sh
 . ~/.bash.d/aqualove.sh
-. ~/.bash.d/bash-darwin.sh
 . ~/.bash.d/bash.sh
 . ~/.bash.d/kind.sh
 . ~/.bash.d/cabal.sh
@@ -14,13 +16,13 @@
 . ~/.bash.d/emacs.sh
 . ~/.bash.d/enscript.sh
 #. ~/.bash.d/rancher_desktop.sh
+. ~/.bash.d/pnpm.sh
 . ~/.bash.d/fzf.sh
 . ~/.bash.d/git.sh
 . ~/.bash.d/gnu.sh
 . ~/.bash.d/golang.sh
 . ~/.bash.d/google-cloud-sdk.sh
 . ~/.bash.d/kubectl.sh
-. ~/.bash.d/krew.sh
 . ~/.bash.d/kpt.sh
 . ~/.bash.d/helm.sh
 . ~/.bash.d/less.sh
@@ -52,7 +54,5 @@
 . ~/.bash.d/pyenv.sh
 . ~/.bash.d/z.sh
 . ~/.bash.d/edgedb.sh
+. ~/.bash.d/envman.sh
 . ~/.bash.d/mysql-client.sh
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/mtm/.rd/bin:$PATH"
