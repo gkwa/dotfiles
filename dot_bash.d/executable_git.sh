@@ -1,4 +1,4 @@
-export GIT_PAGER=cat 
+export GIT_PAGER=cat
 
 PS1="[\u@\h:\W\$(parse_git_branch)]$ "
 

@@ -8,7 +8,7 @@
 
 (setq-default dired-omit-files-p t)
 (setq-default dired-recursive-deletes 'always)
- 
+
 (setq dired-omit-files
       (concat dired-omit-files "\\|^\\..+$"))
 (setq dired-listing-switches "-alh")

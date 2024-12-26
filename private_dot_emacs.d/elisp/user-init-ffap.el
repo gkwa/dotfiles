@@ -39,7 +39,7 @@ Version 2019-01-16"
                   (browse-url $x)
                 (find-file $x)))
           (progn (browse-url $path)))
-      (if ; not starting  http:// 
+      (if ; not starting  http://
           (string-match "^\\`\\(.+?\\):\\([0-9]+\\)\\'" $path)
           (let (
                 ($fpath (match-string 1 $path))

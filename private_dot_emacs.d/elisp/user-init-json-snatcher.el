@@ -6,5 +6,3 @@
 (add-hook 'js2-mode-hook 'js-mode-bindings)
 
 (provide 'user-init-json-snatcher)
-
-
