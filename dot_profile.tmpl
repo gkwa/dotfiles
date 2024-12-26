@@ -1,11 +1,10 @@
+{{ if eq .chezmoi.os "darwin" }}
+# darwin
 
-export PATH="/Users/mtm/Library/Application Support/edgedb/bin:$PATH"
+{{ else if eq .chezmoi.os "linux" }}
+# linux
 
-# Added by OrbStack: command-line tools and integration
-source ~/.orbstack/shell/init.bash 2>/dev/null || :
-. "$HOME/.rye/env"
+{{ else }}
 
-. "$HOME/.cargo/env"
-
-# Generated for envman. Do not edit.
-#[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+# other operating system
+{{ end }}
