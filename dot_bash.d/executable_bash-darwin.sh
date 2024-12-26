@@ -8,4 +8,3 @@ if [[ $OSTYPE =~ ^darwin ]]; then
 
     . ~/bin/keychain
 fi
-

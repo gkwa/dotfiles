@@ -39,7 +39,6 @@ if [[ $OSTYPE == 'darwin'* ]]; then
     [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 fi
 
-
 if [[ $OSTYPE =~ ^darwin ]]; then
     book() {
         mdfind -onlyin ~/Documents/books -name "$*"
@@ -51,8 +50,6 @@ if [[ $OSTYPE =~ ^darwin ]]; then
     . ~/bin/keychain
 fi
 
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
