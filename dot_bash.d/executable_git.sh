@@ -1,7 +1,4 @@
-alias g=git
-alias ...='cd $(git rev-parse --show-toplevel)'
-
-unset GIT_PAGER
+export GIT_PAGER=cat 
 
 PS1="[\u@\h:\W\$(parse_git_branch)]$ "
 
