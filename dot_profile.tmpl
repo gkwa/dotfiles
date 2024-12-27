@@ -13,7 +13,6 @@ export PATH=~/.local/bin:$PATH
 # linux
 
 if [ -d "/home/linuxbrew/.linuxbrew" ]; then
-  export PATH="/usr/local/bin:$PATH"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 else
   echo "Homebrew is not installed in the expected location." >&2
