@@ -1,6 +1,4 @@
-#!/bin/bash
-# -*- sh-mode -*-
+#!/usr/bin/env bash
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-[[ -s /usr/local/bin/brew ]] && eval "$(/usr/local/bin/brew shellenv)"
 unset USERNAME
