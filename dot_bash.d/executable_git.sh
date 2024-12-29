@@ -1,7 +1,3 @@
-export GIT_PAGER=cat
-
-PS1="[\u@\h:\W\$(parse_git_branch)]$ "
-
 gg_dasherize() {
     gg_replace $1 $(echo $1 | sed -e 's/_/-/g') $2
 }
@@ -76,3 +72,7 @@ function parse_git_branch() {
     ref=$(git symbolic-ref HEAD 2>/dev/null) || return
     echo "("${ref#refs/heads/}")"
 }
+
+export GIT_PAGER=cat
+
+PS1="[\u@\h:\W\$(parse_git_branch)]$ "
