@@ -1,4 +1,4 @@
-command -v atuin 2>/dev/null || return
+command -v atuin >/dev/null 2>&1 || return
 
 eval "$(atuin init bash --disable-up-arrow --disable-ctrl-r)"
 
