@@ -2,3 +2,5 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 unset USERNAME
+
+complete -C /usr/local/Cellar/tfenv/3.0.0/versions/1.9.8/terraform terraform
