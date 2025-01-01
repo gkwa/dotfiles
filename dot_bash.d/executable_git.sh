@@ -73,6 +73,4 @@ function parse_git_branch() {
     echo "("${ref#refs/heads/}")"
 }
 
-export GIT_PAGER=cat
-
 PS1="[\u@\h:\W\$(parse_git_branch)]$ "
