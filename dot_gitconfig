@@ -301,7 +301,6 @@ attic="!f() { \
   ; Dont trust file modes
   filemode = false
   autocrlf = false
-  pager = less --quit-if-one-screen --no-init
 
 [branch]
   autosetuprebase = always
