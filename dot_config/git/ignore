@@ -1,4 +1,5 @@
 .env
+.fmt/
 .terraform.lock.hcl
 .nearwait.yml
 .nearwait.txtar
