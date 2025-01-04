@@ -8,8 +8,8 @@ hs() {
         history | awk '{$1="";print substr($0,2)}'
     else
         # if first arg is number, then tail -number
-        if test $(expr "$1" : "[0-9]*$") -gt 0; then
-            history | tail -$1 | awk '{$1="";print substr($0,2)}' |
+        if test "$(expr "$1" : "[0-9]*$")" -gt 0; then
+            history | tail -"$1" | awk '{$1="";print substr($0,2)}' |
                 grep -v "hs $1"
         else
             history | awk '{$1="";print substr($0,2)}' | grep -i "$1" |
@@ -38,6 +38,7 @@ shopt -s checkwinsize
 [[ -d /usr/libexec ]] && PATH=$PATH:/usr/libexec # for plistbuddy
 
 if [[ $OSTYPE == 'darwin'* ]]; then
+    # shellcheck source=/dev/null
     [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 fi
 
@@ -49,9 +50,11 @@ if [[ $OSTYPE =~ ^darwin ]]; then
     # https://apple.stackexchange.com/a/371998
     export BASH_SILENCE_DEPRECATION_WARNING=1
 
+    # shellcheck source=/dev/null
     . ~/bin/keychain
 fi
 
 if [ -f ~/.bash_aliases ]; then
+    # shellcheck source=/dev/null
     . ~/.bash_aliases
 fi

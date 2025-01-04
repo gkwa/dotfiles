@@ -3,12 +3,14 @@
 ! command -v aqualove &>/dev/null && return
 
 function aqualovewrapper() {
-    local path=$(aqualove)
-    local clean=$(echo "$path" | tr -d '\n')
+    local path
+    path=$(aqualove)
+    local clean
+    clean=$(echo "$path" | tr -d '\n')
     if [ -z "$clean" ]; then
         return
     fi
     if [ -d "$clean" ]; then
-        cd "$clean"
+        cd "$clean" || return
     fi
 }

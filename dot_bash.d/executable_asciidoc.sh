@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # https://groups.google.com/forum/?fromgroups=#!topic/asciidoc/FC-eOwU8rYg
 # brew install asciidoc; cd ~/play/gitster && make man "make
 # man" relies on knowing where XML_CATALOG_FILES are:

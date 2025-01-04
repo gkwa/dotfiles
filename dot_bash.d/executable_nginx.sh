@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 case $(uname) in
 "FreeBSD" | "Linux") ;;
 
