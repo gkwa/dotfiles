@@ -4,4 +4,4 @@
 
 ! command -v eksctl &>/dev/null && return
 
-source <(eksctl completion bash)
+eval "$(eksctl completion bash)"

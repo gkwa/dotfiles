@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+! command -v aqualove &>/dev/null && return
+
 function aqualovewrapper() {
     local path=$(aqualove)
     local clean=$(echo "$path" | tr -d '\n')

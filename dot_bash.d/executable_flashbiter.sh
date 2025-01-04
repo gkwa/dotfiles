@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+! command -v flashbiter &>/dev/null && return
+
 function flashbiterwrapper() {
     local path=$(flashbiter "$*")
     local clean=$(echo "$path" | tr -d '\n')

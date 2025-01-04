@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+
+
 [[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 [ -f /usr/local/etc/bash_completion.d/ytt ] && source /usr/local/etc/bash_completion.d/ytt
 

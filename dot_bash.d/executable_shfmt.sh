@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 alias shfmt1='shfmt -w -s -i 4'
 

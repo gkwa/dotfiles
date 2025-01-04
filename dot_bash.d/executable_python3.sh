@@ -1,3 +1,5 @@
+
+
 [[ -d ~/.virtualenvs/.py39 ]] && source ~/.virtualenvs/.py39/bin/activate
 
 cuppy() {
