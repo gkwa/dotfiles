@@ -1,3 +1,3 @@
-if command -v task &>/dev/null; then
-    eval "$(task --completion bash 2>/dev/null)"
-fi
+! command -v task &>/dev/null && return
+
+eval "$(task --completion bash 2>/dev/null)"
