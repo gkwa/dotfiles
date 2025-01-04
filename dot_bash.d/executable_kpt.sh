@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-if command -v kpt compltion &>/dev/null; then
-    source <(kpt completion bash)
-fi
+! command -v kpt compltion &>/dev/null && return
+
+eval "$(kpt completion bash)"

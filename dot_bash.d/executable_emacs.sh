@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 alias ects='emacsclient --create-frame --tty --alternate-editor=""'
 
 EDITOR='emacsclient --create-frame --tty --alternate-editor=""'

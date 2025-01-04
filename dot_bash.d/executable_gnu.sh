@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 [[ -d /usr/local/share/info ]] && INFOPATH=/usr/local/share/info:$INFOPATH
 
 [[ -d /usr/local/opt/findutils/libexec/gnuman ]] && MANPATH="/usr/local/opt/findutils/libexec/gnuman:$MANPATH"

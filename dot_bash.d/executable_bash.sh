@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # for man pages
 export COLUMNS=72
 

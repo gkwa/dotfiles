@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # https://cloud.google.com/sdk/docs/quickstarts
 
 file=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc

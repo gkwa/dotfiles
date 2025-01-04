@@ -1,5 +1,7 @@
+#!/usr/bin/env bash
+
 # https://eksctl.io/introduction/#bash
 
-if command -v eksctl &>/dev/null; then
-    source <(eksctl completion bash)
-fi
+! command -v eksctl &>/dev/null && return
+
+source <(eksctl completion bash)

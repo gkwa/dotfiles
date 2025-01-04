@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-if command -v acorn &>/dev/null; then
-    source <(acorn completion bash)
-fi
+! command -v acorn &>/dev/null && return
+
+eval "$(acorn completion bash)"

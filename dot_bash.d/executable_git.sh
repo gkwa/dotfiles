@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 gg_dasherize() {
     gg_replace $1 $(echo $1 | sed -e 's/_/-/g') $2
 }
