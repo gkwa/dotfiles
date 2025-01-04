@@ -2,6 +2,5 @@
 
 ! command -v z >/dev/null 2>&1 && return
 
-[[ -s /usr/local/etc/profile.d/z.sh ]] || return
-
-. /usr/local/etc/profile.d/z.sh
+# shellcheck source=/dev/null
+[[ -s /usr/local/etc/profile.d/z.sh ]] && . /usr/local/etc/profile.d/z.sh

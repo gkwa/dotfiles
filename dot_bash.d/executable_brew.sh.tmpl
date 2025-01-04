@@ -1,17 +1,3 @@
-{{ if eq .chezmoi.os "darwin" }}
+#!/usr/bin/env bash
 
 # darwin
-{{ else if eq .chezmoi.os "linux" }}
-if [ -d "/home/linuxbrew/.linuxbrew" ]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-else
-  echo "Homebrew is not installed in the expected location." >&2
-fi
-
-brew() {
-   sudo --user linuxbrew --login brew "$@"
-}
-{{ else }}
-
-# other operating system
-{{ end }}
