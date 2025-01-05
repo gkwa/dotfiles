@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-[[ -f $HOME/.atuin/bin/env ]] && . "$HOME/.atuin/bin/env"
+[[ ! -f "$HOME/.atuin/bin/env" ]] && return
 
-! command -v atuin &>/dev/null && return
+. "$HOME/.atuin/bin/env"
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 
