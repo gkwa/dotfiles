@@ -310,8 +310,7 @@ attic="!f() { \
   protocol = https
 
 [diff]
-  tool = p4mergetool
-  submodule = log
+  submodule = diff
 
 [color "diff"]
   whitespace = red reverse
