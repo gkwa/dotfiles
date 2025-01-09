@@ -310,7 +310,7 @@ attic="!f() { \
   protocol = https
 
 [diff]
-  submodule = diff
+	submodule = diff
 
 [color "diff"]
   whitespace = red reverse
