@@ -291,6 +291,7 @@ attic="!f() { \
 
 [push]
   default = upstream
+  autoSetupRemote = true
 
 [pack]
   threads = 1
