@@ -2,6 +2,9 @@
 
 ! command -v fzf &>/dev/null && return
 
-fzfopen() {
-    "$@" | fzf --tac --bind 'enter:execute:nvim {} </dev/tty'
-}
+# Only bind key if shell is interactive
+if [[ $- == *i* ]]; then
+    fzfopen() {
+        "$@" | fzf --tac --bind 'enter:execute:nvim {} </dev/tty'
+    }
+fi
