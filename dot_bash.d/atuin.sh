@@ -12,7 +12,9 @@
 
 eval "$(atuin init bash --disable-up-arrow --disable-ctrl-r)"
 
-# https://docs.atuin.sh/configuration/key-binding/#bash
-bind -x '"\C-]": "__atuin_history"'
+# Only bind key if shell is interactive
+if [[ $- == *i* ]]; then
+    bind -x '"\C-]": "__atuin_history"'
+fi
 
 eval "$(atuin gen-completions --shell=bash)"
