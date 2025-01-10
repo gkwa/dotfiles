@@ -3,5 +3,5 @@
 ! command -v fzf &>/dev/null && return
 
 fzfopen() {
-    "$@" | fzf --tac --bind 'enter:execute:nvim {} < /dev/tty'
+    "$@" | fzf --tac --bind 'enter:execute:nvim {} </dev/tty'
 }
