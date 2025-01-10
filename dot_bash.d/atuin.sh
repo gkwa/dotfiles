@@ -12,9 +12,9 @@
 
 eval "$(atuin init bash --disable-up-arrow --disable-ctrl-r)"
 
-# Only bind key if shell is interactive
-if [[ $- == *i* ]]; then
-    bind -x '"\C-]": "__atuin_history"'
-fi
-
 eval "$(atuin gen-completions --shell=bash)"
+
+# Return early if not interactive shell
+[[ $- != *i* ]] && return
+
+bind -x '"\C-]": "__atuin_history"'
