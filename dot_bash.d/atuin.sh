@@ -2,10 +2,12 @@
 
 [[ ! -f "$HOME/.atuin/bin/env" ]] && return
 
+# shellcheck source=/dev/null
 . "$HOME/.atuin/bin/env"
 
 ! command -v atuin &>/dev/null && return
 
+# shellcheck source=/dev/null
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 
 eval "$(atuin init bash --disable-up-arrow --disable-ctrl-r)"
