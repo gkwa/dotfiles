@@ -1,10 +1,28 @@
 if [ "$BASH" ]; then
-  if [ -f ~{{ .chezmoi.pathSeparator }}.bashrc ]; then
-    . ~{{ .chezmoi.pathSeparator }}.bashrc
+  if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
   fi
 fi
 
-export PATH=~{{ .chezmoi.pathSeparator }}.local{{ .chezmoi.pathSeparator }}bin{{ .chezmoi.pathListSeparator }}$PATH
+export PATH=~/.local/bin:$PATH
 
+{{ if eq .chezmoi.os "darwin" }}
+# darwin
 
-# {{ .chezmoi.os }}
+{{ else if eq .chezmoi.os "linux" }}
+# linux
+
+if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+else
+  echo "Homebrew is not installed in the expected location." >&2
+fi
+
+brew() {
+   sudo --user linuxbrew --login brew "$@"
+}
+
+{{ else }}
+
+# other operating system
+{{ end }}
