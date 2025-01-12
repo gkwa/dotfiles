@@ -1,8 +1,10 @@
 #!/usr/bin/env zsh
 
+
 autoload -Uz compinit
 compinit
 bindkey \^U backward-kill-line
+
 
 . ~/.shell/brew
 
@@ -19,7 +21,6 @@ bindkey \^U backward-kill-line
 . ~/.shell/google-cloud-sdk
 . ~/.shell/less
 . ~/.shell/mysql-client
-. ~/.shell/nix
 . ~/.shell/openssl
 . ~/.shell/pnpm
 . ~/.shell/poetry
@@ -39,5 +40,6 @@ bindkey \^U backward-kill-line
 . ~/.zsh.d/git
 . ~/.zsh.d/just
 . ~/.zsh.d/kubectl
-. ~/.zsh.d/oh-my-zsh
 . ~/.zsh.d/zinit
+. ~/.shell/nix
+. ~/.zsh.d/oh-my-zsh
