@@ -1,1 +1,2 @@
-export PATH="$HOME/.nix-profile/bin:$PATH"
+[[ -d $HOME/.nix-profile/bin ]] && export PATH="$HOME/.nix-profile/bin:$PATH"
+[[ -d /nix/var/nix/profiles/default/bin ]] && export PATH="/nix/var/nix/profiles/default/bin:$PATH"
