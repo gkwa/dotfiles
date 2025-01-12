@@ -1,0 +1,3 @@
+if [[ $OSTYPE == 'darwin'* ]]; then
+  [ -d "$HOME/Library/Application Support/edgedb" ] && export PATH="$HOME/Library/Application Support/edgedb/bin:$PATH"
+fi

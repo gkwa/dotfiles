@@ -1,0 +1,2 @@
+! command -v deno &>/dev/null && return
+[ -f /usr/local/etc/bash_completion.d/deno ] && . /usr/local/etc/bash_completion.d/deno

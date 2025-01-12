@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+! command -v eksctl &>/dev/null && return
+eval "$(eksctl completion zsh)"

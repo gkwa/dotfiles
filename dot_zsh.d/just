@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+eval "$(just --completions zsh 2>/dev/null)"

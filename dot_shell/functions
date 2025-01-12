@@ -1,0 +1,21 @@
+hs() {
+    # Use $SHELL to determine which shell we're in
+    if [[ -n "$(echo $SHELL | grep zsh)" ]]; then
+        history_cmd="fc -l 1"
+    else
+        history_cmd="history"
+    fi
+
+    if [ -z "$1" ]; then
+        eval "$history_cmd" | awk '{$1="";print substr($0,2)}'
+    else
+        # if first arg is number, then tail -number
+        if [ "$1" -eq "$1" ] 2>/dev/null; then
+            eval "$history_cmd" | tail -$1 | awk '{$1="";print substr($0,2)}' |
+                grep -v "hs $1"
+        else
+            eval "$history_cmd" | awk '{$1="";print substr($0,2)}' | grep -i "$1" |
+                grep -v "hs $1"
+        fi
+    fi
+}

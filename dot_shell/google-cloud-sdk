@@ -1,0 +1,5 @@
+#!/bin/sh
+file=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.${SHELL##*/}.inc
+[ -f "$file" ] && . "$file"
+file=/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.${SHELL##*/}.inc
+[ -f "$file" ] && . "$file"
