@@ -1,8 +1,7 @@
-. ~/.bash.d/brew
+. ~/.shell/brew
 
 #. ~/.bash.d/rancher_desktop
 . ~/.bash.d/acorn
-. ~/.bash.d/aqualove
 . ~/.bash.d/atuin
 . ~/.bash.d/bash
 . ~/.bash.d/direnv
@@ -43,6 +42,7 @@
 . ~/.shell/pnpm
 . ~/.shell/poetry
 . ~/.shell/pyenv
+. ~/.shell/aqualove
 . ~/.shell/ruby
 . ~/.shell/rvm
 . ~/.shell/skaffold

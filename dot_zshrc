@@ -4,6 +4,8 @@ autoload -Uz compinit
 compinit
 bindkey \^U backward-kill-line
 
+. ~/.shell/brew
+
 . ~/.shell/asciidoc
 . ~/.shell/cabal
 . ~/.shell/deno
@@ -21,6 +23,7 @@ bindkey \^U backward-kill-line
 . ~/.shell/openssl
 . ~/.shell/pnpm
 . ~/.shell/poetry
+. ~/.shell/aqualove
 . ~/.shell/pyenv
 . ~/.shell/ruby
 . ~/.shell/rvm
