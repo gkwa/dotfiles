@@ -1,0 +1,3 @@
+! command -v less &>/dev/null && return
+
+export LESS=-RSi

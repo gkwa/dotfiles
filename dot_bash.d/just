@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+[ -x "$HOME/bin/just" ] && export PATH="$HOME/bin:$PATH"
+! command -v just &>/dev/null && return
+eval "$(just --completions bash 2>/dev/null)"

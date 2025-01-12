@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# for man pages
+export COLUMNS=72
+
+unset ALTERNATE_EDITOR
+
+export HISTSIZE=10000
+export HISTCONTROL=ignoredups:erasedups
+unset HISTTIMEFORMAT
+
+# check the window size after each command and, if necessary, update the
+# values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+[[ -d /usr/local/share/info ]] && INFOPATH=/usr/local/share/info:$INFOPATH
+[[ -d /Developer/usr/bin ]] && PATH=$PATH:/Developer/usr/bin
+[[ -d /usr/local/sbin ]] && PATH=/usr/local/sbin:$PATH
+[[ -d /usr/local/bin ]] && PATH=/usr/local/bin:$PATH
+[[ -d /usr/libexec ]] && PATH=$PATH:/usr/libexec # for plistbuddy
+
+if [[ $OSTYPE == 'darwin'* ]]; then
+    # shellcheck source=/dev/null
+    [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+fi
+
+if [[ $OSTYPE =~ ^darwin ]]; then
+    book() {
+        mdfind -onlyin ~/Documents/books -name "$*"
+    }
+
+    # https://apple.stackexchange.com/a/371998
+    export BASH_SILENCE_DEPRECATION_WARNING=1
+
+    # shellcheck source=/dev/null
+    . ~/bin/keychain
+fi
+
+if [ -f ~/.bash_aliases ]; then
+    # shellcheck source=/dev/null
+    . ~/.bash_aliases
+fi

@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-! command -v kubectl &>/dev/null && return
-
-alias k=kubectl
-complete -o default -F __start_kubectl k

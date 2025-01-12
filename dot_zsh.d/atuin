@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+[[ ! -f $HOME/.atuin/bin/env ]] && return
+
+source $HOME/.atuin/bin/env
+
+! command -v atuin &>/dev/null && return
+
+export ATUIN_NOBIND="true"
+
+bindkey "^]" atuin-search
+
+eval "$(atuin init zsh)"

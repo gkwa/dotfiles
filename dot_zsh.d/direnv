@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+! command -v direnv &>/dev/null && return
+eval "$(direnv hook zsh)"
+show_virtual_env() {
+ if [[ -n $VIRTUAL_ENV && -n $DIRENV_DIR ]]; then
+   echo "($(basename "$VIRTUAL_ENV"))"
+ fi
+}
+setopt PROMPT_SUBST
+PS1='$(show_virtual_env)'$PS1

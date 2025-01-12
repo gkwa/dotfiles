@@ -1,0 +1,2 @@
+[[ -d ~/.cabal/bin ]] && export PATH=~/.cabal/bin:$PATH
+[[ -d ~/.cabal/share/man ]] && export MANPATH=~/.cabal/share/man:$MANPATH

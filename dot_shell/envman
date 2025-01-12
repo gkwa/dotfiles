@@ -1,0 +1,1 @@
+[ -s "$HOME/.config/envman/load.sh" ] && . "$HOME/.config/envman/load.sh"
