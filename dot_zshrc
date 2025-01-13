@@ -42,3 +42,4 @@ bindkey \^U backward-kill-line
 . ~/.zsh.d/kubectl
 . ~/.shell/git
 . ~/.shell/nix
+. ~/.zsh.d/oh-my-zsh
