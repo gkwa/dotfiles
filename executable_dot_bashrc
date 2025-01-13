@@ -42,6 +42,7 @@
 . ~/.shell/pnpm
 . ~/.shell/poetry
 . ~/.shell/pyenv
+. ~/.shell/git
 . ~/.shell/aqualove
 . ~/.shell/ruby
 . ~/.shell/rvm
