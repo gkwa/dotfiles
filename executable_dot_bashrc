@@ -1,5 +1,3 @@
-. ~/.shell/brew
-
 #. ~/.bash.d/rancher_desktop
 . ~/.bash.d/acorn
 . ~/.bash.d/atuin
