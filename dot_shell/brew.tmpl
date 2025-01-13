@@ -5,7 +5,6 @@
 BREW_PATH=/home/linuxbrew/.linuxbrew/bin
 if [[ -d "$BREW_PATH" && ! "$PATH" =~ "$BREW_PATH" ]]; then
     export "PATH=$BREW_PATH:$PATH"
-
 fi
 
 brew() {
