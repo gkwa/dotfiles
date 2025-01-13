@@ -2,6 +2,11 @@
 # darwin
 
 {{ else if eq .chezmoi.os "linux" }}
+BREW_PATH=/home/linuxbrew/.linuxbrew/bin
+if [[ -d "$BREW_PATH" && ! "$PATH" =~ "$BREW_PATH" ]]; then
+    export "PATH=$BREW_PATH:$PATH"
+fi
+
 brew() {
    sudo --user linuxbrew --login brew "$@"
 }
