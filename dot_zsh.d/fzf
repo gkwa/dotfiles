@@ -2,8 +2,12 @@
 
 ! command -v fzf &>/dev/null && return
 
-[[ -o interactive ]] && {
- fzfopen() {
-   "$@" | fzf --tac --bind 'enter:execute:nvim {} </dev/tty'
- }
+[[ ! -o interactive ]] && return
+
+fzfopen() {
+    "$@" | fzf --tac --bind 'enter:execute:nvim {} </dev/tty'
+}
+
+fzf-obsidian() {
+    fzf --preview 'cat {}' | xargs -I {} bash -c 'open "obsidian://open?path=$(printf "%s" "{}" | jq -sRr @uri)"'
 }
