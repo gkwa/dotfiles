@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+! command -v fzf >/dev/null 2>&1 && return
+case "$-" in
+  *i*) ;;
+  *) return ;;
+esac
+fzfopen() {
+  "$@" | fzf --tac --bind 'enter:execute:nvim {} </dev/tty'
+}
