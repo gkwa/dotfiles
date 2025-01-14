@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-
 ! command -v kind &>/dev/null && return
-
-eval "$(kind completion bash)"
+KIND_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/kind/completions.bash"
+[[ -f $KIND_COMPLETIONS_FILE ]] && [[ ! $(find "$KIND_COMPLETIONS_FILE" -mtime +7) ]] || {
+   mkdir -p "${KIND_COMPLETIONS_FILE%/*}"
+   kind completion bash > "$KIND_COMPLETIONS_FILE"
+}
+source "$KIND_COMPLETIONS_FILE"

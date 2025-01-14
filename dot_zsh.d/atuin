@@ -1,21 +1,13 @@
 #!/usr/bin/env zsh
-
 [[ ! -f $HOME/.atuin/bin/env ]] && return
-
 source $HOME/.atuin/bin/env
-
 ! command -v atuin &>/dev/null && return
-
 export ATUIN_NOBIND="true"
-
 bindkey "^]" atuin-search
-
 eval "$(atuin init zsh)"
-
 ATUIN_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/atuin/completions.zsh"
 [[ -f $ATUIN_COMPLETIONS_FILE ]] && [[ ! $(find "$ATUIN_COMPLETIONS_FILE" -mtime +7) ]] || {
     mkdir -p "${ATUIN_COMPLETIONS_FILE%/*}"
     atuin gen-completions --shell=zsh > "$ATUIN_COMPLETIONS_FILE"
 }
-
 source "$ATUIN_COMPLETIONS_FILE"

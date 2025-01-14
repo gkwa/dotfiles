@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-
 ! command -v helm &>/dev/null && return
-
-eval "$(helm completion bash)"
+HELM_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/helm/completions.bash"
+[[ -f $HELM_COMPLETIONS_FILE ]] && [[ ! $(find "$HELM_COMPLETIONS_FILE" -mtime +7) ]] || {
+   mkdir -p "${HELM_COMPLETIONS_FILE%/*}"
+   helm completion bash > "$HELM_COMPLETIONS_FILE"
+}
+source "$HELM_COMPLETIONS_FILE"

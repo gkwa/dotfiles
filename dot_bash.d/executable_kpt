@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-
 ! command -v kpt &>/dev/null && return
-
-eval "$(kpt completion bash)"
+KPT_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/kpt/completions.bash"
+[[ -f $KPT_COMPLETIONS_FILE ]] && [[ ! $(find "$KPT_COMPLETIONS_FILE" -mtime +7) ]] || {
+   mkdir -p "${KPT_COMPLETIONS_FILE%/*}"
+   kpt completion bash > "$KPT_COMPLETIONS_FILE"
+}
+source "$KPT_COMPLETIONS_FILE"

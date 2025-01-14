@@ -1,3 +1,10 @@
 #!/usr/bin/env zsh
 
-eval "$(just --completions zsh 2>/dev/null)"
+[ -x "$HOME/bin/just" ] && export PATH="$HOME/bin:$PATH"
+! command -v just &>/dev/null && return
+JUST_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/just/completions.zsh"
+[[ -f $JUST_COMPLETIONS_FILE ]] && [[ ! $(find "$JUST_COMPLETIONS_FILE" -mtime +7) ]] || {
+    mkdir -p "${JUST_COMPLETIONS_FILE%/*}"
+    just --completions zsh > "$JUST_COMPLETIONS_FILE"
+}
+source "$JUST_COMPLETIONS_FILE"

@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
-
 ! command -v acorn &>/dev/null && return
-eval "$(acorn completion bash)"
+ACORN_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/acorn/completions.bash"
+[[ -f $ACORN_COMPLETIONS_FILE ]] && [[ ! $(find "$ACORN_COMPLETIONS_FILE" -mtime +7) ]] || {
+   mkdir -p "${ACORN_COMPLETIONS_FILE%/*}"
+   acorn completion bash > "$ACORN_COMPLETIONS_FILE"
+}
+source "$ACORN_COMPLETIONS_FILE"

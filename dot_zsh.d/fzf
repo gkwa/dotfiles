@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
-
 ! command -v fzf &>/dev/null && return
-
 [[ -o interactive ]] && {
  fzfopen() {
    "$@" | fzf --tac --bind 'enter:execute:nvim {} </dev/tty'

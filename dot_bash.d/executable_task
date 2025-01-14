@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-
 ! command -v task &>/dev/null && return
-
-eval "$(task --completion bash 2>/dev/null)"
+TASK_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/task/completions.bash"
+[[ -f $TASK_COMPLETIONS_FILE ]] && [[ ! $(find "$TASK_COMPLETIONS_FILE" -mtime +7) ]] || {
+   mkdir -p "${TASK_COMPLETIONS_FILE%/*}"
+   task --completion bash > "$TASK_COMPLETIONS_FILE" 2>/dev/null
+}
+source "$TASK_COMPLETIONS_FILE"

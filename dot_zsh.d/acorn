@@ -1,4 +1,9 @@
 #!/usr/bin/env zsh
 
 ! command -v acorn &>/dev/null && return
-eval "$(acorn completion zsh)"
+ACORN_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/acorn/completions.zsh"
+[[ -f $ACORN_COMPLETIONS_FILE ]] && [[ ! $(find "$ACORN_COMPLETIONS_FILE" -mtime +7) ]] || {
+   mkdir -p "${ACORN_COMPLETIONS_FILE%/*}"
+   acorn completion zsh > "$ACORN_COMPLETIONS_FILE"
+}
+source "$ACORN_COMPLETIONS_FILE"

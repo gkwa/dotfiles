@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
-
 ! command -v eksctl &>/dev/null && return
-eval "$(eksctl completion bash)"
+EKSCTL_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/eksctl/completions.bash"
+[[ -f $EKSCTL_COMPLETIONS_FILE ]] && [[ ! $(find "$EKSCTL_COMPLETIONS_FILE" -mtime +7) ]] || {
+   mkdir -p "${EKSCTL_COMPLETIONS_FILE%/*}"
+   eksctl completion bash > "$EKSCTL_COMPLETIONS_FILE"
+}
+source "$EKSCTL_COMPLETIONS_FILE"

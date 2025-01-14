@@ -2,4 +2,10 @@
 
 [ -x "$HOME/bin/just" ] && export PATH="$HOME/bin:$PATH"
 ! command -v just &>/dev/null && return
-eval "$(just --completions bash 2>/dev/null)"
+
+JUST_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/just/completions.bash"
+[[ -f $JUST_COMPLETIONS_FILE ]] && [[ ! $(find "$JUST_COMPLETIONS_FILE" -mtime +7) ]] || {
+    mkdir -p "${JUST_COMPLETIONS_FILE%/*}"
+    just --completions bash >"$JUST_COMPLETIONS_FILE"
+}
+source "$JUST_COMPLETIONS_FILE"
