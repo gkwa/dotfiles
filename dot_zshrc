@@ -5,11 +5,11 @@ compinit
 bindkey \^U backward-kill-line
 
 . ~/.zsh.d/acorn
-. ~/.zsh.d/atuin
 . ~/.zsh.d/direnv
 . ~/.zsh.d/eksctl
 . ~/.zsh.d/git
 . ~/.zsh.d/just
 . ~/.zsh.d/kubectl
 . ~/.zsh.d/oh-my-zsh
+. ~/.zsh.d/atuin
 . ~/.shell/rc
