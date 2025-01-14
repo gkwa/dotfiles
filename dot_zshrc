@@ -13,5 +13,3 @@ bindkey \^U backward-kill-line
 . ~/.zsh.d/kubectl
 . ~/.zsh.d/oh-my-zsh
 . ~/.shell/rc
-
-PROMPT="$fg[cyan]%}$USER@%{$fg[blue]%}%m ${PROMPT}"
