@@ -1,9 +1,13 @@
-#!/usr/bin/env sh
 ! command -v fzf >/dev/null 2>&1 && return
+
 case "$-" in
-  *i*) ;;
-  *) return ;;
+    *i*) ;;
+    *) return ;;
 esac
 fzfopen() {
-  "$@" | fzf --tac --bind 'enter:execute:nvim {} </dev/tty'
+    "$@" | fzf --tac --bind 'enter:execute:nvim {} </dev/tty'
+}
+
+fzf-obsidian() {
+    fzf --preview 'cat {}' | xargs -I {} bash -c 'open "obsidian://open?path=$(printf "%s" "{}" | jq -sRr @uri)"'
 }
