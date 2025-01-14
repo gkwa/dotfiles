@@ -4,6 +4,8 @@ autoload -Uz compinit
 compinit
 bindkey \^U backward-kill-line
 
+PROMPT="$fg[cyan]%}$USER@%{$fg[blue]%}%m ${PROMPT}"
+
 . ~/.zsh.d/acorn
 . ~/.zsh.d/atuin
 . ~/.zsh.d/direnv
