@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+! command -v zoxide &>/dev/null && return
+eval "$(zoxide init zsh)"
+alias z="__zoxide_z"
+ZOXIDE_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/zoxide/completions.zsh"
+[[ -f $ZOXIDE_COMPLETIONS_FILE ]] && [[ ! $(find "$ZOXIDE_COMPLETIONS_FILE" -mtime +7) ]] || {
+   mkdir -p "${ZOXIDE_COMPLETIONS_FILE%/*}"
+   zoxide init --cmd z zsh --no-aliases > "$ZOXIDE_COMPLETIONS_FILE"
+}
+source "$ZOXIDE_COMPLETIONS_FILE"

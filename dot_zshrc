@@ -1,9 +1,7 @@
 #!/usr/bin/env zsh
-
 autoload -Uz compinit
 compinit
 bindkey \^U backward-kill-line
-
 . ~/.zsh.d/acorn
 . ~/.zsh.d/direnv
 . ~/.zsh.d/eksctl
@@ -12,4 +10,5 @@ bindkey \^U backward-kill-line
 . ~/.zsh.d/kubectl
 . ~/.zsh.d/oh-my-zsh
 . ~/.zsh.d/atuin
+. ~/.zsh.d/zoxide
 . ~/.shell/rc
