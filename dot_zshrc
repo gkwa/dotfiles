@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
-autoload -Uz compinit
-compinit
-bindkey \^U backward-kill-line
+
+. ~/.zsh.d/keybindings
 . ~/.zsh.d/acorn
 . ~/.zsh.d/direnv
 . ~/.zsh.d/eksctl
