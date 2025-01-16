@@ -9,5 +9,7 @@
 . ~/.zsh.d/kubectl
 . ~/.zsh.d/oh-my-zsh
 . ~/.zsh.d/atuin
+. ~/.zsh.d/nvm
 . ~/.zsh.d/zoxide
 . ~/.shell/rc
+
