@@ -14,3 +14,4 @@ else
    __zoxide_z "$@"
  fi
 }
+
