@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+! command -v kind &>/dev/null && return
+KIND_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/kind/completions.zsh"
+[[ -f $KIND_COMPLETIONS_FILE ]] && [[ ! $(find "$KIND_COMPLETIONS_FILE" -mtime +7) ]] || {
+   mkdir -p "${KIND_COMPLETIONS_FILE%/*}"
+   kind completion zsh > "$KIND_COMPLETIONS_FILE"
+}
+source "$KIND_COMPLETIONS_FILE"

@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+! command -v helm &>/dev/null && return
+HELM_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/helm/completions.zsh"
+[[ -f $HELM_COMPLETIONS_FILE ]] && [[ ! $(find "$HELM_COMPLETIONS_FILE" -mtime +7) ]] || {
+   mkdir -p "${HELM_COMPLETIONS_FILE%/*}"
+   helm completion zsh > "$HELM_COMPLETIONS_FILE"
+}
+source "$HELM_COMPLETIONS_FILE"

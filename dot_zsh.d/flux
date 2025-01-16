@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+! command -v flux &>/dev/null && return
+FLUX_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/flux/completions.zsh"
+[[ -f $FLUX_COMPLETIONS_FILE ]] && [[ ! $(find "$FLUX_COMPLETIONS_FILE" -mtime +7) ]] || {
+   mkdir -p "${FLUX_COMPLETIONS_FILE%/*}"
+   flux completion zsh > "$FLUX_COMPLETIONS_FILE"
+}
+source "$FLUX_COMPLETIONS_FILE"

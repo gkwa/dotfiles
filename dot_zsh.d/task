@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+! command -v task &>/dev/null && return
+TASK_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/task/completions.zsh"
+[[ -f $TASK_COMPLETIONS_FILE ]] && [[ ! $(find "$TASK_COMPLETIONS_FILE" -mtime +7) ]] || {
+   mkdir -p "${TASK_COMPLETIONS_FILE%/*}"
+   task --completion zsh > "$TASK_COMPLETIONS_FILE" 2>/dev/null
+}
+source "$TASK_COMPLETIONS_FILE"

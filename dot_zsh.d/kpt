@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+! command -v kpt &>/dev/null && return
+KPT_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/kpt/completions.zsh"
+[[ -f $KPT_COMPLETIONS_FILE ]] && [[ ! $(find "$KPT_COMPLETIONS_FILE" -mtime +7) ]] || {
+   mkdir -p "${KPT_COMPLETIONS_FILE%/*}"
+   kpt completion zsh > "$KPT_COMPLETIONS_FILE"
+}
+source "$KPT_COMPLETIONS_FILE"
