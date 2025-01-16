@@ -1,0 +1,8 @@
+autoload -Uz compinit
+compinit
+bindkey \^U backward-kill-line
+
+autoload -U backward-kill-word-match
+zle -N backward-kill-word backward-kill-word-match
+zstyle ':zle:backward-kill-word' word-style whitespace
+bindkey '^w' backward-kill-word
