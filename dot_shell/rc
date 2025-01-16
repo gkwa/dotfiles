@@ -23,5 +23,4 @@
 . ~/.shell/skaffold
 . ~/.shell/sphinx-doc
 . ~/.shell/sqlite3
-. ~/.shell/z
 . ~/.shell/fzf

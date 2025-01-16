@@ -10,7 +10,7 @@ source "$ZOXIDE_COMPLETIONS_FILE"
 z() {
  if [ "$1" = "-t" ]; then
    zoxide query -l -s "${@:2}"
- else
+else
    __zoxide_z "$@"
  fi
 }
