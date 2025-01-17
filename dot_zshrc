@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-
 . ~/.zsh.d/keybindings
 . ~/.zsh.d/acorn
 . ~/.zsh.d/direnv
@@ -12,4 +11,3 @@
 . ~/.zsh.d/nvm
 . ~/.zsh.d/zoxide
 . ~/.shell/rc
-
