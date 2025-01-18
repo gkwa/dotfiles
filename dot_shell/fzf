@@ -11,7 +11,7 @@ fzfopen() {
 
 fzf-combined() {
     fzf --preview 'cat -n {}' \
-        --bind 'ctrl-n:become(vim {})' \
+        --bind 'ctrl-v:become(vim {})' \
         --bind 'ctrl-o:execute(printf "%s" {} | jq -sRr @uri | xargs -I uri open "obsidian://open?path=uri")' \
         --bind 'ctrl-c:execute(printf "%s" {} | pbcopy)+abort'
 }
