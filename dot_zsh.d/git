@@ -1,4 +1,3 @@
 #!/usr/bin/env zsh
 
-! command -v git &>/dev/null && return
 export GIT_PAGER=cat
