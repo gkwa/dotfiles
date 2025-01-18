@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+
 . ~/.zsh.d/oh-my-zsh
 . ~/.zsh.d/keybindings
 . ~/.zsh.d/acorn
