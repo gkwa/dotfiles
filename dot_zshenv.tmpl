@@ -8,7 +8,7 @@ if [[ -d "$BREW_PATH" && ! "$PATH" =~ "$BREW_PATH" ]]; then
 fi
 
 brew() {
-   sudo --user linuxbrew --login brew "$@"
+   sudo --user linuxbrew --login /home/linuxbrew/.linuxbrew/bin/brew "$@"
 }
 
 {{ else }}
