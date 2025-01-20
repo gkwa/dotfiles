@@ -1,0 +1,7 @@
+function cupyml() {
+    all="$*"
+    for filepath in "$all"; do
+        file=$(basename "$filepath")
+        ytt -f "$filepath" --file-mark "${file}:type=yaml-plain" | sponge "$filepath"
+    done
+}

@@ -19,6 +19,5 @@
 . ~/.bash.d/shfmt
 . ~/.bash.d/task
 . ~/.bash.d/vault
-. ~/.bash.d/ytt
 . ~/.bash.d/zoxide
 . ~/.shell/rc
