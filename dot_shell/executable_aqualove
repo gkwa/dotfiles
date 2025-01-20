@@ -1,10 +1,10 @@
 ! command -v aqualove &>/dev/null && return
 
 function aqualovewrapper() {
-    local path
-    path="$(aqualove)"
+    local filepath
+    filepath="$(aqualove)"
     local clean
-    clean=$(echo "$path" | tr -d '\n')
+    clean=$(echo "$filepath" | tr -d '\n')
     if [ -z "$clean" ]; then
         return
     fi
