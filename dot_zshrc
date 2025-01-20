@@ -1,8 +1,7 @@
 #!/usr/bin/env zsh
 
-
 . ~/.zsh.d/oh-my-zsh
-. ~/.zsh.d/keybindings
+. ~/.zsh.d/core
 . ~/.zsh.d/acorn
 . ~/.zsh.d/direnv
 . ~/.zsh.d/eksctl
