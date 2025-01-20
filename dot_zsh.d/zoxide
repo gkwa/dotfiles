@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+[[ -s /usr/local/etc/profile.d/z.sh ]] && . /usr/local/etc/profile.d/z.sh
+
 [ ! -x $HOME/.local/bin/zoxide ] && return
 
 export PATH="$HOME/.local/bin:$PATH"
@@ -14,3 +16,4 @@ ZOXIDE_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/zoxide/completions.zsh"
 }
 
 source "$ZOXIDE_COMPLETIONS_FILE"
+
