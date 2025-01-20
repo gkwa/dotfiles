@@ -1,0 +1,13 @@
+[[ -d "/home/linuxbrew/.linuxbrew/share/zsh/site-functions" ]] && fpath=(/home/linuxbrew/.linuxbrew/share/zsh/site-functions $fpath)
+[[ -d "/opt/homebrew/share/zsh/site-functions" ]] && fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+
+# Initialize completion system
+autoload -Uz compinit
+compinit
+
+bindkey \^U backward-kill-line
+
+autoload -U backward-kill-word-match
+zle -N backward-kill-word backward-kill-word-match
+zstyle ':zle:backward-kill-word' word-style whitespace
+bindkey '^w' backward-kill-word
