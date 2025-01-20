@@ -6,7 +6,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 ! command -v zoxide &>/dev/null && return
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd=z)"
 ZOXIDE_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/zoxide/completions.zsh"
 [[ -f $ZOXIDE_COMPLETIONS_FILE ]] && [[ ! $(find "$ZOXIDE_COMPLETIONS_FILE" -mtime +7) ]] || {
   mkdir -p "${ZOXIDE_COMPLETIONS_FILE%/*}"
