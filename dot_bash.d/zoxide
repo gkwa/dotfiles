@@ -9,12 +9,3 @@ ZOXIDE_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/zoxide/completions.bash
 }
 
 source "$ZOXIDE_COMPLETIONS_FILE"
-
-z() {
- if [ "$1" = "-t" ]; then
-   zoxide query -l -s "${@:2}"
-else
-   __zoxide_z "$@"
- fi
-}
-
