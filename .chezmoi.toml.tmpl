@@ -1,3 +1,9 @@
+{{- if eq .chezmoi.os "windows" -}}
+[data]
+    [data.paths]
+    alacrittyConfig = "{{ .chezmoi.homeDir }}/AppData/Roaming/alacritty/alacritty.toml"
+{{- end -}}
+
 [diff]
 command = 'delta'
 pager = 'delta'
