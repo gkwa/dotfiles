@@ -1,4 +1,8 @@
+vim.api.nvim_set_hl(0, 'CursorColumn', { bg='#303030' })
+vim.api.nvim_set_hl(0, 'CursorLine', { bg='#303030' })
 vim.opt.autoindent = true
+vim.opt.cursorcolumn = true
+vim.opt.cursorline = true
 vim.opt.expandtab = false
 vim.opt.hlsearch = false
 vim.opt.ignorecase = true
