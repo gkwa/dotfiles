@@ -10,9 +10,10 @@ fzf:o() {
 }
 
 fzf:c() {
-   fzf --preview 'cat -n {}' \
+   fzf --no-sort --preview 'cat -n {}' \
        --bind 'ctrl-v:become(nvim {})' \
        --bind 'ctrl-o:execute(printf "%s" {} | jq -sRr @uri | xargs -I uri open "obsidian://open?path=uri")' \
        --bind 'ctrl-c:execute(printf "%s" {} | pbcopy)+abort' \
-       --bind 'ctrl-u:execute(open -a "Google Chrome" {})' 
+       --bind 'ctrl-u:execute(open -a "Google Chrome" {})' \
+       --bind 'enter:execute(printf %q {} | xargs open)'
 }
