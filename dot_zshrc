@@ -12,3 +12,5 @@
 . ~/.zsh.d/zoxide
 . ~/.shell/rc
 . ~/.zsh.d/git
+
+setopt HIST_IGNORE_SPACE
