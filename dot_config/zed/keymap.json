@@ -17,13 +17,13 @@
   {
     "context": "Terminal",
     "bindings": {
-      "cmd-shift-b": ["workspace::SendKeystrokes", "ctrl-w a ctrl-w c"]
+      "cmd-shift-j": ["workspace::SendKeystrokes", "ctrl-w a ctrl-w c"]
     }
   },
   {
     "context": "!Terminal",
     "bindings": {
-      "cmd-shift-b": [
+      "cmd-shift-j": [
         "workspace::SendKeystrokes",
         "ctrl-w a ctrl-w c cmd-alt y"
       ]
