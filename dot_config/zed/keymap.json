@@ -1,0 +1,32 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+//
+//
+[
+  {
+    "bindings": {
+      "ctrl-w a": "workspace::CloseAllItemsAndPanes",
+      "ctrl-w c": "project_panel::CollapseAllEntries"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-shift-b": ["workspace::SendKeystrokes", "ctrl-w a ctrl-w c"]
+    }
+  },
+  {
+    "context": "!Terminal",
+    "bindings": {
+      "cmd-shift-b": [
+        "workspace::SendKeystrokes",
+        "ctrl-w a ctrl-w c cmd-alt y"
+      ]
+    }
+  }
+]
