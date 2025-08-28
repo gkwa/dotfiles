@@ -8,7 +8,11 @@
 // from the command palette or from `Zed` application menu.
 {
   "restore_on_startup": "none",
-  "autosave": "on_focus_change",
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 2000
+    }
+  },
   "project_panel": {
     "hide_gitignore": true
   },
