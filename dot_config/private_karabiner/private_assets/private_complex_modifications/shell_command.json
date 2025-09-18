@@ -1,0 +1,25 @@
+{
+  "title": "Run Shell Command with Command+U",
+  "rules": [
+    {
+      "description": "Command+U runs Zoom transcript copy script",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "u",
+            "modifiers": {
+              "mandatory": ["command"],
+              "optional": ["caps_lock"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript /Users/mtm/pdev/taylormonacelli/speedycheetah/zoom_transcript_copy.applescript"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

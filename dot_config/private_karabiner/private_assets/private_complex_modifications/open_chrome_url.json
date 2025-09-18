@@ -1,0 +1,24 @@
+{
+  "title": "Open Chrome with Specific URL",
+  "rules": [
+    {
+      "description": "Open Chrome with Specific URL with Command+Option+C",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": ["command", "option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -a 'Google Chrome' 'https://google.com'"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
