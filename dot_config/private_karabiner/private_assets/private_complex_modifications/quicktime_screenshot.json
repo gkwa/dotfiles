@@ -1,0 +1,30 @@
+{
+  "title": "QuickTime Screenshot to RoamingRabbit",
+  "rules": [
+    {
+      "description": "Screenshot QuickTime Player with Command+Shift+S",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "mandatory": ["command", "shift"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "python3 /Users/mtm/pdev/taylormonacelli/speedycheetah/quicktime_screenshot.py"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.apple.QuickTimePlayerX"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
