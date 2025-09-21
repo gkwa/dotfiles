@@ -7,6 +7,8 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "soft_wrap": "bounded",
+  "preferred_line_length": 80,
   "restore_on_startup": "none",
   "autosave": {
     "after_delay": {
