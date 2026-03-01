@@ -1,0 +1,16 @@
+## Dotfile Management
+
+These instructions are managed by **chezmoi**. The file you are reading is a rendered artifact — never edit it directly. Chezmoi will overwrite any direct changes on the next `apply`.
+
+**Source of truth:** `~/.local/share/chezmoi/`
+
+| What | Source path |
+|---|---|
+| Shared rules | `.chezmoitemplates/<name>` |
+| Claude entry point | `dot_claude/CLAUDE.md.tmpl` |
+| Claude commands | `dot_claude/commands/*.md.tmpl` |
+| Gemini entry point | `dot_gemini/GEMINI.md.tmpl` |
+| Gemini commands | `dot_gemini/commands/*.toml.tmpl` |
+| Chezmoi config | `.chezmoi.toml.tmpl` |
+
+To edit a shared rule, update `.chezmoitemplates/<name>`, then run `chezmoi apply`.
