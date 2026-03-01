@@ -85,4 +85,4 @@ cook until edges begin to set
 3. Apply all formatting rules to the recipe content — convert instruction ordered lists to plain paragraphs; apply instruction-specific rules (lowercase, no trailing period, sentence splitting) only to instruction lines
 4. If a source URL was provided (or inferred from the first argument), place it on the first line as a plain URL, followed by a blank line, before all other content — if a source URL already exists at the top, replace it
 5. For file mode: overwrite the file with the cleaned content and confirm success — do not output the full recipe content to the chat
-6. For URL mode: display the formatted recipe in the chat, then ask the user if they would like to save it to a file — if yes, prompt for a file path and write it
+6. For URL mode: display the formatted recipe in the chat, then ask the user if they would like to save it to a file — if yes, suggest a default filename derived from the recipe title using spaces (not hyphens) with a `.md` extension (e.g., `maple mustard tempeh.md`), prompt for a file path, and write it
