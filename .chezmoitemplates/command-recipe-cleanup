@@ -1,7 +1,11 @@
 
-Parse the arguments: the first argument is the recipe file path, and the optional second argument is the source URL for the original recipe.
+Parse the arguments: the first argument is either a local recipe file path or a URL to a recipe page. The optional second argument is the source URL for the original recipe.
 
-Read the recipe file, apply the formatting rules below, and overwrite the file with the cleaned result.
+Determine the input mode from the first argument:
+- If it starts with `http://` or `https://`, treat it as a URL — fetch the page to extract the recipe content, and treat that URL as the implicit source URL (unless a second argument overrides it)
+- Otherwise, treat it as a local file path — read the file
+
+Apply the formatting rules below to the recipe content.
 
 ## Formatting rules
 
@@ -76,8 +80,9 @@ cook until edges begin to set
 
 ## Steps
 
-1. Read the recipe file (first argument)
-2. Apply all formatting rules to the recipe content — convert instruction ordered lists to plain paragraphs; apply instruction-specific rules (lowercase, no trailing period, sentence splitting) only to instruction lines
-3. If a source URL was provided (second argument), place it on the first line of the file as a plain URL, followed by a blank line, before all other content — if a source URL already exists at the top, replace it
-4. Overwrite the file with the cleaned content
-5. Confirm the file was written successfully — do not output the full recipe content to the chat
+1. Determine input mode from the first argument (URL vs file path)
+2. Fetch or read the recipe content accordingly
+3. Apply all formatting rules to the recipe content — convert instruction ordered lists to plain paragraphs; apply instruction-specific rules (lowercase, no trailing period, sentence splitting) only to instruction lines
+4. If a source URL was provided (or inferred from the first argument), place it on the first line as a plain URL, followed by a blank line, before all other content — if a source URL already exists at the top, replace it
+5. For file mode: overwrite the file with the cleaned content and confirm success — do not output the full recipe content to the chat
+6. For URL mode: display the formatted recipe in the chat, then ask the user if they would like to save it to a file — if yes, prompt for a file path and write it
