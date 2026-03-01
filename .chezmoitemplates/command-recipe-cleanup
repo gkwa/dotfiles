@@ -44,7 +44,8 @@ Apply the formatting rules below to the recipe content.
 **Mise en place (Prep section):**
 - Extract any prep-type steps from the instructions and place them in a `## Prep` section immediately above `## Instructions`
 - Prep steps are tasks that can be done ahead of time before cooking begins: chopping, dicing, mincing, measuring, soaking, washing, resting dough, etc.
-- Format each prep step as a plain bullet: `- task description`
+- Format each prep step as a plain paragraph (no leading bullet), separated by blank lines — same structure as instructions
+- If a prep step involves multiple constituent items, keep the action as a plain paragraph and list the items as a bullet sub-list beneath it (same comma-expansion rule as instructions)
 - Apply the same instruction formatting rules: lowercase start, no trailing period
 - Remove the extracted steps from the Instructions section — do not duplicate them
 - If a `## Prep` section already exists, merge any newly extracted steps into it
