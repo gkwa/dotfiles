@@ -1,0 +1,20 @@
+# Ignore everything by default
+*
+
+# Core config
+!.gitignore
+!CLAUDE.md
+!settings.json
+!keybindings.json
+
+# Commands and scripts
+!commands/
+!commands/**
+!scripts/
+!scripts/**
+
+# Memory files only (not session data, tool results, etc.)
+!projects/
+!projects/*/
+!projects/*/memory/
+!projects/*/memory/MEMORY.md

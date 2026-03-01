@@ -1,0 +1,19 @@
+## Return Early Pattern
+
+Use guard clauses to handle edge cases and failure conditions at the top of a function. Return immediately rather than nesting the happy path inside conditionals.
+
+Good:
+```
+function process(data):
+    if data is null: return
+    if not data.is_valid(): return
+    return do_work(data)
+```
+
+Bad:
+```
+function process(data):
+    if data is not null:
+        if data.is_valid():
+            return do_work(data)
+```

@@ -1,0 +1,3 @@
+## Silence is Golden
+
+Our app should not output anything for the happy path, in the spirit of the Unix rule of silence: https://www.linfo.org/rule_of_silence.html

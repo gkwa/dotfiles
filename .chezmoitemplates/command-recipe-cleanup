@@ -1,0 +1,83 @@
+
+Parse the arguments: the first argument is the recipe file path, and the optional second argument is the source URL for the original recipe.
+
+Read the recipe file, apply the formatting rules below, and overwrite the file with the cleaned result.
+
+## Formatting rules
+
+**Ingredients:**
+- Format every ingredient line as a checked checkbox: `- [x] quantity [[ingredient name]]`
+- Wrap the ingredient name (not the quantity or descriptors) in Obsidian wikilinks: `[[ingredient name]]`
+  - Example: `1 cup julienned carrots` → `- [x] 1 cup julienned [[carrots]]`
+  - Example: `2 teaspoons soy sauce` → `- [x] 2 teaspoons [[soy sauce]]`
+- If the ingredient already has a wikilink, leave it as-is
+
+**Instructions:**
+- Never capitalize the first letter of an instruction line (lowercase start)
+- Do not end any instruction with a period
+- Each sentence is its own paragraph — split multi-sentence instructions into individual sentences, each separated by a blank line
+- Remove any bold, italics, or emphasis formatting — plain text only
+- Always use plain paragraphs for instructions — if the original uses a numbered/ordered list, convert each item to a plain paragraph
+- If a step lists multiple items in a comma-separated sequence (e.g., "add onions, oil, butter, and salt"), expand that list into a Markdown bullet sub-list, keeping the surrounding sentence intact:
+
+  Example input:
+  ```
+  add onions, oil, remaining butter, salt and pepper to pan
+  ```
+  Example output:
+  ```
+  add
+
+  - onions
+  - oil
+  - remaining butter
+  - salt
+  - pepper
+
+  to pan
+  ```
+
+**Mise en place (Prep section):**
+- Extract any prep-type steps from the instructions and place them in a `## Prep` section immediately above `## Instructions`
+- Prep steps are tasks that can be done ahead of time before cooking begins: chopping, dicing, mincing, measuring, soaking, washing, resting dough, etc.
+- Format each prep step as a plain bullet: `- task description`
+- Apply the same instruction formatting rules: lowercase start, no trailing period
+- Remove the extracted steps from the Instructions section — do not duplicate them
+- If a `## Prep` section already exists, merge any newly extracted steps into it
+
+**Nutrition section:**
+- Remove the Nutrition section entirely if present
+
+**YouTube links:**
+- Convert any long YouTube URLs to short format: `https://youtu.be/VIDEO_ID`
+  - Example: `https://www.youtube.com/watch?v=abc123` → `https://youtu.be/abc123`
+  - Example: `https://www.youtube.com/watch?v=abc123&t=45s` → `https://youtu.be/abc123?t=45`
+- Keep existing short `youtu.be` URLs as-is
+- If a YouTube video ID is present and the file has a `pic` frontmatter field, set it to `https://i.ytimg.com/vi/VIDEO_ID/hq720.jpg` — prefer `hq720.jpg` as it is 1280×720; fall back to `hqdefault.jpg` (480×360) only if the video is known to be low resolution
+
+**Timestamps:**
+- If an instruction references a video timestamp in `[MM:SS]` format with an associated YouTube URL, convert it to an absolute markdown link using the `?t=` parameter in seconds
+  - Example: `[00:17]` with video `https://youtu.be/Wnt90dkEwFs` → `[00:17](https://youtu.be/Wnt90dkEwFs?t=17)`
+  - Example: `[01:05]` → `?t=65`
+- The link text should be the timestamp in `[MM:SS]` format
+- If no YouTube URL is available for a timestamp, leave it as plain text
+
+## Example output
+
+```
+crack the eggs into a bowl, see [00:05](https://youtu.be/Wnt90dkEwFs?t=5)
+
+whisk until fully combined
+
+pour into a heated, greased pan, see [00:17](https://youtu.be/Wnt90dkEwFs?t=17)
+
+cook until edges begin to set
+```
+
+## Steps
+
+1. Read the recipe file (first argument)
+2. Apply all formatting rules to the recipe content — convert instruction ordered lists to plain paragraphs; apply instruction-specific rules (lowercase, no trailing period, sentence splitting) only to instruction lines
+3. If a source URL was provided (second argument), place it on the first line of the file as a plain URL, followed by a blank line, before all other content — if a source URL already exists at the top, replace it
+4. Overwrite the file with the cleaned content
+5. Confirm the file was written successfully — do not output the full recipe content to the chat

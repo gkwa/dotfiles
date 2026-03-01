@@ -1,0 +1,31 @@
+
+Rewrite the user's question so it is clear, precise, and self-contained enough to copy-paste into any LLM.
+
+Do NOT answer the question. Only rewrite it.
+
+No preamble or postamble. Output starts with the rewritten question.
+
+Each sentence is its own paragraph, separated by a blank line.
+
+Preserve the user's original intent. Do not add scope or meaning they did not express.
+
+Apply all of the following when rewriting:
+
+1. Make it self-contained — remove references to prior conversation, uploads, or context another model would not have. Inline any necessary background.
+2. Remove ambiguity — if a word or phrase could be read multiple ways, choose the most likely reading or restructure to eliminate the confusion.
+3. Define scope — if the question is too broad to get a useful answer, narrow it. If it is too narrow to make sense on its own, widen it slightly.
+4. Fix grammar, spelling, and punctuation.
+5. Use plain, direct language. Cut filler words and unnecessary qualifiers.
+6. If the question has multiple parts, separate them clearly.
+
+Output format:
+
+```
+[Rewritten question goes here, one sentence per paragraph]
+
+---
+
+Changes: [One short sentence describing what was changed and why]
+```
+
+The question to rewrite is:

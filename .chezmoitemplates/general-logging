@@ -1,0 +1,5 @@
+## Logging
+
+Each additional `--verbose` flag increases the log level. `-v` is an alias for `--verbose`.
+
+All log messages go to stderr, not stdout — except in Chrome extensions. Chrome extensions log to stdout because Chrome treats stderr output as an extension failure.

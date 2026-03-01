@@ -1,0 +1,17 @@
+## Python Imports
+
+Always use absolute imports. Never use `from module import Name`.
+
+Good:
+```python
+import pathlib
+import sys
+import yaml
+```
+
+Bad:
+```python
+from pathlib import Path
+from sys import argv
+from yaml import safe_load
+```
