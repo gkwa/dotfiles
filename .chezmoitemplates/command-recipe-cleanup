@@ -49,6 +49,11 @@ Apply the formatting rules below to the recipe content.
 - Remove the extracted steps from the Instructions section — do not duplicate them
 - If a `## Prep` section already exists, merge any newly extracted steps into it
 
+**Dish image:**
+- Find the main hero image for the recipe (e.g., from og:image meta tag or the primary recipe photo)
+- Place it as an inline markdown image immediately after the title and before the first section heading: `![dish name](image-url)`
+- If an image is already present at that position, leave it as-is
+
 **Nutrition section:**
 - Remove the Nutrition section entirely if present
 
