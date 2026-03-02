@@ -1,9 +1,15 @@
 
-Parse the arguments: the first argument is either a local recipe file path or a URL to a recipe page. The optional second argument is the source URL for the original recipe.
+Parse the arguments: the first argument is either a local recipe file path or a URL to a recipe page. The optional second argument is the source URL for the original recipe. Any remaining text after the URL or file path is treated as inline recipe content (ingredients, instructions, notes).
 
 Determine the input mode from the first argument:
 - If it starts with `http://` or `https://`, treat it as a URL — fetch the page to extract the recipe content, and treat that URL as the implicit source URL (unless a second argument overrides it)
+  - **YouTube watch URLs** (`youtube.com/watch?v=VIDEO_ID`) cannot be fetched. When the first argument is a YouTube watch URL: extract the video ID, set the thumbnail to `https://i.ytimg.com/vi/VIDEO_ID/hq720.jpg`, and treat any inline text provided in the arguments as the recipe content (ingredients, instructions, notes)
 - Otherwise, treat it as a local file path — read the file
+
+**Creator identification from channel URL:**
+- If any argument is a YouTube channel URL (e.g., `youtube.com/@Handle` or `youtube.com/c/name`), try to fetch that page to extract the creator's real name
+- If the fetch fails, derive the name from the handle by splitting on capitalisation (e.g., `@FastEasyRecipes` → `Fast Easy Recipes`)
+- Use that name in the `creator` frontmatter field
 
 Apply the formatting rules below to the recipe content.
 
@@ -105,5 +111,5 @@ cook until edges begin to set
 4. Place YAML frontmatter at the very top of the file with `creator`, `pic`, and `tags`
 5. Place the source URL immediately after the frontmatter block as a plain URL, followed by a blank line — if a source URL already exists, replace it
 6. For file mode: overwrite the file with the cleaned content and confirm success — do not output the full recipe content to the chat
-7. For URL mode: display the formatted recipe in the chat, then ask the user if they would like to save it to a file — if yes, suggest a default filename derived from the recipe title using spaces (not hyphens) with a `.md` extension (e.g., `maple mustard tempeh.md`), prompt for a file path, and write it
+7. For URL mode: display the formatted recipe in the chat, then ask the user if they would like to save it to a file — if yes, suggest a default filename derived from the recipe title using spaces (not hyphens) with a `.md` extension; when the creator is known, prefix the filename with the creator name to avoid collisions between recipes with the same dish name (e.g., `Fast Easy Recipes crepes.md`); prompt for a file path, and write it
 8. After writing the file, check whether the author's page exists in the same directory — if not, create a stub page named `<Author Name>.md` containing just `# Author Name`
