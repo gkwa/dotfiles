@@ -6,6 +6,7 @@
 {{ template "general-solid-principles" . }}
 {{ template "general-readme" . }}
 {{ template "general-prose-style" . }}
+{{ template "general-file-conventions" . }}
 ## Python Instructions
 
 {{ template "python-imports" . }}
