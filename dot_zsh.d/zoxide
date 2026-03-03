@@ -16,4 +16,3 @@ ZOXIDE_COMPLETIONS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/zoxide/completions.zsh"
 }
 
 source "$ZOXIDE_COMPLETIONS_FILE"
-

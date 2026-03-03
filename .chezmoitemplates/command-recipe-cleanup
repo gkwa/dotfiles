@@ -1,4 +1,3 @@
-
 Parse the arguments: the first argument is either a local recipe file path or a URL to a recipe page. The optional second argument is the source URL for the original recipe. Any remaining text after the URL or file path is treated as inline recipe content (ingredients, instructions, notes).
 
 Determine the input mode from the first argument:
