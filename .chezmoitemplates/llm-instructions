@@ -1,10 +1,10 @@
 {{ template "chezmoi-instructions" . }}
 {{ template "git-instructions" . }}
-{{ template "general-return-early" . }}
-{{ template "general-logging" . }}
-{{ template "general-silence" . }}
-{{ template "general-solid-principles" . }}
-{{ template "general-readme" . }}
+{{ template "coding-return-early" . }}
+{{ template "coding-logging" . }}
+{{ template "coding-silence" . }}
+{{ template "coding-solid-principles" . }}
+{{ template "coding-readme" . }}
 {{ template "general-prose-style" . }}
 {{ template "general-file-conventions" . }}
 ## Python Instructions
