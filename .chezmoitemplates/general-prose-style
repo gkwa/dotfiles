@@ -3,3 +3,5 @@
 Each sentence should be its own paragraph.
 
 Do not group multiple sentences into the same paragraph block.
+
+Never use italics, bold, or emphasis (no `*text*`, `_text_`, or `**text**`) in any file.
