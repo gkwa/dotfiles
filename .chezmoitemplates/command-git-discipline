@@ -1,0 +1,37 @@
+You are violating your git commit instructions. Stop and read this before continuing.
+
+## What you are doing wrong
+
+You are generating compound bash commands like this:
+
+```
+cd "/Users/mtm/Documents/Obsidian Vault" && git add "file.md" && git commit -m "message"
+```
+
+This triggers an unavoidable approval prompt because shell operators like `&&` break Claude Code's permission matching.
+
+No entry in `settings.local.json` can suppress this prompt — compound commands are unmatchable by design.
+
+## What your instructions say
+
+Your global `CLAUDE.md` at `/Users/mtm/.claude/CLAUDE.md` already contains these rules:
+
+> Never prepend `cd` to git commands. Run `git add`, `git commit`, etc. directly without chaining a `cd` first.
+
+> Always run git subcommands as separate Bash calls. Never chain them with `&&` or `;`.
+
+> Before using `-C` or any path argument with a git command, check whether the current working directory is already the target repo. If it is, omit the path entirely.
+
+## What you must do instead
+
+Run each git subcommand as a separate Bash call, with no `cd` and no chaining:
+
+```
+git add "file.md"
+```
+
+```
+git commit -m "message"
+```
+
+The working directory is already `/Users/mtm/Documents/Obsidian Vault`. You do not need to `cd` anywhere.
