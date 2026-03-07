@@ -1,4 +1,4 @@
-<!-- This file is managed by chezmoi. Do not edit directly. Source: ~/.local/share/chezmoi/dot_gemini/ENVIRONMENT.md.tmpl -->
+<!-- This file is managed by chezmoi. Do not edit directly. Source: {{ .chezmoi.sourceFile }} -->
 # Gemini CLI Environment Configuration
 
 This environment uses a standard Gemini CLI setup managed via **chezmoi**.
@@ -7,21 +7,21 @@ This environment uses a standard Gemini CLI setup managed via **chezmoi**.
 
 Configuration is managed as a set of dotfiles. Changes must be made in the source repository and applied using `chezmoi apply`.
 
-- **Source Directory:** `~/.local/share/chezmoi/dot_gemini/`
-- **Active Configuration:** `~/.gemini/`
+- **Source Directory:** `{{ .chezmoi.sourceDir }}/dot_gemini/`
+- **Active Configuration:** `{{ .chezmoi.homeDir }}/.gemini/`
 
 ## Extension Mechanisms
 
 We utilize the standard Gemini CLI extension tiers. For detailed documentation on how to author these, refer to the [Gemini CLI Skills Documentation](https://gemini.google.com/cli/docs/skills).
 
 ### Custom Commands
-- **Source:** `~/.local/share/chezmoi/dot_gemini/commands/*.toml.tmpl`
-- **Active:** `~/.gemini/commands/`
+- **Source:** `{{ .chezmoi.sourceDir }}/dot_gemini/commands/*.toml.tmpl`
+- **Active:** `{{ .chezmoi.homeDir }}/.gemini/commands/`
 
 ### Agent Skills
-- **Source:** `~/.local/share/chezmoi/dot_gemini/skills/`
-- **Active:** `~/.gemini/skills/`
+- **Source:** `{{ .chezmoi.sourceDir }}/dot_gemini/skills/`
+- **Active:** `{{ .chezmoi.homeDir }}/.gemini/skills/`
 
 ## Behavioral Mandates
 
-Core behavioral rules are composed from shared templates in `.chezmoitemplates/` and rendered into `~/.gemini/GEMINI.md`.
+Core behavioral rules are composed from shared templates in `.chezmoitemplates/` and rendered into `{{ .chezmoi.homeDir }}/.gemini/GEMINI.md`.
