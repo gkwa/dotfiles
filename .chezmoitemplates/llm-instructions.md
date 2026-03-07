@@ -7,8 +7,6 @@
 {{ template "coding-readme" . }}
 {{ template "general-prose-style" . }}
 {{ template "general-file-conventions" . }}
-## Python Instructions
-
 {{ template "python-imports" . }}
 {{ template "python-package" . }}
 {{ template "markdown-notes-conventions" . }}
