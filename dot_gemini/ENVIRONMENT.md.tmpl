@@ -1,0 +1,26 @@
+# Gemini CLI Environment Configuration
+
+This environment uses a standard Gemini CLI setup managed via **chezmoi**.
+
+## Management & Source of Truth
+
+Configuration is managed as a set of dotfiles. Changes must be made in the source repository and applied using `chezmoi apply`.
+
+- **Source Directory:** `~/.local/share/chezmoi/dot_gemini/`
+- **Active Configuration:** `~/.gemini/`
+
+## Extension Mechanisms
+
+We utilize the standard Gemini CLI extension tiers. For detailed documentation on how to author these, refer to the [Gemini CLI Skills Documentation](https://gemini.google.com/cli/docs/skills).
+
+### Custom Commands
+- **Source:** `~/.local/share/chezmoi/dot_gemini/commands/*.toml.tmpl`
+- **Active:** `~/.gemini/commands/`
+
+### Agent Skills
+- **Source:** `~/.local/share/chezmoi/dot_gemini/skills/`
+- **Active:** `~/.gemini/skills/`
+
+## Behavioral Mandates
+
+Core behavioral rules are composed from shared templates in `.chezmoitemplates/` and rendered into `~/.gemini/GEMINI.md`.

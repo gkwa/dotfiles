@@ -1,4 +1,4 @@
-{{ template "chezmoi-instructions" . }}
+{{ template "llm-dotfile-management" . }}
 {{ template "git-instructions" . }}
 {{ template "coding-return-early" . }}
 {{ template "coding-logging" . }}

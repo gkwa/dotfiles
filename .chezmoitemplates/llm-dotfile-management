@@ -5,3 +5,5 @@ These instructions are managed by chezmoi. The file you are reading is a rendere
 Source of truth: `~/.local/share/chezmoi/`
 
 Shared rules live in `.chezmoitemplates/` and are composed into CLI-specific entry points in `dot_claude/` and `dot_gemini/`. To make changes, edit the source files there and run `chezmoi apply`.
+
+Further environment details are in `ENVIRONMENT.md`.

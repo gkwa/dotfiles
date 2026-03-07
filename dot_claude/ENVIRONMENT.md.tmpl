@@ -1,0 +1,26 @@
+# Claude CLI Environment Configuration
+
+This environment uses a standard Claude CLI setup managed via **chezmoi**.
+
+## Management & Source of Truth
+
+Configuration is managed as a set of dotfiles. Changes must be made in the source repository and applied using `chezmoi apply`.
+
+- **Source Directory:** `~/.local/share/chezmoi/dot_claude/`
+- **Active Configuration:** `~/.claude/`
+
+## Extension Mechanisms
+
+We utilize the standard Claude CLI extension tiers.
+
+### Custom Commands
+- **Source:** `~/.local/share/chezmoi/dot_claude/commands/*.md.tmpl`
+- **Active:** `~/.claude/commands/`
+
+### Agent Skills (Plugins)
+- **Source:** `~/.local/share/chezmoi/dot_claude/plugins/`
+- **Active:** `~/.claude/plugins/`
+
+## Behavioral Mandates
+
+Core behavioral rules are composed from shared templates in `.chezmoitemplates/` and rendered into `~/.claude/CLAUDE.md`.
