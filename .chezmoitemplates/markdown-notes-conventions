@@ -1,0 +1,19 @@
+## Markdown Notes Conventions
+
+### File Naming
+- Markdown filenames are always all lowercase (no capitalization)
+- Use spaces between words in filenames, not hyphens or underscores
+
+### Formatting
+- Never use italics or emphasis (no `*text*` or `_text_`) in any file
+- Start research/note files directly with the motivating question — no label or header for it
+- When listing book titles, link them to Google Image Search (format: `https://www.google.com/search?tbm=isch&q=Book+Title+Author+textbook`)
+
+### Product Linking
+- Any time a product is mentioned in a note, it must have either a purchase page link or a Google Image Search link
+- Exception: if the product has its own local page in the note collection, link to that local page instead (the local page will contain the external links)
+
+### Workflow
+- Commit after each file change so changes can be reverted if problems are discovered
+- Always update the active note with new findings during a research conversation — never ask whether to update it
+
