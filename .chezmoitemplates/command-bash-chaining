@@ -10,13 +10,11 @@ Example:
 cd "/Users/mtm/Documents/Obsidian Vault" && git add "file.md" && git commit -m "message"
 ```
 
-This triggers an unavoidable approval prompt because shell operators break Claude Code's permission matching entirely.
-
-From the Claude Code docs:
+This triggers an unavoidable approval prompt because shell operators break the tool's permission matching entirely.
 
 > If the command contains protected shell operators the pattern will not match and an explicit approval is required.
 
-No entry in `settings.local.json` can suppress this — compound commands are unmatchable by design.
+No permission setting can suppress this — compound commands are unmatchable by design.
 
 This applies to any command, not just git.
 
