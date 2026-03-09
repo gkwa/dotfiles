@@ -1,4 +1,5 @@
 {{ template "llm-dotfile-management" . }}
+{{ template "command-bash-chaining" . }}
 {{ template "git-instructions" . }}
 {{ template "coding-return-early" . }}
 {{ template "coding-logging" . }}
