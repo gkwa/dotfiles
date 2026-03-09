@@ -8,6 +8,7 @@
 - Never use italics or emphasis (no `*text*` or `_text_`) in any file
 - Start research/note files directly with the motivating question — no label or header for it
 - When listing book titles, link them to Google Image Search (format: `https://www.google.com/search?tbm=isch&q=Book+Title+Author+textbook`)
+- Always use bullet points for lists — never commas or other inline separators
 
 ### Product Linking
 - Any time a product is mentioned in a note, it must have either a purchase page link or a Google Image Search link
