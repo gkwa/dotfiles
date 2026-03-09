@@ -11,3 +11,4 @@
 {{ template "python-imports" . }}
 {{ template "python-package" . }}
 {{ template "markdown-notes-conventions" . }}
+{{ template "viewing-imgur-images" . }}
