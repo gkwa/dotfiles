@@ -8,10 +8,6 @@ Just do it. No confirmation needed, ever.
 
 Before using `-C` or any path argument with a git command, check whether the current working directory is already the target repo. If it is, omit the path entirely — avoid path escaping, which can trigger unnecessary permission prompts.
 
-Never prepend `cd` to git commands. Run `git add`, `git commit`, etc. directly without chaining a `cd` first.
-
-Always run git subcommands as separate Bash calls. Never chain them with `&&` or `;`.
-
 Write commit messages following standard git conventions (https://cbea.ms/git-commit/):
 - Subject line: 50 chars or less, imperative mood, capitalised, no trailing period
 - Explain "why", not "what" (e.g., "Fix race condition in auth flow", not "Update auth.py")
