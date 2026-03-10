@@ -55,4 +55,16 @@ If verification fails, report the error clearly and do NOT delete any files from
 
 Only if verification passes, delete all the `.txt` files that were processed from `output/` using Bash.
 
+## Step 8: Delete source MP3 files
+
+For each processed `.txt` file, there is a corresponding `.mp3` file with the same base name (e.g., `2026_03_10_10_15_33.txt` → `2026_03_10_10_15_33.mp3`).
+
+Use `mdfind` to locate each MP3 by name, then delete any found. Build a single `mdfind` query using `||` to find all of them at once:
+
+```
+mdfind "kMDItemFSName == 'YYYY_MM_DD_HH_MM_SS.mp3' || kMDItemFSName == '...'"
+```
+
+Delete each file returned by `mdfind`.
+
 Report how many files were processed and the path to the output file.
