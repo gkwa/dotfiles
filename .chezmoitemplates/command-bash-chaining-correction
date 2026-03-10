@@ -1,0 +1,27 @@
+You are chaining shell commands. Stop and fix this before continuing.
+
+Shell operators (`&&`, `||`, `;`, `|`) break the tool's permission matching entirely — compound commands are unmatchable by design and always trigger an unavoidable approval prompt, no matter what permissions are configured.
+
+You just ran something like:
+
+```
+cd "/Users/mtm/Documents/Obsidian Vault" && git add "file.md" && git commit -m "message"
+```
+
+Run each command as a separate Bash call instead:
+
+```
+cd "/Users/mtm/Documents/Obsidian Vault"
+```
+
+```
+git add "file.md"
+```
+
+```
+git commit -m "message"
+```
+
+Or, if the working directory is already correct, skip the `cd` entirely.
+
+Go back and reissue your last command split into separate calls.
