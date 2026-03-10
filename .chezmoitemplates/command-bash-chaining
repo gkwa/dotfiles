@@ -1,26 +1,18 @@
-You are violating your bash execution instructions. Stop and read this before continuing.
+## Bash Execution Rules
 
-## What you are doing wrong
+Always run each command as a separate Bash call.
 
-You are chaining multiple commands into a single Bash call using shell operators like `&&`, `||`, `;`, or `|`.
+Never chain commands using `&&`, `||`, `;`, or `|` in a single Bash call.
 
-Example:
+Shell operators break the tool's permission matching entirely — compound commands are unmatchable by design and always trigger an unavoidable approval prompt regardless of permission settings.
+
+Bad:
 
 ```
 cd "/Users/mtm/Documents/Obsidian Vault" && git add "file.md" && git commit -m "message"
 ```
 
-This triggers an unavoidable approval prompt because shell operators break the tool's permission matching entirely.
-
-> If the command contains protected shell operators the pattern will not match and an explicit approval is required.
-
-No permission setting can suppress this — compound commands are unmatchable by design.
-
-This applies to any command, not just git.
-
-## What you must do instead
-
-Run each command as a separate Bash call:
+Good:
 
 ```
 cd "/Users/mtm/Documents/Obsidian Vault"
@@ -34,6 +26,6 @@ git add "file.md"
 git commit -m "message"
 ```
 
-Or, if the working directory is already correct, skip the `cd` entirely.
+Or, if the working directory is already correct, skip the `cd` entirely and issue each remaining command in its own call.
 
-Never chain commands with `&&`, `||`, `;`, or `|` in a single Bash call.
+This applies to all commands, not just git.
