@@ -81,7 +81,7 @@ Apply the formatting rules below to the recipe content.
   - Example: `https://www.youtube.com/watch?v=abc123` → `https://youtu.be/abc123`
   - Example: `https://www.youtube.com/watch?v=abc123&t=45s` → `https://youtu.be/abc123?t=45`
 - Keep existing short `youtu.be` URLs as-is
-- If a YouTube video ID is present and the file has a `pic` frontmatter field, set it to `https://i.ytimg.com/vi/VIDEO_ID/hq720.jpg` — prefer `hq720.jpg` as it is 1280×720; fall back to `hqdefault.jpg` (480×360) only if the video is known to be low resolution
+- If a YouTube video ID is present and the file has a `pic` frontmatter field, verify the thumbnail URL before using it: run `curl -s -o /dev/null -w "%{http_code}" URL` on `hq720.jpg` first — if it returns 200 use it; if it returns 404 fall back to `hqdefault.jpg`
 
 **Timestamps:**
 - If an instruction references a video timestamp in `[MM:SS]` format with an associated YouTube URL, convert it to an absolute markdown link using the `?t=` parameter in seconds
