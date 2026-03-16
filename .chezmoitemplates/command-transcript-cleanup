@@ -38,7 +38,7 @@ Determine today's date and write all cleaned transcripts to:
 
 Create the `cleaned/` directory if it does not exist.
 
-The file should contain all transcripts in chronological order (oldest filename first), each under its `##` date-time header, separated only by the headers (no horizontal rules).
+The file should contain all transcripts in reverse chronological order (newest filename first), each under its `##` date-time header, separated only by the headers (no horizontal rules).
 
 Provide only the cleaned transcripts in the output file — no introductions, explanations, or additional commentary.
 
