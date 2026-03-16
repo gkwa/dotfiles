@@ -23,15 +23,16 @@ Apply the formatting rules below to the recipe content.
   ---
   ```
 - Extract the author/creator name from the recipe page (e.g., from the recipe card's author field or the blog's about page)
-- After writing the file, check whether a page named `<Author Name>.md` exists in the same directory as the recipe file — if it does not exist, create a minimal stub: a file containing just `# Author Name` on the first line
+- After writing the file, check whether a page named `<Author Name>.md` exists in the same directory as the recipe file — if it does not exist, create a minimal stub: a file containing `# Author Name` followed by a blank line and the author's source URL (e.g. their YouTube channel URL, website, or wherever the recipe came from)
 
 ## Formatting rules
 
 **Ingredients:**
 - Format every ingredient line as a checked checkbox: `- [x] quantity [[ingredient name]]`
 - Wrap the ingredient name (not the quantity or descriptors) in Obsidian wikilinks: `[[ingredient name]]`
+- Ensure the wikilink covers the entire product name to link to the corresponding product page in the repository
   - Example: `1 cup julienned carrots` → `- [x] 1 cup julienned [[carrots]]`
-  - Example: `2 teaspoons soy sauce` → `- [x] 2 teaspoons [[soy sauce]]`
+  - Example: `2 teaspoons sesame oil` → `- [x] 2 teaspoons [[sesame oil]]` (not `sesame [[oil]]`)
 - If the ingredient already has a wikilink, leave it as-is
 
 **Instructions:**
