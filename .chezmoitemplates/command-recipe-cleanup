@@ -23,7 +23,12 @@ Apply the formatting rules below to the recipe content.
   ---
   ```
 - Extract the author/creator name from the recipe page (e.g., from the recipe card's author field or the blog's about page)
-- After writing the file, check whether a page named `<Author Name>.md` exists in the same directory as the recipe file — if it does not exist, create a minimal stub: a file containing `# Author Name` followed by a blank line and the author's source URL (e.g. their YouTube channel URL, website, or wherever the recipe came from)
+- Resolve the creator's page name using this priority order:
+  1. If the recipe comes from the author's own personal domain, use the domain name without TLD as the page name (e.g., `budgetbytes.com` → `budgetbytes`, `halfbakedharvest.com` → `halfbakedharvest`). This is their chosen vanity identity.
+  2. If the recipe comes from a major publication (e.g., Bon Appétit, Serious Eats, NYT Cooking, Food Network, Epicurious, Tasty), use the author's name as credited on that publication — the content belongs to the publication, not the individual's personal brand.
+  3. If there is no personal domain (e.g., YouTube-only creators), use the author's real name.
+- Use the resolved page name in the `creator` frontmatter wikilink (e.g., `[[budgetbytes]]`)
+- After writing the file, check whether a page named `<page name>.md` exists in the same directory as the recipe file — if it does not exist, create a minimal stub: a file containing `# <page name>` followed by a blank line and the author's source URL (e.g. their YouTube channel URL, website, or wherever the recipe came from)
 
 ## Formatting rules
 
@@ -113,4 +118,4 @@ cook until edges begin to set
 6. Do not include a `# Title` heading — the filename serves as the page title in Obsidian
 7. For file mode: overwrite the file with the cleaned content and confirm success — do not output the full recipe content to the chat
 8. For URL mode: display the formatted recipe in the chat, then immediately write it to a file without asking — derive the filename from the recipe title using spaces (not hyphens) with a `.md` extension; when the creator is known, prefix the filename with the creator name to avoid collisions between recipes with the same dish name (e.g., `Fast Easy Recipes crepes.md`); save to the same directory as other recipe files in the vault
-9. After writing the file, check whether the author's page exists in the same directory — if not, create a stub page named `<Author Name>.md` containing just `# Author Name`
+9. After writing the file, check whether the creator's page exists in the same directory — if not, create a stub page named `<page name>.md` containing just `# <page name>` (using the resolved page name from the frontmatter rules above)
