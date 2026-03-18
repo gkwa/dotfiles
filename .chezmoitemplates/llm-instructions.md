@@ -5,10 +5,8 @@
 {{ template "coding-logging" . }}
 {{ template "coding-silence" . }}
 {{ template "coding-solid-principles" . }}
-{{ template "coding-readme" . }}
 {{ template "general-prose-style" . }}
 {{ template "general-file-conventions" . }}
 {{ template "python-imports" . }}
 {{ template "python-package" . }}
 {{ template "markdown-notes-conventions" . }}
-{{ template "viewing-imgur-images" . }}
