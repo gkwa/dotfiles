@@ -2,14 +2,14 @@ Parse the arguments: the first argument is either a local recipe file path or a 
 
 Determine the input mode from the first argument:
 - If it starts with `http://` or `https://`, treat it as a URL — fetch the page to extract the recipe content, and treat that URL as the implicit source URL (unless a second argument overrides it)
-  - **YouTube watch URLs** (`youtube.com/watch?v=VIDEO_ID`) require Playwright to access. When the first argument is a YouTube watch URL:
-    1. Extract the video ID and set the thumbnail to `https://i.ytimg.com/vi/VIDEO_ID/hq720.jpg`
-    2. Use Playwright to navigate to the YouTube page, wait 3 seconds for it to load, then click the "...more" button to expand the full description
-    3. Scan the expanded description for recipe content:
+  - **YouTube watch URLs** (`youtube.com/watch?v=VIDEO_ID`): extract the video ID and set the thumbnail to `https://i.ytimg.com/vi/VIDEO_ID/hq720.jpg`, then attempt to retrieve the description using the following fallback sequence:
+    1. Try WebFetch on the YouTube URL first — if it returns usable description content, use that
+    2. If WebFetch fails or returns no description, fall back to Playwright: navigate to the page, wait 3 seconds for it to load, then click the "...more" button to expand the full description
+    3. Once the description is obtained (by either method), scan it for recipe content:
        - **Recipe in description**: if the description contains ingredients or instructions directly, use that as the recipe content
        - **Link in description**: if the description contains a link to an external recipe page (e.g. a blog post or dedicated recipe URL), fetch that URL using WebFetch and extract the recipe from there instead
        - **Inline text fallback**: if neither is found in the description, fall back to any inline text provided in the arguments
-    4. Use the channel name and video title visible on the page to identify the creator
+    4. Use the channel name and video title to identify the creator
 - Otherwise, treat it as a local file path — read the file
 
 **Creator identification from channel URL:**
