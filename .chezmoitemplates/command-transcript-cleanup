@@ -32,11 +32,11 @@ Apply the following rules to the transcription text:
 
 ## Step 5: Write output
 
-Determine today's date and write all cleaned transcripts to:
+Get the current date and time by running `date '+%Y_%m_%d_%H_%M_%S'` in Bash. Write all cleaned transcripts to:
 
-`cleaned/transcripts_YYYY_MM_DD.md`
+`cleaned/transcripts_YYYY_MM_DD_HH_MM_SS.md`
 
-Create the `cleaned/` directory if it does not exist.
+where the timestamp comes from that Bash command. Create the `cleaned/` directory if it does not exist.
 
 The file should contain all transcripts in reverse chronological order (newest filename first), each under its `##` date-time header, separated only by the headers (no horizontal rules).
 
