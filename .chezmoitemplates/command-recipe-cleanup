@@ -7,7 +7,7 @@ Determine the input mode from the first argument:
     2. If WebFetch fails or returns no description, fall back to Playwright: navigate to the page, wait 3 seconds for it to load, then click the "...more" button to expand the full description
     3. Once the description is obtained (by either method), scan it for recipe content:
        - **Recipe in description**: if the description contains ingredients or instructions directly, use that as the recipe content
-       - **Link in description**: if the description contains a link to an external recipe page (e.g. a blog post or dedicated recipe URL), fetch that URL using WebFetch and extract the recipe from there instead
+       - **Link in description**: if the description contains a link to an external recipe page (e.g. a blog post or dedicated recipe URL), fetch that URL using WebFetch and extract the recipe from there instead; record both the YouTube URL and the recipe page URL — both will appear in the output file
        - **Inline text fallback**: if neither is found in the description, fall back to any inline text provided in the arguments
     4. Use the channel name and video title to identify the creator
 - Otherwise, treat it as a local file path — read the file
@@ -121,7 +121,7 @@ cook until edges begin to set
 2. Fetch or read the recipe content accordingly; extract the author name and hero image URL
 3. Apply all formatting rules to the recipe content — convert instruction ordered lists to plain paragraphs; apply instruction-specific rules (lowercase, no trailing period, sentence splitting) only to instruction lines
 4. Place YAML frontmatter at the very top of the file with `creator`, `pic`, and `tags`
-5. Place the hero image immediately after the frontmatter block, then the source URL on the next line, followed by a blank line — if a source URL already exists, replace it
+5. Place the hero image immediately after the frontmatter block, then the source URL(s) on the next line(s), followed by a blank line — if a source URL already exists, replace it; if the recipe was fetched from an external page linked in a YouTube description, place the YouTube URL first and the recipe page URL on the line below it
 6. Do not include a `# Title` heading — the filename serves as the page title in Obsidian
 7. For file mode: overwrite the file with the cleaned content and confirm success — do not output the full recipe content to the chat
 8. For URL mode: display the formatted recipe in the chat, then immediately write it to a file without asking — derive the filename from the recipe title using spaces (not hyphens) with a `.md` extension; when the creator is known, prefix the filename with the creator name to avoid collisions between recipes with the same dish name (e.g., `Fast Easy Recipes crepes.md`); save to the same directory as other recipe files in the vault
