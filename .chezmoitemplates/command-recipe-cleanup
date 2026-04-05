@@ -27,6 +27,7 @@ Apply the formatting rules below to the recipe content.
   pic: <hero-image-url>
   tags:
   - recipe
+  - <creator name>
   ---
   ```
 - Extract the author/creator name from the recipe page (e.g., from the recipe card's author field or the blog's about page)
