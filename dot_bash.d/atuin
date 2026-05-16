@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-[[ ! -f "$HOME/.atuin/bin/env" ]] && return
-
-# shellcheck source=/dev/null
-. "$HOME/.atuin/bin/env"
+# Source ~/.atuin/bin/env only if atuin is not already in PATH
+! command -v atuin &>/dev/null && [[ -f "$HOME/.atuin/bin/env" ]] && . "$HOME/.atuin/bin/env"
 
 ! command -v atuin &>/dev/null && return
 

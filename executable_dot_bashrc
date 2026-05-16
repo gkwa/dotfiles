@@ -21,3 +21,5 @@
 . ~/.bash.d/vault
 . ~/.bash.d/zoxide
 . ~/.shell/rc
+
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
