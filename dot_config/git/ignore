@@ -30,3 +30,5 @@ terraform.tfstate
 terraform.tfstate.backup
 terraform.tfvars
 tfplan
+
+**/.claude/settings.local.json
