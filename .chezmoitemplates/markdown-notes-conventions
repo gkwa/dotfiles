@@ -1,5 +1,11 @@
 ## Markdown Notes Conventions
 
+### Obsidian Vault
+- My primary Obsidian vault is /Users/mtm/Documents/Obsidian Vault
+- When I refer to "my Obsidian vault" or "the vault", this is the path I mean
+- My computer has multiple Obsidian vaults — always resolve vault references to this path unless I specify otherwise
+
+
 ### File Naming
 - Markdown filenames are always all lowercase (no capitalization)
 - Use spaces between words in filenames, not hyphens or underscores
