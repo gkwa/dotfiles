@@ -59,12 +59,12 @@ Only if verification passes, delete all the `.txt` files that were processed fro
 
 For each processed `.txt` file, there is a corresponding `.mp3` file with the same base name (e.g., `2026_03_10_10_15_33.txt` → `2026_03_10_10_15_33.mp3`).
 
-Search for each MP3 using `find` in both `/tmp/audio` and `~/ASR`. Run one `find` command per file:
+Create `/tmp/audio_completed` if it does not exist. Search for each MP3 using `find` in both `/tmp/audio` and `~/ASR`. Run one `find` command per file:
 
 ```
 find /tmp/audio ~/ASR -name 'YYYY_MM_DD_HH_MM_SS.mp3' 2>/dev/null
 ```
 
-Delete every path returned. This is safe because verification passed in step 6 before reaching this step.
+Move every path returned into `/tmp/audio_completed`. This is safe because verification passed in step 6 before reaching this step. The files will be cleaned up automatically on reboot.
 
 Report how many files were processed and the path to the output file.
