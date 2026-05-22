@@ -59,12 +59,12 @@ Only if verification passes, delete all the `.txt` files that were processed fro
 
 For each processed `.txt` file, there is a corresponding `.mp3` file with the same base name (e.g., `2026_03_10_10_15_33.txt` → `2026_03_10_10_15_33.mp3`).
 
-Search for each MP3 using `find` in `/tmp/audio` only — that is the staging area for files fed into this pipeline. Run one `find` command per file:
+Search for each MP3 using `find` in both `/tmp/audio` and `~/ASR`. Run one `find` command per file:
 
 ```
-find /tmp/audio -maxdepth 1 -name 'YYYY_MM_DD_HH_MM_SS.mp3' 2>/dev/null
+find /tmp/audio ~/ASR -name 'YYYY_MM_DD_HH_MM_SS.mp3' 2>/dev/null
 ```
 
-Delete each file found. Never search or delete from `~/ASR` — those are the original source files and must be preserved.
+Delete every path returned. This is safe because verification passed in step 6 before reaching this step.
 
 Report how many files were processed and the path to the output file.
