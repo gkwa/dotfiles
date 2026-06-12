@@ -27,9 +27,10 @@ Apply the formatting rules below to the recipe content.
   pic: <hero-image-url>
   tags:
   - recipe
-  - <creator name>
+  - <creator tag>
   ---
   ```
+- The creator tag is the resolved page name lowercased with all spaces and separators removed (e.g., `Andrea Geary` → `andreagreary`, `budgetbytes` → `budgetbytes`, `Fast Easy Recipes` → `fasteasyrecipes`)
 - Extract the author/creator name from the recipe page (e.g., from the recipe card's author field or the blog's about page)
 - Resolve the creator's page name using this priority order:
   1. If the recipe comes from the author's own personal domain, use the domain name without TLD as the page name (e.g., `budgetbytes.com` → `budgetbytes`, `halfbakedharvest.com` → `halfbakedharvest`). This is their chosen vanity identity.
