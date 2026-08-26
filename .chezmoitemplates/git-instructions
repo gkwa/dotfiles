@@ -18,4 +18,6 @@ Always commit a Python file immediately after writing or modifying it — writin
 
 Never hardcode an API token, service account token, or any other secret into a committed file. Read the secret from wherever it already lives, at call time.
 
-When `chezmoi apply` conflicts on a file unrelated to the current task, stop and show what has drifted, then wait for instruction. Never run `chezmoi re-add` on unrelated files just to unblock an apply.
+If a change is not in git, it does not exist. When `chezmoi apply` finds local drift, discard it with `chezmoi apply --force` rather than preserving it or asking whether to keep it.
+
+Never run `chezmoi re-add` to capture drifted files into the dotfiles repo just to unblock an apply, because that commits edits that were never meant to be kept.
