@@ -7,6 +7,7 @@
 {{ template "coding-solid-principles" . }}
 {{ template "general-prose-style" . }}
 {{ template "general-file-conventions" . }}
+{{ template "general-number-notation" . }}
 {{ template "python-imports" . }}
 {{ template "python-package" . }}
 {{ template "markdown-notes-conventions" . }}

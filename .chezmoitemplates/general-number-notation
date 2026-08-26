@@ -1,0 +1,9 @@
+## Number and Unit Notation
+
+Write numbers squashed against their unit, with no space and no spelled-out word.
+
+Use `144g`, `700mL`, and `31.5g`, never `144 g`, `144 grams`, `144G`, or `700 ml`.
+
+Use a comma thousands separator for numbers at 1,000 and above, such as `1,237g`.
+
+Show rounding with the ceiling symbols inline in the formula, as in `⌈1,237g × 7%⌉ = 87g`, rather than trailing words like "rounded up".
