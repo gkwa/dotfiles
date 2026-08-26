@@ -29,3 +29,13 @@ git commit -m "message"
 Or, if the working directory is already correct, skip the `cd` entirely and issue each remaining command in its own call.
 
 This applies to all commands, not just git.
+
+When searching many directories, never loop in Bash invoking the tool once per directory.
+
+Pass every path to a single `rg` invocation, which accepts multiple path arguments and searches them in parallel.
+
+Keep exploratory commands bounded to roughly 20 seconds, and validate on a small subset before sweeping a large tree.
+
+Never use `rm -rf <dir>` to clear a directory before a re-run, because that destroys the directory itself along with any Finder metadata, extended attributes, or folder-level settings attached to it.
+
+Use `find <dir> -mindepth 1 -delete` instead, or `find <dir> -type f -delete` to leave subdirectory entries intact.

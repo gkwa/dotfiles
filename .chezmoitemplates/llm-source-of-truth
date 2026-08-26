@@ -1,0 +1,13 @@
+## Sources of Truth
+
+Never edit an installed skill under /Users/mtm/.claude/skills or /Users/mtm/.agents/skills. Those are deployed artifacts.
+
+Edit /Users/mtm/pdev/taylormonacelli/volcanicviper/skills/<name>/SKILL.md, commit, push, then deploy with `pnpm dlx skills add gkwa/volcanicviper --global --yes`.
+
+The Obsidian vault at /Users/mtm/Documents/Obsidian Vault holds freehand notes. Do not read, grep, or search it to answer a question, and do not update notes in it, unless asked for the vault specifically or the task is itself about a note there.
+
+For questions about this machine's own configuration, the answer lives in the skills tree, the memory directory, the chezmoi source, and the relevant repo under /Users/mtm/pdev/taylormonacelli — not in the vault.
+
+When a new project needs a name, take an unused `- [ ]` entry from /Users/mtm/Documents/Obsidian Vault/project name examples.md rather than inventing one, then mark it `- [x] <name> ✅ YYYY-MM-DD` in place and commit.
+
+The format is `[adjective][animal]`, all lowercase, one compound word. That file is the registry enforcing the no-duplicate rule, so a name coined outside it escapes the check.

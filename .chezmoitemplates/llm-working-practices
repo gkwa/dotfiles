@@ -1,0 +1,15 @@
+## Working Practices
+
+Before asking the user to report state, check whether it is observable from the files, the config, or git history, and work it out directly.
+
+Read the data, compute what each competing hypothesis predicts, and present the distinguishing outcome so a single glance resolves it. Git history counts as evidence — a diff of a file the app wrote reveals how the app mutates it.
+
+Reserve questions for what genuinely exists only on their screen.
+
+When working through a batch, do not interrupt mid-way with questions. Resolve every unambiguous case directly, accumulate the judgment calls, and ask them together in one round near the end.
+
+Documents stay dry. Never lift data out of one document to aggregate it into another — reference the source instead.
+
+This covers schemas, command invocations, algorithm walkthroughs, timestamps, results tables, and derived counts. A copied fact has two homes, and the copy goes stale silently. If something seems worth reproducing for convenience, that is exactly the copy that will rot.
+
+When presenting hardware specs against a tool's requirements, state that the specs came from running a script on this machine rather than from assumption or lookup.

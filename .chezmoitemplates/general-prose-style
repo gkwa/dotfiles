@@ -5,3 +5,7 @@ Each sentence should be its own paragraph.
 Do not group multiple sentences into the same paragraph block.
 
 Never use italics, bold, or emphasis (no `*text*`, `_text_`, or `**text**`) in any file.
+
+When a description, comment, or attribution is unknown, leave it blank rather than writing "(unknown)" or "(not named in audio)".
+
+The reader can see the field is empty and does not need the absence justified. Keep the structural element, drop only the explanation.

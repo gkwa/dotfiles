@@ -1,0 +1,9 @@
+## Command Examples
+
+Show every command as a single unbroken line, however long, never split across lines with trailing backslashes.
+
+Use long-form flags everywhere, `--verbose` rather than `-v`, so a reader understands the command without consulting its help text. The exception is a tool with no long form, such as BSD xargs.
+
+Quote a shell argument only when it needs quoting — spaces, globs, or other characters the shell would interpret. Leave plain arguments like memo.mp3 bare.
+
+Paste real output into README examples. Run the tool, capture its stdout, and use that verbatim rather than inventing output or leaving a stale block in place.

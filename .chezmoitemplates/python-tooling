@@ -1,0 +1,23 @@
+## Python Tooling
+
+Always use uv. Never use pip directly, and never invoke bare `python3`.
+
+This covers throwaway and experimental scripts as much as packaged projects — one-off probes, API spikes, and scratch verification scripts all run through uv.
+
+Bare `python3` on this machine lacks CA certificates, so `urllib` HTTPS requests fail with CERTIFICATE_VERIFY_FAILED.
+
+Pass `--no-active` to every `uv run`, because a stale `VIRTUAL_ENV` from another project otherwise triggers a mismatch warning. Omit it inside Dockerfiles, where no conflicting `VIRTUAL_ENV` exists.
+
+Pass `--project /absolute/path` to every `uv run`, so the command works from any working directory and the reader can see which project it belongs to.
+
+Add `--directory /absolute/path` as well whenever behaviour depends on the working directory — relative input paths, output written into the project, or tooling that reads the cwd.
+
+Show the full invocation in every summary, chat response, and code block, never a bare console-script name:
+
+```sh
+uv run --no-active --project /Users/mtm/pdev/taylormonacelli/minimoths minimoths sessions
+```
+
+When a task processes a large batch, hundreds of files or rows, write a Python script and run it through uv rather than looping in Bash. A handful of items can stay as direct commands.
+
+Use polars for all dataframe, time series, CSV, and Parquet work. Never pandas.

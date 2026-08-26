@@ -1,4 +1,6 @@
 {{ template "llm-dotfile-management" . }}
+{{ template "llm-source-of-truth" . }}
+{{ template "llm-working-practices" . }}
 {{ template "command-bash-chaining" . }}
 {{ template "git-instructions" . }}
 {{ template "coding-return-early" . }}
@@ -8,6 +10,10 @@
 {{ template "general-prose-style" . }}
 {{ template "general-file-conventions" . }}
 {{ template "general-number-notation" . }}
+{{ template "general-absolute-paths" . }}
+{{ template "general-command-examples" . }}
+{{ template "general-tooling" . }}
 {{ template "python-imports" . }}
 {{ template "python-package" . }}
+{{ template "python-tooling" . }}
 {{ template "markdown-notes-conventions" . }}

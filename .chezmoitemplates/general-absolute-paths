@@ -1,0 +1,7 @@
+## Absolute Paths
+
+Always show absolute paths, never relative ones like `~/...` or `./...`.
+
+This covers file paths in prose, in README examples, and in CLI flags that take paths — write `--project /Users/mtm/pdev/taylormonacelli/storiedstork`, never `--project .`.
+
+Expand `~` to /Users/mtm and resolve any relative reference to its full form, so anything shown can be pasted from any working directory.

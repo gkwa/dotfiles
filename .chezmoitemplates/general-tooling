@@ -1,0 +1,5 @@
+## Tooling Preferences
+
+Always use pnpm, never npm or npx. Use `pnpm dlx` for one-off package execution and `pnpm` for install and run commands.
+
+When a needed CLI tool is missing, run it through Docker rather than installing it with brew or apt, so the host environment stays clean.

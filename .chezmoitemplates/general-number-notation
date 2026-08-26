@@ -7,3 +7,7 @@ Use `144g`, `700mL`, and `31.5g`, never `144 g`, `144 grams`, `144G`, or `700 ml
 Use a comma thousands separator for numbers at 1,000 and above, such as `1,237g`.
 
 Show rounding with the ceiling symbols inline in the formula, as in `⌈1,237g × 7%⌉ = 87g`, rather than trailing words like "rounded up".
+
+Report temperatures in Fahrenheit as the primary value, showing Celsius parenthetically if at all.
+
+Convert absolute temperatures as °F = °C × 9/5 + 32, and differences or offsets as °F = °C × 9/5 with no +32.

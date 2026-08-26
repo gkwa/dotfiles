@@ -11,3 +11,11 @@ Before using `-C` or any path argument with a git command, check whether the cur
 Write commit messages following standard git conventions (https://cbea.ms/git-commit/):
 - Subject line: 50 chars or less, imperative mood, capitalised, no trailing period
 - Explain "why", not "what" (e.g., "Fix race condition in auth flow", not "Update auth.py")
+
+Commit bodies follow the prose style above, one sentence per paragraph, and additionally hard-wrap at 80 characters.
+
+Always commit a Python file immediately after writing or modifying it — writing the code and committing it are one unit of work.
+
+Never hardcode an API token, service account token, or any other secret into a committed file. Read the secret from wherever it already lives, at call time.
+
+When `chezmoi apply` conflicts on a file unrelated to the current task, stop and show what has drifted, then wait for instruction. Never run `chezmoi re-add` on unrelated files just to unblock an apply.
