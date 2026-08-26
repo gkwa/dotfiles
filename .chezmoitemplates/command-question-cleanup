@@ -9,6 +9,8 @@ Each sentence is its own paragraph, separated by a blank line.
 
 Preserve the user's original intent. Do not add scope or meaning they did not express.
 
+Preserve the motivating context too — keep named examples, specific tools, proposed workflows, and stated constraints. Clean for grammar and structure, but do not abstract away the concrete detail that makes the question worth returning to.
+
 Apply all of the following when rewriting:
 
 1. Make it self-contained — remove references to prior conversation, uploads, or context another model would not have. Inline any necessary background.
@@ -28,4 +30,7 @@ Output format:
 Changes: [One short sentence describing what was changed and why]
 ```
 
+These rewriting rules are duplicated in Step 1 of the research-note skill, at /Users/mtm/pdev/taylormonacelli/volcanicviper/skills/research-note/SKILL.md, because that skill installs onto machines with no copy of this commands directory. Change both together.
+
 The question to rewrite is:
+
