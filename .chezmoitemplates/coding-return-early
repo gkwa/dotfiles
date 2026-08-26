@@ -17,3 +17,9 @@ function process(data):
         if data.is_valid():
             return do_work(data)
 ```
+
+Apply this only where it genuinely reduces complexity.
+
+Preserve simple if/else structures that are already clear.
+
+Do not force the pattern into short functions where a single if/else reads better, or where the conditions represent legitimate alternative behaviours rather than failure cases.

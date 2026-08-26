@@ -8,6 +8,8 @@ Follow SOLID design principles and maintain good information hiding:
 4. Interface Segregation Principle (ISP): Many client-specific interfaces are better than one general-purpose interface.
 5. Dependency Inversion Principle (DIP): High-level modules should not depend on low-level modules — both should depend on abstractions.
 
+When writing or reviewing code, ask which of these principles are being violated, whether the code is organised into small focused units, and where information hiding could be improved.
+
 ## Keep File Line Count Small
 
 Individual code files should strive to stay under 200 lines. This is a goal, not a strict limit — justified outliers are fine.
