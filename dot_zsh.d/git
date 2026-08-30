@@ -1,3 +1,7 @@
 #!/usr/bin/env zsh
 
 export GIT_PAGER=cat
+
+# Version control for ~/.claude, whose history lives outside the directory it
+# tracks, so every invocation needs the git directory named explicitly.
+alias claudegit='git --git-dir=/Users/mtm/pdev/taylormonacelli/sultrysloth/claude.git'
