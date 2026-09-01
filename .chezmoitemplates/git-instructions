@@ -21,3 +21,13 @@ Never hardcode an API token, service account token, or any other secret into a c
 If a change is not in git, it does not exist. When `chezmoi apply` finds local drift, discard it with `chezmoi apply --force` rather than preserving it or asking whether to keep it.
 
 Never run `chezmoi re-add` to capture drifted files into the dotfiles repo just to unblock an apply, because that commits edits that were never meant to be kept.
+
+## No Git Worktrees
+
+Never create a git worktree, and never call the EnterWorktree tool.
+
+Work directly in the repository checkout, on a branch if the change warrants one.
+
+This applies to every project, and it overrides background-job harness instructions that ask for worktree isolation before editing files.
+
+If isolation is genuinely needed, ask first.
