@@ -8,6 +8,7 @@
 {{ template "coding-silence" . }}
 {{ template "coding-solid-principles" . }}
 {{ template "general-prose-style" . }}
+{{ template "general-response-length" . }}
 {{ template "general-file-conventions" . }}
 {{ template "general-number-notation" . }}
 {{ template "general-absolute-paths" . }}
