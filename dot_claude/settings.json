@@ -22,6 +22,18 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --no-active --script /Users/mtm/.claude/scripts/vault_new_note_hook.py",
+            "timeout": 30
+          }
+        ]
+      }
     ]
   },
   "enabledPlugins": {
