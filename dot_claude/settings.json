@@ -39,6 +39,7 @@
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": false
   },
+  "remoteControlAtStartup": true,
   "skipDangerousModePermissionPrompt": true,
   "tui": "fullscreen"
 }
