@@ -12,10 +12,7 @@ import sys
 
 VAULT = pathlib.Path("/Users/mtm/Documents/Obsidian Vault")
 DATED_NAME = re.compile(r"^\d{4}-\d{2}-\d{2}$")
-REMINDER = (
-    "New vault note {stem}: it is now linked both ways with [[{day}]]. "
-    "Run the outline-headings skill on it before finishing."
-)
+REMINDER = "New vault note {stem}: it is now linked both ways with [[{day}]]."
 
 
 def new_vault_note(payload: dict) -> pathlib.Path | None:
