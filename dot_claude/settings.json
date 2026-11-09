@@ -33,16 +33,6 @@
             "timeout": 30
           }
         ]
-      },
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "uv run --no-active --script /Users/mtm/.claude/scripts/vault_outline_reminder_hook.py",
-            "timeout": 30
-          }
-        ]
       }
     ]
   },
